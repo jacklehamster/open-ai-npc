@@ -1,6 +1,8 @@
 import { fetchChoice } from "./choices";
 import { npc } from "./openai";
 import express from "express";
+import path from "path";
+import { NpcModel } from "./model/NpcModel";
 
 const app = express();
 const port = parseInt(process.env.PORT ?? "3000");
@@ -10,6 +12,9 @@ interface Query {
   model?: string;
   creature?: string;
 }
+
+app.use(express.static('../example'));
+app.use('/example', express.static(path.join(import.meta.dir, '../example')))
 
 app.get("/api", async (req, res) => {
   const query = req.query as Query;
@@ -35,3 +40,4 @@ app.listen(port, () => {
 });
 
 export { npc, fetchChoice };
+export type { NpcModel };
