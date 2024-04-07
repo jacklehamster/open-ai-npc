@@ -1,10 +1,12 @@
-# bun-template
+# open-ai-npc
 
-[![npm version](https://badge.fury.io/js/bun-template.svg)](https://www.npmjs.com/package/bun-template)
+[![npm version](https://badge.fury.io/js/open-ai-npc.svg)](https://www.npmjs.com/package/open-ai-npc)
 
 Bun template for creating projects using bunjs
 
-![](https://jacklehamster.github.io/bun-template/icon.png)
+![](https://jacklehamster.github.io/open-ai-npc/icon.png)
+
+
 ## Install bun
 
 https://bun.sh/
@@ -20,7 +22,7 @@ curl -fsSL https://bun.sh/install | bash
 
 ## Run example
 
-[https://jacklehamster.github.io/bun-template/example/](https://jacklehamster.github.io/bun-template/example/)
+[https://open-ai-npc.onrender.com/](https://open-ai-npc.onrender.com/)
 
 ## Github Source
 
