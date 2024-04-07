@@ -115,7 +115,7 @@ out
 # Nuxt.js build / generate output
 
 .nuxt
-dist
+# dist
 
 # Gatsby files
 
@@ -171,7 +171,7 @@ dist
 # IntelliJ based IDEs
 .idea
 
-dist/
+# dist/
 *.tsbuildinfo
 
 # Not needed since we use bun
