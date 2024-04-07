@@ -36,7 +36,7 @@
     "fix-package-name": "npm explore package-name-fixer -- bun start \"$(pwd)\"",
     "auto-publish": "npm explore @dobuki/auto-publish -- bun run auto-publish \"$(pwd)\"",
     "openai": "OPENAI_API_KEY=$OPENAI_API_KEY bun run ./src/index.ts",
-    "start": "bun run build && node ./dist/index.js"
+    "start": "bun run build && bun ./src/index.ts"
   },
   "publishConfig": {
     "access": "public"
