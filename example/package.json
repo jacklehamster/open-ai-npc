@@ -8,6 +8,7 @@
     "build-icon": "png-to-ico ../icon.png > favicon.ico"
   },
   "devDependencies": {
+    "@types/node-persist": "^3.1.8",
     "bun-types": "latest"
   },
   "peerDependencies": {
@@ -15,8 +16,9 @@
   },
   "dependencies": {
     "baojs": "^0.2.1",
+    "node-persist": "^4.0.1",
+    "open-ai-npc": "file:..",
     "png-to-ico": "^2.1.8",
-    "serve-static-bun": "^0.5.3",
-    "bun-template": "file:.."
+    "serve-static-bun": "^0.5.3"
   }
 }

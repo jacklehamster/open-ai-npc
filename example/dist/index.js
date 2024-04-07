@@ -1,9 +1,5 @@
-// /Users/vincent/bun-template/example/node_modules/bun-template/dist/index.js
-class e {
-  static hello() {
-    return "Hello World!";
-  }
-}
+// src/index.ts
+var Hello = () => console.log("Hello");
 export {
-  e as Hello
+  Hello
 };

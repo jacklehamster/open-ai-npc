@@ -4,7 +4,7 @@ async function bundle() {
     outdir: './dist',
     minify: true,
     sourcemap: "external",
-    target: "browser",
+    target: "node",
   });
 }
 

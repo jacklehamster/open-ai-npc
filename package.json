@@ -1,8 +1,8 @@
 {
-  "name": "bun-template",
+  "name": "open-ai-npc",
   "module": "src/index.ts",
-  "description": "Bun template for creating projects using bunjs",
-  "version": "1.0.47",
+  "description": "Testing openAI's API, with a \"dungeon master\".",
+  "version": "1.0.0",
   "keywords": [
     "bun",
     "bunjs",
@@ -15,9 +15,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:jacklehamster/bun-template.git"
+    "url": "https://github.com/jacklehamster/open-ai-npc.git"
   },
-  "homepage": "https://jacklehamster.github.io/bun-template/",
+  "homepage": "https://jacklehamster.github.io/open-ai-npc/",
   "author": {
     "name": "Jack Le Hamster",
     "email": "jacklehamster@gmail.com"
@@ -36,7 +36,8 @@
     "build:example": "cd example && bun i && bun run build && cd ..",
     "example": "cd example && bun start && cd ..",
     "fix-package-name": "npm explore package-name-fixer -- bun start \"$(pwd)\"",
-    "auto-publish": "npm explore @dobuki/auto-publish -- bun run auto-publish \"$(pwd)\""
+    "auto-publish": "npm explore @dobuki/auto-publish -- bun run auto-publish \"$(pwd)\"",
+    "openai": "OPENAI_API_KEY=$OPENAI_API_KEY bun run ./src/index.ts"
   },
   "publishConfig": {
     "access": "public"
@@ -49,9 +50,11 @@
     "@types/bun": "^1.0.4",
     "@types/jest": "^29.5.6",
     "@types/mocha": "^10.0.3",
+    "@types/node-persist": "^3.1.8",
     "@types/react": "^18.2.21",
     "bun": "^1.0.25",
     "bun-types": "^1.0.2",
+    "dotenv": "^16.4.5",
     "jest": "^29.7.0",
     "package-name-fixer": "^1.0.9",
     "prettier": "^3.0.3",
@@ -61,5 +64,11 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "baojs": "^0.2.1",
+    "node-persist": "^4.0.1",
+    "openai": "^4.33.0",
+    "serve-static-bun": "^0.5.3"
   }
 }

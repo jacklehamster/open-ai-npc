@@ -1,3 +1,3 @@
-import { Hello } from "bun-template";
+const Hello = () => console.log("Hello");
 
 export { Hello };
