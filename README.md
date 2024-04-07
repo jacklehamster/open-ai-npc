@@ -22,7 +22,11 @@ curl -fsSL https://bun.sh/install | bash
 
 ## Run example
 
+### TRY OUT API
+
 [https://open-ai-npc.onrender.com/](https://open-ai-npc.onrender.com/)
+
+### Test dialog
 
 ## Github Source
 
