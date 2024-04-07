@@ -2691,36 +2691,35 @@ var jsx_dev_runtime3 = __toESM(require_jsx_dev_runtime(), 1);
 var import_react13 = __toESM(require_react(), 1);
 var import_react14 = __toESM(require_react(), 1);
 var import_react15 = __toESM(require_react(), 1);
-var import_react16 = __toESM(require_react(), 1);
 var jsx_dev_runtime4 = __toESM(require_jsx_dev_runtime(), 1);
 var jsx_dev_runtime5 = __toESM(require_jsx_dev_runtime(), 1);
-var import_react17 = __toESM(require_react(), 1);
+var import_react16 = __toESM(require_react(), 1);
 var jsx_dev_runtime6 = __toESM(require_jsx_dev_runtime(), 1);
 var jsx_dev_runtime7 = __toESM(require_jsx_dev_runtime(), 1);
+var import_react17 = __toESM(require_react(), 1);
 var import_react18 = __toESM(require_react(), 1);
 var import_react19 = __toESM(require_react(), 1);
-var import_react20 = __toESM(require_react(), 1);
 var jsx_dev_runtime8 = __toESM(require_jsx_dev_runtime(), 1);
 var jsx_dev_runtime9 = __toESM(require_jsx_dev_runtime(), 1);
 var jsx_dev_runtime10 = __toESM(require_jsx_dev_runtime(), 1);
 var jsx_dev_runtime11 = __toESM(require_jsx_dev_runtime(), 1);
+var import_react20 = __toESM(require_react(), 1);
 var import_react21 = __toESM(require_react(), 1);
 var import_react22 = __toESM(require_react(), 1);
 var import_react23 = __toESM(require_react(), 1);
 var import_react24 = __toESM(require_react(), 1);
 var import_react25 = __toESM(require_react(), 1);
 var import_react26 = __toESM(require_react(), 1);
-var import_react27 = __toESM(require_react(), 1);
 var jsx_dev_runtime12 = __toESM(require_jsx_dev_runtime(), 1);
 var jsx_dev_runtime13 = __toESM(require_jsx_dev_runtime(), 1);
+var import_react27 = __toESM(require_react(), 1);
 var import_react28 = __toESM(require_react(), 1);
-var import_react29 = __toESM(require_react(), 1);
 var jsx_dev_runtime14 = __toESM(require_jsx_dev_runtime(), 1);
-var import_react30 = __toESM(require_react(), 1);
+var import_react29 = __toESM(require_react(), 1);
 var jsx_dev_runtime15 = __toESM(require_jsx_dev_runtime(), 1);
+var import_react30 = __toESM(require_react(), 1);
 var import_react31 = __toESM(require_react(), 1);
 var import_react32 = __toESM(require_react(), 1);
-var import_react33 = __toESM(require_react(), 1);
 var jsx_dev_runtime16 = __toESM(require_jsx_dev_runtime(), 1);
 var useSelection = function({ items, maxRows = items.length.valueOf() }) {
   const [selectedIndex, setSelectedIndex] = import_react3.useState(0);
@@ -2950,7 +2949,7 @@ var Popup2 = function({
           right,
           bottom,
           width,
-          height,
+          height: fit ? 0 : height,
           fontSize: style?.fontSize ?? DEFAULT_FONT_SIZE,
           display: visible ? "" : "none"
         },
@@ -2994,7 +2993,7 @@ var useRemove = function() {
   return { removed, remove };
 };
 var Images = function({ images }) {
-  const imgs = import_react16.useMemo(() => Array.isArray(images) ? images : [images], [images]);
+  const imgs = import_react15.useMemo(() => Array.isArray(images) ? images : [images], [images]);
   return jsx_dev_runtime4.jsxDEV(jsx_dev_runtime4.Fragment, {
     children: imgs.map((image, index) => {
       const imgModel = typeof image === "string" ? { src: image } : image;
@@ -3014,26 +3013,32 @@ var Images = function({ images }) {
   }, undefined, false, undefined, this);
 };
 var Picture = function({ picture, removed }) {
-  const canvasRef = import_react15.useRef(null);
   return jsx_dev_runtime5.jsxDEV(jsx_dev_runtime5.Fragment, {
-    children: jsx_dev_runtime5.jsxDEV(Popup2, {
-      layout: picture.layout ?? {},
-      style: picture.style,
-      removed,
-      clickThrough: true,
-      children: jsx_dev_runtime5.jsxDEV("div", {
-        style: {
-          width: "100%",
-          height: "100%",
-          pointerEvents: "none",
-          overflow: "hidden"
-        },
-        children: jsx_dev_runtime5.jsxDEV(Images, {
-          images: picture.images
+    children: [
+      jsx_dev_runtime5.jsxDEV(Popup2, {
+        layout: picture.layout ?? {},
+        style: picture.style,
+        removed,
+        clickThrough: true,
+        children: jsx_dev_runtime5.jsxDEV("div", {
+          style: {
+            width: "100%",
+            height: "100%",
+            pointerEvents: "none",
+            overflow: "hidden"
+          },
+          children: jsx_dev_runtime5.jsxDEV(Images, {
+            images: picture.images
+          }, undefined, false, undefined, this)
         }, undefined, false, undefined, this)
+      }, undefined, false, undefined, this),
+      picture.dialog && jsx_dev_runtime5.jsxDEV(Container2, {
+        dialog: picture.dialog,
+        focusLess: true,
+        removed
       }, undefined, false, undefined, this)
-    }, undefined, false, undefined, this)
-  }, undefined, false, undefined, this);
+    ]
+  }, undefined, true, undefined, this);
 };
 var Label = function({ label }) {
   return label && jsx_dev_runtime6.jsxDEV("div", {
@@ -3074,8 +3079,8 @@ var Button = function({ stretch, selected, hideOutline, emoji, text, padding, ma
   }, undefined, true, undefined, this);
 };
 var useEditControlContext = function() {
-  const [editing, setEditing] = import_react20.useState(false);
-  const context = import_react20.useMemo(() => ({
+  const [editing, setEditing] = import_react19.useState(false);
+  const context = import_react19.useMemo(() => ({
     editing,
     toggleEditing: () => {
       setEditing((editing2) => !editing2);
@@ -3153,16 +3158,16 @@ var openMenu = function({
   return { popupControl, detach };
 };
 var useLanguageModel = function({ languages }) {
-  const [lang, setLang] = import_react18.useState(0);
-  const currentLanguageModel = import_react18.useMemo(() => {
+  const [lang, setLang] = import_react17.useState(0);
+  const currentLanguageModel = import_react17.useMemo(() => {
     const language = languages?.[lang ?? 0] ?? DEFAULT_LANGUAGE;
     return typeof language === "string" ? DEFAULT_LANGUAGES[language] : language;
   }, [prompt, languages, lang]);
-  const getLanguageModel = import_react18.useCallback((language) => {
+  const getLanguageModel = import_react17.useCallback((language) => {
     return typeof language === "string" ? DEFAULT_LANGUAGES[language] : language;
   }, []);
   const { popupControl } = useControlContext();
-  const chooseLanguage = import_react18.useCallback(() => {
+  const chooseLanguage = import_react17.useCallback(() => {
     openMenu({
       menu: {
         builtIn: true,
@@ -3190,35 +3195,35 @@ var useLanguageModel = function({ languages }) {
   return { currentLanguageModel, getLanguageModel, chooseLanguage: languages ? chooseLanguage : undefined };
 };
 var useAlphabet = function({ languageModel }) {
-  const [capitalize, setCapitalize] = import_react21.useState(false);
-  import_react21.useEffect(() => {
+  const [capitalize, setCapitalize] = import_react20.useState(false);
+  import_react20.useEffect(() => {
     if (!languageModel.capitalize) {
       setCapitalize(false);
     }
   }, [languageModel, setCapitalize]);
-  const alphabet = import_react21.useMemo(() => {
+  const alphabet = import_react20.useMemo(() => {
     const letters = import_hangul_js.default.disassemble(languageModel.alphabet);
     return capitalize ? letters.map((l) => l.toUpperCase()) : letters;
   }, [capitalize, import_hangul_js.default, languageModel]);
   return { alphabet, setCapitalize };
 };
 var useTextInput = function({ defaultText, randomList }) {
-  const [text, setText] = import_react22.useState(defaultText);
-  const addLetter = import_react22.useCallback((letter) => {
+  const [text, setText] = import_react21.useState(defaultText);
+  const addLetter = import_react21.useCallback((letter) => {
     setText((text2) => {
       const letters = import_hangul_js2.default.disassemble(text2 ?? "");
       letters.push(letter);
       return import_hangul_js2.default.assemble(letters);
     });
   }, [import_hangul_js2.default, setText]);
-  const deleteLetter = import_react22.useCallback(() => {
+  const deleteLetter = import_react21.useCallback(() => {
     setText((text2) => {
       const letters = import_hangul_js2.default.disassemble(text2 ?? "");
       letters.pop();
       return import_hangul_js2.default.assemble(letters);
     });
   }, [import_hangul_js2.default, setText]);
-  const randomizeText = import_react22.useCallback(() => {
+  const randomizeText = import_react21.useCallback(() => {
     if (randomList) {
       const len = randomList.length.valueOf();
       setText((text2) => {
@@ -3237,15 +3242,15 @@ var useTextInput = function({ defaultText, randomList }) {
 };
 var useInputFocus = function({ text }) {
   const { popupControl } = useControlContext();
-  const [inputFocus, setInputFocus] = import_react23.useState(false);
-  import_react23.useEffect(() => {
+  const [inputFocus, setInputFocus] = import_react22.useState(false);
+  import_react22.useEffect(() => {
     if (inputFocus) {
       popupControl.deactivate();
       return () => popupControl.activate();
     }
   }, [popupControl, inputFocus]);
-  const inputRef = import_react23.useRef(null);
-  import_react23.useEffect(() => {
+  const inputRef = import_react22.useRef(null);
+  import_react22.useEffect(() => {
     const input = inputRef.current;
     if (input) {
       const onFocus = () => {
@@ -3260,17 +3265,17 @@ var useInputFocus = function({ text }) {
       input.addEventListener("blur", onBlur);
     }
   }, [inputRef.current, setInputFocus]);
-  import_react23.useEffect(() => {
+  import_react22.useEffect(() => {
     const input = inputRef.current;
     if (input && input.textContent !== text) {
       input.textContent = text ?? null;
     }
   }, [text, inputRef.current]);
-  const setEndOfContenteditable = import_react23.useCallback((elem) => {
+  const setEndOfContenteditable = import_react22.useCallback((elem) => {
     window.getSelection()?.selectAllChildren(elem);
     window.getSelection()?.collapseToEnd();
   }, []);
-  const focus = import_react23.useCallback((end) => {
+  const focus = import_react22.useCallback((end) => {
     if (inputRef.current) {
       inputRef.current.focus();
       if (end) {
@@ -3281,9 +3286,9 @@ var useInputFocus = function({ text }) {
   return { inputRef, inputFocus, focus };
 };
 var useActiveFocus = function({ disabled } = {}) {
-  const [active, setActive] = import_react24.useState(!disabled);
+  const [active, setActive] = import_react23.useState(!disabled);
   const { popupControl } = useControlContext();
-  import_react24.useEffect(() => {
+  import_react23.useEffect(() => {
     if (!disabled) {
       return popupControl.registerActive(setActive);
     }
@@ -3291,7 +3296,7 @@ var useActiveFocus = function({ disabled } = {}) {
   return { active };
 };
 var useKeyDown = function({ enabled, key, callback }) {
-  import_react25.useEffect(() => {
+  import_react24.useEffect(() => {
     if (enabled) {
       const listener = (e) => {
         if (key.indexOf(e.code) >= 0) {
@@ -3320,8 +3325,8 @@ var usePromptControl = function({
 }) {
   const { active } = useActiveFocus();
   const { removed, remove } = useRemove();
-  const [position, setPosition] = import_react26.useState([0, 0]);
-  const actionBar = import_react26.useMemo(() => {
+  const [position, setPosition] = import_react25.useState([0, 0]);
+  const actionBar = import_react25.useMemo(() => {
     const leftSide = [];
     if (chooseLanguage) {
       leftSide.push(ActionButton.LANG);
@@ -3333,22 +3338,22 @@ var usePromptControl = function({
     const mid = new Array(COLUMNS - leftSide.length - rightSize.length).fill(ActionButton.SPACE);
     return leftSide.concat(mid).concat(rightSize);
   }, [canCapitalize, chooseLanguage]);
-  const closePrompt = import_react26.useCallback(() => {
+  const closePrompt = import_react25.useCallback(() => {
     remove(onClose);
   }, [remove, onClose]);
-  const onSpace = import_react26.useCallback((pos) => {
+  const onSpace = import_react25.useCallback((pos) => {
     return actionBar[pos[0]] === ActionButton.SPACE && pos[1] === 4;
   }, [actionBar]);
-  const onLetter = import_react26.useCallback((pos) => {
+  const onLetter = import_react25.useCallback((pos) => {
     return pos[1] >= 0 && pos[1] <= 3;
   }, []);
-  const confirmText = import_react26.useCallback(() => {
+  const confirmText = import_react25.useCallback(() => {
     if (text) {
       onConfirm(text);
       closePrompt();
     }
   }, [text, onConfirm, closePrompt]);
-  const onAction = import_react26.useCallback(() => {
+  const onAction = import_react25.useCallback(() => {
     if (onLetter(position)) {
       addLetter(alphabet[position[1] * COLUMNS + position[0]]);
       return;
@@ -3378,7 +3383,7 @@ var usePromptControl = function({
       }
     }
   }, [chooseLanguage, position, toggleCapitalize, onLetter, alphabet, randomizeText, confirmText, addLetter, deleteLetter, actionBar]);
-  const onLeft = import_react26.useCallback(() => {
+  const onLeft = import_react25.useCallback(() => {
     setPosition((pos) => {
       if (onSpace(pos)) {
         let i;
@@ -3392,7 +3397,7 @@ var usePromptControl = function({
       return [Math.max(pos[0] - 1, 0), pos[1]];
     });
   }, [setPosition, onSpace, actionBar]);
-  const onRight = import_react26.useCallback(() => {
+  const onRight = import_react25.useCallback(() => {
     setPosition((pos) => {
       if (onSpace(pos)) {
         let i;
@@ -3406,15 +3411,15 @@ var usePromptControl = function({
       return [Math.min(pos[0] + 1, COLUMNS - 1), pos[1]];
     });
   }, [setPosition, onSpace, actionBar]);
-  const onUp = import_react26.useCallback(() => {
+  const onUp = import_react25.useCallback(() => {
     setPosition((pos) => [pos[0], Math.max(randomList ? -1 : 0, pos[1] - 1)]);
   }, [setPosition, randomList]);
-  const onDown = import_react26.useCallback(() => {
+  const onDown = import_react25.useCallback(() => {
     setPosition((pos) => [pos[0], Math.min(4, pos[1] + 1)]);
   }, [setPosition]);
   const { lockState, popupControl } = useControls({
     active,
-    listener: import_react26.useMemo(() => ({
+    listener: import_react25.useMemo(() => ({
       onLeft,
       onRight,
       onUp,
@@ -3425,14 +3430,14 @@ var usePromptControl = function({
     }), [onLeft, onRight, onUp, onDown, closePrompt, onAction])
   });
   useKeyDown({
-    enabled: import_react26.useMemo(() => canCapitalize && !inputFocus, [canCapitalize, inputFocus]),
+    enabled: import_react25.useMemo(() => canCapitalize && !inputFocus, [canCapitalize, inputFocus]),
     key: ["ShiftLeft", "ShiftRight"],
     callback: toggleCapitalize
   });
   useKeyDown({
     enabled: !inputFocus,
     key: ["Enter"],
-    callback: import_react26.useCallback(() => popupControl.onAction(), [popupControl])
+    callback: import_react25.useCallback(() => popupControl.onAction(), [popupControl])
   });
   useKeyDown({
     enabled: !inputFocus,
@@ -3987,7 +3992,7 @@ var Prompt = function({ prompt: prompt2, onConfirm, onClose }) {
     addLetter,
     deleteLetter,
     randomizeText,
-    toggleCapitalize: import_react17.useCallback(() => setCapitalize((cap) => !cap), [setCapitalize]),
+    toggleCapitalize: import_react16.useCallback(() => setCapitalize((cap) => !cap), [setCapitalize]),
     chooseLanguage,
     onConfirm: prompt2.input ?? onConfirm,
     randomList: prompt2.randomText,
@@ -3995,13 +4000,14 @@ var Prompt = function({ prompt: prompt2, onConfirm, onClose }) {
     canCapitalize: currentLanguageModel.capitalize,
     focus
   });
-  const clickable = import_react17.useMemo(() => !disabled && mouseHoverEnabled, [disabled, mouseHoverEnabled]);
+  const clickable = import_react16.useMemo(() => !disabled && mouseHoverEnabled, [disabled, mouseHoverEnabled]);
   return jsx_dev_runtime12.jsxDEV(jsx_dev_runtime12.Fragment, {
     children: jsx_dev_runtime12.jsxDEV(Popup2, {
       layout: prompt2.layout ?? {},
       style: prompt2.style,
       removed,
       disabled,
+      onBack: onClose,
       fit: true,
       children: jsx_dev_runtime12.jsxDEV("div", {
         style: { padding: 5 },
@@ -4024,7 +4030,8 @@ var Prompt = function({ prompt: prompt2, onConfirm, onClose }) {
                   border: "2px solid white",
                   borderRadius: "5px",
                   padding: 10,
-                  cursor: "text"
+                  cursor: "text",
+                  minHeight: 25
                 },
                 onClick: () => focus(),
                 children: [
@@ -4262,8 +4269,8 @@ var Container2 = function({
 };
 var useEditMenu = function({ menu, active }) {
   const { editing } = useEditContext();
-  const [editCount, setEditCount] = import_react28.useState(0);
-  const addItem = import_react28.useCallback(async () => {
+  const [editCount, setEditCount] = import_react27.useState(0);
+  const addItem = import_react27.useCallback(async () => {
     const items2 = [];
     let i2;
     for (i2 = 1;x(menu.items, (item) => {
@@ -4280,7 +4287,7 @@ var useEditMenu = function({ menu, active }) {
     menu.items = items2;
     setEditCount((count) => count + 1);
   }, [menu, setEditCount, editCount]);
-  const onAddSubmenu = import_react28.useCallback((index) => {
+  const onAddSubmenu = import_react27.useCallback((index) => {
     const items2 = [];
     A(menu.items, (item2) => items2.push(item2));
     const item = items2[index];
@@ -4290,7 +4297,7 @@ var useEditMenu = function({ menu, active }) {
     menu.items = items2;
     setEditCount((count) => count + 1);
   }, [menu, setEditCount, editCount]);
-  const onRemoveSubmenu = import_react28.useCallback((index) => {
+  const onRemoveSubmenu = import_react27.useCallback((index) => {
     const items2 = [];
     A(menu.items, (item2) => items2.push(item2));
     const item = items2[index];
@@ -4300,19 +4307,21 @@ var useEditMenu = function({ menu, active }) {
     menu.items = items2;
     setEditCount((count) => count + 1);
   }, [menu, setEditCount, editCount]);
-  const onAddDialog = import_react28.useCallback((index) => {
+  const onAddDialog = import_react27.useCallback((index) => {
     const items2 = [];
     A(menu.items, (item2) => items2.push(item2));
     const item = items2[index];
     const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
     itemModel.dialog = itemModel.dialog ?? {
-      messages: []
+      messages: [
+        { text: "" }
+      ]
     };
     items2[index] = itemModel;
     menu.items = items2;
     setEditCount((count) => count + 1);
   }, [menu, setEditCount, editCount]);
-  const onRemoveDialog = import_react28.useCallback((index) => {
+  const onRemoveDialog = import_react27.useCallback((index) => {
     const items2 = [];
     A(menu.items, (item2) => items2.push(item2));
     const item = items2[index];
@@ -4322,7 +4331,7 @@ var useEditMenu = function({ menu, active }) {
     menu.items = items2;
     setEditCount((count) => count + 1);
   }, [menu, setEditCount, editCount]);
-  const onToggleBack = import_react28.useCallback((index) => {
+  const onToggleBack = import_react27.useCallback((index) => {
     const items2 = [];
     A(menu.items, (item2) => items2.push(item2));
     const item = items2[index];
@@ -4336,7 +4345,7 @@ var useEditMenu = function({ menu, active }) {
     menu.items = items2;
     setEditCount((count) => count + 1);
   }, [menu, setEditCount, editCount]);
-  const onToggleHideOnSelect = import_react28.useCallback((index) => {
+  const onToggleHideOnSelect = import_react27.useCallback((index) => {
     const items2 = [];
     A(menu.items, (item2) => items2.push(item2));
     const item = items2[index];
@@ -4350,7 +4359,7 @@ var useEditMenu = function({ menu, active }) {
     menu.items = items2;
     setEditCount((count) => count + 1);
   }, [menu, setEditCount, editCount]);
-  const onEditLabel = import_react28.useCallback((index, text) => {
+  const onEditLabel = import_react27.useCallback((index, text) => {
     const items2 = [];
     A(menu.items, (item2) => items2.push(item2));
     const item = items2[index];
@@ -4360,7 +4369,7 @@ var useEditMenu = function({ menu, active }) {
     menu.items = items2;
     setEditCount((count) => count + 1);
   }, []);
-  const deleteMenuItem = import_react28.useCallback((index) => {
+  const deleteMenuItem = import_react27.useCallback((index) => {
     const items2 = [];
     A(menu.items, (item, idx) => {
       if (index !== idx) {
@@ -4370,7 +4379,7 @@ var useEditMenu = function({ menu, active }) {
     menu.items = items2;
     setEditCount((count) => count + 1);
   }, []);
-  const items = import_react28.useMemo(() => {
+  const items = import_react27.useMemo(() => {
     if (!editing || !active) {
       return menu.items;
     }
@@ -4395,7 +4404,7 @@ var useEditMenu = function({ menu, active }) {
     ];
     return items2.concat(editMenu);
   }, [menu, editing, active, editCount, addItem]);
-  const visibleItems = import_react28.useMemo(() => {
+  const visibleItems = import_react27.useMemo(() => {
     const visibleItems2 = [];
     A(items, (item) => {
       const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
@@ -4442,13 +4451,13 @@ async function promptText({
     });
   });
 }
-var MenuRow = function({ item, index, selectedItem, onMouseMove, onMouseOver, onClick, disabled, editable, active, onAddSubmenu, onRemoveSubmenu, onToggleBack, onToggleHideOnSelect, onEditLabel, builtIn, deleteMenuItem }) {
+var MenuRow = function({ item, index, selectedItem, onMouseMove, onMouseOver, onClick, disabled, editable, active, onAddSubmenu, onRemoveSubmenu, onToggleBack, onToggleHideOnSelect, onEditLabel, builtIn, deleteMenuItem, onAddDialog, onRemoveDialog }) {
   const itemModel = typeof item === "string" ? { label: item } : item;
   const rowSelected = selectedItem === item;
-  const [editMenuOn, setEditMenuOn] = import_react29.useState(false);
+  const [editMenuOn, setEditMenuOn] = import_react28.useState(false);
   const { popupControl } = useControlContext();
-  const builtInItem = import_react29.useMemo(() => builtIn ?? itemModel?.builtIn, [itemModel, builtIn]);
-  const promptDeleteItem = import_react29.useCallback(async () => {
+  const builtInItem = import_react28.useMemo(() => builtIn ?? itemModel?.builtIn, [itemModel, builtIn]);
+  const promptDeleteItem = import_react28.useCallback(async () => {
     const label = itemModel?.label;
     openMenu({
       dialog: {
@@ -4481,7 +4490,7 @@ var MenuRow = function({ item, index, selectedItem, onMouseMove, onMouseOver, on
       }
     });
   }, [itemModel, popupControl, deleteMenuItem]);
-  const editMenu = import_react29.useMemo(() => ({
+  const editMenu = import_react28.useMemo(() => ({
     builtIn: true,
     layout: {
       position: [450, 200],
@@ -4516,13 +4525,13 @@ var MenuRow = function({ item, index, selectedItem, onMouseMove, onMouseOver, on
       },
       {
         label: "create dialog",
-        action: async () => onAddSubmenu?.(index),
+        action: async () => onAddDialog?.(index),
         back: true,
         hidden: !!itemModel?.dialog
       },
       {
         label: "remove dialog",
-        action: async () => onRemoveSubmenu?.(index),
+        action: async () => onRemoveDialog?.(index),
         back: true,
         hidden: !itemModel?.dialog
       },
@@ -4546,9 +4555,9 @@ var MenuRow = function({ item, index, selectedItem, onMouseMove, onMouseOver, on
     ]
   }), [itemModel, onAddSubmenu, onRemoveSubmenu, onToggleBack, onToggleHideOnSelect, onEditLabel, promptDeleteItem, index, popupControl]);
   useKeyDown({
-    enabled: import_react29.useMemo(() => editable && active && rowSelected && !builtInItem, [editable, active, rowSelected, itemModel, builtInItem]),
+    enabled: import_react28.useMemo(() => editable && active && rowSelected && !builtInItem, [editable, active, rowSelected, itemModel, builtInItem]),
     key: "KeyE",
-    callback: import_react29.useCallback(() => {
+    callback: import_react28.useCallback(() => {
       openMenu({
         menu: editMenu,
         popupControl
@@ -4556,7 +4565,7 @@ var MenuRow = function({ item, index, selectedItem, onMouseMove, onMouseOver, on
     }, [editMenu, popupControl])
   });
   useKeyDown({
-    enabled: import_react29.useMemo(() => editable && active && rowSelected && !builtInItem, [editable, active, rowSelected, itemModel, builtInItem]),
+    enabled: import_react28.useMemo(() => editable && active && rowSelected && !builtInItem, [editable, active, rowSelected, itemModel, builtInItem]),
     key: "Backspace",
     callback: promptDeleteItem
   });
@@ -4671,9 +4680,9 @@ var MenuRow = function({ item, index, selectedItem, onMouseMove, onMouseOver, on
   }, undefined, false, undefined, this);
 };
 var useMaxRows = function({ size }) {
-  const [maxRows, setMaxRows] = import_react30.useState(size);
-  const menuRef = import_react30.useRef(null);
-  import_react30.useEffect(() => {
+  const [maxRows, setMaxRows] = import_react29.useState(size);
+  const menuRef = import_react29.useRef(null);
+  import_react29.useEffect(() => {
     if (!menuRef.current)
       return;
     const resizeObserver = new ResizeObserver((entries) => {
@@ -4698,8 +4707,8 @@ var Menu2 = function({
   const [sub, setSub] = import_react8.useState({});
   const [postClose, setPostClose] = import_react8.useState();
   const [hidden, setHidden] = import_react8.useState(false);
-  const onBack = import_react8.useCallback(() => {
-    if (!menu.disableBack) {
+  const onBack = import_react8.useCallback((force) => {
+    if (menu.backEnabled || force) {
       remove(onClose);
     }
   }, [remove, onClose, menu]);
@@ -4720,7 +4729,7 @@ var Menu2 = function({
         setSub({});
         onSelect(item);
         if (item.back) {
-          onBack();
+          onBack(true);
         }
       }
     } else {
@@ -4743,7 +4752,7 @@ var Menu2 = function({
         style,
         disabled,
         removed: removed || hidden,
-        onBack,
+        onBack: menu.backEnabled ? onBack : undefined,
         children: [
           jsx_dev_runtime15.jsxDEV("svg", {
             xmlns: "http://www.w3.org/2000/svg",
@@ -4831,17 +4840,31 @@ var Menu2 = function({
   }, undefined, true, undefined, this);
 };
 var useDialogState = function() {
-  const [index, setIndex] = import_react32.useState(0);
+  const [index, setIndex] = import_react31.useState(0);
   return {
     index,
     setIndex,
-    next: import_react32.useCallback(() => setIndex((index2) => index2 + 1), [setIndex])
+    next: import_react31.useCallback(() => setIndex((index2) => index2 + 1), [setIndex])
   };
 };
 var useEditDialog = function({ dialog, active }) {
   const { editing } = useEditContext();
-  const [editCount, setEditCount] = import_react33.useState(0);
-  const editMessage = import_react33.useCallback((index, text) => {
+  const [editCount, setEditCount] = import_react32.useState(0);
+  const insertMessage = import_react32.useCallback((index, text) => {
+    const messages2 = B(dialog.messages, (m2) => m2).filter((m2) => !!m2);
+    messages2.splice(index, 0, {
+      text
+    });
+    dialog.messages = messages2;
+    setEditCount((count) => count + 1);
+  }, [dialog]);
+  const deleteMessage = import_react32.useCallback((index) => {
+    const messages2 = B(dialog.messages, (m2) => m2).filter((m2) => !!m2);
+    messages2.splice(index, 1);
+    dialog.messages = messages2;
+    setEditCount((count) => count + 1);
+  }, [dialog]);
+  const editMessage = import_react32.useCallback((index, text) => {
     const messages2 = B(dialog.messages, (m2) => m2).filter((m2) => !!m2);
     const message = messages2[index];
     const messageModel = !message ? {} : typeof message === "string" ? { text: message } : message;
@@ -4850,71 +4873,93 @@ var useEditDialog = function({ dialog, active }) {
     dialog.messages = messages2;
     setEditCount((count) => count + 1);
   }, [dialog]);
-  const messages = import_react33.useMemo(() => B(dialog.messages, (m2) => m2), [dialog, editCount]);
+  const messages = import_react32.useMemo(() => !active ? dialog.messages : B(dialog.messages, (m2) => m2), [dialog, editCount, active]);
   return {
     ...dialog,
     messages,
     editable: editing,
-    editMessage
+    editMessage,
+    insertMessage,
+    deleteMessage
   };
 };
 var Dialog = function({ dialog, onSelect, onClose, onPrompt, focusLess }) {
   const { next: next2, index } = useDialogState();
-  const [menu, setMenu] = import_react31.useState();
-  const [prompt2, setPrompt] = import_react31.useState();
+  const [menu, setMenu] = import_react30.useState();
+  const [prompt2, setPrompt] = import_react30.useState();
   const { active } = useActiveFocus({ disabled: focusLess });
   const { editing } = useEditContext();
-  const [textProgressing, setTextProgessing] = import_react31.useState(true);
+  const [textProgressing, setTextProgressing] = import_react30.useState(true);
+  const [subdialog, setSubDialog] = import_react30.useState();
   const { lockState, popupControl } = useControls({
     active,
-    listener: import_react31.useMemo(() => ({
+    listener: import_react30.useMemo(() => ({
       onAction: next2,
-      onBack: next2
-    }), [next2])
+      onBack: dialog.backEnabled ? next2 : undefined
+    }), [next2, dialog])
   });
-  const { editable, editMessage, messages } = useEditDialog({ dialog, active });
-  const message = import_react31.useMemo(() => {
+  const { editable, editMessage, insertMessage, deleteMessage, messages } = useEditDialog({ dialog, active });
+  const message = import_react30.useMemo(() => {
     const message2 = messages.at(index);
     return typeof message2 == "string" ? { text: message2 } : message2;
   }, [index, messages]);
-  import_react31.useEffect(() => {
-    setTextProgessing(true);
+  import_react30.useEffect(() => {
+    setTextProgressing(true);
     const timeout = setTimeout(() => {
-      setTextProgessing(false);
+      setTextProgressing(false);
     }, (message?.text?.length ?? 0) * PERIOD);
     return () => clearTimeout(timeout);
-  }, [setTextProgessing, PERIOD, message]);
-  import_react31.useEffect(() => {
-    if (message?.menu || message?.prompt) {
-      setMenu(message?.menu);
-      setPrompt(message?.prompt);
-    }
-  }, [message, setMenu, setPrompt]);
+  }, [setTextProgressing, PERIOD, message]);
+  import_react30.useEffect(() => {
+    setSubDialog(message?.subdialog);
+    setMenu(message?.menu);
+    setPrompt(message?.prompt);
+  }, [message, setMenu, setPrompt, setSubDialog]);
   const { removed, remove } = useRemove();
-  import_react31.useEffect(() => {
+  import_react30.useEffect(() => {
     if (index >= messages.length.valueOf()) {
       remove(onClose);
     }
   }, [messages, index, remove, onClose]);
-  const onCloseMenu = import_react31.useCallback(async () => {
+  const onCloseMenu = import_react30.useCallback(async () => {
     setMenu(undefined);
     next2();
   }, [setMenu, next2]);
-  const [editDialogOn, setEditDialogOn] = import_react31.useState(false);
+  const [editDialogOn, setEditDialogOn] = import_react30.useState(false);
   useKeyDown({
-    enabled: import_react31.useMemo(() => editable && active && !dialog.builtIn, [active, dialog]),
+    enabled: import_react30.useMemo(() => editable && active && !dialog.builtIn, [active, dialog]),
     key: "KeyE",
-    callback: import_react31.useCallback(() => {
+    callback: import_react30.useCallback(() => {
       setEditDialogOn((value) => !value);
     }, [setEditDialogOn])
   });
-  const editMenu = import_react31.useMemo(() => ({
+  const editMenu = import_react30.useMemo(() => ({
     builtIn: true,
     layout: {
       position: [50, 200],
       size: [400, 300]
     },
     items: [
+      {
+        label: "insert new message",
+        back: true,
+        action: async () => {
+          const newText = await promptText({
+            label: "Enter a text for the new message",
+            popupControl
+          });
+          if (newText) {
+            insertMessage?.(index, newText);
+          }
+        }
+      },
+      {
+        label: "delete message",
+        back: true,
+        action: async () => {
+          deleteMessage(index);
+        }
+      },
       {
         label: "edit text",
         back: true,
@@ -4925,14 +4970,14 @@ var Dialog = function({ dialog, onSelect, onClose, onPrompt, focusLess }) {
             popupControl
           });
           if (newText) {
-            editMessage?.(index, newText);
+            editMessage(index, newText);
           }
         }
       },
       { label: "exit", builtIn: true, back: true }
     ]
-  }), [message, index, popupControl, editMessage]);
-  const pictures = import_react31.useMemo(() => [...B(dialog.pictures ?? [], (p3) => p3), ...B(message?.pictures ?? [], (p3) => p3)].filter((p3) => !!p3), [dialog, message]);
+  }), [message, index, popupControl, editMessage, insertMessage, deleteMessage]);
+  const pictures = import_react30.useMemo(() => [...B(dialog.pictures ?? [], (p3) => p3), ...B(message?.pictures ?? [], (p3) => p3)].filter((p3) => !!p3), [dialog, message]);
   return jsx_dev_runtime16.jsxDEV(jsx_dev_runtime16.Fragment, {
     children: [
       jsx_dev_runtime16.jsxDEV(Popup2, {
@@ -4940,7 +4985,7 @@ var Dialog = function({ dialog, onSelect, onClose, onPrompt, focusLess }) {
         style: dialog.style,
         disabled: lockState === LockStatus.LOCKED,
         removed,
-        onBack: dialog.disableBack ? undefined : next2,
+        onBack: dialog.backEnabled ? next2 : undefined,
         clickThrough: focusLess,
         leaveBorderUnchanged: true,
         children: jsx_dev_runtime16.jsxDEV("div", {
@@ -4972,6 +5017,11 @@ var Dialog = function({ dialog, onSelect, onClose, onPrompt, focusLess }) {
             }, undefined, false, undefined, this)
           ]
         }, undefined, true, undefined, this)
+      }, undefined, false, undefined, this),
+      subdialog && jsx_dev_runtime16.jsxDEV(Container2, {
+        dialog: subdialog,
+        focusLess: true,
+        removed
       }, undefined, false, undefined, this),
       jsx_dev_runtime16.jsxDEV(Container2, {
         pictures,
@@ -26642,7 +26692,7 @@ var DEFAULT_EDIT_CONTEXT = {
   toggleEditing() {
   }
 };
-var Context3 = import_react19.default.createContext(DEFAULT_EDIT_CONTEXT);
+var Context3 = import_react18.default.createContext(DEFAULT_EDIT_CONTEXT);
 var EditContextProvider2 = ({ children, editor }) => {
   const context = useEditControlContext();
   return jsx_dev_runtime9.jsxDEV(Context3.Provider, {
@@ -26654,7 +26704,7 @@ var EditContextProvider2 = ({ children, editor }) => {
   }, undefined, true, undefined, null);
 };
 var useEditContext = () => {
-  const context = import_react19.useContext(Context3);
+  const context = import_react18.useContext(Context3);
   if (!context) {
     throw new Error("useEditContext must be used within a Provider");
   }
@@ -26902,22 +26952,22 @@ var xe = function(e) {
   }, F).toString() : "", p3;
 };
 var Be = function() {
-  return import_react27.useContext(Me);
+  return import_react26.useContext(Me);
 };
 var Le = function(e) {
-  var t = import_react27.useState(e.stylisPlugins), n = t[0], r2 = t[1], c2 = Be().styleSheet, l2 = import_react27.useMemo(function() {
+  var t = import_react26.useState(e.stylisPlugins), n = t[0], r2 = t[1], c2 = Be().styleSheet, l2 = import_react26.useMemo(function() {
     var t2 = c2;
     return e.sheet ? t2 = e.sheet : e.target && (t2 = t2.reconstructWithOptions({ target: e.target }, false)), e.disableCSSOMInjection && (t2 = t2.reconstructWithOptions({ useCSSOMInjection: false })), t2;
-  }, [e.disableCSSOMInjection, e.sheet, e.target, c2]), u2 = import_react27.useMemo(function() {
+  }, [e.disableCSSOMInjection, e.sheet, e.target, c2]), u2 = import_react26.useMemo(function() {
     return xe({ options: { namespace: e.namespace, prefix: e.enableVendorPrefixes }, plugins: n });
   }, [e.enableVendorPrefixes, e.namespace, n]);
-  import_react27.useEffect(function() {
+  import_react26.useEffect(function() {
     import_shallowequal.default(n, e.stylisPlugins) || r2(e.stylisPlugins);
   }, [e.stylisPlugins]);
-  var d = import_react27.useMemo(function() {
+  var d = import_react26.useMemo(function() {
     return { shouldForwardProp: e.shouldForwardProp, styleSheet: l2, stylis: u2 };
   }, [e.shouldForwardProp, l2, u2]);
-  return import_react27.default.createElement(Me.Provider, { value: d }, import_react27.default.createElement(ze.Provider, { value: u2 }, e.children));
+  return import_react26.default.createElement(Me.Provider, { value: d }, import_react26.default.createElement(ze.Provider, { value: u2 }, e.children));
 };
 var We = function(e) {
   for (var t = "", n = 0;n < e.length; n++) {
@@ -26974,8 +27024,8 @@ var rt = function(e, r2, s2) {
   var N = new Ze(s2, g, i2 ? a2.componentStyle : undefined);
   function O(e2, r3) {
     return function(e3, r4, s3) {
-      var { attrs: i3, componentStyle: a3, defaultProps: c3, foldedComponentIds: p4, styledComponentId: d2, target: h2 } = e3, f2 = import_react27.default.useContext(Ke), m2 = Be(), y2 = e3.shouldForwardProp || m2.shouldForwardProp;
-      import_react27.useDebugValue(d2);
+      var { attrs: i3, componentStyle: a3, defaultProps: c3, foldedComponentIds: p4, styledComponentId: d2, target: h2 } = e3, f2 = import_react26.default.useContext(Ke), m2 = Be(), y2 = e3.shouldForwardProp || m2.shouldForwardProp;
+      import_react26.useDebugValue(d2);
       var v = I(r4, f2, c3) || C, g2 = function(e4, n, o2) {
         for (var r5, s4 = __assign(__assign({}, n), { className: undefined, theme: o2 }), i4 = 0;i4 < e4.length; i4 += 1) {
           var a4 = re(r5 = e4[i4]) ? r5(s4) : r5;
@@ -26988,15 +27038,15 @@ var rt = function(e, r2, s2) {
         g2[b2] === undefined || b2[0] === "$" || b2 === "as" || b2 === "theme" && g2.theme === v || (b2 === "forwardedAs" ? w2.as = g2.forwardedAs : y2 && !y2(b2, S2) || (w2[b2] = g2[b2], y2 || false || isPropValid(b2) || ot.has(b2) || !A2.has(S2) || (ot.add(b2), console.warn('styled-components: it looks like an unknown prop "'.concat(b2, '" is being sent through to the DOM, which will likely trigger a React console error. If you would like automatic filtering of unknown props, you can opt-into that behavior via `<StyleSheetManager shouldForwardProp={...}>` (connect an API like `@emotion/is-prop-valid`) or consider using transient props (`$` prefix for automatic filtering.)')))));
       var E2 = function(e4, t) {
         var n = Be(), o2 = e4.generateAndInjectStyles(t, n.styleSheet, n.stylis);
-        return import_react27.useDebugValue(o2), o2;
+        return import_react26.useDebugValue(o2), o2;
       }(a3, g2);
       e3.warnTooManyClasses && e3.warnTooManyClasses(E2);
       var N2 = ie(p4, d2);
-      return E2 && (N2 += " " + E2), g2.className && (N2 += " " + g2.className), w2[L(S2) && !A2.has(S2) ? "class" : "className"] = N2, w2.ref = s3, import_react27.createElement(S2, w2);
+      return E2 && (N2 += " " + E2), g2.className && (N2 += " " + g2.className), w2[L(S2) && !A2.has(S2) ? "class" : "className"] = N2, w2.ref = s3, import_react26.createElement(S2, w2);
     }(D, e2, r3);
   }
   O.displayName = y;
-  var D = import_react27.default.forwardRef(O);
+  var D = import_react26.default.forwardRef(O);
   return D.attrs = S, D.componentStyle = N, D.displayName = y, D.shouldForwardProp = w, D.foldedComponentIds = i2 ? ie(a2.foldedComponentIds, a2.styledComponentId) : "", D.styledComponentId = g, D.target = i2 ? a2.target : e, Object.defineProperty(D, "defaultProps", { get: function() {
     return this._foldedDefaultProps;
   }, set: function(e2) {
@@ -27071,7 +27121,7 @@ var P = function(t, n) {
         for (var n2 = [], o3 = 1;o3 < arguments.length; o3++)
           n2[o3 - 1] = arguments[o3];
         E.test(t2) ? (a2 = false, N.delete(s2)) : i2.apply(undefined, __spreadArray([t2], n2, false));
-      }, import_react27.useRef(), a2 && !N.has(s2) && (console.warn(s2), N.add(s2));
+      }, import_react26.useRef(), a2 && !N.has(s2) && (console.warn(s2), N.add(s2));
     } catch (e) {
       E.test(e.message) && N.delete(s2);
     } finally {
@@ -27313,9 +27363,9 @@ var Te = /&/g;
 var ke = /^\s*\/\/.*$/gm;
 var Ve = new Re;
 var Fe = xe();
-var Me = import_react27.default.createContext({ shouldForwardProp: undefined, styleSheet: Ve, stylis: Fe });
+var Me = import_react26.default.createContext({ shouldForwardProp: undefined, styleSheet: Ve, stylis: Fe });
 var $e = Me.Consumer;
-var ze = import_react27.default.createContext(undefined);
+var ze = import_react26.default.createContext(undefined);
 var Ge = function() {
   function e(e2, t) {
     var n = this;
@@ -27381,7 +27431,7 @@ var Ze = function() {
     return o2;
   }, e;
 }();
-var Ke = import_react27.default.createContext(undefined);
+var Ke = import_react26.default.createContext(undefined);
 var Qe = Ke.Consumer;
 var nt = {};
 var ot = new Set;
@@ -27423,7 +27473,7 @@ var mt = function() {
       if (e2.sealed)
         throw he(2);
       var r2 = ((n = {})[f] = "", n[y] = v, n.dangerouslySetInnerHTML = { __html: e2.instance.toString() }, n), s2 = Pe();
-      return s2 && (r2.nonce = s2), [import_react27.default.createElement("style", __assign({}, r2, { key: "sc-0-0" }))];
+      return s2 && (r2.nonce = s2), [import_react26.default.createElement("style", __assign({}, r2, { key: "sc-0-0" }))];
     }, this.seal = function() {
       e2.sealed = true;
     }, this.instance = new Re({ isServer: true }), this.sealed = false;
@@ -27431,7 +27481,7 @@ var mt = function() {
   return e.prototype.collectStyles = function(e2) {
     if (this.sealed)
       throw he(2);
-    return import_react27.default.createElement(Le, { sheet: this.instance }, e2);
+    return import_react26.default.createElement(Le, { sheet: this.instance }, e2);
   }, e.prototype.interleaveWithNodeStream = function(e2) {
     throw he(3);
   }, e;
@@ -27575,16 +27625,46 @@ var PERIOD = 30;
 // src/index.tsx
 async function showMenu(model) {
   return new Promise((resolve) => {
+    console.log(model.actions);
+    const emojis = [];
+    for (let i2 = 0;i2 < model.attributes.anger; i2++) {
+      emojis.push("\uD83D\uDE21");
+    }
+    for (let i2 = 0;i2 < model.attributes.fear; i2++) {
+      emojis.push("\uD83D\uDE28");
+    }
+    for (let i2 = 0;i2 < model.attributes.seduced; i2++) {
+      emojis.push("\uD83E\uDD70");
+    }
+    for (let i2 = 0;i2 < model.attributes.trust; i2++) {
+      emojis.push("\uD83E\uDD1D");
+    }
+    if (model.actions.fight) {
+      emojis.push("\u2694\uFE0F");
+    }
+    if (model.actions.trade) {
+      emojis.push("\uD83D\uDCB0");
+    }
+    if (model.actions["run away"]) {
+      emojis.push("\uD83C\uDFC3");
+    }
+    if (model.actions["join party"]) {
+      emojis.push("\uD83D\uDC6D");
+    }
     if (!mute) {
       let utterance = new SpeechSynthesisUtterance(model.creature);
       speechSynthesis.speak(utterance);
+      window.addEventListener("close", () => {
+        speechSynthesis.cancel();
+      });
     }
-    const { popupControl } = openMenu({
+    openMenu({
+      popupControl,
       dialog: {
         pictures: [
           {
             layout: {
-              position: [300, 50],
+              position: [300, 10],
               size: [150, 140],
               positionFromRight: true
             },
@@ -27592,20 +27672,39 @@ async function showMenu(model) {
               {
                 src: angelSrc
               }
-            ]
+            ],
+            dialog: {
+              layout: {
+                position: [325, 165],
+                size: [200, 50],
+                positionFromRight: true
+              },
+              messages: [
+                model.info.name ?? "???"
+              ]
+            }
           }
         ],
         layout: {
-          position: [100, 200],
-          size: [800, 200]
+          position: [100, 240],
+          size: [800, 150]
         },
         messages: [
           {
+            subdialog: {
+              layout: {
+                position: [50, 50],
+                size: [250, 50]
+              },
+              messages: [
+                emojis.join("")
+              ]
+            },
             text: model.creature,
             menu: {
               layout: {
-                position: [150, 420],
-                size: [700, 300]
+                position: [100, 420],
+                size: [800, 260]
               },
               items: [
                 {
@@ -27651,10 +27750,11 @@ async function showMenu(model) {
         }
       },
       onPrompt(text) {
-        resolve(text);
+        if (text) {
+          resolve(text);
+        }
       }
     });
-    const keyboard = new KeyboardControl(popupControl);
   });
 }
 async function callApi(choice = "", creature, model) {
@@ -27685,6 +27785,8 @@ function start() {
   }, { once: true });
 }
 var angelSrc = "https://i.etsystatic.com/32486242/r/il/ddd05d/5025111975/il_570xN.5025111975_du3d.jpg";
+var popupControl = new PopupControl;
+var keyboard = new KeyboardControl(popupControl);
 var mute = false;
 var choices = [];
 export {
