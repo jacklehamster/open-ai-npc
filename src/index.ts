@@ -1,35 +1,37 @@
-import Bao from "baojs";
-import serveStatic from "serve-static-bun";
-import storage from "node-persist";
 import { fetchChoice } from "./choices";
 import { npc } from "./openai";
+import express from "express";
 
-const app = new Bao();
+const app = express();
+const port = parseInt(process.env.PORT ?? "3000");
 
-app.get("/api", async (ctx) => {
-  let choice = ctx.query.get("choice") ?? "";
-  const response = await fetchChoice(choice, ctx.query.get("model") ?? undefined, ctx.query.get("creature") ?? undefined);
-  return ctx.sendPrettyJson(response);
+interface Query {
+  choice?: string;
+  model?: string;
+  creature?: string;
+}
+
+app.get("/api", async (req, res) => {
+  const query = req.query as Query;
+  let choice = (query.choice ?? "") as string;
+  const response = await fetchChoice(choice, query.model ?? undefined, query.creature ?? undefined);
+  return res.json(response);
 });
 
-app.get("/", async (ctx) => {
-  return ctx.sendText(`
-    To use this API, first call: "/api", then provide the following query parameters:
-    - choice [optional]: Choices separated by "|". Ex: choice=A|B|A|C (note that you must include previous choices to continue a conversation). You can also insert custom choices like choice=pizza|A
-    - model [optional]: The chatgpt model to use. Default is "gpt-3.5-turbo-1106". List at: https://platform.openai.com/docs/models
-    - creature [optional]: A description of the creature. Default is "an angel with wings".
-  `)
+app.get("/", (req, res) => {
+  res.set('Content-Type', 'text/plain').send(`
+  To use this API, first call: "/api", then provide the following query parameters:
+  - choice [optional]: Choices separated by "|". Ex: choice=A|B|A|C
+    (note that you must include previous choices to continue a conversation).
+    You can also insert custom choices like choice=pizza|A
+  - model [optional]: The chatgpt model to use. Default is "gpt-3.5-turbo-1106".
+    List at: https://platform.openai.com/docs/models
+  - creature [optional]: A description of the creature. Default is "an angel with wings".
+  `);
 });
 
-//app.get("/*any", serveStatic("/", { middlewareMode: "bao" }));
-
-//  Call NPC
-// const response = await npc();
-// console.log(response);
-
-const server = app.listen({ port: parseInt(process.env.PORT) || 3000 });
-
-
-console.log(`Listening on http://localhost:${server.port}`);
+app.listen(port, () => {
+  console.log(`Listening on port ${port}...`);
+});
 
 export { npc, fetchChoice };

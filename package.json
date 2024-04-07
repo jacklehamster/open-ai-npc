@@ -36,7 +36,7 @@
     "fix-package-name": "npm explore package-name-fixer -- bun start \"$(pwd)\"",
     "auto-publish": "npm explore @dobuki/auto-publish -- bun run auto-publish \"$(pwd)\"",
     "openai": "OPENAI_API_KEY=$OPENAI_API_KEY bun run ./src/index.ts",
-    "start": "bun run ./src/index.ts"
+    "start": "bun run build && node ./dist/index.js"
   },
   "publishConfig": {
     "access": "public"
@@ -47,6 +47,7 @@
   "devDependencies": {
     "@dobuki/auto-publish": "^1.0.7",
     "@types/bun": "^1.0.4",
+    "@types/express": "^4.17.21",
     "@types/jest": "^29.5.6",
     "@types/mocha": "^10.0.3",
     "@types/node-persist": "^3.1.8",
@@ -62,6 +63,7 @@
   },
   "dependencies": {
     "baojs": "^0.2.1",
+    "express": "^4.19.2",
     "node-persist": "^4.0.1",
     "openai": "^4.33.0",
     "serve-static-bun": "^0.5.3"
