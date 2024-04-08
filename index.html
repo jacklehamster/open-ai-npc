@@ -65,8 +65,9 @@
         <br>
         <h2>
           <div id="loading">
-            <div>Please wait for DEMO to load...</div>
+            <div>Please wait for DEMO to load... (could take up to a minute)</div>
             <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            <div id="counter"></div>
           </div>
         </h2>
       </div>
@@ -81,8 +82,15 @@
 
     <script>
       function showExampleLink() {
-        // window.location.replace("https://open-ai-npc.onrender.com");
+        window.location.replace("https://open-ai-npc.onrender.com");
       }
+      let sec = 0;
+      
+      function updateTimer() {
+        sec++;
+        document.getElementById("counter").text = `${sec}s`;
+      }
+      setInterval(updateTimer, 1000);
     </script>
     <iframe style="visibility: hidden;" onload="showExampleLink()" src="https://open-ai-npc.onrender.com/">
     </iframe>
