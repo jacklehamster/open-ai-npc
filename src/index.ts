@@ -30,7 +30,8 @@ app.get("/", (req, res) => {
   res.send(`
   <html>
   <head>
-    OpenAI NPC Dialog Generator
+  <title>OpenAI NPC Dialog Generator</title>
+    
     <style>
 /* CSS */
 .button-15 {
