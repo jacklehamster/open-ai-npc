@@ -7,10 +7,33 @@
   </head>
   <body>
 
+    <div style="white-space: pre">
+      To use this API, first call: "/api", then provide the following query parameters:
+      - choice [optional]: Choices separated by "|". Ex: choice=A|B|A|C
+        (note that you must include previous choices to continue a conversation).
+        You can also insert custom choices like choice=pizza|A
+      - model [optional]: The chatgpt model to use. Default is "gpt-3.5-turbo-1106".
+        List at: https://platform.openai.com/docs/models
+      - creature [optional]: A description of the creature. Default is "an angel with wings".
+      </div>
+      <div>
+        You can check out the NPC dialog demo, which uses this API. Click here:
+        <br>
+        <h2>
+          <div id="loading">
+            Please Wait for DEMO page to load...
+          </div>
+        </h2>
+      </div>
+      <div>
+        Source on Github:
+        <a href="https://github.com/jacklehamster/open-ai-npc?tab=readme-ov-file#open-ai-npc">https://github.com/jacklehamster/open-ai-npc</a>
+      </div>
 
-    <div id="loading">
-      Wait for page to load...
-    </div>
+      <div  style="margin: 20px">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Ix83MOPafE0?si=i0zIqUgfdU5U5Vt5?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+
     <script>
       function showExampleLink() {
         window.location.replace("https://open-ai-npc.onrender.com");

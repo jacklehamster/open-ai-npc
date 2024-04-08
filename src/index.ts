@@ -28,6 +28,7 @@ app.get("/index.html", async (req, res) => {
 
 app.get("/", (req, res) => {
   res.send(`
+  <body>
   <div style="white-space: pre">
   To use this API, first call: "/api", then provide the following query parameters:
   - choice [optional]: Choices separated by "|". Ex: choice=A|B|A|C
@@ -48,6 +49,12 @@ app.get("/", (req, res) => {
     Source on Github:
     <a href="https://github.com/jacklehamster/open-ai-npc?tab=readme-ov-file#open-ai-npc">https://github.com/jacklehamster/open-ai-npc</a>
   </div>
+
+  <div style="margin: 20px">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Ix83MOPafE0?si=i0zIqUgfdU5U5Vt5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+  </body>
   `);
 });
 
