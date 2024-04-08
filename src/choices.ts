@@ -42,8 +42,6 @@ export async function fetchChoice(choice: string,
     }
   }
 
-  console.log(">>>", messages);
-
   const response = await npc({
     model,
     creature,

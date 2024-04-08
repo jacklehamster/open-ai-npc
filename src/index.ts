@@ -13,7 +13,6 @@ interface Query {
   creature?: string;
 }
 
-app.use(express.static('../example'));
 app.use('/example', express.static(path.join(import.meta.dir, '../example')))
 
 app.get("/api", async (req, res) => {
@@ -21,6 +20,10 @@ app.get("/api", async (req, res) => {
   let choice = (query.choice ?? "") as string;
   const response = await fetchChoice(choice, query.model ?? undefined, query.creature ?? undefined);
   return res.json(response);
+});
+
+app.get("/index.html", async (req, res) => {
+  return res.sendFile(path.join(import.meta.dir, "../index.html"));
 });
 
 app.get("/", (req, res) => {
