@@ -44,6 +44,10 @@ app.get("/", (req, res) => {
       <a href="/example">NPC Dialog Demo</a>
     </h2>
   </div>
+  <div>
+    Source on Github:
+    <a href="https://github.com/jacklehamster/open-ai-npc?tab=readme-ov-file#open-ai-npc">https://github.com/jacklehamster/open-ai-npc</a>
+  </div>
   `);
 });
 
