@@ -37,7 +37,7 @@
     "auto-publish": "npm explore @dobuki/auto-publish -- bun run auto-publish \"$(pwd)\"",
     "openai": "OPENAI_API_KEY=$OPENAI_API_KEY bun run ./src/index.ts",
     "start": "bun run build && bun run openai",
-    "build:example": "cd example && bun run build && cd ..",
+    "build:example": "cd example && bun i && bun run build && cd ..",
     "example": "bun run build:example && bun start"
   },
   "publishConfig": {

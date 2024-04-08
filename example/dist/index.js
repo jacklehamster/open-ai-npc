@@ -4894,9 +4894,9 @@ var Dialog = function({ dialog, onSelect, onClose, onPrompt, focusLess }) {
   const { lockState, popupControl } = useControls({
     active,
     listener: import_react30.useMemo(() => ({
-      onAction: next2,
-      onBack: dialog.backEnabled ? next2 : undefined
-    }), [next2, dialog])
+      onAction: textProgressing ? undefined : next2,
+      onBack: !dialog.backEnabled || textProgressing ? undefined : next2
+    }), [next2, dialog, textProgressing])
   });
   const { editable, editMessage, insertMessage, deleteMessage, messages } = useEditDialog({ dialog, active });
   const message = import_react30.useMemo(() => {
@@ -27623,9 +27623,8 @@ customElements.define("progressive-text", ProgressiveText);
 var PERIOD = 30;
 
 // src/index.tsx
-async function showMenu(model) {
+async function showMenu(model, image, interactions) {
   return new Promise((resolve) => {
-    console.log(model.actions);
     const emojis = [];
     for (let i2 = 0;i2 < model.attributes.anger; i2++) {
       emojis.push("\uD83D\uDE21");
@@ -27654,7 +27653,7 @@ async function showMenu(model) {
     if (!mute) {
       let utterance = new SpeechSynthesisUtterance(model.creature);
       speechSynthesis.speak(utterance);
-      window.addEventListener("close", () => {
+      window.addEventListener("beforeunload", () => {
         speechSynthesis.cancel();
       });
     }
@@ -27670,7 +27669,7 @@ async function showMenu(model) {
             },
             images: [
               {
-                src: angelSrc
+                src: image ?? angelSrc
               }
             ],
             dialog: {
@@ -27728,6 +27727,7 @@ async function showMenu(model) {
                   back: true
                 },
                 {
+                  hidden: !!interactions,
                   label: "Talk about...",
                   prompt: {
                     label: "Choose a new topic of discussion",
@@ -27766,11 +27766,97 @@ async function callApi(choice = "", creature, model) {
   const models = await response.json();
   return models;
 }
+async function promptCreature() {
+  return new Promise((resolve) => {
+    openMenu({
+      popupControl,
+      menu: {
+        items: [
+          {
+            back: true,
+            label: "angel",
+            image: angelSrc,
+            onHover: {
+              pictures: [
+                {
+                  layout: {
+                    position: [300, 10],
+                    size: [150, 140],
+                    positionFromRight: true
+                  },
+                  images: [
+                    {
+                      size: "cover",
+                      src: angelSrc
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            back: true,
+            label: "gremlins",
+            image: gremlinsSrc,
+            creature: "a green ugly gremlins",
+            onHover: {
+              pictures: [
+                {
+                  layout: {
+                    position: [300, 10],
+                    size: [150, 140],
+                    positionFromRight: true
+                  },
+                  images: [
+                    {
+                      size: "cover",
+                      src: gremlinsSrc
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            back: true,
+            label: "robot",
+            image: robotSrc,
+            creature: "a very intelligent robot",
+            onHover: {
+              pictures: [
+                {
+                  layout: {
+                    position: [300, 10],
+                    size: [150, 140],
+                    positionFromRight: true
+                  },
+                  images: [
+                    {
+                      size: "cover",
+                      src: robotSrc
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      onSelect(item) {
+        resolve(item);
+      }
+    });
+  });
+}
 async function startConversation() {
+  const { creature, image } = await promptCreature() ?? {};
+  let interactions = 0;
   while (true) {
-    const models = await callApi(choices.join("|"));
-    const choice = await showMenu(models[0]);
+    const models = await callApi(choices.join("|"), creature);
+    const choice = await showMenu(models[0], image, interactions);
     choices.push(choice);
+    interactions++;
+    console.log("Interactions:", interactions);
   }
 }
 function start() {
@@ -27784,7 +27870,9 @@ function start() {
     startConversation();
   }, { once: true });
 }
-var angelSrc = "https://i.etsystatic.com/32486242/r/il/ddd05d/5025111975/il_570xN.5025111975_du3d.jpg";
+var angelSrc = "angel.png";
+var gremlinsSrc = "gremlins.png";
+var robotSrc = "robot.png";
 var popupControl = new PopupControl;
 var keyboard = new KeyboardControl(popupControl);
 var mute = false;

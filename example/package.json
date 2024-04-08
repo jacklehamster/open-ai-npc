@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "baojs": "^0.2.1",
-    "dokui-menu": "^1.0.29",
+    "dokui-menu": "^1.0.30",
     "open-ai-npc": "file:..",
     "png-to-ico": "^2.1.8",
     "serve-static-bun": "^0.5.3"

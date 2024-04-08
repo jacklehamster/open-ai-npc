@@ -24,7 +24,8 @@ app.get("/api", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.set('Content-Type', 'text/plain').send(`
+  res.send(`
+  <div style="white-space: pre">
   To use this API, first call: "/api", then provide the following query parameters:
   - choice [optional]: Choices separated by "|". Ex: choice=A|B|A|C
     (note that you must include previous choices to continue a conversation).
@@ -32,6 +33,14 @@ app.get("/", (req, res) => {
   - model [optional]: The chatgpt model to use. Default is "gpt-3.5-turbo-1106".
     List at: https://platform.openai.com/docs/models
   - creature [optional]: A description of the creature. Default is "an angel with wings".
+  </div>
+  <div>
+    You can check out the NPC dialog demo, which uses this API. Click here:
+    <br>
+    <h2>
+      <a href="/example">NPC Dialog Demo</a>
+    </h2>
+  </div>
   `);
 });
 

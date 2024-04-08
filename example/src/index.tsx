@@ -7,14 +7,15 @@ import { openMenu } from "dokui-menu"
 import { MenuItemModel } from "dokui-menu/dist/menu/model/MenuItemModel";
 import { NpcModel } from "open-ai-npc";
 
-const angelSrc = "https://i.etsystatic.com/32486242/r/il/ddd05d/5025111975/il_570xN.5025111975_du3d.jpg";
+const angelSrc = "angel.png";
+const gremlinsSrc = "gremlins.png";
+const robotSrc = "robot.png"
 
 const popupControl = new PopupControl();
 const keyboard = new KeyboardControl(popupControl);
 let mute = false;
-async function showMenu(model: NpcModel): Promise<string> {
+async function showMenu(model: NpcModel, image?: string, interactions?: number): Promise<string> {
   return new Promise(resolve => {
-    console.log(model.actions);
     const emojis: string[] = [];
     for (let i = 0; i < model.attributes.anger; i++) {
       emojis.push('😡');
@@ -44,7 +45,7 @@ async function showMenu(model: NpcModel): Promise<string> {
     if (!mute) {
       let utterance = new SpeechSynthesisUtterance(model.creature);
       speechSynthesis.speak(utterance);
-      window.addEventListener("close", () => {
+      window.addEventListener("beforeunload", () => {
         speechSynthesis.cancel();
       }) 
     }
@@ -61,7 +62,7 @@ async function showMenu(model: NpcModel): Promise<string> {
             },
             images: [
               {
-                src: angelSrc,
+                src: image ?? angelSrc,
               }
             ],
             dialog: {
@@ -119,6 +120,7 @@ async function showMenu(model: NpcModel): Promise<string> {
                   back: true,
                 },
                 {
+                  hidden: !!interactions,
                   label: "Talk about...",
                   prompt: {
                     label: "Choose a new topic of discussion",
@@ -160,12 +162,101 @@ async function callApi(choice: string = "", creature?: string, model?: string) {
   return models;
 }
 
+async function promptCreature(): Promise<{ creature?: string; image?: string } | undefined> {
+  return new Promise(resolve => {
+    openMenu<MenuItemModel & { creature?: string; image?: string }>({
+      popupControl,
+      menu: {
+        items: [
+          {
+            back: true,
+            label: "angel",
+            image: angelSrc,
+            onHover: {
+              pictures: [
+                {
+                  layout: {
+                    position: [300, 10],
+                    size: [150, 140],
+                    positionFromRight: true,
+                  },
+                  images: [
+                    {
+                      size: "cover",
+                      src: angelSrc,
+                    }
+                  ],
+                }
+              ],
+            },
+          },
+          {
+            back: true,
+            label: "gremlins",
+            image: gremlinsSrc,
+            creature: "a green ugly gremlins",
+            onHover: {
+              pictures: [
+                {
+                  layout: {
+                    position: [300, 10],
+                    size: [150, 140],
+                    positionFromRight: true,
+                  },
+                  images: [
+                    {
+                      size: "cover",
+                      src: gremlinsSrc,
+                    }
+                  ],
+                }
+              ],
+            },            
+          },
+          {
+            back: true,
+            label: "robot",
+            image: robotSrc,
+            creature: "a very intelligent robot",
+            onHover: {
+              pictures: [
+                {
+                  layout: {
+                    position: [300, 10],
+                    size: [150, 140],
+                    positionFromRight: true,
+                  },
+                  images: [
+                    {
+                      size: "cover",
+                      src: robotSrc,
+                    }
+                  ],
+                }
+              ],
+            },            
+          },
+        ],
+      },
+      onSelect(item) {
+        resolve(item);
+      }
+    });
+  });
+}
+
+
 const choices: string[] = [];
 async function startConversation() {
+  const {creature, image} = await promptCreature() ?? {};
+
+  let interactions = 0;
   while (true) {
-    const models = await callApi(choices.join("|"));
-    const choice = await showMenu(models[0]);
+    const models = await callApi(choices.join("|"), creature);
+    const choice = await showMenu(models[0], image, interactions);
     choices.push(choice);  
+    interactions++;
+    console.log("Interactions:", interactions);
   }
 }
 
