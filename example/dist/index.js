@@ -27651,6 +27651,7 @@ async function showMenu(model, image, interactions) {
       emojis.push("\uD83D\uDC6D");
     }
     if (!mute) {
+      speechSynthesis.cancel();
       let utterance = new SpeechSynthesisUtterance(model.creature);
       speechSynthesis.speak(utterance);
       window.addEventListener("beforeunload", () => {
@@ -27679,7 +27680,7 @@ async function showMenu(model, image, interactions) {
                 positionFromRight: true
               },
               messages: [
-                model.info.name ?? "???"
+                model.info?.name ?? "???"
               ]
             }
           }

@@ -43,6 +43,7 @@ async function showMenu(model: NpcModel, image?: string, interactions?: number):
     }
   
     if (!mute) {
+      speechSynthesis.cancel();
       let utterance = new SpeechSynthesisUtterance(model.creature);
       speechSynthesis.speak(utterance);
       window.addEventListener("beforeunload", () => {
@@ -72,7 +73,7 @@ async function showMenu(model: NpcModel, image?: string, interactions?: number):
                 positionFromRight: true,
               },
               messages: [
-                model.info.name ?? "???"
+                model.info?.name ?? "???"
               ],
             },
           }
