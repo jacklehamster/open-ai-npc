@@ -27670,7 +27670,8 @@ async function showMenu(model, image, interactions) {
             },
             images: [
               {
-                src: image ?? angelSrc
+                src: image ?? angelSrc,
+                size: "cover"
               }
             ],
             dialog: {
@@ -27775,7 +27776,7 @@ async function promptCreature() {
         items: [
           {
             back: true,
-            label: "angel",
+            label: "an angel",
             image: angelSrc,
             onHover: {
               pictures: [
@@ -27797,7 +27798,7 @@ async function promptCreature() {
           },
           {
             back: true,
-            label: "gremlins",
+            label: "a gremlin",
             image: gremlinsSrc,
             creature: "a green ugly gremlins",
             onHover: {
@@ -27820,7 +27821,7 @@ async function promptCreature() {
           },
           {
             back: true,
-            label: "robot",
+            label: "a robot",
             image: robotSrc,
             creature: "a very intelligent robot",
             onHover: {
@@ -27835,6 +27836,52 @@ async function promptCreature() {
                     {
                       size: "cover",
                       src: robotSrc
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            back: true,
+            label: "a depressed software engineer",
+            image: engSrc,
+            creature: "a depressed software engineer working for Google",
+            onHover: {
+              pictures: [
+                {
+                  layout: {
+                    position: [300, 10],
+                    size: [150, 140],
+                    positionFromRight: true
+                  },
+                  images: [
+                    {
+                      size: "cover",
+                      src: engSrc
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            back: true,
+            label: "an alien",
+            image: alienSrc,
+            creature: "an alien from Outer Space who loves to eat humans",
+            onHover: {
+              pictures: [
+                {
+                  layout: {
+                    position: [300, 10],
+                    size: [150, 140],
+                    positionFromRight: true
+                  },
+                  images: [
+                    {
+                      size: "cover",
+                      src: alienSrc
                     }
                   ]
                 }
@@ -27874,6 +27921,8 @@ function start() {
 var angelSrc = "angel.png";
 var gremlinsSrc = "gremlins.png";
 var robotSrc = "robot.png";
+var engSrc = "eng.jpg";
+var alienSrc = "alien.jpg";
 var popupControl = new PopupControl;
 var keyboard = new KeyboardControl(popupControl);
 var mute = false;

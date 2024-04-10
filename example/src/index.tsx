@@ -10,6 +10,8 @@ import { NpcModel } from "open-ai-npc";
 const angelSrc = "angel.png";
 const gremlinsSrc = "gremlins.png";
 const robotSrc = "robot.png"
+const engSrc = "eng.jpg";
+const alienSrc = "alien.jpg";
 
 const popupControl = new PopupControl();
 const keyboard = new KeyboardControl(popupControl);
@@ -64,6 +66,7 @@ async function showMenu(model: NpcModel, image?: string, interactions?: number):
             images: [
               {
                 src: image ?? angelSrc,
+                size: "cover",
               }
             ],
             dialog: {
@@ -163,7 +166,7 @@ async function callApi(choice: string = "", creature?: string, model?: string) {
   return models;
 }
 
-async function promptCreature(): Promise<{ creature?: string; image?: string } | undefined> {
+async function promptCreature(): Promise<{ creature?: string; image?: string; } | undefined> {
   return new Promise(resolve => {
     openMenu<MenuItemModel & { creature?: string; image?: string }>({
       popupControl,
@@ -171,7 +174,7 @@ async function promptCreature(): Promise<{ creature?: string; image?: string } |
         items: [
           {
             back: true,
-            label: "angel",
+            label: "an angel",
             image: angelSrc,
             onHover: {
               pictures: [
@@ -193,7 +196,7 @@ async function promptCreature(): Promise<{ creature?: string; image?: string } |
           },
           {
             back: true,
-            label: "gremlins",
+            label: "a gremlin",
             image: gremlinsSrc,
             creature: "a green ugly gremlins",
             onHover: {
@@ -216,7 +219,7 @@ async function promptCreature(): Promise<{ creature?: string; image?: string } |
           },
           {
             back: true,
-            label: "robot",
+            label: "a robot",
             image: robotSrc,
             creature: "a very intelligent robot",
             onHover: {
@@ -237,6 +240,52 @@ async function promptCreature(): Promise<{ creature?: string; image?: string } |
               ],
             },            
           },
+          {
+            back: true,
+            label: "a depressed software engineer",
+            image: engSrc,
+            creature: "a depressed software engineer working for Google",
+            onHover: {
+              pictures: [
+                {
+                  layout: {
+                    position: [300, 10],
+                    size: [150, 140],
+                    positionFromRight: true,
+                  },
+                  images: [
+                    {
+                      size: "cover",
+                      src: engSrc,
+                    }
+                  ],
+                }
+              ],
+            },  
+          },
+          {
+            back: true,
+            label: "an alien",
+            image: alienSrc,
+            creature: "an alien from Outer Space who loves to eat humans",
+            onHover: {
+              pictures: [
+                {
+                  layout: {
+                    position: [300, 10],
+                    size: [150, 140],
+                    positionFromRight: true,
+                  },
+                  images: [
+                    {
+                      size: "cover",
+                      src: alienSrc,
+                    }
+                  ],
+                }
+              ],
+            },  
+          },          
         ],
       },
       onSelect(item) {
