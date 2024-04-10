@@ -5,7 +5,8 @@ let initialized: boolean;
 
 export async function fetchChoice(choice: string,
   model: string = "gpt-3.5-turbo-1106",
-  creature: string = "an angel with wings") {
+  creature: string = "an angel with wings",
+) {
   const tag = `${model}-${creature}-path-`;
   if (!initialized) {
     await storage.init();
