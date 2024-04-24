@@ -12,6 +12,7 @@ interface Query {
   choice?: string;
   model?: string;
   creature?: string;
+  jsonp?: string;
 }
 
 app.use('/example', express.static(path.join(import.meta.dir, '../example')))
@@ -20,17 +21,21 @@ app.get("/api", async (req, res) => {
   const query = req.query as Query;
   let choice = (query.choice ?? "") as string;
   const response = await fetchChoice(choice, query.model ?? undefined, query.creature ?? undefined);
-  return res.json(response);
+  return query.jsonp ? res.send(`${query.jsonp}(${JSON.stringify(response)})`) : res.json(response);
 });
 
+interface CommentQuery {
+  situation?: string;
+  model?: string;
+  seed?: string;
+  jsonp?: string;
+}
+
 app.get("/comment", async (req, res) => {
-  const query = req.query as {
-    situation: string;
-    model?: string;
-  };
+  const query = req.query as CommentQuery;
   let situation = (query.situation ?? "") as string;
-  const response = await makeComment(situation.split("."));
-  return res.send(response);
+  const response = await makeComment(situation.split("."), query.model, query.seed);
+  return query.jsonp ? res.send(`${query.jsonp}(${JSON.stringify(response)})`) : res.json(response);
 });
 
 app.get("/index.html", async (req, res) => {

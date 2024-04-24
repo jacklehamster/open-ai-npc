@@ -7,10 +7,12 @@ import OpenAI from "openai";
 
 let initialized = false;
 export async function makeComment(situations: string[],
-  model: string = "gpt-3.5-turbo-1106"
+  model: string = "gpt-3.5-turbo-1106",
+  seed?: string
 ) {
   const sit = situations.map(s => s.trim());
   const md5 = new MD5();
+  md5.update(seed ?? "0");
   sit.forEach(s => md5.update(s));
   const tag = md5.digest("base64");
   if (!initialized) {
@@ -31,6 +33,9 @@ export async function makeComment(situations: string[],
         content: situation,
       };
     }),
+    params: {
+      seed: parseInt(seed ?? "0"),
+    }
   });
   const content = response.choices[0].message.content;
   await storage.setItem(tag, content);
