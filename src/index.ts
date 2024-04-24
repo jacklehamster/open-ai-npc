@@ -35,7 +35,10 @@ app.get("/comment", async (req, res) => {
   const query = req.query as CommentQuery;
   let situation = (query.situation ?? "") as string;
   const response = await makeComment(situation.split("."), query.model, query.seed);
-  return query.jsonp ? res.send(`${query.jsonp}(${JSON.stringify(response)})`) : res.json(response);
+  const formattedResponse = typeof (response) === "object" ? response : {
+    response,
+  };
+  return query.jsonp ? res.send(`${query.jsonp}(${JSON.stringify(formattedResponse)})`) : res.json(formattedResponse);
 });
 
 app.get("/index.html", async (req, res) => {
