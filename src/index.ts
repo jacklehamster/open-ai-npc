@@ -3,6 +3,7 @@ import { npc } from "./openai";
 import express from "express";
 import path from "path";
 import { NpcModel } from "./model/NpcModel";
+import { comment, makeComment } from "./power-troll/comment";
 
 const app = express();
 const port = parseInt(process.env.PORT ?? "3000");
@@ -19,6 +20,16 @@ app.get("/api", async (req, res) => {
   const query = req.query as Query;
   let choice = (query.choice ?? "") as string;
   const response = await fetchChoice(choice, query.model ?? undefined, query.creature ?? undefined);
+  return res.json(response);
+});
+
+app.get("/comment", async (req, res) => {
+  const query = req.query as {
+    situation: string;
+    model?: string;
+  };
+  let situation = (query.situation ?? "") as string;
+  const response = await makeComment(situation.split("."));
   return res.json(response);
 });
 
