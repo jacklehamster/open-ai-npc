@@ -30,7 +30,7 @@ app.get("/comment", async (req, res) => {
   };
   let situation = (query.situation ?? "") as string;
   const response = await makeComment(situation.split("."));
-  return res.json(response);
+  return res.send(response);
 });
 
 app.get("/index.html", async (req, res) => {

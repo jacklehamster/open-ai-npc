@@ -32,8 +32,9 @@ export async function makeComment(situations: string[],
       };
     }),
   });
-  await storage.setItem(tag, response.choices[0]);
-  return response;
+  const content = response.choices[0].message.content;
+  await storage.setItem(tag, content);
+  return content;
 }
 
 
