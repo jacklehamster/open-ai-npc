@@ -3,7 +3,7 @@ import { npc } from "./openai";
 import express from "express";
 import path from "path";
 import { NpcModel } from "./model/NpcModel";
-import { comment, makeComment } from "./power-troll/comment";
+import { makeComment } from "./power-troll/comment";
 
 const app = express();
 const port = parseInt(process.env.PORT ?? "3000");
