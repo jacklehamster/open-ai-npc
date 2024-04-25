@@ -6,7 +6,7 @@ import { NpcModel } from "./model/NpcModel";
 import { makeComment } from "./power-troll/comment";
 
 const app = express();
-const port = parseInt(process.env.PORT ?? "3000");
+const port = parseInt(process.env.PORT ?? "3001");
 
 interface Query {
   choice?: string;
@@ -25,6 +25,7 @@ app.get("/api", async (req, res) => {
 });
 
 interface CommentQuery {
+  dictionary?: string;
   situation?: string;
   model?: string;
   seed?: string;
@@ -33,8 +34,8 @@ interface CommentQuery {
 
 app.get("/comment", async (req, res) => {
   const query = req.query as CommentQuery;
-  let situation = (query.situation ?? "") as string;
-  const response = await makeComment(situation.split("."), query.model, query.seed);
+  let situations = ((query.situation ?? "") as string).split(".");
+  const response = await makeComment(situations, query.model, query.seed, query.dictionary ? JSON.parse(query.dictionary) : undefined);
   const formattedResponse = typeof (response) === "object" ? response : {
     response,
   };

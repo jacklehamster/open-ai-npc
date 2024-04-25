@@ -8,10 +8,13 @@ import OpenAI from "openai";
 let initialized = false;
 export async function makeComment(situations: string[],
   model: string = "gpt-3.5-turbo-1106",
-  seed?: string
+  seed?: string,
+  dictionary?: Record<string, string>,
 ) {
-  const sit = situations.map(s => s.trim());
+  const sit = situations.map(s => s.trim())
+    .map(s => dictionary ? dictionary[s] ?? "" : s);
   const md5 = new MD5();
+  md5.update(model);
   md5.update(seed ?? "0");
   sit.forEach(s => md5.update(s));
   const tag = md5.digest("base64");
@@ -23,6 +26,21 @@ export async function makeComment(situations: string[],
   if (result) {
     return result;
   }
+  if (dictionary) {
+    const md5 = new MD5();
+    const entries = Object.entries(dictionary);
+    entries.sort((a, b) => a.join("-").localeCompare(b.join("-")));
+    entries.forEach(e => {
+      md5.update(e[0]);
+      md5.update(e[1]);
+    });
+    const tag = md5.digest("base64");
+    console.log("CHECK TAG:", tag);
+    //  check against list of authorized tags before calling OpenAI
+  }
+
+
+
 
   const response = await comment({
     model,
@@ -39,6 +57,7 @@ export async function makeComment(situations: string[],
   });
   const content = response.choices[0].message.content;
   await storage.setItem(tag, content);
+  console.log(content);
   return content;
 }
 
