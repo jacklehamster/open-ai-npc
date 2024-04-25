@@ -19,7 +19,6 @@ export async function fetchChoice(choice: string,
 
 
   const path = !choice.length ? [] : choice.split("|");
-  console.log("??", path);
   let messages: any[] = [];// = ctx.query.get("message");
   if (!messages.length) {
     if (path.length) {

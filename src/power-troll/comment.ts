@@ -26,6 +26,7 @@ export async function makeComment(situations: string[],
   if (result) {
     return result;
   }
+  let dictionaryTag;
   if (dictionary) {
     const md5 = new MD5();
     const entries = Object.entries(dictionary);
@@ -34,15 +35,12 @@ export async function makeComment(situations: string[],
       md5.update(e[0]);
       md5.update(e[1]);
     });
-    const tag = md5.digest("base64");
-    console.log("CHECK TAG:", tag);
+    dictionaryTag = md5.digest("base64");
     //  check against list of authorized tags before calling OpenAI
   }
 
 
-
-
-  const response = await comment({
+  const res = await comment({
     model,
     messages: sit.map((situation) => {
       return {
@@ -54,10 +52,13 @@ export async function makeComment(situations: string[],
       seed: parseInt(seed ?? "0"),
     }
   });
-  const content = response.choices[0].message.content;
-  await storage.setItem(tag, content);
-  console.log(content);
-  return content;
+  const response = res.choices[0].message.content;
+  await storage.setItem(tag, response);
+  return {
+    response,
+    dictionaryTag,
+    ...dictionary ? { situations } : {},
+  };
 }
 
 
@@ -88,7 +89,6 @@ export async function comment({
     },
     ...messages,
   ];
-  console.log(allMessages);
 
   const response = await openai.chat.completions.create({
     model,

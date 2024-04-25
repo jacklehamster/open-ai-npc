@@ -51,7 +51,6 @@ export async function npc({
 
     ...messages,
   ];
-  console.log(allMessages);
 
   const response = await openai.chat.completions.create({
     model,
