@@ -46,7 +46,6 @@ export async function makeComment(situations: string[],
     model,
     messages: sit.map((situation) => {
       return {
-        name: undefined,
         role: 'user',
         content: situation,
       };
