@@ -42,7 +42,10 @@ export async function makeComment(situations: string[],
   }
   const result = await storage.getItem(tag);
   if (result) {
-    return result;
+    return {
+      response: result,
+      cached: true,
+    };
   }
   let dictionaryTag;
   let authorized = false;
@@ -83,7 +86,7 @@ export async function makeComment(situations: string[],
     response,
     dictionaryTag,
     authorized,
-    ...dictionary ? { situations } : {},
+    ...(dictionary ? { situations } : {}),
   };
 }
 

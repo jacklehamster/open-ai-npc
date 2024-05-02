@@ -31,15 +31,23 @@ interface CommentQuery {
   seed?: string;
   jsonp?: string;
   authorizationCode?: string;
-  customFields?: string;
 }
 
 app.get("/comment", async (req, res) => {
   const query = req.query as CommentQuery;
-  let situations = ((query.situation ?? "") as string).split(".");
+  const { situation, model, seed, dictionary, authorizationCode, jsonp, ...customFields } = query;
+  let situations = ((situation ?? "") as string).split(".");
+  const cf: Record<string, { type: string; value: any }> = {};
+  Object.entries(customFields).forEach(([kString, value]) => {
+    const [key, type] = kString.split(":");
+    cf[key] = {
+      type,
+      value,
+    };
+  });
   const response = await makeComment(
-    situations, query.model, query.seed, query.dictionary ? JSON.parse(query.dictionary) : undefined,
-    query.authorizationCode, query.customFields ? JSON.parse(query.customFields) : undefined,
+    situations, model, seed, dictionary ? JSON.parse(dictionary) : undefined,
+    query.authorizationCode, cf
   );
   const formattedResponse = typeof (response) === "object" ? response : {
     response,
