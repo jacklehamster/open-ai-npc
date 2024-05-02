@@ -30,12 +30,17 @@ interface CommentQuery {
   model?: string;
   seed?: string;
   jsonp?: string;
+  authorizationCode?: string;
+  customFields?: string;
 }
 
 app.get("/comment", async (req, res) => {
   const query = req.query as CommentQuery;
   let situations = ((query.situation ?? "") as string).split(".");
-  const response = await makeComment(situations, query.model, query.seed, query.dictionary ? JSON.parse(query.dictionary) : undefined);
+  const response = await makeComment(
+    situations, query.model, query.seed, query.dictionary ? JSON.parse(query.dictionary) : undefined,
+    query.authorizationCode, query.customFields ? JSON.parse(query.customFields) : undefined,
+  );
   const formattedResponse = typeof (response) === "object" ? response : {
     response,
   };

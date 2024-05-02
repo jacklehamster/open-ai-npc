@@ -5,18 +5,36 @@ import { ChatCompletionMessageParam } from "openai/src/resources/index.js";
 import { systemPrompt } from "./systemprompt";
 import OpenAI from "openai";
 
+const AUTHORIZED_DICO = new Set<string>([
+]);
+
 let initialized = false;
 export async function makeComment(situations: string[],
   model: string = "gpt-3.5-turbo-1106",
   seed?: string,
   dictionary?: Record<string, string>,
+  authorizationCode?: string,
+  customFields?: Record<string, {
+    type?: string;
+    value: string | number | boolean;
+  }>,
 ) {
   const sit = situations.map(s => s.trim())
-    .map(s => dictionary ? dictionary[s] ?? "" : s);
+    .map(s => dictionary ? dictionary[s] ?? "" : s)
+    .map(s => {
+      if (!customFields) {
+        return s;
+      }
+      Object.entries(customFields).forEach(([key, field]) => {
+        s = s.replaceAll(`$\{${key}}`, field.value.toString());
+      });
+      return s;
+    });
   const md5 = new MD5();
   md5.update(model);
   md5.update(seed ?? "0");
   sit.forEach(s => md5.update(s));
+
   const tag = md5.digest("base64");
   if (!initialized) {
     await storage.init();
@@ -27,6 +45,7 @@ export async function makeComment(situations: string[],
     return result;
   }
   let dictionaryTag;
+  let authorized = false;
   if (dictionary) {
     const md5 = new MD5();
     const entries = Object.entries(dictionary);
@@ -37,6 +56,12 @@ export async function makeComment(situations: string[],
     });
     dictionaryTag = md5.digest("base64");
     //  check against list of authorized tags before calling OpenAI
+    authorized = AUTHORIZED_DICO.has(dictionaryTag);
+    if (!authorized && authorizationCode) {
+      const md5auth = MD5.hash(dictionaryTag + "🌶️ pepper", "base64");
+      authorized = authorizationCode === md5auth;
+      console.log("authorizationCode", md5auth);
+    }
   }
 
 
@@ -57,6 +82,7 @@ export async function makeComment(situations: string[],
   return {
     response,
     dictionaryTag,
+    authorized,
     ...dictionary ? { situations } : {},
   };
 }
@@ -80,6 +106,8 @@ export async function comment({
 
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
+    organization: 'org-uktBsveUaXeMNXTgnjk5JlBA',
+    project: 'proj_14nsI578VavWlr7T8forl9jv',
   });
 
   const allMessages: ChatCompletionMessageParam[] = [
