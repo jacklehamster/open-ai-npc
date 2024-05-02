@@ -22,7 +22,7 @@ export async function npc({
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
     organization: 'org-uktBsveUaXeMNXTgnjk5JlBA',
-    project: 'proj_14nsI578VavWlr7T8forl9jv',
+    project: 'proj_k4r0pDx10f0MHktn4IgIvLGX',
   });
 
   const allMessages: ChatCompletionMessageParam[] = [
