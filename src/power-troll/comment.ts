@@ -26,7 +26,7 @@ export async function makeComment(situations: string[],
         return s;
       }
       Object.entries(customFields).forEach(([key, field]) => {
-        s = s.replaceAll(`$\{${key}}`, field.value.toString());
+        s = s.replaceAll(`<${key}>`, field.value.toString());
       });
       return s;
     });
