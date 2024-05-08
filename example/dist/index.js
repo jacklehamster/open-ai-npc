@@ -23,7 +23,7 @@ var require_react_development = __commonJS((exports, module) => {
       if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
         __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error);
       }
-      var ReactVersion = "18.2.0";
+      var ReactVersion = "18.3.1";
       var REACT_ELEMENT_TYPE = Symbol.for("react.element");
       var REACT_PORTAL_TYPE = Symbol.for("react.portal");
       var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
@@ -1766,6 +1766,7 @@ var require_react_development = __commonJS((exports, module) => {
       exports.StrictMode = REACT_STRICT_MODE_TYPE;
       exports.Suspense = REACT_SUSPENSE_TYPE;
       exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
+      exports.act = act;
       exports.cloneElement = cloneElement$1;
       exports.createContext = createContext;
       exports.createElement = createElement$1;
@@ -2597,6 +2598,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
           }
         }
       }
+      var didWarnAboutKeySpread = {};
       function jsxWithValidation(type, props, key, isStaticChildren, source, self) {
         {
           var validType = isValidElementType(type);
@@ -2644,6 +2646,20 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
                 }
               } else {
                 validateChildKeys(children, type);
+              }
+            }
+          }
+          {
+            if (hasOwnProperty.call(props, "key")) {
+              var componentName = getComponentNameFromType(type);
+              var keys = Object.keys(props).filter(function(k) {
+                return k !== "key";
+              });
+              var beforeExample = keys.length > 0 ? "{key: someKey, " + keys.join(": ..., ") + ": ...}" : "{key: someKey}";
+              if (!didWarnAboutKeySpread[componentName + beforeExample]) {
+                var afterExample = keys.length > 0 ? "{" + keys.join(": ..., ") + ": ...}" : "{}";
+                error('A props object containing a "key" prop is being spread into JSX:\n  let props = %s;\n  <%s {...props} />\nReact keys must be passed directly to JSX without using spread:\n  let props = %s;\n  <%s key={someKey} {...props} />', beforeExample, componentName, afterExample, componentName);
+                didWarnAboutKeySpread[componentName + beforeExample] = true;
               }
             }
           }

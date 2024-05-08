@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "start": "bun run build && bun run index.ts --watch",
-    "build": "bun build --target=node ./src/index.tsx --outfile=dist/index.js"
+    "build": "bun i && bun build --target=node ./src/index.tsx --outfile=dist/index.js"
   },
   "devDependencies": {
     "@types/react": "^18.2.74",
@@ -14,12 +14,12 @@
     "react-dom": "^18.2.0"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "open-ai-npc": "link:open-ai-npc"
   },
   "dependencies": {
     "baojs": "^0.2.1",
-    "dokui-menu": "^1.0.30",
-    "open-ai-npc": "file:..",
+    "dokui-menu": "^1.0.44",
     "serve-static-bun": "^0.5.3"
   }
 }
