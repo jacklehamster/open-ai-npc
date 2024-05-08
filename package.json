@@ -2,7 +2,7 @@
   "name": "open-ai-npc",
   "module": "src/index.ts",
   "description": "Testing openAI's API, with a \"dungeon master\".",
-  "version": "1.0.40",
+  "version": "1.0.41",
   "keywords": [
     "bun",
     "bunjs",
