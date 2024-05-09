@@ -52,7 +52,7 @@ app.get("/comment", async (req, res) => {
   const formattedResponse = typeof (response) === "object" ? response : {
     response,
   };
-  return query.jsonp ? res.send(`${query.jsonp}(${JSON.stringify(formattedResponse)})`) : res.json(formattedResponse);
+  return query.jsonp ? res.type('.js').send(`${query.jsonp}(${JSON.stringify(formattedResponse)})`) : res.json(formattedResponse);
 });
 
 app.get("/index.html", async (req, res) => {
