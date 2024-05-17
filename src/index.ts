@@ -24,6 +24,10 @@ app.get("/api", async (req, res) => {
   return query.jsonp ? res.send(`${query.jsonp}(${JSON.stringify(response)})`) : res.json(response);
 });
 
+app.get("ping", (req, res) => {
+  res.json({ success: true });
+});
+
 interface CommentQuery {
   dictionary?: string;
   situation?: string;
