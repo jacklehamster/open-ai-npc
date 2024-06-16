@@ -6,6 +6,15 @@ import { NpcModel } from "./model/NpcModel";
 import { makeComment } from "./power-troll/comment";
 
 const app = express();
+
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Credentials', "true");
+  next();
+});
+
 const port = parseInt(process.env.PORT ?? "3001");
 
 interface Query {

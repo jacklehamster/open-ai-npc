@@ -47,33 +47,10 @@
     "dist"
   ],
   "devDependencies": {
-    "@dobuki/auto-publish": "^1.0.7",
-    "@types/bun": "^1.1.1",
-    "@types/express": "^4.17.21",
-    "@types/jest": "^29.5.6",
-    "@types/mathjs": "^9.4.2",
-    "@types/mocha": "^10.0.3",
-    "@types/node-persist": "^3.1.8",
-    "@types/react": "^18.3.1",
-    "@types/seedrandom": "^3.0.8",
-    "bun": "^1.1.7",
-    "bun-types": "^1.1.7",
-    "dotenv": "^16.4.5",
-    "jest": "^29.7.0",
-    "package-name-fixer": "^1.0.9",
-    "prettier": "^3.0.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "typescript": "^5.4.5"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+    "@dobuki/dev-dependencies": "^1.0.11",
+    "@types/node-persist": "^3.1.8"
   },
   "dependencies": {
-    "baojs": "^0.2.1",
-    "express": "^4.19.2",
-    "node-persist": "^4.0.1",
-    "openai": "^4.42.0",
-    "serve-static-bun": "^0.5.3"
+    "openai": "^4.42.0"
   }
 }
