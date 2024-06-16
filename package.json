@@ -33,7 +33,6 @@
     "test": "bun test",
     "build": "bun i && rm -rf *.tsbuildinfo && rm -rf dist/*.* && bun run bundler/bundler.ts && bun run test && bun run build:declaration",
     "build:declaration": "tsc --emitDeclarationOnly --project tsconfig.types.json",
-    "fix-package-name": "npm explore package-name-fixer -- bun start \"$(pwd)\"",
     "auto-publish": "npm explore @dobuki/auto-publish -- bun run auto-publish \"$(pwd)\"",
     "openai": "OPENAI_API_KEY=$OPENAI_API_KEY bun run ./src/index.ts",
     "start": "bun run build && bun run openai",
