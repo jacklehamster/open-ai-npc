@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Upload</title>
+  </head>
+  <body>
+    <h1>Upload an Image</h1>
+    <form action="/save-image" method="post" enctype="multipart/form-data">
+      <div>
+        <label for="secret">Secret</label>
+        <input name="secret" id="secret" type="password" />
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("#secret").value =
+              localStorage.getItem("secret") || "";
+            document
+              .querySelector("#secret")
+              .addEventListener("change", function () {
+                localStorage.setItem("secret", this.value);
+              });
+          });
+        </script>
+      </div>
+
+      <label for="img">Image upload</label>
+      <input id="img" type="file" name="image" accept="image/*" required />
+      <input id="filename" type="hidden" name="filename" value="image" />
+      <br /><br />
+      <button type="submit">Upload Image</button>
+    </form>
+    <script>
+      document.querySelector("#img").addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+          const fileName = file.name.split(".")[0];
+          document.querySelector("#filename").value = fileName;
+        }
+      });
+    </script>
+  </body>
+</html>
