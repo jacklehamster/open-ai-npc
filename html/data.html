@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data</title>
+    <style>
+      .result-div {
+        border: 1px solid black;
+        padding: 10px;
+        white-space: pre;
+        font-size: 10pt;
+        font-family: "Courier New", Courier, monospace;
+      }
+      .user-div {
+        width: 100%;
+        height: 100px;
+      }
+      .error-div {
+        color: red;
+      }
+      .input-div {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Update data</h1>
+    <div>
+      <label for="field">Field</label>
+      <select id="field" class="input-div">
+        <option value="">Select a field</option>
+      </select>
+    </div>
+    <div id="result" class="result-div"></div>
+    <div>
+      <label for="user">User</label>
+    </div>
+    <textarea id="user" class="user-div" rows="10" cols="50"></textarea>
+    <div id="error-log" class="error-div"></div>
+    <button id="submit">Update data</button>
+    <div>
+      <label for="secret">Secret</label>
+      <input id="secret" name="secret" type="password" />
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          document.querySelector("#secret").value =
+            localStorage.getItem("secret") || "";
+          document
+            .querySelector("#secret")
+            .addEventListener("change", function () {
+              localStorage.setItem("secret", this.value);
+            });
+        });
+      </script>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        function fetchKeys() {
+          fetch("/list")
+            .then((response) => response.json())
+            .then((keys) => {
+              const field = document.querySelector("#field");
+              field.innerHTML = "";
+              const opt = field.appendChild(document.createElement("option"));
+              opt.value = "";
+              opt.textContent = "Select a field";
+              keys
+                .filter((t) => t.type === "blob" && t.key.endsWith(".json"))
+                .forEach((t) => {
+                  const option = field.appendChild(
+                    document.createElement("option")
+                  );
+                  option.value = `${t.key}`;
+                  option.textContent = t.key;
+                });
+            });
+        }
+
+        function fetchProfile(clearCache) {
+          if (!document.querySelector("#field").value.length) {
+            return;
+          }
+          document.querySelector("#user").disabled = true;
+          document.querySelector("#submit").disabled = true;
+          fetch(
+            `/data/${document.querySelector("#field").value}${clearCache ? "?nocache=1" : ""}`
+          )
+            .then((response) => response.json())
+            .then((res) => {
+              document.querySelector("#user").disabled = false;
+              document.querySelector("#submit").disabled = false;
+              const result = document.querySelector("#result");
+              result.textContent = JSON.stringify(res, null, 2);
+              document.querySelector("#user").value = JSON.stringify(
+                res.data,
+                null,
+                2
+              );
+              isJsonValid = true;
+            });
+        }
+
+        let isJsonValid = false;
+        document.querySelector("#user").addEventListener("keyup", function () {
+          document.querySelector("#error-log").textContent = "";
+          try {
+            JSON.parse(this.value);
+          } catch (e) {
+            document.querySelector("#error-log").textContent = e;
+            isJsonValid = false;
+          }
+          isJsonValid = true;
+        });
+
+        document
+          .querySelector("#submit")
+          .addEventListener("click", function () {
+            if (!document.querySelector("#field").value.length) {
+              return;
+            }
+            const user = document.querySelector("#user").value;
+            fetch(
+              `/data/${document.querySelector("#field").value}?secret=${document.querySelector("#secret").value}`,
+              {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: document.querySelector("#user").value,
+              }
+            )
+              .then((response) => response.json())
+              .then((responseJson) => {
+                fetchProfile(true);
+              });
+          });
+
+        document
+          .querySelector("#field")
+          .addEventListener("change", () => fetchProfile());
+
+        fetchProfile();
+        fetchKeys();
+      });
+    </script>
+  </body>
+</html>

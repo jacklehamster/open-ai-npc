@@ -4,6 +4,8 @@ import express from "express";
 import path from "path";
 import { NpcModel } from "./model/NpcModel";
 import { makeComment } from "./power-troll/comment";
+import { addLevelRoutes } from "./power-troll/level-routes";
+const http = require('http');
 
 const app = express();
 
@@ -25,6 +27,7 @@ interface Query {
 }
 
 app.use('/example', express.static(path.join(import.meta.dir, '../example')))
+app.use('/html', express.static(path.join(import.meta.dir, '../html')))
 
 app.get("/api", async (req, res) => {
   const query = req.query as Query;
@@ -35,37 +38,6 @@ app.get("/api", async (req, res) => {
 
 app.get("ping", (req, res) => {
   res.json({ success: true });
-});
-
-interface CommentQuery {
-  dictionary?: string;
-  situation?: string;
-  model?: string;
-  seed?: string;
-  jsonp?: string;
-  authorizationCode?: string;
-}
-
-app.get("/comment", async (req, res) => {
-  const query = req.query as CommentQuery;
-  const { situation, model, seed, dictionary, authorizationCode, jsonp, ...customFields } = query;
-  let situations = ((situation ?? "") as string).split(".");
-  const cf: Record<string, { type: string; value: any }> = {};
-  Object.entries(customFields).forEach(([kString, value]) => {
-    const [key, type] = kString.split(":");
-    cf[key] = {
-      type,
-      value,
-    };
-  });
-  const response = await makeComment(
-    situations, model, seed, dictionary ? JSON.parse(dictionary) : undefined,
-    query.authorizationCode, cf
-  );
-  const formattedResponse = typeof (response) === "object" ? response : {
-    response,
-  };
-  return query.jsonp ? res.type('.js').send(`${query.jsonp}(${JSON.stringify(formattedResponse)})`) : res.json(formattedResponse);
 });
 
 app.get("/index.html", async (req, res) => {
@@ -175,8 +147,73 @@ app.get("/", (req, res) => {
   `);
 });
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}...`);
+function listRoutes() {
+  const routes: Record<string, string[]> = {}
+  app._router.stack.forEach((middleware: { route: { methods: {}; path: any; }; name: string; handle: { stack: any[]; }; }) => {
+    if (middleware.route) { // Route middleware
+      routes[middleware.route.path] = routes[middleware.route.path]??[];
+      routes[middleware.route.path].push(...Object.keys(middleware.route.methods).map(m => m.toUpperCase()));
+    } else if (middleware.name === 'router') { // Router middleware
+      middleware.handle.stack.forEach((handler: { route: { methods: {}; path: any; }; }) => {
+        if (handler.route) {
+          routes[handler.route.path] = routes[handler.route.path] ?? [];
+          routes[handler.route.path].push(...Object.keys(handler.route.methods).map(m => m.toUpperCase()));
+        }
+      });
+    }
+  });
+  return routes;
+}
+
+app.get('/routes', (req, res) => {
+  res.json(listRoutes());
+});
+
+//  Power Troll API
+interface CommentQuery {
+  dictionary?: string;
+  situation?: string;
+  model?: string;
+  seed?: string;
+  jsonp?: string;
+  authorizationCode?: string;
+}
+
+app.get("/comment", async (req, res) => {
+  const query = req.query as CommentQuery;
+  const { situation, model, seed, dictionary, authorizationCode, jsonp, ...customFields } = query;
+  let situations = ((situation ?? "") as string).split(".");
+  const cf: Record<string, { type: string; value: any }> = {};
+  Object.entries(customFields).forEach(([kString, value]) => {
+    const [key, type] = kString.split(":");
+    cf[key] = {
+      type,
+      value,
+    };
+  });
+  const response = await makeComment(
+    situations, model, seed, dictionary ? JSON.parse(dictionary) : undefined,
+    query.authorizationCode, cf
+  );
+  const formattedResponse = typeof (response) === "object" ? response : {
+    response,
+  };
+  return query.jsonp ? res.type('.js').send(`${query.jsonp}(${JSON.stringify(formattedResponse)})`) : res.json(formattedResponse);
+});
+
+addLevelRoutes(app);
+
+const options = {
+  host: '0.0.0.0', // Listen on all network interfaces
+  port,
+};
+
+const server = http.createServer(app);
+
+server.listen(options.port, options.host, () => {
+  console.log(`Server running at http://${options.host}:${options.port}/`);
+  const address = server.address();
+  console.log(address);
 });
 
 export { npc, fetchChoice };

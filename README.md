@@ -4,7 +4,7 @@
 
 Using OpenAI to generate NPC dialog for characters in a JRPG.
 
-![](https://jacklehamster.github.io/open-ai-npc/icon.png)
+![jrpg](https://jacklehamster.github.io/open-ai-npc/icon.png)
 
 ## Run example
 
@@ -18,8 +18,7 @@ Using OpenAI to generate NPC dialog for characters in a JRPG.
 
 [https://github.com/jacklehamster/open-ai-npc/](https://github.com/jacklehamster/open-ai-npc/)
 
-
-# Using the API
+## Using the API
 
 Let's say you want to grab the repo, and setup your own project using the NPC dialog generator, perhaps tweak it so it gives you better results. You can do that! (This is an open source project after all).
 
@@ -33,12 +32,11 @@ gh repo clone jacklehamster/open-ai-npc
 
 Or personally, I prefer UI based Git app like [SourceTree](https://www.sourcetreeapp.com/)
 
-
 ## Get your OpenAI api key
 
-- Go to https://platform.openai.com/, sign up for a new account
+- Go to <https://platform.openai.com/>, sign up for a new account
 - Buy some credits. Note that $5 is enough to get started.
-- Grab your API key from https://platform.openai.com/api-keys
+- Grab your API key from <https://platform.openai.com/api-keys>
 
 ## Store your API key locally
 
@@ -50,7 +48,7 @@ export OPENAI_API_KEY=sk-?????
 
 ## Check out the demo
 
-Just run `./sample.sh`, then go to http://localhost:3000/
+Just run `./sample.sh`, then go to <http://localhost:3000/>
 
 From there, you can test the demo or try out the rest API.
 
@@ -58,23 +56,24 @@ Note that a bunch of pre-filled data is cached in the ".node-persist" folder, so
 
 ## Test the API
 
-Go to http://localhost:3000/api
+Go to <http://localhost:3000/api>
 
 Then select a choice, and use it as query parameter:
-http://localhost:3000/api?choice=A
+<http://localhost:3000/api?choice=A>
 
 To go further, you have to append your new choice to the choice history, separated by "|". Ex:
-http://localhost:3000/api?choice=A|B
-http://localhost:3000/api?choice=A|B|A
+<http://localhost:3000/api?choice=A|B>
+<http://localhost:3000/api?choice=A|B|A>
 
 If your choice is a letter A,B,C or D, the choice from the AI will be selected. That said, you can write pretty much anything in the choice. If the AI is not confused, it will respond accordingly.
 
 Ex:
-http://localhost:3000/api?choice=your%20name
+<http://localhost:3000/api?choice=your%20name>
 
 ## Using a different model
 
 The entry point to call the API is in [choices.ts](src/choices.ts):
+
 ```typescript
 fetchChoice(choice: string,
   model: string = "gpt-3.5-turbo-1106",
