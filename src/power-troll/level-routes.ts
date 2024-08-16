@@ -40,7 +40,18 @@ export function addLevelRoutes(app: express.Express) {
 
   // Configure multer for file storage
   const storage = multer.memoryStorage();
-  const upload = multer({ storage: storage });
+
+  const upload = multer({
+    storage: storage,
+    limits: { fileSize: 5 * 1024 * 1024 }, // Limit file size to 5MB
+    fileFilter: (req, file, cb) => {
+      const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+      if (!allowedTypes.includes(file.mimetype)) {
+        return cb(new Error('Invalid file type.'));
+      }
+      cb(null, true);
+    }
+  });
 
   // Convert buffer to stream (helper function)
 
