@@ -63,7 +63,6 @@ export function addLevelRoutes(app: express.Express) {
       session?: string;
       secret?: string;
     };
-    console.log(`>>> "${req.body.secret}"`);
     const authResult = await auth.authenticatePayload({
       userId: query.user,
       authToken: query.token,
