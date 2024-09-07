@@ -97,9 +97,10 @@ export function addLevelRoutes(app: express.Express) {
   });
 
   app.get("/list", async (req, res) => {
-    const recursive = req.query.recursive !== "false";
     const subfolder = req.query.subfolder?.toString();
-    return res.json(await github.listKeys(subfolder, undefined, recursive));
+    const branch = req.query.branch?.toString();
+    const recursive = req.query.recursive !== "false";
+    return res.json(await github.listKeys(subfolder, branch, recursive));
   });
 
   app.get("/data/*", async (req, res) => {
