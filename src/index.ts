@@ -4,12 +4,12 @@ import express from "express";
 import path from "path";
 import { NpcModel } from "./model/NpcModel";
 import { makeComment } from "./power-troll/comment";
-import { addLevelRoutes } from "./power-troll/level-routes";
-const http = require('http');
+import http from 'http';
+import { addRoutes } from "dok-db-manager";
 
 const app = express();
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -151,7 +151,7 @@ function listRoutes() {
   const routes: Record<string, string[]> = {}
   app._router.stack.forEach((middleware: { route: { methods: {}; path: any; }; name: string; handle: { stack: any[]; }; }) => {
     if (middleware.route) { // Route middleware
-      routes[middleware.route.path] = routes[middleware.route.path]??[];
+      routes[middleware.route.path] = routes[middleware.route.path] ?? [];
       routes[middleware.route.path].push(...Object.keys(middleware.route.methods).map(m => m.toUpperCase()));
     } else if (middleware.name === 'router') { // Router middleware
       middleware.handle.stack.forEach((handler: { route: { methods: {}; path: any; }; }) => {
@@ -201,7 +201,17 @@ app.get("/comment", async (req, res) => {
   return query.jsonp ? res.type('.js').send(`${query.jsonp}(${JSON.stringify(formattedResponse)})`) : res.json(formattedResponse);
 });
 
-addLevelRoutes(app);
+addRoutes(app, {
+  github: {
+    owner: "jacklehamster",
+    repo: "power-troll-levels",
+  },
+  secret: {
+    secret: process.env.SECRET_WORD ?? "secret",
+  },
+  nocache: true,
+  nolock: true,
+});
 
 const options = {
   host: '0.0.0.0', // Listen on all network interfaces
