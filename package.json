@@ -61,13 +61,13 @@
     "@dobuki/data-client": "latest",
     "@the-brains/github-db": "latest",
     "dok-auth": "latest",
-    "dok-db-manager": "^1.0.4",
+    "dok-db-manager": "^1.0.6",
     "express": "^4.19.2",
     "ioredis": "^5.4.1",
     "mime-types": "^2.1.35",
     "multer": "^1.4.5-lts.1",
     "node-persist": "^4.0.3",
-    "openai": "^4.55.9",
+    "openai": "^4.67.2",
     "path": "^0.12.7"
   }
 }
