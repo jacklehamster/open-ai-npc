@@ -61,7 +61,7 @@
     "@dobuki/data-client": "latest",
     "@the-brains/github-db": "latest",
     "dok-auth": "latest",
-    "dok-db-manager": "^1.0.13",
+    "dok-db-manager": "^1.0.15",
     "express": "^4.19.2",
     "ioredis": "^5.4.1",
     "mime-types": "^2.1.35",
