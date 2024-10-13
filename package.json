@@ -47,6 +47,8 @@
   ],
   "devDependencies": {
     "@dobuki/dev-dependencies": "latest",
+    "@sentry/node": "^8.34.0",
+    "@sentry/profiling-node": "^8.34.0",
     "@types/express": "^4.17.21",
     "@types/ioredis": "^5.0.0",
     "@types/mime-types": "^2.1.4",
