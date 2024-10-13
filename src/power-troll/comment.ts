@@ -6,7 +6,6 @@ import { systemPrompt } from "./systemprompt";
 import OpenAI from "openai";
 
 const AUTHORIZED_DICO = new Set<string>([
-  "gJPXedOfS2U/CBVNsSLUGg==",
 ]);
 
 let initialized = false;

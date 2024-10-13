@@ -6,6 +6,7 @@ import { NpcModel } from "./model/NpcModel";
 import { makeComment } from "./power-troll/comment";
 import http from 'http';
 import { addRoutes } from "dok-db-manager";
+import "./instrument.mjs";
 
 const app = express();
 
@@ -211,6 +212,10 @@ addRoutes(app, {
   },
   nocache: true,
   nolock: true,
+});
+
+app.get("/debug-sentry", function mainHandler(req, res) {
+  throw new Error("My first Sentry error!");
 });
 
 const options = {

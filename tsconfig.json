@@ -23,6 +23,6 @@
     "allowJs": true,
     "types": ["bun-types"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.mjs"],
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
 }
