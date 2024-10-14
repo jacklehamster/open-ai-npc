@@ -1,7 +1,5 @@
-import "./instrument.mjs";
 import { fetchChoice } from "./choices";
 import { npc } from "./openai";
-import { initSentry } from "./sentry/sentry";
 import path from "path";
 import { NpcModel } from "./model/NpcModel";
 import { makeComment } from "./power-troll/comment";
@@ -214,8 +212,6 @@ addRoutes(app, {
   nocache: true,
   nolock: true,
 });
-
-initSentry(app);
 
 const options = {
   host: '0.0.0.0', // Listen on all network interfaces

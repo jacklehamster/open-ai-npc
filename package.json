@@ -60,8 +60,6 @@
   "dependencies": {
     "@dobuki/code-lock": "latest",
     "@dobuki/data-client": "latest",
-    "@sentry/cli": "^2.37.0",
-    "@sentry/node": "^8.34.0",
     "@the-brains/github-db": "latest",
     "dok-auth": "^1.0.28",
     "dok-db-manager": "^1.0.18",
