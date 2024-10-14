@@ -7,6 +7,7 @@ import { makeComment } from "./power-troll/comment";
 import http from 'http';
 import { addRoutes } from "dok-db-manager";
 import "./instrument.mjs";
+import { initSentry } from "./sentry/sentry";
 
 const app = express();
 
@@ -214,9 +215,7 @@ addRoutes(app, {
   nolock: true,
 });
 
-app.get("/debug-sentry", function mainHandler(req, res) {
-  throw new Error("My first Sentry error!");
-});
+initSentry(app);
 
 const options = {
   host: '0.0.0.0', // Listen on all network interfaces

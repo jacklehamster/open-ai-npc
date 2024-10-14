@@ -31,13 +31,14 @@
   },
   "scripts": {
     "test": "bun test",
-    "build": "bun i && rm -rf *.tsbuildinfo && rm -rf dist/*.* && bun run bundler/bundler.ts && bun run test && bun run build:declaration",
+    "build": "bun i && rm -rf *.tsbuildinfo && rm -rf dist/*.* && bun run bundler/bundler.ts && bun run test && bun run build:declaration && bun run sentry:sourcemaps",
     "build:declaration": "tsc --emitDeclarationOnly --project tsconfig.types.json",
     "auto-publish": "npm explore @dobuki/auto-publish -- bun run auto-publish \"$(pwd)\"",
     "openai": "OPENAI_API_KEY=$OPENAI_API_KEY bun run ./src/index.ts",
     "start": "bun run build && bun run openai",
     "build:example": "cd example && bun run build && cd ..",
-    "example": "bun run build:example && bun start"
+    "example": "bun run build:example && bun start",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org dobukis-studio --project node-express dist && sentry-cli sourcemaps upload --org dobukis-studio --project node-express dist"
   },
   "publishConfig": {
     "access": "public"
@@ -59,6 +60,8 @@
   "dependencies": {
     "@dobuki/code-lock": "latest",
     "@dobuki/data-client": "latest",
+    "@sentry/cli": "^2.37.0",
+    "@sentry/node": "^8.34.0",
     "@the-brains/github-db": "latest",
     "dok-auth": "^1.0.28",
     "dok-db-manager": "^1.0.18",
@@ -68,7 +71,6 @@
     "multer": "^1.4.5-lts.1",
     "node-persist": "^4.0.3",
     "openai": "^4.67.3",
-    "path": "^0.12.7",
-    "@sentry/node": "^8.34.0"
+    "path": "^0.12.7"
   }
 }
