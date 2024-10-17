@@ -176,6 +176,3 @@ dist/
 
 # Not needed since we use bun
 package-lock.json
-
-# Sentry Config File
-.sentryclirc
