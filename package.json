@@ -59,10 +59,8 @@
   },
   "dependencies": {
     "@dobuki/code-lock": "latest",
-    "@dobuki/data-client": "latest",
-    "@the-brains/github-db": "latest",
     "dok-auth": "^1.0.28",
-    "dok-db-manager": "^1.0.18",
+    "dok-db-manager": "latest",
     "express": "^4.21.1",
     "ioredis": "^5.4.1",
     "mime-types": "^2.1.35",
