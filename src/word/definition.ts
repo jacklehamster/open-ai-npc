@@ -38,9 +38,16 @@ export async function getDefinition(word: string,
 
   const systemText = systemPrompt;
 
+  let w = word;
+  if (!isNaN(parseFloat(word))) {
+    const n = parseFloat(word);
+    w = decodeWord(n);
+  }
+
+
   const message: ChatCompletionMessageParam = {
     "role": "user",
-    "content": word,
+    "content": w,
   };
 
   const allMessages: ChatCompletionMessageParam[] = [
@@ -80,4 +87,49 @@ export function addWordRoutes(app: Express) {
       res.status(500).json({ error: 'Failed to fetch definition' });
     }
   });
+
+  app.get("/decode_word/:code", async (req, res) => {
+    const code = parseInt(req.params.code);
+    if (isNaN(code)) {
+      res.json({ code: encodeWord(req.params.code), word: req.params.code });
+    } else {
+      res.json({ code, word: decodeWord(code) });
+    }
+  });
 }
+
+function decodeWord(code: number) {
+  let word = "";
+  for (let i = 0; i < 5; i++) {
+    const letterIndex = code % 27;
+    code = Math.floor(code / 27);
+    const letter = String.fromCharCode(letterIndex + "a".charCodeAt(0) - 1);
+    word = letter + word;
+    if (!code) {
+      break;
+    }
+  }
+  return word;
+}
+
+function encodeWord(word: string) {
+  let code = 0;
+  for (let i = 0; i < word.length; i++) {
+    const letterIndex = word.charCodeAt(i) - "a".charCodeAt(0) + 1;
+    code = code * 27 + letterIndex;
+  }
+  return code;
+}
+
+/*
+def decode_word(encoded: int) -> str:
+    word = ""
+    for i in range(5):
+        letter_index = encoded % 27
+        encoded //= 27
+        word = chr(letter_index + ord("a") - 1) + word
+        if not encoded:
+            break
+    return word
+
+*/
