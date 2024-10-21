@@ -6,6 +6,7 @@ import { makeComment } from "./power-troll/comment";
 import http from 'http';
 import { addRoutes } from "dok-db-manager";
 import express from "express";
+import { addWordRoutes } from "./word/definition";
 
 const app = express();
 
@@ -212,6 +213,8 @@ addRoutes(app, {
   nocache: true,
   nolock: true,
 });
+
+addWordRoutes(app);
 
 const options = {
   host: '0.0.0.0', // Listen on all network interfaces

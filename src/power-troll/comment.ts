@@ -5,6 +5,12 @@ import { ChatCompletionMessageParam } from "openai/src/resources/index.js";
 import { systemPrompt } from "./systemprompt";
 import OpenAI from "openai";
 
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+  organization: 'org-uktBsveUaXeMNXTgnjk5JlBA',
+  project: 'proj_14nsI578VavWlr7T8forl9jv',
+});
+
 const AUTHORIZED_DICO = new Set<string>([
 ]);
 
@@ -106,12 +112,6 @@ export async function comment({
   messages = []
 }: Props) {
   const systemText = systemPrompt;
-
-  const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-    organization: 'org-uktBsveUaXeMNXTgnjk5JlBA',
-    project: 'proj_14nsI578VavWlr7T8forl9jv',
-  });
 
   const allMessages: ChatCompletionMessageParam[] = [
     {
