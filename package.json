@@ -60,6 +60,7 @@
     "@dobuki/code-lock": "latest",
     "dok-auth": "^1.0.28",
     "dok-db-manager": "latest",
+    "ejs": "^3.1.10",
     "express": "^4.21.1",
     "ioredis": "^5.4.1",
     "mime-types": "^2.1.35",

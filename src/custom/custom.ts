@@ -81,4 +81,24 @@ export function addCustomRoute(app: Express) {
       res.status(500).json({ error: 'Failed to fetch definition' });
     }
   });
+
+  app.set('view engine', 'ejs');
+
+  app.get('/prompt', async (req, res) => {
+    const systemPrompt = req.query.systemPrompt?.toString() ?? "";
+    const prompt = req.query.prompt?.toString() ?? "";
+    const model = req.query.model?.toString();
+    const message = await getMessage(systemPrompt, prompt, { model });
+    const url = new URL(req.protocol + '://' + req.get('host') + req.originalUrl);
+
+    const data = {
+      title: 'Custom prompt',
+      systemPrompt,
+      prompt,
+      model,
+      content: message.content,
+      url,
+    };
+    res.render('custom', data);
+  });
 }
