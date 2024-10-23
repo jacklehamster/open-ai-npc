@@ -135,6 +135,7 @@
         updateUrlQuery();
       });
       document.querySelector("#submit").addEventListener("click", () => {
+        document.querySelector("#result").value = "Loading...";
         location.reload();
       });
       document.querySelector("#copy").addEventListener("click", () => {
