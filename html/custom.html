@@ -26,6 +26,12 @@
       textarea {
         width: 100%;
       }
+      .flex-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
     </style>
   </head>
   <body>
@@ -40,16 +46,22 @@
       </div>
       <textarea id="prompt" class="prompt-div" rows="10"></textarea>
       <div id="error-log" class="error-div"></div>
-      <button type="button" id="submit" style="width: 200px; height: 50px">
-        Update data
-      </button>
-      <label for="auto-query">Auto query on page load:</label>
-      <input id="auto-query" type="checkbox" />
-      <label for="model">GPT Model</label>
-      <select id="model">
-        <option value="gpt-3.5-turbo" selected>GPT-3.5</option>
-        <option value="gpt-4">GPT-4</option>
-      </select>
+      <div class="flex-container">
+        <button type="button" id="submit" style="width: 200px; height: 50px">
+          Update data
+        </button>
+        <div>
+          <label for="model">GPT Model</label>
+          <select id="model">
+            <option value="gpt-3.5-turbo" selected>GPT-3.5</option>
+            <option value="gpt-4">GPT-4</option>
+          </select>
+        </div>
+        <div>
+          <label for="auto-query">Auto query on page load:</label>
+          <input id="auto-query" type="checkbox" />
+        </div>
+      </div>
       <div>
         <label for="result">Result</label>
         <br />
@@ -73,6 +85,8 @@
       }
 
       function performQuery() {
+        document.querySelector("#result").value = "";
+        document.querySelector("#error-log").textContent = "";
         const sytemPrompt = document.querySelector("#system-prompt").value;
         const prompt = document.querySelector("#prompt").value;
         const model = document.querySelector("#model").value;
@@ -114,7 +128,10 @@
         document.querySelector("#prompt").value = prompt || "";
         document.querySelector("#auto-query").checked =
           url.searchParams.get("auto-query");
-        document.querySelector("#model").value = url.searchParams.get("model");
+        if (url.searchParams.has("model")) {
+          document.querySelector("#model").value =
+            url.searchParams.get("model");
+        }
         if (document.querySelector("#auto-query").checked) {
           performQuery();
         }
