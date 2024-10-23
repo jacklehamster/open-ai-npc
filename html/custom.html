@@ -45,6 +45,11 @@
       </button>
       <label for="auto-query">Auto query on page load:</label>
       <input id="auto-query" type="checkbox" />
+      <label for="model">GPT Model</label>
+      <select id="model">
+        <option value="gpt-3.5-turbo" selected>GPT-3.5</option>
+        <option value="gpt-4">GPT-4</option>
+      </select>
       <div>
         <label for="result">Result</label>
         <br />
@@ -63,14 +68,20 @@
         } else {
           url.searchParams.delete("auto-query");
         }
+        url.searchParams.set("model", document.querySelector("#model").value);
         window.history.replaceState({}, "", url);
       }
 
       function performQuery() {
-        //http://localhost:3001/custom/?prompt=test&systemPrompt=123
         const sytemPrompt = document.querySelector("#system-prompt").value;
         const prompt = document.querySelector("#prompt").value;
-        const url = `/custom?systemPrompt=${sytemPrompt}&prompt=${prompt}`;
+        const model = document.querySelector("#model").value;
+        const urlparams = new URLSearchParams();
+        urlparams.append("systemPrompt", sytemPrompt);
+        urlparams.append("prompt", prompt);
+        urlparams.append("model", model);
+
+        const url = `/custom?systemPrompt=${urlparams.toString()}`;
         fetch(url)
           .then((response) => response.json())
           .then((data) => {
@@ -89,6 +100,9 @@
       document.querySelector("#auto-query").addEventListener("change", () => {
         updateUrlQuery();
       });
+      document.querySelector("#model").addEventListener("change", () => {
+        updateUrlQuery();
+      });
       document.querySelector("#submit").addEventListener("click", () => {
         performQuery();
       });
@@ -100,6 +114,7 @@
         document.querySelector("#prompt").value = prompt || "";
         document.querySelector("#auto-query").checked =
           url.searchParams.get("auto-query");
+        document.querySelector("#model").value = url.searchParams.get("model");
         if (document.querySelector("#auto-query").checked) {
           performQuery();
         }

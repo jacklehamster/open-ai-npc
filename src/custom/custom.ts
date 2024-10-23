@@ -23,7 +23,7 @@ export async function getMessage(
     initialized = true;
   }
   const md5 = new MD5();
-  md5.update(params?.model ?? "gpt-3.5-turbo");
+  md5.update(params?.model || "gpt-3.5-turbo");
   md5.update(params?.seed?.toString() ?? "0");
   md5.update(systemText);
   md5.update(prompt);
@@ -51,7 +51,7 @@ export async function getMessage(
 
   const response = await openai.chat.completions.create({
     messages: allMessages,
-    model: params.model ?? "gpt-3.5-turbo",
+    model: params.model || "gpt-3.5-turbo",
     seed: params?.seed,
     temperature: params?.temperature ?? 1,
     max_tokens: params?.max_tokens ?? 256,
