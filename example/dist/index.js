@@ -1,6 +1,6 @@
 var __create = Object.create;
-var __defProp = Object.defineProperty;
 var __getProtoOf = Object.getPrototypeOf;
+var __defProp = Object.defineProperty;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __toESM = (mod, isNodeMode, target) => {
@@ -147,7 +147,7 @@ var require_react_development = __commonJS((exports, module) => {
           if (didWarnStateUpdateForUnmountedComponent[warningKey]) {
             return;
           }
-          error("Can't call %s on a component that is not yet mounted. This is a no-op, but it might indicate a bug in your application. Instead, assign to `this.state` directly or define a `state = {};` class property with the desired state in the %s component.", callerName, componentName);
+          error("Can't call %s on a component that is not yet mounted. " + "This is a no-op, but it might indicate a bug in your application. " + "Instead, assign to `this.state` directly or define a `state = {};` " + "class property with the desired state in the %s component.", callerName, componentName);
           didWarnStateUpdateForUnmountedComponent[warningKey] = true;
         }
       }
@@ -179,7 +179,7 @@ var require_react_development = __commonJS((exports, module) => {
       Component.prototype.isReactComponent = {};
       Component.prototype.setState = function(partialState, callback) {
         if (typeof partialState !== "object" && typeof partialState !== "function" && partialState != null) {
-          throw new Error("setState(...): takes an object of state variables to update or a function which returns an object of state variables.");
+          throw new Error("setState(...): takes an object of state variables to update or a " + "function which returns an object of state variables.");
         }
         this.updater.enqueueSetState(this, partialState, callback, "setState");
       };
@@ -188,8 +188,8 @@ var require_react_development = __commonJS((exports, module) => {
       };
       {
         var deprecatedAPIs = {
-          isMounted: ["isMounted", "Instead, make sure to clean up subscriptions and pending requests in componentWillUnmount to prevent memory leaks."],
-          replaceState: ["replaceState", "Refactor your code to use setState instead (see https://github.com/facebook/react/issues/3236)."]
+          isMounted: ["isMounted", "Instead, make sure to clean up subscriptions and pending requests in " + "componentWillUnmount to prevent memory leaks."],
+          replaceState: ["replaceState", "Refactor your code to use setState instead (see " + "https://github.com/facebook/react/issues/3236)."]
         };
         var defineDeprecationWarning = function(methodName, info) {
           Object.defineProperty(Component.prototype, methodName, {
@@ -254,7 +254,7 @@ var require_react_development = __commonJS((exports, module) => {
       function checkKeyStringCoercion(value) {
         {
           if (willCoercionThrow(value)) {
-            error("The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value));
+            error("The provided key is an unsupported type %s." + " This value must be coerced to a string before before using it here.", typeName(value));
             return testStringCoercion(value);
           }
         }
@@ -276,7 +276,7 @@ var require_react_development = __commonJS((exports, module) => {
         }
         {
           if (typeof type.tag === "number") {
-            error("Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue.");
+            error("Received an unexpected object in getComponentNameFromType(). " + "This is likely a bug in React. Please file an issue.");
           }
         }
         if (typeof type === "function") {
@@ -367,7 +367,7 @@ var require_react_development = __commonJS((exports, module) => {
           {
             if (!specialPropKeyWarningShown) {
               specialPropKeyWarningShown = true;
-              error("%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", displayName);
+              error("%s: `key` is not a prop. Trying to access it will result " + "in `undefined` being returned. If you need to access the same " + "value within the child component, you should pass it as a different " + "prop. (https://reactjs.org/link/special-props)", displayName);
             }
           }
         };
@@ -382,7 +382,7 @@ var require_react_development = __commonJS((exports, module) => {
           {
             if (!specialPropRefWarningShown) {
               specialPropRefWarningShown = true;
-              error("%s: `ref` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", displayName);
+              error("%s: `ref` is not a prop. Trying to access it will result " + "in `undefined` being returned. If you need to access the same " + "value within the child component, you should pass it as a different " + "prop. (https://reactjs.org/link/special-props)", displayName);
             }
           }
         };
@@ -397,7 +397,7 @@ var require_react_development = __commonJS((exports, module) => {
           if (typeof config.ref === "string" && ReactCurrentOwner.current && config.__self && ReactCurrentOwner.current.stateNode !== config.__self) {
             var componentName = getComponentNameFromType(ReactCurrentOwner.current.type);
             if (!didWarnAboutStringRefs[componentName]) {
-              error('Component "%s" contains the string ref "%s". Support for string refs will be removed in a future major release. This case cannot be automatically converted to an arrow function. We ask you to manually fix this case by using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref', componentName, config.ref);
+              error('Component "%s" contains the string ref "%s". ' + "Support for string refs will be removed in a future major release. " + "This case cannot be automatically converted to an arrow function. " + "We ask you to manually fix this case by using useRef() or createRef() instead. " + "Learn more about using refs safely here: " + "https://reactjs.org/link/strict-mode-string-ref", componentName, config.ref);
               didWarnAboutStringRefs[componentName] = true;
             }
           }
@@ -649,7 +649,7 @@ var require_react_development = __commonJS((exports, module) => {
             {
               if (iteratorFn === iterableChildren.entries) {
                 if (!didWarnAboutMaps) {
-                  warn("Using Maps as children is not supported. Use an array of keyed ReactElements instead.");
+                  warn("Using Maps as children is not supported. " + "Use an array of keyed ReactElements instead.");
                 }
                 didWarnAboutMaps = true;
               }
@@ -664,7 +664,7 @@ var require_react_development = __commonJS((exports, module) => {
             }
           } else if (type === "object") {
             var childrenString = String(children);
-            throw new Error("Objects are not valid as a React child (found: " + (childrenString === "[object Object]" ? "object with keys {" + Object.keys(children).join(", ") + "}" : childrenString) + "). If you meant to render a collection of children, use an array instead.");
+            throw new Error("Objects are not valid as a React child (found: " + (childrenString === "[object Object]" ? "object with keys {" + Object.keys(children).join(", ") + "}" : childrenString) + "). " + "If you meant to render a collection of children, use an array " + "instead.");
           }
         }
         return subtreeCount;
@@ -731,7 +731,7 @@ var require_react_development = __commonJS((exports, module) => {
               get: function() {
                 if (!hasWarnedAboutUsingConsumerProvider) {
                   hasWarnedAboutUsingConsumerProvider = true;
-                  error("Rendering <Context.Consumer.Provider> is not supported and will be removed in a future major release. Did you mean to render <Context.Provider> instead?");
+                  error("Rendering <Context.Consumer.Provider> is not supported and will be removed in " + "a future major release. Did you mean to render <Context.Provider> instead?");
                 }
                 return context.Provider;
               },
@@ -767,7 +767,7 @@ var require_react_development = __commonJS((exports, module) => {
               get: function() {
                 if (!hasWarnedAboutUsingNestedContextConsumers) {
                   hasWarnedAboutUsingNestedContextConsumers = true;
-                  error("Rendering <Context.Consumer.Consumer> is not supported and will be removed in a future major release. Did you mean to render <Context.Consumer> instead?");
+                  error("Rendering <Context.Consumer.Consumer> is not supported and will be removed in " + "a future major release. Did you mean to render <Context.Consumer> instead?");
                 }
                 return context.Consumer;
               }
@@ -778,7 +778,7 @@ var require_react_development = __commonJS((exports, module) => {
               },
               set: function(displayName) {
                 if (!hasWarnedAboutDisplayNameOnConsumer) {
-                  warn("Setting `displayName` on Context.Consumer has no effect. You should set it directly on the context with Context.displayName = '%s'.", displayName);
+                  warn("Setting `displayName` on Context.Consumer has no effect. " + "You should set it directly on the context with Context.displayName = '%s'.", displayName);
                   hasWarnedAboutDisplayNameOnConsumer = true;
                 }
               }
@@ -823,12 +823,12 @@ var require_react_development = __commonJS((exports, module) => {
           var moduleObject = payload._result;
           {
             if (moduleObject === undefined) {
-              error("lazy: Expected the result of a dynamic import() call. Instead received: %s\n\nYour code should look like: \n  const MyComponent = lazy(() => import('./MyComponent'))\n\nDid you accidentally put curly braces around the import?", moduleObject);
+              error("lazy: Expected the result of a dynamic imp" + "ort() call. " + "Instead received: %s\n\nYour code should look like: \n  " + "const MyComponent = lazy(() => imp" + "ort('./MyComponent'))\n\n" + "Did you accidentally put curly braces around the import?", moduleObject);
             }
           }
           {
             if (!("default" in moduleObject)) {
-              error("lazy: Expected the result of a dynamic import() call. Instead received: %s\n\nYour code should look like: \n  const MyComponent = lazy(() => import('./MyComponent'))", moduleObject);
+              error("lazy: Expected the result of a dynamic imp" + "ort() call. " + "Instead received: %s\n\nYour code should look like: \n  " + "const MyComponent = lazy(() => imp" + "ort('./MyComponent'))", moduleObject);
             }
           }
           return moduleObject.default;
@@ -856,7 +856,7 @@ var require_react_development = __commonJS((exports, module) => {
                 return defaultProps;
               },
               set: function(newDefaultProps) {
-                error("React.lazy(...): It is not supported to assign `defaultProps` to a lazy component import. Either specify them where the component is defined, or create a wrapping component around it.");
+                error("React.lazy(...): It is not supported to assign `defaultProps` to " + "a lazy component import. Either specify them where the component " + "is defined, or create a wrapping component around it.");
                 defaultProps = newDefaultProps;
                 Object.defineProperty(lazyType, "defaultProps", {
                   enumerable: true
@@ -869,7 +869,7 @@ var require_react_development = __commonJS((exports, module) => {
                 return propTypes;
               },
               set: function(newPropTypes) {
-                error("React.lazy(...): It is not supported to assign `propTypes` to a lazy component import. Either specify them where the component is defined, or create a wrapping component around it.");
+                error("React.lazy(...): It is not supported to assign `propTypes` to " + "a lazy component import. Either specify them where the component " + "is defined, or create a wrapping component around it.");
                 propTypes = newPropTypes;
                 Object.defineProperty(lazyType, "propTypes", {
                   enumerable: true
@@ -883,7 +883,7 @@ var require_react_development = __commonJS((exports, module) => {
       function forwardRef(render) {
         {
           if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
-            error("forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...)).");
+            error("forwardRef requires a render function but received a `memo` " + "component. Instead of forwardRef(memo(...)), use " + "memo(forwardRef(...)).");
           } else if (typeof render !== "function") {
             error("forwardRef requires a render function but was given %s.", render === null ? "null" : typeof render);
           } else {
@@ -893,7 +893,7 @@ var require_react_development = __commonJS((exports, module) => {
           }
           if (render != null) {
             if (render.defaultProps != null || render.propTypes != null) {
-              error("forwardRef render functions do not support propTypes or defaultProps. Did you accidentally pass a React component?");
+              error("forwardRef render functions do not support propTypes or defaultProps. " + "Did you accidentally pass a React component?");
             }
           }
         }
@@ -940,7 +940,7 @@ var require_react_development = __commonJS((exports, module) => {
       function memo(type, compare) {
         {
           if (!isValidElementType(type)) {
-            error("memo: The first argument must be a component. Instead received: %s", type === null ? "null" : typeof type);
+            error("memo: The first argument must be a component. Instead " + "received: %s", type === null ? "null" : typeof type);
           }
         }
         var elementType = {
@@ -970,7 +970,7 @@ var require_react_development = __commonJS((exports, module) => {
         var dispatcher = ReactCurrentDispatcher.current;
         {
           if (dispatcher === null) {
-            error("Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.");
+            error("Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for" + " one of the following reasons:\n" + "1. You might have mismatching versions of React and the renderer (such as React DOM)\n" + "2. You might be breaking the Rules of Hooks\n" + "3. You might have more than one copy of React in the same app\n" + "See https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.");
           }
         }
         return dispatcher;
@@ -981,9 +981,9 @@ var require_react_development = __commonJS((exports, module) => {
           if (Context._context !== undefined) {
             var realContext = Context._context;
             if (realContext.Consumer === Context) {
-              error("Calling useContext(Context.Consumer) is not supported, may cause bugs, and will be removed in a future major release. Did you mean to call useContext(Context) instead?");
+              error("Calling useContext(Context.Consumer) is not supported, may cause bugs, and will be " + "removed in a future major release. Did you mean to call useContext(Context) instead?");
             } else if (realContext.Provider === Context) {
-              error("Calling useContext(Context.Provider) is not supported. Did you mean to call useContext(Context) instead?");
+              error("Calling useContext(Context.Provider) is not supported. " + "Did you mean to call useContext(Context) instead?");
             }
           }
         }
@@ -1121,7 +1121,7 @@ var require_react_development = __commonJS((exports, module) => {
             });
           }
           if (disabledDepth < 0) {
-            error("disabledDepth fell below zero. This is a bug in React. Please file an issue.");
+            error("disabledDepth fell below zero. " + "This is a bug in React. Please file an issue.");
           }
         }
       }
@@ -1316,7 +1316,7 @@ var require_react_development = __commonJS((exports, module) => {
               var error$1 = undefined;
               try {
                 if (typeof typeSpecs[typeSpecName] !== "function") {
-                  var err = Error((componentName || "React class") + ": " + location + " type `" + typeSpecName + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
+                  var err = Error((componentName || "React class") + ": " + location + " type `" + typeSpecName + "` is invalid; " + "it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`." + "This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
                   err.name = "Invariant Violation";
                   throw err;
                 }
@@ -1326,7 +1326,7 @@ var require_react_development = __commonJS((exports, module) => {
               }
               if (error$1 && !(error$1 instanceof Error)) {
                 setCurrentlyValidatingElement(element);
-                error("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location, typeSpecName, typeof error$1);
+                error("%s: type specification of %s" + " `%s` is invalid; the type checker " + "function must return `null` or an `Error` but returned a %s. " + "You may have forgotten to pass an argument to the type checker " + "creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and " + "shape all require an argument).", componentName || "React class", location, typeSpecName, typeof error$1);
                 setCurrentlyValidatingElement(null);
               }
               if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
@@ -1404,7 +1404,7 @@ var require_react_development = __commonJS((exports, module) => {
         }
         {
           setCurrentlyValidatingElement$1(element);
-          error('Each child in a list should have a unique "key" prop.%s%s See https://reactjs.org/link/warning-keys for more information.', currentComponentErrorInfo, childOwner);
+          error('Each child in a list should have a unique "key" prop.' + "%s%s See https://reactjs.org/link/warning-keys for more information.", currentComponentErrorInfo, childOwner);
           setCurrentlyValidatingElement$1(null);
         }
       }
@@ -1461,7 +1461,7 @@ var require_react_development = __commonJS((exports, module) => {
             error("Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?", _name || "Unknown");
           }
           if (typeof type.getDefaultProps === "function" && !type.getDefaultProps.isReactClassApproved) {
-            error("getDefaultProps is only used on classic React.createClass definitions. Use a static property named `defaultProps` instead.");
+            error("getDefaultProps is only used on classic React.createClass " + "definitions. Use a static property named `defaultProps` instead.");
           }
         }
       }
@@ -1472,7 +1472,7 @@ var require_react_development = __commonJS((exports, module) => {
             var key = keys[i];
             if (key !== "children" && key !== "key") {
               setCurrentlyValidatingElement$1(fragment);
-              error("Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.", key);
+              error("Invalid prop `%s` supplied to `React.Fragment`. " + "React.Fragment can only have `key` and `children` props.", key);
               setCurrentlyValidatingElement$1(null);
               break;
             }
@@ -1489,7 +1489,7 @@ var require_react_development = __commonJS((exports, module) => {
         if (!validType) {
           var info = "";
           if (type === undefined || typeof type === "object" && type !== null && Object.keys(type).length === 0) {
-            info += " You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.";
+            info += " You likely forgot to export your component from the file " + "it's defined in, or you might have mixed up default and named imports.";
           }
           var sourceInfo = getSourceInfoErrorAddendumForProps(props);
           if (sourceInfo) {
@@ -1509,7 +1509,7 @@ var require_react_development = __commonJS((exports, module) => {
             typeString = typeof type;
           }
           {
-            error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
+            error("React.createElement: type is invalid -- expected a string (for " + "built-in components) or a class/function (for composite " + "components) but got: %s.%s", typeString, info);
           }
         }
         var element = createElement.apply(this, arguments);
@@ -1535,12 +1535,12 @@ var require_react_development = __commonJS((exports, module) => {
         {
           if (!didWarnAboutDeprecatedCreateFactory) {
             didWarnAboutDeprecatedCreateFactory = true;
-            warn("React.createFactory() is deprecated and will be removed in a future major release. Consider using JSX or use React.createElement() directly instead.");
+            warn("React.createFactory() is deprecated and will be removed in " + "a future major release. Consider using JSX " + "or use React.createElement() directly instead.");
           }
           Object.defineProperty(validatedFactory, "type", {
             enumerable: false,
             get: function() {
-              warn("Factory.type is deprecated. Access the class directly before passing it to createFactory.");
+              warn("Factory.type is deprecated. Access the class directly " + "before passing it to createFactory.");
               Object.defineProperty(this, "type", {
                 value: type
               });
@@ -1573,7 +1573,7 @@ var require_react_development = __commonJS((exports, module) => {
             if (prevTransition === null && currentTransition._updatedFibers) {
               var updatedFibersCount = currentTransition._updatedFibers.size;
               if (updatedFibersCount > 10) {
-                warn("Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table.");
+                warn("Detected a large number of updates inside startTransition. " + "If this is due to a subscription please re-write it to use React provided hooks. " + "Otherwise concurrent mode guarantees are off the table.");
               }
               currentTransition._updatedFibers.clear();
             }
@@ -1594,7 +1594,7 @@ var require_react_development = __commonJS((exports, module) => {
                 if (didWarnAboutMessageChannel === false) {
                   didWarnAboutMessageChannel = true;
                   if (typeof MessageChannel === "undefined") {
-                    error("This browser does not have a MessageChannel implementation, so enqueuing tasks via await act(async () => ...) will fail. Please file an issue at https://github.com/facebook/react/issues if you encounter this warning.");
+                    error("This browser does not have a MessageChannel implementation, " + "so enqueuing tasks via await act(async () => ...) will fail. " + "Please file an issue at https://github.com/facebook/react/issues " + "if you encounter this warning.");
                   }
                 }
               }
@@ -1658,7 +1658,7 @@ var require_react_development = __commonJS((exports, module) => {
                 }).then(function() {
                   if (!wasAwaited) {
                     didWarnNoAwaitAct = true;
-                    error("You called act(async () => ...) without await. This could lead to unexpected testing behaviour, interleaving multiple act calls and mixing their scopes. You should - await act(async () => ...);");
+                    error("You called act(async () => ...) without await. " + "This could lead to unexpected testing behaviour, " + "interleaving multiple act calls and mixing their " + "scopes. " + "You should - await act(async () => ...);");
                   }
                 });
               }
@@ -1698,7 +1698,7 @@ var require_react_development = __commonJS((exports, module) => {
       function popActScope(prevActScopeDepth) {
         {
           if (prevActScopeDepth !== actScopeDepth - 1) {
-            error("You seem to have overlapping act() calls, this is not supported. Be sure to await previous act() calls before making a new one. ");
+            error("You seem to have overlapping act() calls, this is not supported. " + "Be sure to await previous act() calls before making a new one. ");
           }
           actScopeDepth = prevActScopeDepth;
         }
@@ -1906,7 +1906,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
         }
         {
           if (typeof type.tag === "number") {
-            error("Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue.");
+            error("Received an unexpected object in getComponentNameFromType(). " + "This is likely a bug in React. Please file an issue.");
           }
         }
         if (typeof type === "function") {
@@ -2034,7 +2034,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
             });
           }
           if (disabledDepth < 0) {
-            error("disabledDepth fell below zero. This is a bug in React. Please file an issue.");
+            error("disabledDepth fell below zero. " + "This is a bug in React. Please file an issue.");
           }
         }
       }
@@ -2230,7 +2230,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
               var error$1 = undefined;
               try {
                 if (typeof typeSpecs[typeSpecName] !== "function") {
-                  var err = Error((componentName || "React class") + ": " + location + " type `" + typeSpecName + "` is invalid; it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`.This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
+                  var err = Error((componentName || "React class") + ": " + location + " type `" + typeSpecName + "` is invalid; " + "it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`." + "This often happens because of typos such as `PropTypes.function` instead of `PropTypes.func`.");
                   err.name = "Invariant Violation";
                   throw err;
                 }
@@ -2240,7 +2240,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
               }
               if (error$1 && !(error$1 instanceof Error)) {
                 setCurrentlyValidatingElement(element);
-                error("%s: type specification of %s `%s` is invalid; the type checker function must return `null` or an `Error` but returned a %s. You may have forgotten to pass an argument to the type checker creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and shape all require an argument).", componentName || "React class", location, typeSpecName, typeof error$1);
+                error("%s: type specification of %s" + " `%s` is invalid; the type checker " + "function must return `null` or an `Error` but returned a %s. " + "You may have forgotten to pass an argument to the type checker " + "creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and " + "shape all require an argument).", componentName || "React class", location, typeSpecName, typeof error$1);
                 setCurrentlyValidatingElement(null);
               }
               if (error$1 instanceof Error && !(error$1.message in loggedTypeFailures)) {
@@ -2280,7 +2280,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
       function checkKeyStringCoercion(value) {
         {
           if (willCoercionThrow(value)) {
-            error("The provided key is an unsupported type %s. This value must be coerced to a string before before using it here.", typeName(value));
+            error("The provided key is an unsupported type %s." + " This value must be coerced to a string before before using it here.", typeName(value));
             return testStringCoercion(value);
           }
         }
@@ -2325,7 +2325,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
           if (typeof config.ref === "string" && ReactCurrentOwner.current && self && ReactCurrentOwner.current.stateNode !== self) {
             var componentName = getComponentNameFromType(ReactCurrentOwner.current.type);
             if (!didWarnAboutStringRefs[componentName]) {
-              error('Component "%s" contains the string ref "%s". Support for string refs will be removed in a future major release. This case cannot be automatically converted to an arrow function. We ask you to manually fix this case by using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref', getComponentNameFromType(ReactCurrentOwner.current.type), config.ref);
+              error('Component "%s" contains the string ref "%s". ' + "Support for string refs will be removed in a future major release. " + "This case cannot be automatically converted to an arrow function. " + "We ask you to manually fix this case by using useRef() or createRef() instead. " + "Learn more about using refs safely here: " + "https://reactjs.org/link/strict-mode-string-ref", getComponentNameFromType(ReactCurrentOwner.current.type), config.ref);
               didWarnAboutStringRefs[componentName] = true;
             }
           }
@@ -2336,7 +2336,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
           var warnAboutAccessingKey = function() {
             if (!specialPropKeyWarningShown) {
               specialPropKeyWarningShown = true;
-              error("%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", displayName);
+              error("%s: `key` is not a prop. Trying to access it will result " + "in `undefined` being returned. If you need to access the same " + "value within the child component, you should pass it as a different " + "prop. (https://reactjs.org/link/special-props)", displayName);
             }
           };
           warnAboutAccessingKey.isReactWarning = true;
@@ -2351,7 +2351,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
           var warnAboutAccessingRef = function() {
             if (!specialPropRefWarningShown) {
               specialPropRefWarningShown = true;
-              error("%s: `ref` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)", displayName);
+              error("%s: `ref` is not a prop. Trying to access it will result " + "in `undefined` being returned. If you need to access the same " + "value within the child component, you should pass it as a different " + "prop. (https://reactjs.org/link/special-props)", displayName);
             }
           };
           warnAboutAccessingRef.isReactWarning = true;
@@ -2516,7 +2516,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
             childOwner = " It was passed a child from " + getComponentNameFromType(element._owner.type) + ".";
           }
           setCurrentlyValidatingElement$1(element);
-          error('Each child in a list should have a unique "key" prop.%s%s See https://reactjs.org/link/warning-keys for more information.', currentComponentErrorInfo, childOwner);
+          error('Each child in a list should have a unique "key" prop.' + "%s%s See https://reactjs.org/link/warning-keys for more information.", currentComponentErrorInfo, childOwner);
           setCurrentlyValidatingElement$1(null);
         }
       }
@@ -2575,7 +2575,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
             error("Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?", _name || "Unknown");
           }
           if (typeof type.getDefaultProps === "function" && !type.getDefaultProps.isReactClassApproved) {
-            error("getDefaultProps is only used on classic React.createClass definitions. Use a static property named `defaultProps` instead.");
+            error("getDefaultProps is only used on classic React.createClass " + "definitions. Use a static property named `defaultProps` instead.");
           }
         }
       }
@@ -2586,7 +2586,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
             var key = keys[i];
             if (key !== "children" && key !== "key") {
               setCurrentlyValidatingElement$1(fragment);
-              error("Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.", key);
+              error("Invalid prop `%s` supplied to `React.Fragment`. " + "React.Fragment can only have `key` and `children` props.", key);
               setCurrentlyValidatingElement$1(null);
               break;
             }
@@ -2605,7 +2605,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
           if (!validType) {
             var info = "";
             if (type === undefined || typeof type === "object" && type !== null && Object.keys(type).length === 0) {
-              info += " You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.";
+              info += " You likely forgot to export your component from the file " + "it's defined in, or you might have mixed up default and named imports.";
             }
             var sourceInfo = getSourceInfoErrorAddendum(source);
             if (sourceInfo) {
@@ -2624,7 +2624,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
             } else {
               typeString = typeof type;
             }
-            error("React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
+            error("React.jsx: type is invalid -- expected a string (for " + "built-in components) or a class/function (for composite " + "components) but got: %s.%s", typeString, info);
           }
           var element = jsxDEV(type, props, key, source, self);
           if (element == null) {
@@ -2642,7 +2642,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
                     Object.freeze(children);
                   }
                 } else {
-                  error("React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead.");
+                  error("React.jsx: Static children should always be an array. " + "You are likely explicitly calling React.jsxs or React.jsxDEV. " + "Use the Babel transform instead.");
                 }
               } else {
                 validateChildKeys(children, type);
@@ -2658,7 +2658,7 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
               var beforeExample = keys.length > 0 ? "{key: someKey, " + keys.join(": ..., ") + ": ...}" : "{key: someKey}";
               if (!didWarnAboutKeySpread[componentName + beforeExample]) {
                 var afterExample = keys.length > 0 ? "{" + keys.join(": ..., ") + ": ...}" : "{}";
-                error('A props object containing a "key" prop is being spread into JSX:\n  let props = %s;\n  <%s {...props} />\nReact keys must be passed directly to JSX without using spread:\n  let props = %s;\n  <%s key={someKey} {...props} />', beforeExample, componentName, afterExample, componentName);
+                error('A props object containing a "key" prop is being spread into JSX:\n' + "  let props = %s;\n" + "  <%s {...props} />\n" + "React keys must be passed directly to JSX without using spread:\n" + "  let props = %s;\n" + "  <%s key={someKey} {...props} />", beforeExample, componentName, afterExample, componentName);
                 didWarnAboutKeySpread[componentName + beforeExample] = true;
               }
             }
@@ -2695,30 +2695,30 @@ var import_react3 = __toESM(require_react(), 1);
 var import_react4 = __toESM(require_react(), 1);
 var import_react5 = __toESM(require_react(), 1);
 var import_react6 = __toESM(require_react(), 1);
-var jsx_dev_runtime = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime = __toESM(require_jsx_dev_runtime(), 1);
 var import_react7 = __toESM(require_react(), 1);
 var import_react8 = __toESM(require_react(), 1);
 var import_react9 = __toESM(require_react(), 1);
 var import_react10 = __toESM(require_react(), 1);
 var import_react11 = __toESM(require_react(), 1);
 var import_react12 = __toESM(require_react(), 1);
-var jsx_dev_runtime2 = __toESM(require_jsx_dev_runtime(), 1);
-var jsx_dev_runtime3 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime2 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime3 = __toESM(require_jsx_dev_runtime(), 1);
 var import_react13 = __toESM(require_react(), 1);
 var import_react14 = __toESM(require_react(), 1);
 var import_react15 = __toESM(require_react(), 1);
-var jsx_dev_runtime4 = __toESM(require_jsx_dev_runtime(), 1);
-var jsx_dev_runtime5 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime4 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime5 = __toESM(require_jsx_dev_runtime(), 1);
 var import_react16 = __toESM(require_react(), 1);
-var jsx_dev_runtime6 = __toESM(require_jsx_dev_runtime(), 1);
-var jsx_dev_runtime7 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime6 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime7 = __toESM(require_jsx_dev_runtime(), 1);
 var import_react17 = __toESM(require_react(), 1);
 var import_react18 = __toESM(require_react(), 1);
 var import_react19 = __toESM(require_react(), 1);
-var jsx_dev_runtime8 = __toESM(require_jsx_dev_runtime(), 1);
-var jsx_dev_runtime9 = __toESM(require_jsx_dev_runtime(), 1);
-var jsx_dev_runtime10 = __toESM(require_jsx_dev_runtime(), 1);
-var jsx_dev_runtime11 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime8 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime9 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime10 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime11 = __toESM(require_jsx_dev_runtime(), 1);
 var import_react20 = __toESM(require_react(), 1);
 var import_react21 = __toESM(require_react(), 1);
 var import_react22 = __toESM(require_react(), 1);
@@ -2726,2404 +2726,19 @@ var import_react23 = __toESM(require_react(), 1);
 var import_react24 = __toESM(require_react(), 1);
 var import_react25 = __toESM(require_react(), 1);
 var import_react26 = __toESM(require_react(), 1);
-var jsx_dev_runtime12 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime12 = __toESM(require_jsx_dev_runtime(), 1);
 var import_react27 = __toESM(require_react(), 1);
-var jsx_dev_runtime13 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime13 = __toESM(require_jsx_dev_runtime(), 1);
 var import_react28 = __toESM(require_react(), 1);
 var import_react29 = __toESM(require_react(), 1);
-var jsx_dev_runtime14 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime14 = __toESM(require_jsx_dev_runtime(), 1);
 var import_react30 = __toESM(require_react(), 1);
-var jsx_dev_runtime15 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime15 = __toESM(require_jsx_dev_runtime(), 1);
 var import_react31 = __toESM(require_react(), 1);
 var import_react32 = __toESM(require_react(), 1);
 var import_react33 = __toESM(require_react(), 1);
 var import_react34 = __toESM(require_react(), 1);
-var jsx_dev_runtime16 = __toESM(require_jsx_dev_runtime(), 1);
-var useSelection = function({ items, maxRows = items.length.valueOf() }) {
-  const [selectedIndex, setSelectedIndex] = import_react3.useState(0);
-  const [scroll, setScroll] = import_react3.useState(0);
-  const numItems = import_react3.useMemo(() => items.length.valueOf(), [items]);
-  import_react3.useEffect(() => {
-    const defaultSelected = x(items, (item) => {
-      return typeof item === "object" && !!item?.selected;
-    });
-    if (defaultSelected >= 0) {
-      setSelectedIndex(defaultSelected);
-    }
-  }, [items, setSelectedIndex]);
-  const scrollDown = import_react3.useCallback((rows = 1) => {
-    setScroll((scroll2) => Math.min(numItems - maxRows, scroll2 + rows));
-  }, [setScroll, numItems, maxRows]);
-  const scrollUp = import_react3.useCallback((rows = 1) => {
-    setScroll((scroll2) => Math.max(0, scroll2 - rows));
-  }, [setScroll]);
-  const fixScroll = import_react3.useCallback((index) => {
-    if (maxRows && index - scroll >= maxRows) {
-      scrollDown(Math.max(1, scroll - maxRows + index + 1));
-    }
-    if (index - scroll < 0) {
-      scrollUp(Math.max(1, scroll - index));
-    }
-  }, [scroll, maxRows, scrollUp, scrollDown]);
-  const select = import_react3.useCallback((index) => {
-    const newIndex = Math.max(0, Math.min(index, numItems - 1));
-    setSelectedIndex(newIndex);
-  }, [setSelectedIndex, numItems]);
-  const moveSelection = import_react3.useCallback((dy) => {
-    if (dy) {
-      setSelectedIndex((index) => {
-        const newIndex = Math.max(0, Math.min(index + dy, numItems - 1));
-        fixScroll(newIndex);
-        return newIndex;
-      });
-    }
-  }, [setSelectedIndex, fixScroll, numItems]);
-  const selectedItem = import_react3.useMemo(() => items.at(selectedIndex), [items, selectedIndex]);
-  return {
-    select,
-    moveSelection,
-    selectedItem,
-    scroll,
-    scrollUp,
-    scrollDown,
-    selectedIndex
-  };
-};
-var useInitControlContext = function({ popupControl }) {
-  const context = import_react6.useMemo(() => ({
-    popupControl
-  }), [popupControl]);
-  return context;
-};
-var useControls = function({ active, listener }) {
-  const { popupControl } = useControlContext();
-  import_react4.useEffect(() => {
-    if (active) {
-      popupControl.addListener(listener);
-      return () => popupControl.removeListener(listener);
-    }
-  }, [listener, popupControl, active]);
-  return { lockState: active ? LockStatus.UNLOCKED : LockStatus.LOCKED, popupControl };
-};
-var useMouseHover = function({ active }) {
-  const [mouseHoverEnabled, setMouseHoverEnabled] = import_react7.useState(false);
-  const enableMouseHover = import_react7.useCallback(!mouseHoverEnabled ? () => setMouseHoverEnabled(true) : () => {
-  }, [mouseHoverEnabled]);
-  const disableMouseHover = import_react7.useCallback(!mouseHoverEnabled ? () => {
-  } : () => setMouseHoverEnabled(false), [mouseHoverEnabled]);
-  const onUp = import_react7.useCallback(() => {
-    setMouseHoverEnabled(false);
-  }, [setMouseHoverEnabled]);
-  const onDown = import_react7.useCallback(() => {
-    setMouseHoverEnabled(false);
-  }, [setMouseHoverEnabled]);
-  useControls({
-    active,
-    listener: import_react7.useMemo(() => ({
-      onUp,
-      onDown
-    }), [setMouseHoverEnabled, onUp, onDown])
-  });
-  return { mouseHoverEnabled, enableMouseHover, disableMouseHover };
-};
-var useMenu = function({ items, maxRows, onSelect, onBack, active }) {
-  const { scroll, scrollUp, scrollDown, select, moveSelection, selectedItem } = useSelection({ items, maxRows });
-  const onItemAction = import_react2.useCallback((item) => {
-    if (!item) {
-      return;
-    }
-    if (typeof item === "object" && item.action) {
-      item.action().then(() => onSelect(item));
-    } else {
-      onSelect(item);
-    }
-  }, [onSelect]);
-  const onMenuAction = import_react2.useCallback((index) => {
-    onItemAction(items.at(index));
-  }, [items, onItemAction]);
-  const onAction = import_react2.useCallback(() => {
-    onItemAction(selectedItem);
-  }, [onItemAction, selectedItem]);
-  const onUp = import_react2.useCallback(() => {
-    moveSelection(-1);
-  }, [moveSelection]);
-  const onDown = import_react2.useCallback(() => {
-    moveSelection(1);
-  }, [moveSelection]);
-  const onRight = import_react2.useCallback(() => {
-    if (typeof selectedItem === "object" && selectedItem.submenu) {
-      onItemAction(selectedItem);
-    }
-  }, [onItemAction, selectedItem]);
-  const { lockState } = useControls({
-    active,
-    listener: import_react2.useMemo(() => ({
-      onAction,
-      onStart: onAction,
-      onUp,
-      onDown,
-      onBack,
-      onRight
-    }), [moveSelection, onAction, onBack, onUp, onDown])
-  });
-  const { enableMouseHover, mouseHoverEnabled } = useMouseHover({ active });
-  return {
-    selectedItem,
-    select,
-    scroll,
-    scrollUp,
-    scrollDown,
-    disabled: lockState === LockStatus.LOCKED,
-    enableMouseHover,
-    mouseHoverEnabled,
-    onMenuAction,
-    onUp,
-    onDown
-  };
-};
-var useInitLayoutContext = function() {
-  const layoutModels = import_react12.useMemo(() => ({}), []);
-  const getLayout = import_react12.useCallback((layout) => {
-    if (typeof layout === "string") {
-      return layoutModels[layout] ?? undefined;
-    }
-    if (layout.name) {
-      layoutModels[layout.name] = layout;
-    }
-    return layout;
-  }, [layoutModels]);
-  const uniqueLayout = import_react12.useMemo(() => new x2, []);
-  const context = import_react12.useMemo(() => ({
-    getLayout,
-    uniqueLayout
-  }), [getLayout, uniqueLayout]);
-  return context;
-};
-var usePopupLayout = function({ layout, setVisible }) {
-  const { getLayout, uniqueLayout } = useLayoutContext();
-  const layoutModel = getLayout(layout);
-  const x3 = layoutModel?.position?.[0] ?? DEFAULT_HORIZONTAL_PADDING;
-  const y = layoutModel?.position?.[1] ?? DEFAULT_VERTICAL_PADDING;
-  const left = layoutModel?.positionFromRight ? `calc(100% - ${x3}px)` : x3;
-  const top = layoutModel?.positionFromBottom ? `calc(100% - ${y}px)` : y;
-  const right = DEFAULT_HORIZONTAL_PADDING;
-  const bottom = DEFAULT_VERTICAL_PADDING;
-  const width = layoutModel?.size?.[0] || undefined;
-  const height = layoutModel?.size?.[1] || undefined;
-  import_react10.useEffect(() => {
-    const uid = typeof layout === "string" ? layout : layout.name;
-    if (uid) {
-      return uniqueLayout.registerLayout(uid, setVisible);
-    }
-  }, [setVisible, uniqueLayout]);
-  return { left, top, right, bottom, width, height, valid: !!layoutModel };
-};
-var Popup2 = function({
-  children,
-  layout,
-  style,
-  disabled,
-  removed,
-  onBack,
-  fit,
-  zIndex,
-  clickThrough,
-  leaveBorderUnchanged,
-  setVisible,
-  visible
-}) {
-  const [h, setH] = import_react9.useState(0);
-  import_react9.useEffect(() => {
-    requestAnimationFrame(() => setH(100));
-  }, [setH]);
-  const [localVisible, setLocalVisible] = import_react9.useState(true);
-  const { top, left, right, bottom, width, height, valid } = usePopupLayout({
-    layout,
-    setVisible: setVisible ?? setLocalVisible
-  });
-  return jsx_dev_runtime3.jsxDEV("div", {
-    style: {
-      position: "fixed",
-      left: 0,
-      top: 0,
-      width: "100vw",
-      height: "100vh",
-      zIndex,
-      pointerEvents: clickThrough ? "none" : undefined
-    },
-    children: [
-      onBack ? jsx_dev_runtime3.jsxDEV("div", {
-        style: {
-          position: "absolute",
-          left: 0,
-          top: 0,
-          width: "100%",
-          height: "100%",
-          cursor: "pointer"
-        },
-        onClick: onBack
-      }, undefined, false, undefined, this) : undefined,
-      jsx_dev_runtime3.jsxDEV("div", {
-        style: {
-          ...OVERLAP,
-          left,
-          top,
-          right,
-          bottom,
-          width,
-          height: fit ? 0 : height,
-          fontSize: style?.fontSize ?? DEFAULT_FONT_SIZE,
-          display: valid && (visible ?? localVisible) ? "" : "none"
-        },
-        children: jsx_dev_runtime3.jsxDEV("div", {
-          className: "pop-up",
-          style: {
-            ...POPUP_CSS,
-            marginTop: `${removed ? height ? `${height}px` : "80%" : "0px"}`,
-            width: "100%",
-            height: removed ? 0 : fit ? undefined : `${h}%`,
-            overflow: "hidden",
-            opacity: removed ? 0 : 1,
-            transition: "height .2s, margin-top .2s, opacity .2s",
-            outlineColor: !leaveBorderUnchanged && disabled ? "whitesmoke" : "white"
-          },
-          children: jsx_dev_runtime3.jsxDEV("div", {
-            className: "double-border",
-            style: {
-              ...DOUBLE_BORDER_CSS,
-              height: fit ? undefined : `calc(100% - ${DOUBLE_BORDER_HEIGHT_OFFSET}px)`,
-              borderColor: !leaveBorderUnchanged && disabled ? "silver" : "white",
-              overflow: "hidden"
-            },
-            children: removed ? undefined : children
-          }, undefined, false, undefined, this)
-        }, undefined, false, undefined, this)
-      }, undefined, false, undefined, this)
-    ]
-  }, undefined, true, undefined, this);
-};
-var useRemove = function() {
-  const [removed, setRemoved] = import_react13.useState(false);
-  const remove = import_react13.useCallback((onClose) => {
-    setRemoved(true);
-    const timeout = setTimeout(() => {
-      setRemoved(false);
-      onClose();
-    }, 150);
-    return () => clearTimeout(timeout);
-  }, [setRemoved]);
-  return { removed, remove };
-};
-var Images = function({ images }) {
-  const imgs = import_react15.useMemo(() => Array.isArray(images) ? images : [images], [images]);
-  return jsx_dev_runtime4.jsxDEV(jsx_dev_runtime4.Fragment, {
-    children: imgs.map((image, index) => {
-      const imgModel = typeof image === "string" ? { src: image } : image;
-      return jsx_dev_runtime4.jsxDEV("div", {
-        style: {
-          backgroundImage: `url("${imgModel.src}")`,
-          backgroundSize: imgModel.size ?? "contain",
-          width: "100%",
-          height: "100%",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          marginTop: `-${index * 100}%`,
-          transform: imgModel.transform
-        }
-      }, index, false, undefined, this);
-    })
-  }, undefined, false, undefined, this);
-};
-var Picture = function({ picture, removed }) {
-  return jsx_dev_runtime5.jsxDEV(jsx_dev_runtime5.Fragment, {
-    children: [
-      jsx_dev_runtime5.jsxDEV(Popup2, {
-        layout: picture.layout ?? {},
-        style: picture.style,
-        removed,
-        clickThrough: true,
-        children: jsx_dev_runtime5.jsxDEV("div", {
-          style: {
-            width: "100%",
-            height: "100%",
-            pointerEvents: "none",
-            overflow: "hidden"
-          },
-          children: jsx_dev_runtime5.jsxDEV(Images, {
-            images: picture.images
-          }, undefined, false, undefined, this)
-        }, undefined, false, undefined, this)
-      }, undefined, false, undefined, this),
-      picture.dialog && jsx_dev_runtime5.jsxDEV(Container2, {
-        dialog: picture.dialog,
-        focusLess: true,
-        removed
-      }, undefined, false, undefined, this)
-    ]
-  }, undefined, true, undefined, this);
-};
-var Label = function({ label }) {
-  return label && jsx_dev_runtime6.jsxDEV("div", {
-    style: { margin: 5, textAlign: "center" },
-    children: label
-  }, undefined, false, undefined, this);
-};
-var Button = function({ stretch, selected, hideOutline, emoji, text, padding, margin, disabled, onMouseOver, onMouseDown, onClick }) {
-  return jsx_dev_runtime7.jsxDEV("div", {
-    style: {
-      padding,
-      margin,
-      outline: !hideOutline ? "1px solid #333333" : undefined,
-      backgroundColor: selected ? "white" : "black",
-      opacity: disabled ? 0.3 : 1,
-      transition: "opacity .3s",
-      textAlign: "center",
-      flexGrow: stretch ? 1 : undefined
-    },
-    onMouseOver,
-    onMouseDown,
-    onClick,
-    children: [
-      jsx_dev_runtime7.jsxDEV("span", {
-        style: {
-          color: selected ? "transparent" : "white",
-          textShadow: selected ? "0 0 0 black" : undefined
-        },
-        children: emoji
-      }, undefined, false, undefined, this),
-      jsx_dev_runtime7.jsxDEV("span", {
-        style: {
-          color: selected ? "black" : "white"
-        },
-        children: text
-      }, undefined, false, undefined, this)
-    ]
-  }, undefined, true, undefined, this);
-};
-var useEditControlContext = function() {
-  const [editing, setEditing] = import_react19.useState(false);
-  const context = import_react19.useMemo(() => ({
-    editing,
-    toggleEditing: () => {
-      setEditing((editing2) => !editing2);
-    }
-  }), [editing, setEditing]);
-  return context;
-};
-var EditToggle = function() {
-  const { editing, toggleEditing } = useEditContext();
-  return jsx_dev_runtime8.jsxDEV("button", {
-    style: {
-      position: "absolute",
-      top: 0,
-      right: 0,
-      cursor: "pointer",
-      zIndex: 1000,
-      padding: "5px 15px",
-      backgroundColor: editing ? "#cceeff" : undefined
-    },
-    onClick: () => toggleEditing(),
-    children: editing ? "EDIT ON" : "EDIT OFF"
-  }, undefined, false, undefined, this);
-};
-var BasicPopup = function(props) {
-  return jsx_dev_runtime10.jsxDEV(LayoutContextProvider, {
-    children: jsx_dev_runtime10.jsxDEV(ControlContextProvider, {
-      popupControl: props.popupControl,
-      children: jsx_dev_runtime10.jsxDEV(EditContextProvider2, {
-        editor: props.editor,
-        children: jsx_dev_runtime10.jsxDEV(Container2, {
-          ...props
-        }, undefined, false, undefined, this)
-      }, undefined, false, undefined, this)
-    }, undefined, false, undefined, this)
-  }, undefined, false, undefined, this);
-};
-var openMenu = function({
-  layouts,
-  pictures,
-  menu,
-  dialog,
-  prompt: prompt2,
-  onSelect = (item) => console.log("SELECT", item),
-  onPrompt = (text) => console.log("PROMPT", text),
-  onClose = () => console.log("CLOSE"),
-  root = document.body,
-  popupControl = new PopupControl,
-  editor
-}) {
-  const rootElem = document.createElement("div");
-  rootElem.style.position = "absolute";
-  rootElem.style.left = "0px";
-  rootElem.style.top = "0px";
-  rootElem.style.width = "100%";
-  rootElem.style.height = "100%";
-  rootElem.style.overflow = "hidden";
-  const reactRoot = client.default.createRoot(rootElem);
-  const detach = async () => reactRoot.unmount();
-  const html = jsx_dev_runtime11.jsxDEV(BasicPopup, {
-    layouts,
-    pictures,
-    dialog,
-    menu,
-    prompt: prompt2,
-    onSelect,
-    onPrompt,
-    detach,
-    popupControl,
-    onClose: async () => setTimeout(() => {
-      detach();
-      onClose();
-    }, 10),
-    editor
-  }, undefined, false, undefined, this);
-  reactRoot.render(html);
-  root.appendChild(rootElem);
-  return { popupControl, detach };
-};
-var useLanguageModel = function({ languages }) {
-  const [lang, setLang] = import_react17.useState(0);
-  const currentLanguageModel = import_react17.useMemo(() => {
-    const language = languages?.[lang ?? 0] ?? DEFAULT_LANGUAGE;
-    return typeof language === "string" ? DEFAULT_LANGUAGES[language] : language;
-  }, [prompt, languages, lang]);
-  const getLanguageModel = import_react17.useCallback((language) => {
-    return typeof language === "string" ? DEFAULT_LANGUAGES[language] : language;
-  }, []);
-  const { popupControl } = useControlContext();
-  const chooseLanguage = import_react17.useCallback(() => {
-    openMenu({
-      menu: {
-        builtIn: true,
-        layout: {
-          position: [150, 50],
-          size: [200, 200]
-        },
-        items: languages?.map((language, index) => {
-          const languageModel = getLanguageModel(language);
-          return {
-            emoji: languageModel.emoji,
-            label: languageModel.name,
-            index,
-            back: true,
-            selected: lang === index
-          };
-        }) ?? []
-      },
-      popupControl,
-      onSelect(item) {
-        setLang(item.index);
-      }
-    });
-  }, [languages, getLanguageModel, setLang, lang, popupControl]);
-  return { currentLanguageModel, getLanguageModel, chooseLanguage: languages ? chooseLanguage : undefined };
-};
-var useAlphabet = function({ languageModel }) {
-  const [capitalize, setCapitalize] = import_react20.useState(false);
-  import_react20.useEffect(() => {
-    if (!languageModel.capitalize) {
-      setCapitalize(false);
-    }
-  }, [languageModel, setCapitalize]);
-  const alphabet = import_react20.useMemo(() => {
-    const letters = import_hangul_js.default.disassemble(languageModel.alphabet);
-    return capitalize ? letters.map((l) => l.toUpperCase()) : letters;
-  }, [capitalize, import_hangul_js.default, languageModel]);
-  return { alphabet, setCapitalize };
-};
-var useTextInput = function({ defaultText, randomList }) {
-  const [text, setText] = import_react21.useState(defaultText);
-  const addLetter = import_react21.useCallback((letter) => {
-    setText((text2) => {
-      const letters = import_hangul_js2.default.disassemble(text2 ?? "");
-      letters.push(letter);
-      return import_hangul_js2.default.assemble(letters);
-    });
-  }, [import_hangul_js2.default, setText]);
-  const deleteLetter = import_react21.useCallback(() => {
-    setText((text2) => {
-      const letters = import_hangul_js2.default.disassemble(text2 ?? "");
-      letters.pop();
-      return import_hangul_js2.default.assemble(letters);
-    });
-  }, [import_hangul_js2.default, setText]);
-  const randomizeText = import_react21.useCallback(() => {
-    if (randomList) {
-      const len = randomList.length.valueOf();
-      setText((text2) => {
-        const list = [];
-        for (let i = 0;i < len; i++) {
-          const str = randomList.at(i);
-          if (randomList.at(i) !== text2) {
-            list.push(str);
-          }
-        }
-        return list.at(Math.floor(Math.random() * list.length));
-      });
-    }
-  }, [randomList, setText]);
-  return { text, setText, addLetter, deleteLetter, randomizeText };
-};
-var useInputFocus = function({ text }) {
-  const { popupControl } = useControlContext();
-  const [inputFocus, setInputFocus] = import_react22.useState(false);
-  import_react22.useEffect(() => {
-    if (inputFocus) {
-      popupControl.deactivate();
-      return () => popupControl.activate();
-    }
-  }, [popupControl, inputFocus]);
-  const inputRef = import_react22.useRef(null);
-  import_react22.useEffect(() => {
-    const input = inputRef.current;
-    if (input) {
-      const onFocus = () => {
-        setInputFocus(true);
-        window.getSelection()?.selectAllChildren(input);
-      };
-      const onBlur = () => {
-        setInputFocus(false);
-        window.getSelection()?.empty();
-      };
-      input.addEventListener("focus", onFocus);
-      input.addEventListener("blur", onBlur);
-    }
-  }, [inputRef.current, setInputFocus]);
-  import_react22.useEffect(() => {
-    const input = inputRef.current;
-    if (input && input.textContent !== text) {
-      input.textContent = text ?? null;
-    }
-  }, [text, inputRef.current]);
-  const setEndOfContenteditable = import_react22.useCallback((elem) => {
-    window.getSelection()?.selectAllChildren(elem);
-    window.getSelection()?.collapseToEnd();
-  }, []);
-  const focus = import_react22.useCallback((end) => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-      if (end) {
-        setEndOfContenteditable(inputRef.current);
-      }
-    }
-  }, [inputRef.current, setEndOfContenteditable]);
-  return { inputRef, inputFocus, focus };
-};
-var useActiveFocus = function({ disabled } = {}) {
-  const [active, setActive] = import_react23.useState(!disabled);
-  const { popupControl } = useControlContext();
-  import_react23.useEffect(() => {
-    if (!disabled) {
-      return popupControl.registerActive(setActive);
-    }
-  }, [popupControl, setActive, disabled]);
-  return { active };
-};
-var useKeyDown = function({ enabled, key, callback }) {
-  import_react24.useEffect(() => {
-    if (enabled) {
-      const listener = (e) => {
-        if (key.indexOf(e.code) >= 0) {
-          callback();
-        }
-      };
-      document.addEventListener("keydown", listener);
-      return () => document.removeEventListener("keydown", listener);
-    }
-  }, [enabled, key, callback]);
-};
-var usePromptControl = function({
-  alphabet,
-  onClose,
-  addLetter,
-  deleteLetter,
-  randomizeText,
-  chooseLanguage,
-  toggleCapitalize,
-  onConfirm,
-  text,
-  randomList,
-  inputFocus,
-  canCapitalize,
-  focus
-}) {
-  const { active } = useActiveFocus();
-  const { removed, remove } = useRemove();
-  const [position, setPosition] = import_react25.useState([0, 0]);
-  const actionBar = import_react25.useMemo(() => {
-    const leftSide = [];
-    if (chooseLanguage) {
-      leftSide.push(ActionButton.LANG);
-    }
-    if (canCapitalize) {
-      leftSide.push(ActionButton.CAP);
-    }
-    const rightSize = [ActionButton.DEL, ActionButton.OK];
-    const mid = new Array(COLUMNS - leftSide.length - rightSize.length).fill(ActionButton.SPACE);
-    return leftSide.concat(mid).concat(rightSize);
-  }, [canCapitalize, chooseLanguage]);
-  const closePrompt = import_react25.useCallback(() => {
-    remove(onClose);
-  }, [remove, onClose]);
-  const onSpace = import_react25.useCallback((pos) => {
-    return actionBar[pos[0]] === ActionButton.SPACE && pos[1] === 4;
-  }, [actionBar]);
-  const onLetter = import_react25.useCallback((pos) => {
-    return pos[1] >= 0 && pos[1] <= 3;
-  }, []);
-  const confirmText = import_react25.useCallback(() => {
-    if (text) {
-      onConfirm(text);
-      closePrompt();
-    }
-  }, [text, onConfirm, closePrompt]);
-  const onAction = import_react25.useCallback(() => {
-    if (onLetter(position)) {
-      addLetter(alphabet[position[1] * COLUMNS + position[0]]);
-      return;
-    }
-    if (onSpace(position)) {
-      addLetter(" ");
-      return;
-    }
-    if (position[1] === -1) {
-      randomizeText();
-      return;
-    }
-    if (position[1] === 4) {
-      switch (actionBar[position[0]]) {
-        case ActionButton.LANG:
-          chooseLanguage?.();
-          break;
-        case ActionButton.CAP:
-          toggleCapitalize();
-          break;
-        case ActionButton.DEL:
-          deleteLetter();
-          break;
-        case ActionButton.OK:
-          confirmText();
-          break;
-      }
-    }
-  }, [chooseLanguage, position, toggleCapitalize, onLetter, alphabet, randomizeText, confirmText, addLetter, deleteLetter, actionBar]);
-  const onLeft = import_react25.useCallback(() => {
-    setPosition((pos) => {
-      if (onSpace(pos)) {
-        let i;
-        for (i = 0;i < actionBar.length; i++) {
-          if (actionBar[i] === ActionButton.SPACE) {
-            break;
-          }
-        }
-        return [Math.max(0, i - 1), pos[1]];
-      }
-      return [Math.max(pos[0] - 1, 0), pos[1]];
-    });
-  }, [setPosition, onSpace, actionBar]);
-  const onRight = import_react25.useCallback(() => {
-    setPosition((pos) => {
-      if (onSpace(pos)) {
-        let i;
-        for (i = actionBar.length - 1;i >= 0; i--) {
-          if (actionBar[i] === ActionButton.SPACE) {
-            break;
-          }
-        }
-        return [Math.min(actionBar.length - 1, i + 1), pos[1]];
-      }
-      return [Math.min(pos[0] + 1, COLUMNS - 1), pos[1]];
-    });
-  }, [setPosition, onSpace, actionBar]);
-  const onUp = import_react25.useCallback(() => {
-    setPosition((pos) => [pos[0], Math.max(randomList ? -1 : 0, pos[1] - 1)]);
-  }, [setPosition, randomList]);
-  const onDown = import_react25.useCallback(() => {
-    setPosition((pos) => [pos[0], Math.min(4, pos[1] + 1)]);
-  }, [setPosition]);
-  const { lockState, popupControl } = useControls({
-    active,
-    listener: import_react25.useMemo(() => ({
-      onLeft,
-      onRight,
-      onUp,
-      onDown,
-      onBack: closePrompt,
-      onAction,
-      onStart: confirmText
-    }), [onLeft, onRight, onUp, onDown, closePrompt, onAction])
-  });
-  useKeyDown({
-    enabled: import_react25.useMemo(() => canCapitalize && !inputFocus, [canCapitalize, inputFocus]),
-    key: ["ShiftLeft", "ShiftRight"],
-    callback: toggleCapitalize
-  });
-  useKeyDown({
-    enabled: !inputFocus,
-    key: ["Enter"],
-    callback: import_react25.useCallback(() => popupControl.onAction(), [popupControl])
-  });
-  useKeyDown({
-    enabled: !inputFocus,
-    key: ["Backspace", "Tab"],
-    callback: () => focus(true)
-  });
-  const { enableMouseHover, mouseHoverEnabled } = useMouseHover({ active });
-  return {
-    disabled: lockState === LockStatus.LOCKED,
-    removed,
-    enableMouseHover,
-    mouseHoverEnabled,
-    position,
-    setPosition,
-    actionButtonSelected: position[1] < 0 ? ActionButton.RANDOM : position[1] !== 4 ? undefined : actionBar[position[0]],
-    onAction
-  };
-};
-var __spreadArray = function(to, from, pack) {
-  if (pack || arguments.length === 2)
-    for (var i = 0, l = from.length, ar;i < l; i++) {
-      if (ar || !(i in from)) {
-        if (!ar)
-          ar = Array.prototype.slice.call(from, 0, i);
-        ar[i] = from[i];
-      }
-    }
-  return to.concat(ar || Array.prototype.slice.call(from));
-};
-var hash = function(value, length) {
-  return charat(value, 0) ^ 45 ? (((length << 2 ^ charat(value, 0)) << 2 ^ charat(value, 1)) << 2 ^ charat(value, 2)) << 2 ^ charat(value, 3) : 0;
-};
-var trim = function(value) {
-  return value.trim();
-};
-var match = function(value, pattern) {
-  return (value = pattern.exec(value)) ? value[0] : value;
-};
-var replace = function(value, pattern, replacement) {
-  return value.replace(pattern, replacement);
-};
-var indexof = function(value, search, position) {
-  return value.indexOf(search, position);
-};
-var charat = function(value, index) {
-  return value.charCodeAt(index) | 0;
-};
-var substr = function(value, begin, end) {
-  return value.slice(begin, end);
-};
-var strlen = function(value) {
-  return value.length;
-};
-var sizeof = function(value) {
-  return value.length;
-};
-var append = function(value, array) {
-  return array.push(value), value;
-};
-var combine = function(array, callback) {
-  return array.map(callback).join("");
-};
-var filter = function(array, pattern) {
-  return array.filter(function(value) {
-    return !match(value, pattern);
-  });
-};
-var node = function(value, root, parent, type, props, children, length, siblings) {
-  return { value, root, parent, type, props, children, line, column, length, return: "", siblings };
-};
-var copy = function(root, props) {
-  return assign(node("", null, null, "", null, null, 0, root.siblings), root, { length: -root.length }, props);
-};
-var lift = function(root) {
-  while (root.root)
-    root = copy(root.root, { children: [root] });
-  append(root, root.siblings);
-};
-var char = function() {
-  return character;
-};
-var prev = function() {
-  character = position > 0 ? charat(characters, --position) : 0;
-  if (column--, character === 10)
-    column = 1, line--;
-  return character;
-};
-var next = function() {
-  character = position < length ? charat(characters, position++) : 0;
-  if (column++, character === 10)
-    column = 1, line++;
-  return character;
-};
-var peek = function() {
-  return charat(characters, position);
-};
-var caret = function() {
-  return position;
-};
-var slice = function(begin, end) {
-  return substr(characters, begin, end);
-};
-var token = function(type) {
-  switch (type) {
-    case 0:
-    case 9:
-    case 10:
-    case 13:
-    case 32:
-      return 5;
-    case 33:
-    case 43:
-    case 44:
-    case 47:
-    case 62:
-    case 64:
-    case 126:
-    case 59:
-    case 123:
-    case 125:
-      return 4;
-    case 58:
-      return 3;
-    case 34:
-    case 39:
-    case 40:
-    case 91:
-      return 2;
-    case 41:
-    case 93:
-      return 1;
-  }
-  return 0;
-};
-var alloc = function(value) {
-  return line = column = 1, length = strlen(characters = value), position = 0, [];
-};
-var dealloc = function(value) {
-  return characters = "", value;
-};
-var delimit = function(type) {
-  return trim(slice(position - 1, delimiter(type === 91 ? type + 2 : type === 40 ? type + 1 : type)));
-};
-var whitespace = function(type) {
-  while (character = peek())
-    if (character < 33)
-      next();
-    else
-      break;
-  return token(type) > 2 || token(character) > 3 ? "" : " ";
-};
-var escaping = function(index, count) {
-  while (--count && next())
-    if (character < 48 || character > 102 || character > 57 && character < 65 || character > 70 && character < 97)
-      break;
-  return slice(index, caret() + (count < 6 && peek() == 32 && next() == 32));
-};
-var delimiter = function(type) {
-  while (next())
-    switch (character) {
-      case type:
-        return position;
-      case 34:
-      case 39:
-        if (type !== 34 && type !== 39)
-          delimiter(character);
-        break;
-      case 40:
-        if (type === 41)
-          delimiter(type);
-        break;
-      case 92:
-        next();
-        break;
-    }
-  return position;
-};
-var commenter = function(type, index) {
-  while (next())
-    if (type + character === 47 + 10)
-      break;
-    else if (type + character === 42 + 42 && peek() === 47)
-      break;
-  return "/*" + slice(index, position - 1) + "*" + from(type === 47 ? type : next());
-};
-var identifier = function(index) {
-  while (!token(peek()))
-    next();
-  return slice(index, position);
-};
-var compile = function(value) {
-  return dealloc(parse("", null, null, null, [""], value = alloc(value), 0, [0], value));
-};
-var parse = function(value, root, parent, rule, rules, rulesets, pseudo, points, declarations) {
-  var index = 0;
-  var offset = 0;
-  var length2 = pseudo;
-  var atrule = 0;
-  var property = 0;
-  var previous = 0;
-  var variable = 1;
-  var scanning = 1;
-  var ampersand = 1;
-  var character2 = 0;
-  var type = "";
-  var props = rules;
-  var children = rulesets;
-  var reference = rule;
-  var characters2 = type;
-  while (scanning)
-    switch (previous = character2, character2 = next()) {
-      case 40:
-        if (previous != 108 && charat(characters2, length2 - 1) == 58) {
-          if (indexof(characters2 += replace(delimit(character2), "&", "&\f"), "&\f", abs(index ? points[index - 1] : 0)) != -1)
-            ampersand = -1;
-          break;
-        }
-      case 34:
-      case 39:
-      case 91:
-        characters2 += delimit(character2);
-        break;
-      case 9:
-      case 10:
-      case 13:
-      case 32:
-        characters2 += whitespace(previous);
-        break;
-      case 92:
-        characters2 += escaping(caret() - 1, 7);
-        continue;
-      case 47:
-        switch (peek()) {
-          case 42:
-          case 47:
-            append(comment(commenter(next(), caret()), root, parent, declarations), declarations);
-            break;
-          default:
-            characters2 += "/";
-        }
-        break;
-      case 123 * variable:
-        points[index++] = strlen(characters2) * ampersand;
-      case 125 * variable:
-      case 59:
-      case 0:
-        switch (character2) {
-          case 0:
-          case 125:
-            scanning = 0;
-          case 59 + offset:
-            if (ampersand == -1)
-              characters2 = replace(characters2, /\f/g, "");
-            if (property > 0 && strlen(characters2) - length2)
-              append(property > 32 ? declaration(characters2 + ";", rule, parent, length2 - 1, declarations) : declaration(replace(characters2, " ", "") + ";", rule, parent, length2 - 2, declarations), declarations);
-            break;
-          case 59:
-            characters2 += ";";
-          default:
-            append(reference = ruleset(characters2, root, parent, index, offset, rules, points, type, props = [], children = [], length2, rulesets), rulesets);
-            if (character2 === 123)
-              if (offset === 0)
-                parse(characters2, root, reference, reference, props, rulesets, length2, points, children);
-              else
-                switch (atrule === 99 && charat(characters2, 3) === 110 ? 100 : atrule) {
-                  case 100:
-                  case 108:
-                  case 109:
-                  case 115:
-                    parse(value, reference, reference, rule && append(ruleset(value, reference, reference, 0, 0, rules, points, type, rules, props = [], length2, children), children), rules, children, length2, points, rule ? props : children);
-                    break;
-                  default:
-                    parse(characters2, reference, reference, reference, [""], children, 0, points, children);
-                }
-        }
-        index = offset = property = 0, variable = ampersand = 1, type = characters2 = "", length2 = pseudo;
-        break;
-      case 58:
-        length2 = 1 + strlen(characters2), property = previous;
-      default:
-        if (variable < 1) {
-          if (character2 == 123)
-            --variable;
-          else if (character2 == 125 && variable++ == 0 && prev() == 125)
-            continue;
-        }
-        switch (characters2 += from(character2), character2 * variable) {
-          case 38:
-            ampersand = offset > 0 ? 1 : (characters2 += "\f", -1);
-            break;
-          case 44:
-            points[index++] = (strlen(characters2) - 1) * ampersand, ampersand = 1;
-            break;
-          case 64:
-            if (peek() === 45)
-              characters2 += delimit(next());
-            atrule = peek(), offset = length2 = strlen(type = characters2 += identifier(caret())), character2++;
-            break;
-          case 45:
-            if (previous === 45 && strlen(characters2) == 2)
-              variable = 0;
-        }
-    }
-  return rulesets;
-};
-var ruleset = function(value, root, parent, index, offset, rules, points, type, props, children, length2, siblings) {
-  var post = offset - 1;
-  var rule = offset === 0 ? rules : [""];
-  var size = sizeof(rule);
-  for (var i2 = 0, j = 0, k = 0;i2 < index; ++i2)
-    for (var x3 = 0, y = substr(value, post + 1, post = abs(j = points[i2])), z = value;x3 < size; ++x3)
-      if (z = trim(j > 0 ? rule[x3] + " " + y : replace(y, /&\f/g, rule[x3])))
-        props[k++] = z;
-  return node(value, root, parent, offset === 0 ? RULESET : type, props, children, length2, siblings);
-};
-var comment = function(value, root, parent, siblings) {
-  return node(value, root, parent, COMMENT, from(char()), substr(value, 2, -2), 0, siblings);
-};
-var declaration = function(value, root, parent, length2, siblings) {
-  return node(value, root, parent, DECLARATION, substr(value, 0, length2), substr(value, length2 + 1, -1), length2, siblings);
-};
-var prefix = function(value, length2, children) {
-  switch (hash(value, length2)) {
-    case 5103:
-      return WEBKIT + "print-" + value + value;
-    case 5737:
-    case 4201:
-    case 3177:
-    case 3433:
-    case 1641:
-    case 4457:
-    case 2921:
-    case 5572:
-    case 6356:
-    case 5844:
-    case 3191:
-    case 6645:
-    case 3005:
-    case 6391:
-    case 5879:
-    case 5623:
-    case 6135:
-    case 4599:
-    case 4855:
-    case 4215:
-    case 6389:
-    case 5109:
-    case 5365:
-    case 5621:
-    case 3829:
-      return WEBKIT + value + value;
-    case 4789:
-      return MOZ + value + value;
-    case 5349:
-    case 4246:
-    case 4810:
-    case 6968:
-    case 2756:
-      return WEBKIT + value + MOZ + value + MS + value + value;
-    case 5936:
-      switch (charat(value, length2 + 11)) {
-        case 114:
-          return WEBKIT + value + MS + replace(value, /[svh]\w+-[tblr]{2}/, "tb") + value;
-        case 108:
-          return WEBKIT + value + MS + replace(value, /[svh]\w+-[tblr]{2}/, "tb-rl") + value;
-        case 45:
-          return WEBKIT + value + MS + replace(value, /[svh]\w+-[tblr]{2}/, "lr") + value;
-      }
-    case 6828:
-    case 4268:
-    case 2903:
-      return WEBKIT + value + MS + value + value;
-    case 6165:
-      return WEBKIT + value + MS + "flex-" + value + value;
-    case 5187:
-      return WEBKIT + value + replace(value, /(\w+).+(:[^]+)/, WEBKIT + "box-$1$2" + MS + "flex-$1$2") + value;
-    case 5443:
-      return WEBKIT + value + MS + "flex-item-" + replace(value, /flex-|-self/g, "") + (!match(value, /flex-|baseline/) ? MS + "grid-row-" + replace(value, /flex-|-self/g, "") : "") + value;
-    case 4675:
-      return WEBKIT + value + MS + "flex-line-pack" + replace(value, /align-content|flex-|-self/g, "") + value;
-    case 5548:
-      return WEBKIT + value + MS + replace(value, "shrink", "negative") + value;
-    case 5292:
-      return WEBKIT + value + MS + replace(value, "basis", "preferred-size") + value;
-    case 6060:
-      return WEBKIT + "box-" + replace(value, "-grow", "") + WEBKIT + value + MS + replace(value, "grow", "positive") + value;
-    case 4554:
-      return WEBKIT + replace(value, /([^-])(transform)/g, "$1" + WEBKIT + "$2") + value;
-    case 6187:
-      return replace(replace(replace(value, /(zoom-|grab)/, WEBKIT + "$1"), /(image-set)/, WEBKIT + "$1"), value, "") + value;
-    case 5495:
-    case 3959:
-      return replace(value, /(image-set\([^]*)/, WEBKIT + "$1$`$1");
-    case 4968:
-      return replace(replace(value, /(.+:)(flex-)?(.*)/, WEBKIT + "box-pack:$3" + MS + "flex-pack:$3"), /s.+-b[^;]+/, "justify") + WEBKIT + value + value;
-    case 4200:
-      if (!match(value, /flex-|baseline/))
-        return MS + "grid-column-align" + substr(value, length2) + value;
-      break;
-    case 2592:
-    case 3360:
-      return MS + replace(value, "template-", "") + value;
-    case 4384:
-    case 3616:
-      if (children && children.some(function(element, index) {
-        return length2 = index, match(element.props, /grid-\w+-end/);
-      })) {
-        return ~indexof(value + (children = children[length2].value), "span", 0) ? value : MS + replace(value, "-start", "") + value + MS + "grid-row-span:" + (~indexof(children, "span", 0) ? match(children, /\d+/) : +match(children, /\d+/) - +match(value, /\d+/)) + ";";
-      }
-      return MS + replace(value, "-start", "") + value;
-    case 4896:
-    case 4128:
-      return children && children.some(function(element) {
-        return match(element.props, /grid-\w+-start/);
-      }) ? value : MS + replace(replace(value, "-end", "-span"), "span ", "") + value;
-    case 4095:
-    case 3583:
-    case 4068:
-    case 2532:
-      return replace(value, /(.+)-inline(.+)/, WEBKIT + "$1$2") + value;
-    case 8116:
-    case 7059:
-    case 5753:
-    case 5535:
-    case 5445:
-    case 5701:
-    case 4933:
-    case 4677:
-    case 5533:
-    case 5789:
-    case 5021:
-    case 4765:
-      if (strlen(value) - 1 - length2 > 6)
-        switch (charat(value, length2 + 1)) {
-          case 109:
-            if (charat(value, length2 + 4) !== 45)
-              break;
-          case 102:
-            return replace(value, /(.+:)(.+)-([^]+)/, "$1" + WEBKIT + "$2-$3$1" + MOZ + (charat(value, length2 + 3) == 108 ? "$3" : "$2-$3")) + value;
-          case 115:
-            return ~indexof(value, "stretch", 0) ? prefix(replace(value, "stretch", "fill-available"), length2, children) + value : value;
-        }
-      break;
-    case 5152:
-    case 5920:
-      return replace(value, /(.+?):(\d+)(\s*\/\s*(span)?\s*(\d+))?(.*)/, function(_, a2, b, c2, d, e, f) {
-        return MS + a2 + ":" + b + f + (c2 ? MS + a2 + "-span:" + (d ? e : +e - +b) + f : "") + value;
-      });
-    case 4949:
-      if (charat(value, length2 + 6) === 121)
-        return replace(value, ":", ":" + WEBKIT) + value;
-      break;
-    case 6444:
-      switch (charat(value, charat(value, 14) === 45 ? 18 : 11)) {
-        case 120:
-          return replace(value, /(.+:)([^;\s!]+)(;|(\s+)?!.+)?/, "$1" + WEBKIT + (charat(value, 14) === 45 ? "inline-" : "") + "box$3$1" + WEBKIT + "$2$3$1" + MS + "$2box$3") + value;
-        case 100:
-          return replace(value, ":", ":" + MS) + value;
-      }
-      break;
-    case 5719:
-    case 2647:
-    case 2135:
-    case 3927:
-    case 2391:
-      return replace(value, "scroll-", "scroll-snap-") + value;
-  }
-  return value;
-};
-var serialize = function(children, callback) {
-  var output = "";
-  for (var i2 = 0;i2 < children.length; i2++)
-    output += callback(children[i2], i2, children, callback) || "";
-  return output;
-};
-var stringify = function(element, index, children, callback) {
-  switch (element.type) {
-    case LAYER:
-      if (element.children.length)
-        break;
-    case IMPORT:
-    case DECLARATION:
-      return element.return = element.return || element.value;
-    case COMMENT:
-      return "";
-    case KEYFRAMES:
-      return element.return = element.value + "{" + serialize(element.children, callback) + "}";
-    case RULESET:
-      if (!strlen(element.value = element.props.join(",")))
-        return "";
-  }
-  return strlen(children = serialize(element.children, callback)) ? element.return = element.value + "{" + children + "}" : "";
-};
-var middleware = function(collection) {
-  var length2 = sizeof(collection);
-  return function(element, index, children, callback) {
-    var output = "";
-    for (var i2 = 0;i2 < length2; i2++)
-      output += collection[i2](element, index, children, callback) || "";
-    return output;
-  };
-};
-var rulesheet = function(callback) {
-  return function(element) {
-    if (!element.root) {
-      if (element = element.return)
-        callback(element);
-    }
-  };
-};
-var prefixer = function(element, index, children, callback) {
-  if (element.length > -1) {
-    if (!element.return)
-      switch (element.type) {
-        case DECLARATION:
-          element.return = prefix(element.value, element.length, children);
-          return;
-        case KEYFRAMES:
-          return serialize([copy(element, { value: replace(element.value, "@", "@" + WEBKIT) })], callback);
-        case RULESET:
-          if (element.length)
-            return combine(children = element.props, function(value) {
-              switch (match(value, callback = /(::plac\w+|:read-\w+)/)) {
-                case ":read-only":
-                case ":read-write":
-                  lift(copy(element, { props: [replace(value, /:(read-\w+)/, ":" + MOZ + "$1")] }));
-                  lift(copy(element, { props: [value] }));
-                  assign(element, { props: filter(children, callback) });
-                  break;
-                case "::placeholder":
-                  lift(copy(element, { props: [replace(value, /:(plac\w+)/, ":" + WEBKIT + "input-$1")] }));
-                  lift(copy(element, { props: [replace(value, /:(plac\w+)/, ":" + MOZ + "$1")] }));
-                  lift(copy(element, { props: [replace(value, /:(plac\w+)/, MS + "input-$1")] }));
-                  lift(copy(element, { props: [value] }));
-                  assign(element, { props: filter(children, callback) });
-                  break;
-              }
-              return "";
-            });
-      }
-  }
-};
-var Prompt = function({ prompt: prompt2, onConfirm, onClose }) {
-  const { currentLanguageModel, chooseLanguage } = useLanguageModel({ languages: prompt2.languages });
-  const { alphabet, setCapitalize } = useAlphabet({ languageModel: currentLanguageModel });
-  const { addLetter, deleteLetter, randomizeText, text, setText } = useTextInput({ defaultText: prompt2.defaultText, randomList: prompt2.randomText });
-  const { inputFocus, inputRef, focus } = useInputFocus({ text });
-  const { disabled, removed, enableMouseHover, mouseHoverEnabled, position: position2, setPosition, actionButtonSelected, onAction } = usePromptControl({
-    alphabet,
-    text,
-    onClose,
-    addLetter,
-    deleteLetter,
-    randomizeText,
-    toggleCapitalize: import_react16.useCallback(() => setCapitalize((cap) => !cap), [setCapitalize]),
-    chooseLanguage,
-    onConfirm: prompt2.input ?? onConfirm,
-    randomList: prompt2.randomText,
-    inputFocus,
-    canCapitalize: currentLanguageModel.capitalize,
-    focus
-  });
-  const clickable = import_react16.useMemo(() => !disabled && mouseHoverEnabled, [disabled, mouseHoverEnabled]);
-  return jsx_dev_runtime12.jsxDEV(jsx_dev_runtime12.Fragment, {
-    children: jsx_dev_runtime12.jsxDEV(Popup2, {
-      layout: prompt2.layout ?? {},
-      style: prompt2.style,
-      removed,
-      disabled,
-      onBack: onClose,
-      fit: true,
-      children: jsx_dev_runtime12.jsxDEV("div", {
-        style: { padding: 5 },
-        children: [
-          jsx_dev_runtime12.jsxDEV(Label, {
-            label: prompt2.label
-          }, undefined, false, undefined, this),
-          jsx_dev_runtime12.jsxDEV("div", {
-            style: { padding: 5, display: "flex" },
-            children: [
-              jsx_dev_runtime12.jsxDEV("div", {
-                autoCorrect: "off",
-                autoCapitalize: "off",
-                spellCheck: "false",
-                style: {
-                  flex: 1,
-                  color: "white",
-                  backgroundColor: "black",
-                  fontSize: 20,
-                  border: "2px solid white",
-                  borderRadius: "5px",
-                  padding: 10,
-                  cursor: "text",
-                  minHeight: 25
-                },
-                onClick: () => focus(),
-                children: [
-                  jsx_dev_runtime12.jsxDEV("div", {
-                    ref: inputRef,
-                    contentEditable: true,
-                    style: { width: "100%", display: "inline" },
-                    onKeyDown: (e) => {
-                      if (e.code === "Enter") {
-                        e.preventDefault();
-                      }
-                    },
-                    onKeyUp: ({ code, currentTarget }) => {
-                      if (code === "Escape") {
-                        currentTarget.blur();
-                      } else if (code === "Enter") {
-                        currentTarget.blur();
-                        setPosition([COLUMNS2 - 1, 4]);
-                      }
-                    },
-                    onInput: ({ currentTarget }) => setText(currentTarget.textContent ?? undefined)
-                  }, undefined, false, undefined, this),
-                  !inputFocus && jsx_dev_runtime12.jsxDEV(Blink, {
-                    children: "\xA0\xA0"
-                  }, undefined, false, undefined, this)
-                ]
-              }, undefined, true, undefined, this),
-              prompt2.randomText ? jsx_dev_runtime12.jsxDEV(Button, {
-                hideOutline: true,
-                selected: !inputFocus && actionButtonSelected === ActionButton.RANDOM,
-                padding: 5,
-                margin: 5,
-                emoji: "\uD83C\uDFB2",
-                disabled: inputFocus,
-                onMouseOver: () => {
-                  setPosition([COLUMNS2 - 1, -1]);
-                },
-                onMouseDown: () => {
-                  setPosition([COLUMNS2 - 1, -1]);
-                },
-                onClick: onAction
-              }, undefined, false, undefined, this) : undefined
-            ]
-          }, undefined, true, undefined, this),
-          jsx_dev_runtime12.jsxDEV("div", {
-            style: {
-              pointerEvents: inputFocus ? "none" : undefined,
-              opacity: inputFocus ? 0.3 : 1,
-              transition: "opacity .3s",
-              cursor: clickable ? "inherit" : "auto"
-            },
-            onMouseMove: () => {
-              if (!disabled) {
-                enableMouseHover();
-              }
-            },
-            children: jsx_dev_runtime12.jsxDEV("div", {
-              children: [
-                jsx_dev_runtime12.jsxDEV("div", {
-                  style: {
-                    margin: 5,
-                    display: "grid",
-                    gridTemplateColumns: GRID_TEMPLATE_COLUMN
-                  },
-                  children: alphabet.map((letter, index) => {
-                    return jsx_dev_runtime12.jsxDEV(Button, {
-                      selected: !inputFocus && Math.floor(index / COLUMNS2) === position2[1] && index % COLUMNS2 === position2[0],
-                      padding: 3,
-                      text: letter,
-                      onMouseOver: () => {
-                        if (mouseHoverEnabled) {
-                          setPosition([index % COLUMNS2, Math.floor(index / COLUMNS2)]);
-                        }
-                      },
-                      onMouseDown: () => {
-                        if (mouseHoverEnabled) {
-                          setPosition([index % COLUMNS2, Math.floor(index / COLUMNS2)]);
-                        }
-                      },
-                      onClick: onAction
-                    }, index, false, undefined, this);
-                  })
-                }, undefined, false, undefined, this),
-                jsx_dev_runtime12.jsxDEV("div", {
-                  style: { margin: 5, display: "flex", gap: 10 },
-                  children: [
-                    prompt2.languages && jsx_dev_runtime12.jsxDEV(Button, {
-                      selected: !inputFocus && actionButtonSelected === ActionButton.LANG,
-                      padding: "0px 5px",
-                      emoji: "\uD83C\uDF10",
-                      onMouseOver: () => {
-                        if (mouseHoverEnabled) {
-                          setPosition([0, 4]);
-                        }
-                      },
-                      onMouseDown: () => {
-                        if (mouseHoverEnabled) {
-                          setPosition([0, 4]);
-                        }
-                      },
-                      onClick: onAction
-                    }, undefined, false, undefined, this),
-                    currentLanguageModel.capitalize && jsx_dev_runtime12.jsxDEV(Button, {
-                      selected: !inputFocus && actionButtonSelected === ActionButton.CAP,
-                      padding: "0px 5px",
-                      text: "Aa",
-                      onMouseOver: () => {
-                        if (mouseHoverEnabled) {
-                          setPosition([1, 4]);
-                        }
-                      },
-                      onMouseDown: () => {
-                        if (mouseHoverEnabled) {
-                          setPosition([1, 4]);
-                        }
-                      },
-                      onClick: onAction
-                    }, undefined, false, undefined, this),
-                    jsx_dev_runtime12.jsxDEV(Button, {
-                      selected: !inputFocus && actionButtonSelected === ActionButton.SPACE,
-                      padding: "0px 10px",
-                      stretch: true,
-                      text: "space",
-                      onMouseOver: () => {
-                        if (mouseHoverEnabled) {
-                          setPosition([5, 4]);
-                        }
-                      },
-                      onMouseDown: () => {
-                        if (mouseHoverEnabled) {
-                          setPosition([5, 4]);
-                        }
-                      },
-                      onClick: onAction
-                    }, undefined, false, undefined, this),
-                    jsx_dev_runtime12.jsxDEV(Button, {
-                      selected: !inputFocus && actionButtonSelected === ActionButton.DEL,
-                      padding: "0px 10px",
-                      text: "del",
-                      disabled: !text?.length,
-                      onMouseOver: () => {
-                        if (mouseHoverEnabled && text?.length) {
-                          setPosition([COLUMNS2 - 2, 4]);
-                        }
-                      },
-                      onMouseDown: () => {
-                        if (mouseHoverEnabled && text?.length) {
-                          setPosition([COLUMNS2 - 2, 4]);
-                        }
-                      },
-                      onClick: onAction
-                    }, undefined, false, undefined, this),
-                    jsx_dev_runtime12.jsxDEV(Button, {
-                      selected: !inputFocus && actionButtonSelected === ActionButton.OK,
-                      padding: "0px 20px",
-                      text: "ok",
-                      disabled: !text?.length,
-                      onMouseOver: () => {
-                        if (mouseHoverEnabled && text?.length) {
-                          setPosition([COLUMNS2 - 1, 4]);
-                        }
-                      },
-                      onMouseDown: () => {
-                        if (mouseHoverEnabled && text?.length) {
-                          setPosition([COLUMNS2 - 1, 4]);
-                        }
-                      },
-                      onClick: onAction
-                    }, undefined, false, undefined, this)
-                  ]
-                }, undefined, true, undefined, this)
-              ]
-            }, undefined, true, undefined, this)
-          }, undefined, false, undefined, this)
-        ]
-      }, undefined, true, undefined, this)
-    }, undefined, false, undefined, this)
-  }, undefined, false, undefined, this);
-};
-var useLayoutRegistry = function({ layouts }) {
-  const { getLayout } = useLayoutContext();
-  import_react27.useEffect(() => {
-    A(layouts, (layout) => {
-      if (layout) {
-        getLayout(layout);
-      }
-    });
-  }, [layouts, useLayoutContext]);
-};
-var Container2 = function({
-  layouts,
-  pictures,
-  dialog,
-  menu,
-  prompt: prompt2,
-  onSelect = async () => {
-  },
-  onClose = async () => {
-  },
-  onPrompt = async () => {
-  },
-  removed,
-  focusLess
-}) {
-  const [index, setIndex] = import_react14.useState(0);
-  const onNext = import_react14.useCallback(async () => {
-    setIndex((index2) => index2 + 1);
-  }, [setIndex]);
-  useLayoutRegistry({ layouts });
-  const elems = import_react14.useMemo(() => {
-    return [
-      dialog ? jsx_dev_runtime13.jsxDEV(Dialog, {
-        dialog,
-        onSelect,
-        onPrompt,
-        onClose: onNext,
-        focusLess
-      }, undefined, false, undefined, this) : undefined,
-      menu ? jsx_dev_runtime13.jsxDEV(Menu2, {
-        menu,
-        onSelect,
-        onPrompt,
-        onClose: onNext
-      }, undefined, false, undefined, this) : undefined,
-      prompt2 ? jsx_dev_runtime13.jsxDEV(Prompt, {
-        prompt: prompt2,
-        onConfirm: onPrompt,
-        onClose: onNext
-      }, undefined, false, undefined, this) : undefined
-    ].filter((e) => !!e);
-  }, [menu, dialog, prompt2, onSelect, onNext]);
-  import_react14.useEffect(() => {
-    if (elems.length && index >= elems.length) {
-      onClose();
-    }
-  }, [index, elems, onClose]);
-  return jsx_dev_runtime13.jsxDEV(jsx_dev_runtime13.Fragment, {
-    children: [
-      elems[index],
-      pictures?.map((picture, index2) => jsx_dev_runtime13.jsxDEV(Picture, {
-        removed,
-        picture
-      }, index2, false, undefined, this))
-    ]
-  }, undefined, true, undefined, this);
-};
-var useEditMenu = function({ menu, active }) {
-  const { editing } = useEditContext();
-  const [editCount, setEditCount] = import_react28.useState(0);
-  const addItem = import_react28.useCallback(async () => {
-    const items2 = [];
-    let i2;
-    for (i2 = 1;x(menu.items, (item) => {
-      const label = typeof item === "string" ? item : item.label;
-      return label === "untitled " + i2;
-    }) >= 0; i2++) {
-    }
-    A(menu.items, (item) => {
-      items2.push(item);
-    });
-    items2.push({
-      label: `untitled ${i2}`
-    });
-    menu.items = items2;
-    setEditCount((count) => count + 1);
-  }, [menu, setEditCount, editCount]);
-  const onAddSubmenu = import_react28.useCallback((index) => {
-    const items2 = [];
-    A(menu.items, (item2) => items2.push(item2));
-    const item = items2[index];
-    const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
-    itemModel.submenu = itemModel.submenu ?? { items: [] };
-    items2[index] = itemModel;
-    menu.items = items2;
-    setEditCount((count) => count + 1);
-  }, [menu, setEditCount, editCount]);
-  const onRemoveSubmenu = import_react28.useCallback((index) => {
-    const items2 = [];
-    A(menu.items, (item2) => items2.push(item2));
-    const item = items2[index];
-    const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
-    delete itemModel.submenu;
-    items2[index] = itemModel;
-    menu.items = items2;
-    setEditCount((count) => count + 1);
-  }, [menu, setEditCount, editCount]);
-  const onAddDialog = import_react28.useCallback((index) => {
-    const items2 = [];
-    A(menu.items, (item2) => items2.push(item2));
-    const item = items2[index];
-    const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
-    itemModel.dialog = itemModel.dialog ?? {
-      messages: [
-        { text: "" }
-      ]
-    };
-    items2[index] = itemModel;
-    menu.items = items2;
-    setEditCount((count) => count + 1);
-  }, [menu, setEditCount, editCount]);
-  const onRemoveDialog = import_react28.useCallback((index) => {
-    const items2 = [];
-    A(menu.items, (item2) => items2.push(item2));
-    const item = items2[index];
-    const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
-    delete itemModel.dialog;
-    items2[index] = itemModel;
-    menu.items = items2;
-    setEditCount((count) => count + 1);
-  }, [menu, setEditCount, editCount]);
-  const onToggleBack = import_react28.useCallback((index) => {
-    const items2 = [];
-    A(menu.items, (item2) => items2.push(item2));
-    const item = items2[index];
-    const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
-    if (itemModel.back) {
-      delete itemModel.back;
-    } else {
-      itemModel.back = true;
-    }
-    items2[index] = itemModel;
-    menu.items = items2;
-    setEditCount((count) => count + 1);
-  }, [menu, setEditCount, editCount]);
-  const onToggleHideOnSelect = import_react28.useCallback((index) => {
-    const items2 = [];
-    A(menu.items, (item2) => items2.push(item2));
-    const item = items2[index];
-    const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
-    if (itemModel.hideOnSelect) {
-      delete itemModel.hideOnSelect;
-    } else {
-      itemModel.hideOnSelect = true;
-    }
-    items2[index] = itemModel;
-    menu.items = items2;
-    setEditCount((count) => count + 1);
-  }, [menu, setEditCount, editCount]);
-  const onEditLabel = import_react28.useCallback((index, text) => {
-    const items2 = [];
-    A(menu.items, (item2) => items2.push(item2));
-    const item = items2[index];
-    const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
-    itemModel.label = text;
-    items2[index] = itemModel;
-    menu.items = items2;
-    setEditCount((count) => count + 1);
-  }, []);
-  const deleteMenuItem = import_react28.useCallback((index) => {
-    const items2 = [];
-    A(menu.items, (item, idx) => {
-      if (index !== idx) {
-        items2.push(item);
-      }
-    });
-    menu.items = items2;
-    setEditCount((count) => count + 1);
-  }, []);
-  const items = import_react28.useMemo(() => {
-    if (!editing || !active) {
-      return menu.items;
-    }
-    const items2 = B(menu.items ?? [], (item) => item);
-    const editMenu = menu.builtIn ? [] : [
-      { label: "edit menu", builtIn: true, submenu: {
-        layout: {
-          position: [300, 300],
-          size: [300, 300]
-        },
-        builtIn: true,
-        items: [
-          {
-            label: "new item",
-            builtIn: true,
-            action: addItem
-          },
-          { label: "edit pictures", builtIn: true },
-          { label: "exit", builtIn: true, back: true }
-        ]
-      } }
-    ];
-    return items2.concat(editMenu);
-  }, [menu, editing, active, editCount, addItem]);
-  const visibleItems = import_react28.useMemo(() => {
-    const visibleItems2 = [];
-    A(items, (item) => {
-      const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
-      if (item && !itemModel.hidden) {
-        visibleItems2.push(item);
-      }
-    });
-    return visibleItems2;
-  }, [items]);
-  return {
-    ...menu,
-    items: visibleItems,
-    editable: editing,
-    onAddSubmenu,
-    onRemoveSubmenu,
-    onAddDialog,
-    onRemoveDialog,
-    onToggleBack,
-    onToggleHideOnSelect,
-    onEditLabel,
-    deleteMenuItem
-  };
-};
-async function promptText({
-  label,
-  defaultText,
-  languages = ["english", "korean"],
-  popupControl = new PopupControl
-}) {
-  return new Promise((resolve) => {
-    openMenu({
-      prompt: {
-        label,
-        defaultText,
-        languages
-      },
-      onPrompt(text) {
-        resolve(text);
-      },
-      onClose() {
-        resolve(undefined);
-      },
-      popupControl
-    });
-  });
-}
-var MenuRow = function({ item, index, selectedItem, onMouseMove, onMouseOver, onClick, disabled, editable, active, onAddSubmenu, onRemoveSubmenu, onToggleBack, onToggleHideOnSelect, onEditLabel, builtIn, deleteMenuItem, onAddDialog, onRemoveDialog }) {
-  const itemModel = typeof item === "string" ? { label: item } : item;
-  const rowSelected = selectedItem === item;
-  const [editMenuOn, setEditMenuOn] = import_react29.useState(false);
-  const { popupControl } = useControlContext();
-  const builtInItem = import_react29.useMemo(() => builtIn ?? itemModel?.builtIn, [itemModel, builtIn]);
-  const promptDeleteItem = import_react29.useCallback(async () => {
-    const label = itemModel?.label;
-    openMenu({
-      dialog: {
-        layout: {
-          position: [150, 50],
-          size: [400, 200]
-        },
-        messages: [
-          {
-            text: `Do you really want ot delete "${label}"?`,
-            menu: {
-              builtIn: true,
-              layout: {
-                position: [150, 270],
-                size: [200, 200]
-              },
-              items: [
-                { label: `Yes`, back: true },
-                { label: "Cancel", back: true, selected: true }
-              ]
-            }
-          }
-        ]
-      },
-      popupControl,
-      onSelect(item2) {
-        if (item2.label === "Yes") {
-          deleteMenuItem?.(index);
-        }
-      }
-    });
-  }, [itemModel, popupControl, deleteMenuItem]);
-  const editMenu = import_react29.useMemo(() => ({
-    builtIn: true,
-    layout: {
-      position: [450, 200],
-      size: [400, 300],
-      positionFromRight: true
-    },
-    items: [
-      {
-        label: "edit label",
-        action: async () => {
-          const newLabel = await promptText({
-            label: "Enter a new label",
-            defaultText: itemModel?.label,
-            popupControl
-          });
-          if (newLabel) {
-            onEditLabel?.(index, newLabel);
-          }
-        }
-      },
-      {
-        label: "create submenu",
-        action: async () => onAddSubmenu?.(index),
-        back: true,
-        hidden: !!itemModel?.submenu
-      },
-      {
-        label: "remove submenu",
-        action: async () => onRemoveSubmenu?.(index),
-        back: true,
-        hidden: !itemModel?.submenu
-      },
-      {
-        label: "create dialog",
-        action: async () => onAddDialog?.(index),
-        back: true,
-        hidden: !!itemModel?.dialog
-      },
-      {
-        label: "remove dialog",
-        action: async () => onRemoveDialog?.(index),
-        back: true,
-        hidden: !itemModel?.dialog
-      },
-      {
-        label: "back (" + (itemModel?.back ? "ON" : "OFF") + ")",
-        action: async () => onToggleBack?.(index)
-      },
-      {
-        label: "hide on select (" + (itemModel?.hideOnSelect ? "ON" : "OFF") + ")",
-        action: async () => onToggleHideOnSelect?.(index)
-      },
-      {
-        label: "delete menu item",
-        back: true,
-        action: promptDeleteItem
-      },
-      {
-        label: "exit",
-        back: true
-      }
-    ]
-  }), [itemModel, onAddSubmenu, onRemoveSubmenu, onToggleBack, onToggleHideOnSelect, onEditLabel, promptDeleteItem, index, popupControl]);
-  useKeyDown({
-    enabled: import_react29.useMemo(() => editable && active && rowSelected && !builtInItem, [editable, active, rowSelected, itemModel, builtInItem]),
-    key: "KeyE",
-    callback: import_react29.useCallback(() => {
-      openMenu({
-        menu: editMenu,
-        popupControl
-      });
-    }, [editMenu, popupControl])
-  });
-  useKeyDown({
-    enabled: import_react29.useMemo(() => editable && active && rowSelected && !builtInItem, [editable, active, rowSelected, itemModel, builtInItem]),
-    key: "Backspace",
-    callback: promptDeleteItem
-  });
-  return jsx_dev_runtime14.jsxDEV(jsx_dev_runtime14.Fragment, {
-    children: jsx_dev_runtime14.jsxDEV("div", {
-      style: {
-        color: rowSelected ? builtInItem ? "#0000ee" : "black" : disabled ? "silver" : "white",
-        backgroundColor: !rowSelected ? builtInItem ? "#0000ee" : "black" : disabled ? "silver" : "white",
-        transition: "color .05s, background-color .05s",
-        display: "flex"
-      },
-      onMouseMove,
-      onMouseOver,
-      onClick: editable && !builtInItem ? () => setEditMenuOn(true) : onClick,
-      children: [
-        jsx_dev_runtime14.jsxDEV("div", {
-          style: { flex: 1, display: "flex", padding: "0 10px" },
-          children: [
-            itemModel?.icon && jsx_dev_runtime14.jsxDEV("div", {
-              style: { width: 30 },
-              children: jsx_dev_runtime14.jsxDEV(Images, {
-                images: itemModel.icon
-              }, undefined, false, undefined, this)
-            }, undefined, false, undefined, this),
-            itemModel?.emoji && jsx_dev_runtime14.jsxDEV("span", {
-              style: { height: 30 },
-              children: [
-                itemModel?.emoji,
-                "\xA0"
-              ]
-            }, undefined, true, undefined, this),
-            jsx_dev_runtime14.jsxDEV("span", {
-              children: itemModel?.label
-            }, undefined, false, undefined, this),
-            (itemModel?.showTriangle || itemModel?.showTriangle === undefined && itemModel?.submenu) && jsx_dev_runtime14.jsxDEV("span", {
-              style: { height: 30 },
-              children: "\xA0\u23F5"
-            }, undefined, false, undefined, this)
-          ]
-        }, undefined, true, undefined, this),
-        editable && active && rowSelected && !builtInItem && jsx_dev_runtime14.jsxDEV("div", {
-          style: {
-            ...ICON_STYLE,
-            backgroundColor: "blue"
-          },
-          children: "E"
-        }, undefined, false, undefined, this),
-        editable && !builtInItem && itemModel?.submenu && jsx_dev_runtime14.jsxDEV("div", {
-          style: {
-            ...ICON_STYLE,
-            backgroundColor: "green"
-          },
-          children: jsx_dev_runtime14.jsxDEV("svg", {
-            xmlns: "http://www.w3.org/2000/svg",
-            style: {
-              height: 30,
-              width: 30
-            },
-            children: [
-              jsx_dev_runtime14.jsxDEV("line", {
-                x1: "10",
-                y1: "10",
-                x2: "20",
-                y2: "10",
-                stroke: "white",
-                strokeWidth: "2"
-              }, undefined, false, undefined, this),
-              jsx_dev_runtime14.jsxDEV("line", {
-                x1: "10",
-                y1: "14",
-                x2: "20",
-                y2: "14",
-                stroke: "white",
-                strokeWidth: "2"
-              }, undefined, false, undefined, this),
-              jsx_dev_runtime14.jsxDEV("line", {
-                x1: "10",
-                y1: "18",
-                x2: "20",
-                y2: "18",
-                stroke: "white",
-                strokeWidth: "2"
-              }, undefined, false, undefined, this)
-            ]
-          }, undefined, true, undefined, this)
-        }, undefined, false, undefined, this),
-        editable && !builtInItem && itemModel?.dialog && jsx_dev_runtime14.jsxDEV("div", {
-          style: {
-            ...ICON_STYLE,
-            backgroundColor: "orange"
-          },
-          children: "D"
-        }, undefined, false, undefined, this),
-        editable && !builtInItem && itemModel?.back && jsx_dev_runtime14.jsxDEV("div", {
-          style: {
-            ...ICON_STYLE,
-            backgroundColor: "red"
-          },
-          children: "B"
-        }, undefined, false, undefined, this),
-        editMenuOn && jsx_dev_runtime14.jsxDEV(Container2, {
-          menu: editMenu,
-          onClose: () => setEditMenuOn(false)
-        }, undefined, false, undefined, this),
-        rowSelected && itemModel?.onHover && jsx_dev_runtime14.jsxDEV(Container2, {
-          dialog: itemModel.onHover.dialog,
-          pictures: itemModel.onHover.pictures,
-          focusLess: true
-        }, undefined, false, undefined, this)
-      ]
-    }, undefined, true, undefined, this)
-  }, undefined, false, undefined, this);
-};
-var useMaxRows = function({ size }) {
-  const [maxRows, setMaxRows] = import_react30.useState(size);
-  const menuRef = import_react30.useRef(null);
-  import_react30.useEffect(() => {
-    if (!menuRef.current)
-      return;
-    const resizeObserver = new ResizeObserver((entries) => {
-      const height = entries[0].contentRect.height;
-      const rows = Math.floor(height / 30);
-      if (rows) {
-        setMaxRows(rows);
-      }
-    });
-    resizeObserver.observe(menuRef.current);
-    return () => resizeObserver.disconnect();
-  }, [setMaxRows, menuRef.current]);
-  return { maxRows, menuRef };
-};
-var Menu2 = function({
-  menu,
-  onSelect,
-  onPrompt,
-  onClose
-}) {
-  const { removed, remove } = useRemove();
-  const [sub, setSub] = import_react8.useState();
-  const [postClose, setPostClose] = import_react8.useState();
-  const [hidden, setHidden] = import_react8.useState(false);
-  const onBack = import_react8.useCallback((force) => {
-    if (menu.backEnabled || force) {
-      remove(onClose);
-    }
-  }, [remove, onClose, menu]);
-  const { active } = useActiveFocus();
-  const { items = [], style, layout, editable, onAddSubmenu, onRemoveSubmenu, onAddDialog, onRemoveDialog, onToggleBack, onToggleHideOnSelect, onEditLabel, deleteMenuItem } = useEditMenu({ menu, active });
-  const { maxRows, menuRef } = useMaxRows({ size: items.length.valueOf() });
-  const executeMenuItem = import_react8.useCallback((item) => {
-    if (typeof item === "object") {
-      if (item.hideOnSelect) {
-        setHidden(true);
-      }
-      if (item.dialog || item.submenu || item.prompt) {
-        const { dialog, submenu, prompt: prompt2, ...rest } = item;
-        setSub({ dialog, menu: submenu, prompt: prompt2 });
-        setPostClose(rest);
-      } else {
-        setPostClose(undefined);
-        setSub(undefined);
-        onSelect(item);
-        if (item.back) {
-          onBack(true);
-        }
-      }
-    } else {
-      onSelect(item);
-    }
-  }, [onSelect, setSub, onBack, setPostClose, setHidden]);
-  const { scroll, scrollUp, scrollDown, selectedItem, select, disabled, mouseHoverEnabled, enableMouseHover, onMenuAction } = useMenu({ items, maxRows, onSelect: executeMenuItem, onBack, active });
-  const onCloseSub = import_react8.useCallback(async () => {
-    setSub(undefined);
-    if (postClose) {
-      executeMenuItem(postClose);
-    }
-    setHidden(false);
-  }, [setSub, executeMenuItem, setHidden, postClose]);
-  const clickable = import_react.useMemo(() => !disabled && mouseHoverEnabled, [disabled, mouseHoverEnabled]);
-  return jsx_dev_runtime15.jsxDEV(jsx_dev_runtime15.Fragment, {
-    children: [
-      jsx_dev_runtime15.jsxDEV(Popup2, {
-        layout: layout ?? {},
-        style,
-        disabled,
-        removed: removed || hidden,
-        onBack: menu.backEnabled ? onBack : undefined,
-        children: [
-          jsx_dev_runtime15.jsxDEV("svg", {
-            xmlns: "http://www.w3.org/2000/svg",
-            style: {
-              position: "absolute",
-              height: 20,
-              marginTop: -8,
-              width: 200,
-              display: scroll > 0 ? "" : "none",
-              left: `calc(50% - 100px)`
-            },
-            onClick: () => scrollUp(),
-            children: jsx_dev_runtime15.jsxDEV("polygon", {
-              points: "100,10 110,20 90,20",
-              style: { fill: "white" }
-            }, undefined, false, undefined, this)
-          }, undefined, false, undefined, this),
-          jsx_dev_runtime15.jsxDEV("div", {
-            style: {
-              paddingTop: 10,
-              cursor: clickable ? "inherit" : "auto"
-            },
-            children: jsx_dev_runtime15.jsxDEV("div", {
-              ref: menuRef,
-              style: { height: `calc(100% - 27px)`, overflow: "hidden" },
-              children: jsx_dev_runtime15.jsxDEV("div", {
-                style: { marginTop: scroll * -31, transition: "margin-top .2s" },
-                children: B(items, (item, index) => jsx_dev_runtime15.jsxDEV(MenuRow, {
-                  index,
-                  item,
-                  selectedItem,
-                  onAddSubmenu,
-                  onRemoveSubmenu,
-                  onAddDialog,
-                  onRemoveDialog,
-                  onToggleBack,
-                  onToggleHideOnSelect,
-                  onEditLabel,
-                  deleteMenuItem,
-                  disabled,
-                  onMouseMove: () => {
-                    if (!disabled) {
-                      enableMouseHover();
-                      select(index);
-                    }
-                  },
-                  active,
-                  editable,
-                  onMouseOver: clickable ? () => select(index) : undefined,
-                  onClick: clickable ? () => onMenuAction(index) : undefined,
-                  builtIn: menu.builtIn
-                }, index, false, undefined, this))
-              }, undefined, false, undefined, this)
-            }, undefined, false, undefined, this)
-          }, undefined, false, undefined, this),
-          jsx_dev_runtime15.jsxDEV("svg", {
-            xmlns: "http://www.w3.org/2000/svg",
-            style: {
-              position: "absolute",
-              height: 20,
-              width: 200,
-              marginTop: -5,
-              display: scroll + (maxRows ?? items.length.valueOf()) < items.length.valueOf() ? "" : "none",
-              left: `calc(50% - 100px)`
-            },
-            onClick: () => scrollDown(),
-            children: jsx_dev_runtime15.jsxDEV("polygon", {
-              points: "100,20 110,10 90,10",
-              style: { fill: "white" }
-            }, undefined, false, undefined, this)
-          }, undefined, false, undefined, this)
-        ]
-      }, undefined, true, undefined, this),
-      sub && jsx_dev_runtime15.jsxDEV(Container2, {
-        menu: sub.menu,
-        dialog: sub.dialog,
-        prompt: sub.prompt,
-        pictures: menu.pictures,
-        onSelect,
-        onClose: onCloseSub,
-        onPrompt,
-        removed
-      }, undefined, false, undefined, this)
-    ]
-  }, undefined, true, undefined, this);
-};
-var useDialogState = function() {
-  const [index, setIndex] = import_react32.useState(0);
-  return {
-    index,
-    setIndex,
-    next: import_react32.useCallback(() => setIndex((index2) => index2 + 1), [setIndex])
-  };
-};
-var useEditDialog = function({ dialog, active }) {
-  const { editing } = useEditContext();
-  const [editCount, setEditCount] = import_react33.useState(0);
-  const insertMessage = import_react33.useCallback((index, text) => {
-    const messages2 = B(dialog.messages, (m2) => m2).filter((m2) => !!m2);
-    messages2.splice(index, 0, {
-      text
-    });
-    dialog.messages = messages2;
-    setEditCount((count) => count + 1);
-  }, [dialog]);
-  const deleteMessage = import_react33.useCallback((index) => {
-    const messages2 = B(dialog.messages, (m2) => m2).filter((m2) => !!m2);
-    messages2.splice(index, 1);
-    dialog.messages = messages2;
-    setEditCount((count) => count + 1);
-  }, [dialog]);
-  const editMessage = import_react33.useCallback((index, text) => {
-    const messages2 = B(dialog.messages, (m2) => m2).filter((m2) => !!m2);
-    const message = messages2[index];
-    const messageModel = !message ? {} : typeof message === "string" ? { text: message } : message;
-    messageModel.text = text;
-    messages2[index] = messageModel;
-    dialog.messages = messages2;
-    setEditCount((count) => count + 1);
-  }, [dialog]);
-  const messages = import_react33.useMemo(() => !active ? dialog.messages : B(dialog.messages, (m2) => m2), [dialog, editCount, active]);
-  return {
-    ...dialog,
-    messages,
-    editable: editing,
-    editMessage,
-    insertMessage,
-    deleteMessage
-  };
-};
-var useHideMessage = function({ message }) {
-  const [visible, setVisible] = import_react34.useState(true);
-  const [messageHidden, setMessageHidden] = import_react34.useState(false);
-  import_react34.useEffect(() => {
-    if (!visible) {
-      setMessageHidden(true);
-    }
-  }, [visible, setMessageHidden]);
-  import_react34.useEffect(() => {
-    setMessageHidden(false);
-  }, [message, setMessageHidden]);
-  return { visible: visible && !messageHidden, setVisible };
-};
-var Dialog = function({ dialog, onSelect, onClose, onPrompt, focusLess }) {
-  const { next: next2, index } = useDialogState();
-  const [menu, setMenu] = import_react31.useState();
-  const [prompt2, setPrompt] = import_react31.useState();
-  const { active } = useActiveFocus({ disabled: focusLess });
-  const { editing } = useEditContext();
-  const [textProgressing, setTextProgressing] = import_react31.useState(true);
-  const [subdialog, setSubDialog] = import_react31.useState();
-  const [actionPromise, setActionPromise] = import_react31.useState();
-  const [waitingForAction, setWaitingForAction] = import_react31.useState(false);
-  const nextMessage = import_react31.useCallback(() => {
-    if (waitingForAction) {
-      return;
-    }
-    if (actionPromise) {
-      setWaitingForAction(true);
-      actionPromise.then(next2);
-    } else {
-      next2();
-    }
-  }, [next2, actionPromise, setWaitingForAction, waitingForAction]);
-  const { lockState, popupControl } = useControls({
-    active,
-    listener: import_react31.useMemo(() => ({
-      onAction: textProgressing ? undefined : nextMessage,
-      onBack: !dialog.backEnabled || textProgressing ? undefined : nextMessage
-    }), [nextMessage, dialog, textProgressing])
-  });
-  const { editable, editMessage, insertMessage, deleteMessage, messages } = useEditDialog({ dialog, active });
-  const message = import_react31.useMemo(() => {
-    const message2 = messages.at(index);
-    return typeof message2 == "string" ? { text: message2 } : message2;
-  }, [index, messages]);
-  import_react31.useEffect(() => {
-    setWaitingForAction(false);
-  }, [message, setWaitingForAction]);
-  import_react31.useEffect(() => {
-    setActionPromise(message?.action?.());
-  }, [message, setActionPromise]);
-  import_react31.useEffect(() => {
-    actionPromise?.then(() => setActionPromise(undefined));
-  }, [actionPromise, setActionPromise]);
-  import_react31.useEffect(() => {
-    if (message) {
-      if (message.autoNext !== undefined && !waitingForAction) {
-        const timeout = setTimeout(nextMessage, message.autoNext);
-        return () => {
-          clearTimeout(timeout);
-        };
-      }
-    }
-  }, [message, nextMessage, waitingForAction]);
-  import_react31.useEffect(() => {
-    setTextProgressing(true);
-    const timeout = setTimeout(() => {
-      setTextProgressing(false);
-    }, (message?.text?.length ?? 0) * PERIOD);
-    return () => clearTimeout(timeout);
-  }, [setTextProgressing, PERIOD, message]);
-  import_react31.useEffect(() => {
-    setSubDialog(message?.subdialog);
-    setMenu(message?.menu);
-    setPrompt(message?.prompt);
-  }, [message, setMenu, setPrompt, setSubDialog]);
-  const { removed, remove } = useRemove();
-  const { visible, setVisible } = useHideMessage({ message });
-  import_react31.useEffect(() => {
-    if (index >= messages.length.valueOf() && visible) {
-      remove(onClose);
-    }
-  }, [messages, index, remove, onClose, visible]);
-  const onCloseMenu = import_react31.useCallback(async () => {
-    setMenu(undefined);
-    nextMessage();
-  }, [setMenu, nextMessage]);
-  const [editDialogOn, setEditDialogOn] = import_react31.useState(false);
-  useKeyDown({
-    enabled: import_react31.useMemo(() => editable && active && !dialog.builtIn, [active, dialog]),
-    key: "KeyE",
-    callback: import_react31.useCallback(() => {
-      setEditDialogOn((value) => !value);
-    }, [setEditDialogOn])
-  });
-  const editMenu = import_react31.useMemo(() => ({
-    builtIn: true,
-    layout: {
-      position: [50, 200],
-      size: [400, 300]
-    },
-    items: [
-      {
-        label: "insert new message",
-        back: true,
-        action: async () => {
-          const newText = await promptText({
-            label: "Enter a text for the new message",
-            popupControl
-          });
-          if (newText) {
-            insertMessage?.(index, newText);
-          }
-        }
-      },
-      {
-        label: "delete message",
-        back: true,
-        action: async () => {
-          deleteMessage(index);
-        }
-      },
-      {
-        label: "edit text",
-        back: true,
-        action: async () => {
-          const newText = await promptText({
-            label: "Enter a new text",
-            defaultText: message?.text,
-            popupControl
-          });
-          if (newText) {
-            editMessage(index, newText);
-          }
-        }
-      },
-      { label: "exit", builtIn: true, back: true }
-    ]
-  }), [message, index, popupControl, editMessage, insertMessage, deleteMessage]);
-  const pictures = import_react31.useMemo(() => [...B(dialog.pictures ?? [], (p3) => p3), ...B(message?.pictures ?? [], (p3) => p3)].filter((p3) => !!p3), [dialog, message]);
-  return jsx_dev_runtime16.jsxDEV(jsx_dev_runtime16.Fragment, {
-    children: message?.text && jsx_dev_runtime16.jsxDEV(jsx_dev_runtime16.Fragment, {
-      children: [
-        jsx_dev_runtime16.jsxDEV(Popup2, {
-          layout: dialog.layout ?? {},
-          style: dialog.style,
-          disabled: lockState === LockStatus.LOCKED,
-          removed,
-          onBack: dialog.backEnabled ? next2 : undefined,
-          clickThrough: focusLess,
-          leaveBorderUnchanged: true,
-          visible,
-          setVisible,
-          children: jsx_dev_runtime16.jsxDEV("div", {
-            style: {
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              padding: 10
-            },
-            onClick: () => popupControl.onAction(),
-            children: [
-              !waitingForAction && jsx_dev_runtime16.jsxDEV("div", {
-                style: { flex: 1 },
-                children: jsx_dev_runtime16.jsxDEV("progressive-text", {
-                  period: `${PERIOD}`,
-                  children: message?.text
-                }, undefined, false, undefined, this)
-              }, undefined, false, undefined, this),
-              editing && active && jsx_dev_runtime16.jsxDEV("div", {
-                style: {
-                  textAlign: "center",
-                  backgroundColor: "blue",
-                  borderRadius: "50%",
-                  width: "30px",
-                  height: "30px",
-                  color: "white"
-                },
-                children: "E"
-              }, undefined, false, undefined, this)
-            ]
-          }, undefined, true, undefined, this)
-        }, undefined, false, undefined, this),
-        subdialog && jsx_dev_runtime16.jsxDEV(Container2, {
-          dialog: subdialog,
-          focusLess: true,
-          removed
-        }, undefined, false, undefined, this),
-        jsx_dev_runtime16.jsxDEV(Container2, {
-          pictures,
-          menu: !textProgressing ? menu : undefined,
-          prompt: !textProgressing ? prompt2 : undefined,
-          onSelect,
-          onClose: onCloseMenu,
-          onPrompt,
-          removed
-        }, undefined, false, undefined, this),
-        editDialogOn && jsx_dev_runtime16.jsxDEV(Container2, {
-          menu: editMenu,
-          onClose: () => setEditDialogOn(false)
-        }, undefined, false, undefined, this)
-      ]
-    }, undefined, true, undefined, this)
-  }, undefined, false, undefined, this);
-};
+var import_jsx_dev_runtime16 = __toESM(require_jsx_dev_runtime(), 1);
 var __create2 = Object.create;
 var __defProp2 = Object.defineProperty;
 var __getProtoOf2 = Object.getPrototypeOf;
@@ -5150,12 +2765,12 @@ var require_scheduler_development = __commonJS2((exports) => {
       var enableSchedulerDebugging = false;
       var enableProfiling = false;
       var frameYieldMs = 5;
-      function push(heap, node2) {
+      function push(heap, node) {
         var index = heap.length;
-        heap.push(node2);
-        siftUp(heap, node2, index);
+        heap.push(node);
+        siftUp(heap, node, index);
       }
-      function peek2(heap) {
+      function peek(heap) {
         return heap.length === 0 ? null : heap[0];
       }
       function pop(heap) {
@@ -5170,13 +2785,13 @@ var require_scheduler_development = __commonJS2((exports) => {
         }
         return first;
       }
-      function siftUp(heap, node2, i2) {
+      function siftUp(heap, node, i2) {
         var index = i2;
         while (index > 0) {
           var parentIndex = index - 1 >>> 1;
           var parent = heap[parentIndex];
-          if (compare(parent, node2) > 0) {
-            heap[parentIndex] = node2;
+          if (compare(parent, node) > 0) {
+            heap[parentIndex] = node;
             heap[index] = parent;
             index = parentIndex;
           } else {
@@ -5184,7 +2799,7 @@ var require_scheduler_development = __commonJS2((exports) => {
           }
         }
       }
-      function siftDown(heap, node2, i2) {
+      function siftDown(heap, node, i2) {
         var index = i2;
         var length = heap.length;
         var halfLength = length >>> 1;
@@ -5193,19 +2808,19 @@ var require_scheduler_development = __commonJS2((exports) => {
           var left = heap[leftIndex];
           var rightIndex = leftIndex + 1;
           var right = heap[rightIndex];
-          if (compare(left, node2) < 0) {
+          if (compare(left, node) < 0) {
             if (rightIndex < length && compare(right, left) < 0) {
               heap[index] = right;
-              heap[rightIndex] = node2;
+              heap[rightIndex] = node;
               index = rightIndex;
             } else {
               heap[index] = left;
-              heap[leftIndex] = node2;
+              heap[leftIndex] = node;
               index = leftIndex;
             }
-          } else if (rightIndex < length && compare(right, node2) < 0) {
+          } else if (rightIndex < length && compare(right, node) < 0) {
             heap[index] = right;
-            heap[rightIndex] = node2;
+            heap[rightIndex] = node;
             index = rightIndex;
           } else {
             return;
@@ -5255,7 +2870,7 @@ var require_scheduler_development = __commonJS2((exports) => {
       var localSetImmediate = typeof setImmediate !== "undefined" ? setImmediate : null;
       var isInputPending = typeof navigator !== "undefined" && navigator.scheduling !== undefined && navigator.scheduling.isInputPending !== undefined ? navigator.scheduling.isInputPending.bind(navigator.scheduling) : null;
       function advanceTimers(currentTime) {
-        var timer = peek2(timerQueue);
+        var timer = peek(timerQueue);
         while (timer !== null) {
           if (timer.callback === null) {
             pop(timerQueue);
@@ -5266,18 +2881,18 @@ var require_scheduler_development = __commonJS2((exports) => {
           } else {
             return;
           }
-          timer = peek2(timerQueue);
+          timer = peek(timerQueue);
         }
       }
       function handleTimeout(currentTime) {
         isHostTimeoutScheduled = false;
         advanceTimers(currentTime);
         if (!isHostCallbackScheduled) {
-          if (peek2(taskQueue) !== null) {
+          if (peek(taskQueue) !== null) {
             isHostCallbackScheduled = true;
             requestHostCallback(flushWork);
           } else {
-            var firstTimer = peek2(timerQueue);
+            var firstTimer = peek(timerQueue);
             if (firstTimer !== null) {
               requestHostTimeout(handleTimeout, firstTimer.startTime - currentTime);
             }
@@ -5316,7 +2931,7 @@ var require_scheduler_development = __commonJS2((exports) => {
       function workLoop(hasTimeRemaining, initialTime2) {
         var currentTime = initialTime2;
         advanceTimers(currentTime);
-        currentTask = peek2(taskQueue);
+        currentTask = peek(taskQueue);
         while (currentTask !== null && !enableSchedulerDebugging) {
           if (currentTask.expirationTime > currentTime && (!hasTimeRemaining || shouldYieldToHost())) {
             break;
@@ -5331,7 +2946,7 @@ var require_scheduler_development = __commonJS2((exports) => {
             if (typeof continuationCallback === "function") {
               currentTask.callback = continuationCallback;
             } else {
-              if (currentTask === peek2(taskQueue)) {
+              if (currentTask === peek(taskQueue)) {
                 pop(taskQueue);
               }
             }
@@ -5339,12 +2954,12 @@ var require_scheduler_development = __commonJS2((exports) => {
           } else {
             pop(taskQueue);
           }
-          currentTask = peek2(taskQueue);
+          currentTask = peek(taskQueue);
         }
         if (currentTask !== null) {
           return true;
         } else {
-          var firstTimer = peek2(timerQueue);
+          var firstTimer = peek(timerQueue);
           if (firstTimer !== null) {
             requestHostTimeout(handleTimeout, firstTimer.startTime - currentTime);
           }
@@ -5446,7 +3061,7 @@ var require_scheduler_development = __commonJS2((exports) => {
         if (startTime2 > currentTime) {
           newTask.sortIndex = startTime2;
           push(timerQueue, newTask);
-          if (peek2(taskQueue) === null && newTask === peek2(timerQueue)) {
+          if (peek(taskQueue) === null && newTask === peek(timerQueue)) {
             if (isHostTimeoutScheduled) {
               cancelHostTimeout();
             } else {
@@ -5473,7 +3088,7 @@ var require_scheduler_development = __commonJS2((exports) => {
         }
       }
       function unstable_getFirstCallbackNode() {
-        return peek2(taskQueue);
+        return peek(taskQueue);
       }
       function unstable_cancelCallback(task) {
         task.callback = null;
@@ -5828,8 +3443,8 @@ var require_react_dom_development = __commonJS2((exports) => {
             if (propertyInfo !== null) {
               return !propertyInfo.acceptsBooleans;
             } else {
-              var prefix22 = name.toLowerCase().slice(0, 5);
-              return prefix22 !== "data-" && prefix22 !== "aria-";
+              var prefix2 = name.toLowerCase().slice(0, 5);
+              return prefix2 !== "data-" && prefix2 !== "aria-";
             }
           }
           default:
@@ -5950,8 +3565,8 @@ var require_react_dom_development = __commonJS2((exports) => {
         properties[name] = new PropertyInfoRecord(name, NUMERIC, false, name.toLowerCase(), null, false, false);
       });
       var CAMELIZE = /[\-\:]([a-z])/g;
-      var capitalize = function(token2) {
-        return token2[1].toUpperCase();
+      var capitalize = function(token) {
+        return token[1].toUpperCase();
       };
       [
         "accent-height",
@@ -6068,11 +3683,11 @@ var require_react_dom_development = __commonJS2((exports) => {
           }
         }
       }
-      function getValueForProperty(node2, name, expected, propertyInfo) {
+      function getValueForProperty(node, name, expected, propertyInfo) {
         {
           if (propertyInfo.mustUseProperty) {
             var propertyName = propertyInfo.propertyName;
-            return node2[propertyName];
+            return node[propertyName];
           } else {
             {
               checkAttributeStringCoercion(expected, name);
@@ -6083,8 +3698,8 @@ var require_react_dom_development = __commonJS2((exports) => {
             var attributeName = propertyInfo.attributeName;
             var stringValue = null;
             if (propertyInfo.type === OVERLOADED_BOOLEAN) {
-              if (node2.hasAttribute(attributeName)) {
-                var value = node2.getAttribute(attributeName);
+              if (node.hasAttribute(attributeName)) {
+                var value = node.getAttribute(attributeName);
                 if (value === "") {
                   return true;
                 }
@@ -6096,14 +3711,14 @@ var require_react_dom_development = __commonJS2((exports) => {
                 }
                 return value;
               }
-            } else if (node2.hasAttribute(attributeName)) {
+            } else if (node.hasAttribute(attributeName)) {
               if (shouldRemoveAttribute(name, expected, propertyInfo, false)) {
-                return node2.getAttribute(attributeName);
+                return node.getAttribute(attributeName);
               }
               if (propertyInfo.type === BOOLEAN) {
                 return expected;
               }
-              stringValue = node2.getAttribute(attributeName);
+              stringValue = node.getAttribute(attributeName);
             }
             if (shouldRemoveAttribute(name, expected, propertyInfo, false)) {
               return stringValue === null ? expected : stringValue;
@@ -6115,15 +3730,15 @@ var require_react_dom_development = __commonJS2((exports) => {
           }
         }
       }
-      function getValueForAttribute(node2, name, expected, isCustomComponentTag) {
+      function getValueForAttribute(node, name, expected, isCustomComponentTag) {
         {
           if (!isAttributeNameSafe(name)) {
             return;
           }
-          if (!node2.hasAttribute(name)) {
+          if (!node.hasAttribute(name)) {
             return expected === undefined ? undefined : null;
           }
-          var value = node2.getAttribute(name);
+          var value = node.getAttribute(name);
           {
             checkAttributeStringCoercion(expected, name);
           }
@@ -6133,7 +3748,7 @@ var require_react_dom_development = __commonJS2((exports) => {
           return value;
         }
       }
-      function setValueForProperty(node2, name, value, isCustomComponentTag) {
+      function setValueForProperty(node, name, value, isCustomComponentTag) {
         var propertyInfo = getPropertyInfo(name);
         if (shouldIgnoreAttribute(name, propertyInfo, isCustomComponentTag)) {
           return;
@@ -6145,12 +3760,12 @@ var require_react_dom_development = __commonJS2((exports) => {
           if (isAttributeNameSafe(name)) {
             var _attributeName = name;
             if (value === null) {
-              node2.removeAttribute(_attributeName);
+              node.removeAttribute(_attributeName);
             } else {
               {
                 checkAttributeStringCoercion(value, name);
               }
-              node2.setAttribute(_attributeName, "" + value);
+              node.setAttribute(_attributeName, "" + value);
             }
           }
           return;
@@ -6160,15 +3775,15 @@ var require_react_dom_development = __commonJS2((exports) => {
           var propertyName = propertyInfo.propertyName;
           if (value === null) {
             var type = propertyInfo.type;
-            node2[propertyName] = type === BOOLEAN ? false : "";
+            node[propertyName] = type === BOOLEAN ? false : "";
           } else {
-            node2[propertyName] = value;
+            node[propertyName] = value;
           }
           return;
         }
         var { attributeName, attributeNamespace } = propertyInfo;
         if (value === null) {
-          node2.removeAttribute(attributeName);
+          node.removeAttribute(attributeName);
         } else {
           var _type = propertyInfo.type;
           var attributeValue;
@@ -6186,9 +3801,9 @@ var require_react_dom_development = __commonJS2((exports) => {
             }
           }
           if (attributeNamespace) {
-            node2.setAttributeNS(attributeNamespace, attributeName, attributeValue);
+            node.setAttributeNS(attributeNamespace, attributeName, attributeValue);
           } else {
-            node2.setAttribute(attributeName, attributeValue);
+            node.setAttribute(attributeName, attributeValue);
           }
         }
       }
@@ -6302,18 +3917,18 @@ var require_react_dom_development = __commonJS2((exports) => {
         }
       }
       var ReactCurrentDispatcher = ReactSharedInternals.ReactCurrentDispatcher;
-      var prefix2;
+      var prefix;
       function describeBuiltInComponentFrame(name, source, ownerFn) {
         {
-          if (prefix2 === undefined) {
+          if (prefix === undefined) {
             try {
               throw Error();
             } catch (x3) {
-              var match2 = x3.stack.trim().match(/\n( *(at )?)/);
-              prefix2 = match2 && match2[1] || "";
+              var match = x3.stack.trim().match(/\n( *(at )?)/);
+              prefix = match && match[1] || "";
             }
           }
-          return "\n" + prefix2 + name;
+          return "\n" + prefix + name;
         }
       }
       var reentry = false;
@@ -6503,11 +4118,11 @@ var require_react_dom_development = __commonJS2((exports) => {
       function getStackByFiberInDevAndProd(workInProgress2) {
         try {
           var info = "";
-          var node2 = workInProgress2;
+          var node = workInProgress2;
           do {
-            info += describeFiber(node2);
-            node2 = node2.return;
-          } while (node2);
+            info += describeFiber(node);
+            node = node.return;
+          } while (node);
           return info;
         } catch (x3) {
           return "\nError generating stack: " + x3.message + "\n" + x3.stack;
@@ -6740,36 +4355,36 @@ var require_react_dom_development = __commonJS2((exports) => {
         var nodeName = elem.nodeName;
         return nodeName && nodeName.toLowerCase() === "input" && (type === "checkbox" || type === "radio");
       }
-      function getTracker(node2) {
-        return node2._valueTracker;
+      function getTracker(node) {
+        return node._valueTracker;
       }
-      function detachTracker(node2) {
-        node2._valueTracker = null;
+      function detachTracker(node) {
+        node._valueTracker = null;
       }
-      function getValueFromNode(node2) {
+      function getValueFromNode(node) {
         var value = "";
-        if (!node2) {
+        if (!node) {
           return value;
         }
-        if (isCheckable(node2)) {
-          value = node2.checked ? "true" : "false";
+        if (isCheckable(node)) {
+          value = node.checked ? "true" : "false";
         } else {
-          value = node2.value;
+          value = node.value;
         }
         return value;
       }
-      function trackValueOnNode(node2) {
-        var valueField = isCheckable(node2) ? "checked" : "value";
-        var descriptor = Object.getOwnPropertyDescriptor(node2.constructor.prototype, valueField);
+      function trackValueOnNode(node) {
+        var valueField = isCheckable(node) ? "checked" : "value";
+        var descriptor = Object.getOwnPropertyDescriptor(node.constructor.prototype, valueField);
         {
-          checkFormFieldValueStringCoercion(node2[valueField]);
+          checkFormFieldValueStringCoercion(node[valueField]);
         }
-        var currentValue = "" + node2[valueField];
-        if (node2.hasOwnProperty(valueField) || typeof descriptor === "undefined" || typeof descriptor.get !== "function" || typeof descriptor.set !== "function") {
+        var currentValue = "" + node[valueField];
+        if (node.hasOwnProperty(valueField) || typeof descriptor === "undefined" || typeof descriptor.get !== "function" || typeof descriptor.set !== "function") {
           return;
         }
         var { get: get2, set: set2 } = descriptor;
-        Object.defineProperty(node2, valueField, {
+        Object.defineProperty(node, valueField, {
           configurable: true,
           get: function() {
             return get2.call(this);
@@ -6782,7 +4397,7 @@ var require_react_dom_development = __commonJS2((exports) => {
             set2.call(this, value);
           }
         });
-        Object.defineProperty(node2, valueField, {
+        Object.defineProperty(node, valueField, {
           enumerable: descriptor.enumerable
         });
         var tracker = {
@@ -6796,28 +4411,28 @@ var require_react_dom_development = __commonJS2((exports) => {
             currentValue = "" + value;
           },
           stopTracking: function() {
-            detachTracker(node2);
-            delete node2[valueField];
+            detachTracker(node);
+            delete node[valueField];
           }
         };
         return tracker;
       }
-      function track(node2) {
-        if (getTracker(node2)) {
+      function track(node) {
+        if (getTracker(node)) {
           return;
         }
-        node2._valueTracker = trackValueOnNode(node2);
+        node._valueTracker = trackValueOnNode(node);
       }
-      function updateValueIfChanged(node2) {
-        if (!node2) {
+      function updateValueIfChanged(node) {
+        if (!node) {
           return false;
         }
-        var tracker = getTracker(node2);
+        var tracker = getTracker(node);
         if (!tracker) {
           return true;
         }
         var lastValue = tracker.getValue();
-        var nextValue = getValueFromNode(node2);
+        var nextValue = getValueFromNode(node);
         if (nextValue !== lastValue) {
           tracker.setValue(nextValue);
           return true;
@@ -6844,13 +4459,13 @@ var require_react_dom_development = __commonJS2((exports) => {
         return usesChecked ? props.checked != null : props.value != null;
       }
       function getHostProps(element, props) {
-        var node2 = element;
+        var node = element;
         var checked = props.checked;
         var hostProps = assign({}, props, {
           defaultChecked: undefined,
           defaultValue: undefined,
           value: undefined,
-          checked: checked != null ? checked : node2._wrapperState.initialChecked
+          checked: checked != null ? checked : node._wrapperState.initialChecked
         });
         return hostProps;
       }
@@ -6866,30 +4481,30 @@ var require_react_dom_development = __commonJS2((exports) => {
             didWarnValueDefaultValue = true;
           }
         }
-        var node2 = element;
+        var node = element;
         var defaultValue = props.defaultValue == null ? "" : props.defaultValue;
-        node2._wrapperState = {
+        node._wrapperState = {
           initialChecked: props.checked != null ? props.checked : props.defaultChecked,
           initialValue: getToStringValue(props.value != null ? props.value : defaultValue),
           controlled: isControlled(props)
         };
       }
       function updateChecked(element, props) {
-        var node2 = element;
+        var node = element;
         var checked = props.checked;
         if (checked != null) {
-          setValueForProperty(node2, "checked", checked, false);
+          setValueForProperty(node, "checked", checked, false);
         }
       }
       function updateWrapper(element, props) {
-        var node2 = element;
+        var node = element;
         {
           var controlled = isControlled(props);
-          if (!node2._wrapperState.controlled && controlled && !didWarnUncontrolledToControlled) {
+          if (!node._wrapperState.controlled && controlled && !didWarnUncontrolledToControlled) {
             error("A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components");
             didWarnUncontrolledToControlled = true;
           }
-          if (node2._wrapperState.controlled && !controlled && !didWarnControlledToUncontrolled) {
+          if (node._wrapperState.controlled && !controlled && !didWarnControlledToUncontrolled) {
             error("A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components");
             didWarnControlledToUncontrolled = true;
           }
@@ -6899,65 +4514,65 @@ var require_react_dom_development = __commonJS2((exports) => {
         var type = props.type;
         if (value != null) {
           if (type === "number") {
-            if (value === 0 && node2.value === "" || node2.value != value) {
-              node2.value = toString(value);
+            if (value === 0 && node.value === "" || node.value != value) {
+              node.value = toString(value);
             }
-          } else if (node2.value !== toString(value)) {
-            node2.value = toString(value);
+          } else if (node.value !== toString(value)) {
+            node.value = toString(value);
           }
         } else if (type === "submit" || type === "reset") {
-          node2.removeAttribute("value");
+          node.removeAttribute("value");
           return;
         }
         {
           if (props.hasOwnProperty("value")) {
-            setDefaultValue(node2, props.type, value);
+            setDefaultValue(node, props.type, value);
           } else if (props.hasOwnProperty("defaultValue")) {
-            setDefaultValue(node2, props.type, getToStringValue(props.defaultValue));
+            setDefaultValue(node, props.type, getToStringValue(props.defaultValue));
           }
         }
         {
           if (props.checked == null && props.defaultChecked != null) {
-            node2.defaultChecked = !!props.defaultChecked;
+            node.defaultChecked = !!props.defaultChecked;
           }
         }
       }
       function postMountWrapper(element, props, isHydrating2) {
-        var node2 = element;
+        var node = element;
         if (props.hasOwnProperty("value") || props.hasOwnProperty("defaultValue")) {
           var type = props.type;
           var isButton = type === "submit" || type === "reset";
           if (isButton && (props.value === undefined || props.value === null)) {
             return;
           }
-          var initialValue = toString(node2._wrapperState.initialValue);
+          var initialValue = toString(node._wrapperState.initialValue);
           if (!isHydrating2) {
             {
-              if (initialValue !== node2.value) {
-                node2.value = initialValue;
+              if (initialValue !== node.value) {
+                node.value = initialValue;
               }
             }
           }
           {
-            node2.defaultValue = initialValue;
+            node.defaultValue = initialValue;
           }
         }
-        var name = node2.name;
+        var name = node.name;
         if (name !== "") {
-          node2.name = "";
+          node.name = "";
         }
         {
-          node2.defaultChecked = !node2.defaultChecked;
-          node2.defaultChecked = !!node2._wrapperState.initialChecked;
+          node.defaultChecked = !node.defaultChecked;
+          node.defaultChecked = !!node._wrapperState.initialChecked;
         }
         if (name !== "") {
-          node2.name = name;
+          node.name = name;
         }
       }
       function restoreControlledState(element, props) {
-        var node2 = element;
-        updateWrapper(node2, props);
-        updateNamedCousins(node2, props);
+        var node = element;
+        updateWrapper(node, props);
+        updateNamedCousins(node, props);
       }
       function updateNamedCousins(rootNode, props) {
         var name = props.name;
@@ -6984,12 +4599,12 @@ var require_react_dom_development = __commonJS2((exports) => {
           }
         }
       }
-      function setDefaultValue(node2, type, value) {
-        if (type !== "number" || getActiveElement(node2.ownerDocument) !== node2) {
+      function setDefaultValue(node, type, value) {
+        if (type !== "number" || getActiveElement(node.ownerDocument) !== node) {
           if (value == null) {
-            node2.defaultValue = toString(node2._wrapperState.initialValue);
-          } else if (node2.defaultValue !== toString(value)) {
-            node2.defaultValue = toString(value);
+            node.defaultValue = toString(node._wrapperState.initialValue);
+          } else if (node.defaultValue !== toString(value)) {
+            node.defaultValue = toString(value);
           }
         }
       }
@@ -7063,8 +4678,8 @@ var require_react_dom_development = __commonJS2((exports) => {
           }
         }
       }
-      function updateOptions(node2, multiple, propValue, setDefaultSelected) {
-        var options2 = node2.options;
+      function updateOptions(node, multiple, propValue, setDefaultSelected) {
+        var options2 = node.options;
         if (multiple) {
           var selectedValues = propValue;
           var selectedValue = {};
@@ -7106,11 +4721,11 @@ var require_react_dom_development = __commonJS2((exports) => {
         });
       }
       function initWrapperState$1(element, props) {
-        var node2 = element;
+        var node = element;
         {
           checkSelectPropTypes(props);
         }
-        node2._wrapperState = {
+        node._wrapperState = {
           wasMultiple: !!props.multiple
         };
         {
@@ -7121,52 +4736,52 @@ var require_react_dom_development = __commonJS2((exports) => {
         }
       }
       function postMountWrapper$2(element, props) {
-        var node2 = element;
-        node2.multiple = !!props.multiple;
+        var node = element;
+        node.multiple = !!props.multiple;
         var value = props.value;
         if (value != null) {
-          updateOptions(node2, !!props.multiple, value, false);
+          updateOptions(node, !!props.multiple, value, false);
         } else if (props.defaultValue != null) {
-          updateOptions(node2, !!props.multiple, props.defaultValue, true);
+          updateOptions(node, !!props.multiple, props.defaultValue, true);
         }
       }
       function postUpdateWrapper(element, props) {
-        var node2 = element;
-        var wasMultiple = node2._wrapperState.wasMultiple;
-        node2._wrapperState.wasMultiple = !!props.multiple;
+        var node = element;
+        var wasMultiple = node._wrapperState.wasMultiple;
+        node._wrapperState.wasMultiple = !!props.multiple;
         var value = props.value;
         if (value != null) {
-          updateOptions(node2, !!props.multiple, value, false);
+          updateOptions(node, !!props.multiple, value, false);
         } else if (wasMultiple !== !!props.multiple) {
           if (props.defaultValue != null) {
-            updateOptions(node2, !!props.multiple, props.defaultValue, true);
+            updateOptions(node, !!props.multiple, props.defaultValue, true);
           } else {
-            updateOptions(node2, !!props.multiple, props.multiple ? [] : "", false);
+            updateOptions(node, !!props.multiple, props.multiple ? [] : "", false);
           }
         }
       }
       function restoreControlledState$1(element, props) {
-        var node2 = element;
+        var node = element;
         var value = props.value;
         if (value != null) {
-          updateOptions(node2, !!props.multiple, value, false);
+          updateOptions(node, !!props.multiple, value, false);
         }
       }
       var didWarnValDefaultVal = false;
       function getHostProps$2(element, props) {
-        var node2 = element;
+        var node = element;
         if (props.dangerouslySetInnerHTML != null) {
           throw new Error("`dangerouslySetInnerHTML` does not make sense on <textarea>.");
         }
         var hostProps = assign({}, props, {
           value: undefined,
           defaultValue: undefined,
-          children: toString(node2._wrapperState.initialValue)
+          children: toString(node._wrapperState.initialValue)
         });
         return hostProps;
       }
       function initWrapperState$2(element, props) {
-        var node2 = element;
+        var node = element;
         {
           checkControlledValueProps("textarea", props);
           if (props.value !== undefined && props.defaultValue !== undefined && !didWarnValDefaultVal) {
@@ -7199,33 +4814,33 @@ var require_react_dom_development = __commonJS2((exports) => {
           }
           initialValue = defaultValue;
         }
-        node2._wrapperState = {
+        node._wrapperState = {
           initialValue: getToStringValue(initialValue)
         };
       }
       function updateWrapper$1(element, props) {
-        var node2 = element;
+        var node = element;
         var value = getToStringValue(props.value);
         var defaultValue = getToStringValue(props.defaultValue);
         if (value != null) {
           var newValue = toString(value);
-          if (newValue !== node2.value) {
-            node2.value = newValue;
+          if (newValue !== node.value) {
+            node.value = newValue;
           }
-          if (props.defaultValue == null && node2.defaultValue !== newValue) {
-            node2.defaultValue = newValue;
+          if (props.defaultValue == null && node.defaultValue !== newValue) {
+            node.defaultValue = newValue;
           }
         }
         if (defaultValue != null) {
-          node2.defaultValue = toString(defaultValue);
+          node.defaultValue = toString(defaultValue);
         }
       }
       function postMountWrapper$3(element, props) {
-        var node2 = element;
-        var textContent = node2.textContent;
-        if (textContent === node2._wrapperState.initialValue) {
+        var node = element;
+        var textContent = node.textContent;
+        if (textContent === node._wrapperState.initialValue) {
           if (textContent !== "" && textContent !== null) {
-            node2.value = textContent;
+            node.value = textContent;
           }
         }
       }
@@ -7266,37 +4881,37 @@ var require_react_dom_development = __commonJS2((exports) => {
         }
       };
       var reusableSVGContainer;
-      var setInnerHTML = createMicrosoftUnsafeLocalFunction(function(node2, html) {
-        if (node2.namespaceURI === SVG_NAMESPACE) {
-          if (!("innerHTML" in node2)) {
+      var setInnerHTML = createMicrosoftUnsafeLocalFunction(function(node, html) {
+        if (node.namespaceURI === SVG_NAMESPACE) {
+          if (!("innerHTML" in node)) {
             reusableSVGContainer = reusableSVGContainer || document.createElement("div");
             reusableSVGContainer.innerHTML = "<svg>" + html.valueOf().toString() + "</svg>";
             var svgNode = reusableSVGContainer.firstChild;
-            while (node2.firstChild) {
-              node2.removeChild(node2.firstChild);
+            while (node.firstChild) {
+              node.removeChild(node.firstChild);
             }
             while (svgNode.firstChild) {
-              node2.appendChild(svgNode.firstChild);
+              node.appendChild(svgNode.firstChild);
             }
             return;
           }
         }
-        node2.innerHTML = html;
+        node.innerHTML = html;
       });
       var ELEMENT_NODE = 1;
       var TEXT_NODE = 3;
       var COMMENT_NODE = 8;
       var DOCUMENT_NODE = 9;
       var DOCUMENT_FRAGMENT_NODE = 11;
-      var setTextContent = function(node2, text) {
+      var setTextContent = function(node, text) {
         if (text) {
-          var firstChild = node2.firstChild;
-          if (firstChild && firstChild === node2.lastChild && firstChild.nodeType === TEXT_NODE) {
+          var firstChild = node.firstChild;
+          if (firstChild && firstChild === node.lastChild && firstChild.nodeType === TEXT_NODE) {
             firstChild.nodeValue = text;
             return;
           }
         }
-        node2.textContent = text;
+        node.textContent = text;
       };
       var shorthandToLonghand = {
         animation: ["animationDelay", "animationDirection", "animationDuration", "animationFillMode", "animationIterationCount", "animationName", "animationPlayState", "animationTimingFunction"],
@@ -7392,13 +5007,13 @@ var require_react_dom_development = __commonJS2((exports) => {
         strokeOpacity: true,
         strokeWidth: true
       };
-      function prefixKey(prefix22, key) {
-        return prefix22 + key.charAt(0).toUpperCase() + key.substring(1);
+      function prefixKey(prefix2, key) {
+        return prefix2 + key.charAt(0).toUpperCase() + key.substring(1);
       }
       var prefixes = ["Webkit", "ms", "Moz", "O"];
       Object.keys(isUnitlessNumber).forEach(function(prop) {
-        prefixes.forEach(function(prefix22) {
-          isUnitlessNumber[prefixKey(prefix22, prop)] = isUnitlessNumber[prop];
+        prefixes.forEach(function(prefix2) {
+          isUnitlessNumber[prefixKey(prefix2, prop)] = isUnitlessNumber[prop];
         });
       });
       function dangerousStyleValue(name, value, isCustomProperty) {
@@ -7491,7 +5106,7 @@ var require_react_dom_development = __commonJS2((exports) => {
       function createDangerousStringForStyles(styles) {
         {
           var serialized = "";
-          var delimiter2 = "";
+          var delimiter = "";
           for (var styleName in styles) {
             if (!styles.hasOwnProperty(styleName)) {
               continue;
@@ -7499,16 +5114,16 @@ var require_react_dom_development = __commonJS2((exports) => {
             var styleValue = styles[styleName];
             if (styleValue != null) {
               var isCustomProperty = styleName.indexOf("--") === 0;
-              serialized += delimiter2 + (isCustomProperty ? styleName : hyphenateStyleName(styleName)) + ":";
+              serialized += delimiter + (isCustomProperty ? styleName : hyphenateStyleName(styleName)) + ":";
               serialized += dangerousStyleValue(styleName, styleValue, isCustomProperty);
-              delimiter2 = ";";
+              delimiter = ";";
             }
           }
           return serialized || null;
         }
       }
-      function setValueForStyles(node2, styles) {
-        var style2 = node2.style;
+      function setValueForStyles(node, styles) {
+        var style2 = node.style;
         for (var styleName in styles) {
           if (!styles.hasOwnProperty(styleName)) {
             continue;
@@ -8702,23 +6317,23 @@ var require_react_dom_development = __commonJS2((exports) => {
       var StaticMask = LayoutStatic | PassiveStatic | RefStatic;
       var ReactCurrentOwner = ReactSharedInternals.ReactCurrentOwner;
       function getNearestMountedFiber(fiber) {
-        var node2 = fiber;
+        var node = fiber;
         var nearestMounted = fiber;
         if (!fiber.alternate) {
-          var nextNode = node2;
+          var nextNode = node;
           do {
-            node2 = nextNode;
-            if ((node2.flags & (Placement | Hydrating)) !== NoFlags) {
-              nearestMounted = node2.return;
+            node = nextNode;
+            if ((node.flags & (Placement | Hydrating)) !== NoFlags) {
+              nearestMounted = node.return;
             }
-            nextNode = node2.return;
+            nextNode = node.return;
           } while (nextNode);
         } else {
-          while (node2.return) {
-            node2 = node2.return;
+          while (node.return) {
+            node = node.return;
           }
         }
-        if (node2.tag === HostRoot) {
+        if (node.tag === HostRoot) {
           return nearestMounted;
         }
         return null;
@@ -8869,15 +6484,15 @@ var require_react_dom_development = __commonJS2((exports) => {
         var currentParent = findCurrentFiberUsingSlowPath(parent);
         return currentParent !== null ? findCurrentHostFiberImpl(currentParent) : null;
       }
-      function findCurrentHostFiberImpl(node2) {
-        if (node2.tag === HostComponent || node2.tag === HostText) {
-          return node2;
+      function findCurrentHostFiberImpl(node) {
+        if (node.tag === HostComponent || node.tag === HostText) {
+          return node;
         }
-        var child = node2.child;
+        var child = node.child;
         while (child !== null) {
-          var match2 = findCurrentHostFiberImpl(child);
-          if (match2 !== null) {
-            return match2;
+          var match = findCurrentHostFiberImpl(child);
+          if (match !== null) {
+            return match;
           }
           child = child.sibling;
         }
@@ -8887,16 +6502,16 @@ var require_react_dom_development = __commonJS2((exports) => {
         var currentParent = findCurrentFiberUsingSlowPath(parent);
         return currentParent !== null ? findCurrentHostFiberWithNoPortalsImpl(currentParent) : null;
       }
-      function findCurrentHostFiberWithNoPortalsImpl(node2) {
-        if (node2.tag === HostComponent || node2.tag === HostText) {
-          return node2;
+      function findCurrentHostFiberWithNoPortalsImpl(node) {
+        if (node.tag === HostComponent || node.tag === HostText) {
+          return node;
         }
-        var child = node2.child;
+        var child = node.child;
         while (child !== null) {
           if (child.tag !== HostPortal) {
-            var match2 = findCurrentHostFiberWithNoPortalsImpl(child);
-            if (match2 !== null) {
-              return match2;
+            var match = findCurrentHostFiberWithNoPortalsImpl(child);
+            if (match !== null) {
+              return match;
             }
           }
           child = child.sibling;
@@ -11017,13 +8632,13 @@ var require_react_dom_development = __commonJS2((exports) => {
           return getInstIfValueChanged(targetInst);
         }
       }
-      function handleControlledInputBlur(node2) {
-        var state = node2._wrapperState;
-        if (!state || !state.controlled || node2.type !== "number") {
+      function handleControlledInputBlur(node) {
+        var state = node._wrapperState;
+        if (!state || !state.controlled || node.type !== "number") {
           return;
         }
         {
-          setDefaultValue(node2, "number", node2.value);
+          setDefaultValue(node, "number", node.value);
         }
       }
       function extractEvents$1(dispatchQueue, domEventName, targetInst, nativeEvent, nativeEventTarget, eventSystemFlags, targetContainer) {
@@ -11154,36 +8769,36 @@ var require_react_dom_development = __commonJS2((exports) => {
         }
         return true;
       }
-      function getLeafNode(node2) {
-        while (node2 && node2.firstChild) {
-          node2 = node2.firstChild;
+      function getLeafNode(node) {
+        while (node && node.firstChild) {
+          node = node.firstChild;
         }
-        return node2;
+        return node;
       }
-      function getSiblingNode(node2) {
-        while (node2) {
-          if (node2.nextSibling) {
-            return node2.nextSibling;
+      function getSiblingNode(node) {
+        while (node) {
+          if (node.nextSibling) {
+            return node.nextSibling;
           }
-          node2 = node2.parentNode;
+          node = node.parentNode;
         }
       }
       function getNodeForCharacterOffset(root2, offset) {
-        var node2 = getLeafNode(root2);
+        var node = getLeafNode(root2);
         var nodeStart = 0;
         var nodeEnd = 0;
-        while (node2) {
-          if (node2.nodeType === TEXT_NODE) {
-            nodeEnd = nodeStart + node2.textContent.length;
+        while (node) {
+          if (node.nodeType === TEXT_NODE) {
+            nodeEnd = nodeStart + node.textContent.length;
             if (nodeStart <= offset && nodeEnd >= offset) {
               return {
-                node: node2,
+                node,
                 offset: offset - nodeStart
               };
             }
             nodeStart = nodeEnd;
           }
-          node2 = getLeafNode(getSiblingNode(node2));
+          node = getLeafNode(getSiblingNode(node));
         }
       }
       function getOffsets(outerNode) {
@@ -11208,29 +8823,29 @@ var require_react_dom_development = __commonJS2((exports) => {
         var end = -1;
         var indexWithinAnchor = 0;
         var indexWithinFocus = 0;
-        var node2 = outerNode;
+        var node = outerNode;
         var parentNode = null;
         outer:
           while (true) {
-            var next2 = null;
+            var next = null;
             while (true) {
-              if (node2 === anchorNode && (anchorOffset === 0 || node2.nodeType === TEXT_NODE)) {
+              if (node === anchorNode && (anchorOffset === 0 || node.nodeType === TEXT_NODE)) {
                 start = length + anchorOffset;
               }
-              if (node2 === focusNode && (focusOffset === 0 || node2.nodeType === TEXT_NODE)) {
+              if (node === focusNode && (focusOffset === 0 || node.nodeType === TEXT_NODE)) {
                 end = length + focusOffset;
               }
-              if (node2.nodeType === TEXT_NODE) {
-                length += node2.nodeValue.length;
+              if (node.nodeType === TEXT_NODE) {
+                length += node.nodeValue.length;
               }
-              if ((next2 = node2.firstChild) === null) {
+              if ((next = node.firstChild) === null) {
                 break;
               }
-              parentNode = node2;
-              node2 = next2;
+              parentNode = node;
+              node = next;
             }
             while (true) {
-              if (node2 === outerNode) {
+              if (node === outerNode) {
                 break outer;
               }
               if (parentNode === anchorNode && ++indexWithinAnchor === anchorOffset) {
@@ -11239,13 +8854,13 @@ var require_react_dom_development = __commonJS2((exports) => {
               if (parentNode === focusNode && ++indexWithinFocus === focusOffset) {
                 end = length;
               }
-              if ((next2 = node2.nextSibling) !== null) {
+              if ((next = node.nextSibling) !== null) {
                 break;
               }
-              node2 = parentNode;
-              parentNode = node2.parentNode;
+              node = parentNode;
+              parentNode = node.parentNode;
             }
-            node2 = next2;
+            node = next;
           }
         if (start === -1 || end === -1) {
           return null;
@@ -11255,14 +8870,14 @@ var require_react_dom_development = __commonJS2((exports) => {
           end
         };
       }
-      function setOffsets(node2, offsets) {
-        var doc = node2.ownerDocument || document;
+      function setOffsets(node, offsets) {
+        var doc = node.ownerDocument || document;
         var win = doc && doc.defaultView || window;
         if (!win.getSelection) {
           return;
         }
         var selection = win.getSelection();
-        var length = node2.textContent.length;
+        var length = node.textContent.length;
         var start = Math.min(offsets.start, length);
         var end = offsets.end === undefined ? start : Math.min(offsets.end, length);
         if (!selection.extend && start > end) {
@@ -11270,8 +8885,8 @@ var require_react_dom_development = __commonJS2((exports) => {
           end = start;
           start = temp;
         }
-        var startMarker = getNodeForCharacterOffset(node2, start);
-        var endMarker = getNodeForCharacterOffset(node2, end);
+        var startMarker = getNodeForCharacterOffset(node, start);
+        var endMarker = getNodeForCharacterOffset(node, end);
         if (startMarker && endMarker) {
           if (selection.rangeCount === 1 && selection.anchorNode === startMarker.node && selection.anchorOffset === startMarker.offset && selection.focusNode === endMarker.node && selection.focusOffset === endMarker.offset) {
             return;
@@ -11288,8 +8903,8 @@ var require_react_dom_development = __commonJS2((exports) => {
           }
         }
       }
-      function isTextNode(node2) {
-        return node2 && node2.nodeType === TEXT_NODE;
+      function isTextNode(node) {
+        return node && node.nodeType === TEXT_NODE;
       }
       function containsNode(outerNode, innerNode) {
         if (!outerNode || !innerNode) {
@@ -11308,8 +8923,8 @@ var require_react_dom_development = __commonJS2((exports) => {
           return false;
         }
       }
-      function isInDocument(node2) {
-        return node2 && node2.ownerDocument && containsNode(node2.ownerDocument.documentElement, node2);
+      function isInDocument(node) {
+        return node && node.ownerDocument && containsNode(node.ownerDocument.documentElement, node);
       }
       function isSameOriginFrame(iframe) {
         try {
@@ -11407,14 +9022,14 @@ var require_react_dom_development = __commonJS2((exports) => {
       var activeElementInst$1 = null;
       var lastSelection = null;
       var mouseDown = false;
-      function getSelection$1(node2) {
-        if ("selectionStart" in node2 && hasSelectionCapabilities(node2)) {
+      function getSelection$1(node) {
+        if ("selectionStart" in node && hasSelectionCapabilities(node)) {
           return {
-            start: node2.selectionStart,
-            end: node2.selectionEnd
+            start: node.selectionStart,
+            end: node.selectionEnd
           };
         } else {
-          var win = node2.ownerDocument && node2.ownerDocument.defaultView || window;
+          var win = node.ownerDocument && node.ownerDocument.defaultView || window;
           var selection = win.getSelection();
           return {
             anchorNode: selection.anchorNode,
@@ -11783,20 +9398,20 @@ var require_react_dom_development = __commonJS2((exports) => {
         if ((eventSystemFlags & IS_EVENT_HANDLE_NON_MANAGED_NODE) === 0 && (eventSystemFlags & IS_NON_DELEGATED) === 0) {
           var targetContainerNode = targetContainer;
           if (targetInst !== null) {
-            var node2 = targetInst;
+            var node = targetInst;
             mainLoop:
               while (true) {
-                if (node2 === null) {
+                if (node === null) {
                   return;
                 }
-                var nodeTag = node2.tag;
+                var nodeTag = node.tag;
                 if (nodeTag === HostRoot || nodeTag === HostPortal) {
-                  var container = node2.stateNode.containerInfo;
+                  var container = node.stateNode.containerInfo;
                   if (isMatchingRootContainer(container, targetContainerNode)) {
                     break;
                   }
                   if (nodeTag === HostPortal) {
-                    var grandNode = node2.return;
+                    var grandNode = node.return;
                     while (grandNode !== null) {
                       var grandTag = grandNode.tag;
                       if (grandTag === HostRoot || grandTag === HostPortal) {
@@ -11815,13 +9430,13 @@ var require_react_dom_development = __commonJS2((exports) => {
                     }
                     var parentTag = parentNode.tag;
                     if (parentTag === HostComponent || parentTag === HostText) {
-                      node2 = ancestorInst = parentNode;
+                      node = ancestorInst = parentNode;
                       continue mainLoop;
                     }
                     container = container.parentNode;
                   }
                 }
-                node2 = node2.return;
+                node = node.return;
               }
           }
         }
@@ -12066,8 +9681,8 @@ var require_react_dom_development = __commonJS2((exports) => {
       }
       function noop() {
       }
-      function trapClickOnNonInteractiveElement(node2) {
-        node2.onclick = noop;
+      function trapClickOnNonInteractiveElement(node) {
+        node.onclick = noop;
       }
       function setInitialDOMProperties(tag, domElement, rootContainerElement, nextProps, isCustomComponentTag) {
         for (var propKey in nextProps) {
@@ -12156,11 +9771,11 @@ var require_react_dom_development = __commonJS2((exports) => {
           } else {
             domElement = ownerDocument.createElement(type);
             if (type === "select") {
-              var node2 = domElement;
+              var node = domElement;
               if (props.multiple) {
-                node2.multiple = true;
+                node.multiple = true;
               } else if (props.size) {
-                node2.size = props.size;
+                node.size = props.size;
               }
             }
           }
@@ -13111,11 +10726,11 @@ var require_react_dom_development = __commonJS2((exports) => {
         }
       }
       function clearSuspenseBoundary(parentInstance, suspenseInstance) {
-        var node2 = suspenseInstance;
+        var node = suspenseInstance;
         var depth = 0;
         do {
-          var nextNode = node2.nextSibling;
-          parentInstance.removeChild(node2);
+          var nextNode = node.nextSibling;
+          parentInstance.removeChild(node);
           if (nextNode && nextNode.nodeType === COMMENT_NODE) {
             var data = nextNode.data;
             if (data === SUSPENSE_END_DATA) {
@@ -13130,8 +10745,8 @@ var require_react_dom_development = __commonJS2((exports) => {
               depth++;
             }
           }
-          node2 = nextNode;
-        } while (node2);
+          node = nextNode;
+        } while (node);
         retryIfBlockedOn(suspenseInstance);
       }
       function clearSuspenseBoundaryFromContainer(container, suspenseInstance) {
@@ -13217,14 +10832,14 @@ var require_react_dom_development = __commonJS2((exports) => {
       function registerSuspenseInstanceRetry(instance, callback) {
         instance._reactRetry = callback;
       }
-      function getNextHydratable(node2) {
-        for (;node2 != null; node2 = node2.nextSibling) {
-          var nodeType = node2.nodeType;
+      function getNextHydratable(node) {
+        for (;node != null; node = node.nextSibling) {
+          var nodeType = node.nodeType;
           if (nodeType === ELEMENT_NODE || nodeType === TEXT_NODE) {
             break;
           }
           if (nodeType === COMMENT_NODE) {
-            var nodeData = node2.data;
+            var nodeData = node.data;
             if (nodeData === SUSPENSE_START_DATA || nodeData === SUSPENSE_FALLBACK_START_DATA || nodeData === SUSPENSE_PENDING_START_DATA) {
               break;
             }
@@ -13233,7 +10848,7 @@ var require_react_dom_development = __commonJS2((exports) => {
             }
           }
         }
-        return node2;
+        return node;
       }
       function getNextHydratableSibling(instance) {
         return getNextHydratable(instance.nextSibling);
@@ -13267,14 +10882,14 @@ var require_react_dom_development = __commonJS2((exports) => {
         precacheFiberNode(internalInstanceHandle, suspenseInstance);
       }
       function getNextHydratableInstanceAfterSuspenseInstance(suspenseInstance) {
-        var node2 = suspenseInstance.nextSibling;
+        var node = suspenseInstance.nextSibling;
         var depth = 0;
-        while (node2) {
-          if (node2.nodeType === COMMENT_NODE) {
-            var data = node2.data;
+        while (node) {
+          if (node.nodeType === COMMENT_NODE) {
+            var data = node.data;
             if (data === SUSPENSE_END_DATA) {
               if (depth === 0) {
-                return getNextHydratableSibling(node2);
+                return getNextHydratableSibling(node);
               } else {
                 depth--;
               }
@@ -13282,19 +10897,19 @@ var require_react_dom_development = __commonJS2((exports) => {
               depth++;
             }
           }
-          node2 = node2.nextSibling;
+          node = node.nextSibling;
         }
         return null;
       }
       function getParentSuspenseInstance(targetInstance) {
-        var node2 = targetInstance.previousSibling;
+        var node = targetInstance.previousSibling;
         var depth = 0;
-        while (node2) {
-          if (node2.nodeType === COMMENT_NODE) {
-            var data = node2.data;
+        while (node) {
+          if (node.nodeType === COMMENT_NODE) {
+            var data = node.data;
             if (data === SUSPENSE_START_DATA || data === SUSPENSE_FALLBACK_START_DATA || data === SUSPENSE_PENDING_START_DATA) {
               if (depth === 0) {
-                return node2;
+                return node;
               } else {
                 depth--;
               }
@@ -13302,7 +10917,7 @@ var require_react_dom_development = __commonJS2((exports) => {
               depth++;
             }
           }
-          node2 = node2.previousSibling;
+          node = node.previousSibling;
         }
         return null;
       }
@@ -13416,24 +11031,24 @@ var require_react_dom_development = __commonJS2((exports) => {
       var internalEventHandlersKey = "__reactEvents$" + randomKey;
       var internalEventHandlerListenersKey = "__reactListeners$" + randomKey;
       var internalEventHandlesSetKey = "__reactHandles$" + randomKey;
-      function detachDeletedInstance(node2) {
-        delete node2[internalInstanceKey];
-        delete node2[internalPropsKey];
-        delete node2[internalEventHandlersKey];
-        delete node2[internalEventHandlerListenersKey];
-        delete node2[internalEventHandlesSetKey];
+      function detachDeletedInstance(node) {
+        delete node[internalInstanceKey];
+        delete node[internalPropsKey];
+        delete node[internalEventHandlersKey];
+        delete node[internalEventHandlerListenersKey];
+        delete node[internalEventHandlesSetKey];
       }
-      function precacheFiberNode(hostInst, node2) {
-        node2[internalInstanceKey] = hostInst;
+      function precacheFiberNode(hostInst, node) {
+        node[internalInstanceKey] = hostInst;
       }
-      function markContainerAsRoot(hostRoot, node2) {
-        node2[internalContainerInstanceKey] = hostRoot;
+      function markContainerAsRoot(hostRoot, node) {
+        node[internalContainerInstanceKey] = hostRoot;
       }
-      function unmarkContainerAsRoot(node2) {
-        node2[internalContainerInstanceKey] = null;
+      function unmarkContainerAsRoot(node) {
+        node[internalContainerInstanceKey] = null;
       }
-      function isContainerMarkedAsRoot(node2) {
-        return !!node2[internalContainerInstanceKey];
+      function isContainerMarkedAsRoot(node) {
+        return !!node[internalContainerInstanceKey];
       }
       function getClosestInstanceFromNode(targetNode) {
         var targetInst = targetNode[internalInstanceKey];
@@ -13462,8 +11077,8 @@ var require_react_dom_development = __commonJS2((exports) => {
         }
         return null;
       }
-      function getInstanceFromNode(node2) {
-        var inst = node2[internalInstanceKey] || node2[internalContainerInstanceKey];
+      function getInstanceFromNode(node) {
+        var inst = node[internalInstanceKey] || node[internalContainerInstanceKey];
         if (inst) {
           if (inst.tag === HostComponent || inst.tag === HostText || inst.tag === SuspenseComponent || inst.tag === HostRoot) {
             return inst;
@@ -13479,16 +11094,16 @@ var require_react_dom_development = __commonJS2((exports) => {
         }
         throw new Error("getNodeFromInstance: Invalid argument.");
       }
-      function getFiberCurrentPropsFromNode(node2) {
-        return node2[internalPropsKey] || null;
+      function getFiberCurrentPropsFromNode(node) {
+        return node[internalPropsKey] || null;
       }
-      function updateFiberProps(node2, props) {
-        node2[internalPropsKey] = props;
+      function updateFiberProps(node, props) {
+        node[internalPropsKey] = props;
       }
-      function getEventListenerSet(node2) {
-        var elementListenerSet = node2[internalEventHandlersKey];
+      function getEventListenerSet(node) {
+        var elementListenerSet = node[internalEventHandlersKey];
         if (elementListenerSet === undefined) {
-          elementListenerSet = node2[internalEventHandlersKey] = new Set;
+          elementListenerSet = node[internalEventHandlersKey] = new Set;
         }
         return elementListenerSet;
       }
@@ -13718,21 +11333,21 @@ var require_react_dom_development = __commonJS2((exports) => {
           if (!isFiberMounted(fiber) || fiber.tag !== ClassComponent) {
             throw new Error("Expected subtree parent to be a mounted class component. This error is likely caused by a bug in React. Please file an issue.");
           }
-          var node2 = fiber;
+          var node = fiber;
           do {
-            switch (node2.tag) {
+            switch (node.tag) {
               case HostRoot:
-                return node2.stateNode.context;
+                return node.stateNode.context;
               case ClassComponent: {
-                var Component2 = node2.type;
+                var Component2 = node.type;
                 if (isContextProvider(Component2)) {
-                  return node2.stateNode.__reactInternalMemoizedMergedChildContext;
+                  return node.stateNode.__reactInternalMemoizedMergedChildContext;
                 }
                 break;
               }
             }
-            node2 = node2.return;
-          } while (node2 !== null);
+            node = node.return;
+          } while (node !== null);
           throw new Error("Found unexpected detached subtree parent. This error is likely caused by a bug in React. Please file an issue.");
         }
       }
@@ -14280,12 +11895,12 @@ var require_react_dom_development = __commonJS2((exports) => {
       {
         var findStrictRoot = function(fiber) {
           var maybeStrictRoot = null;
-          var node2 = fiber;
-          while (node2 !== null) {
-            if (node2.mode & StrictLegacyMode) {
-              maybeStrictRoot = node2;
+          var node = fiber;
+          while (node !== null) {
+            if (node.mode & StrictLegacyMode) {
+              maybeStrictRoot = node;
             }
-            node2 = node2.return;
+            node = node.return;
           }
           return maybeStrictRoot;
         };
@@ -14512,24 +12127,24 @@ var require_react_dom_development = __commonJS2((exports) => {
         }
       }
       function scheduleContextWorkOnParentPath(parent, renderLanes2, propagationRoot) {
-        var node2 = parent;
-        while (node2 !== null) {
-          var alternate = node2.alternate;
-          if (!isSubsetOfLanes(node2.childLanes, renderLanes2)) {
-            node2.childLanes = mergeLanes(node2.childLanes, renderLanes2);
+        var node = parent;
+        while (node !== null) {
+          var alternate = node.alternate;
+          if (!isSubsetOfLanes(node.childLanes, renderLanes2)) {
+            node.childLanes = mergeLanes(node.childLanes, renderLanes2);
             if (alternate !== null) {
               alternate.childLanes = mergeLanes(alternate.childLanes, renderLanes2);
             }
           } else if (alternate !== null && !isSubsetOfLanes(alternate.childLanes, renderLanes2)) {
             alternate.childLanes = mergeLanes(alternate.childLanes, renderLanes2);
           }
-          if (node2 === propagationRoot) {
+          if (node === propagationRoot) {
             break;
           }
-          node2 = node2.return;
+          node = node.return;
         }
         {
-          if (node2 !== propagationRoot) {
+          if (node !== propagationRoot) {
             error("Expected to find the propagation root when scheduling context work. This error is likely caused by a bug in React. Please file an issue.");
           }
         }
@@ -14745,7 +12360,7 @@ var require_react_dom_development = __commonJS2((exports) => {
             warnAboutUpdateOnNotYetMountedFiberInDEV(sourceFiber);
           }
         }
-        var node2 = sourceFiber;
+        var node = sourceFiber;
         var parent = sourceFiber.return;
         while (parent !== null) {
           parent.childLanes = mergeLanes(parent.childLanes, lane);
@@ -14759,11 +12374,11 @@ var require_react_dom_development = __commonJS2((exports) => {
               }
             }
           }
-          node2 = parent;
+          node = parent;
           parent = parent.return;
         }
-        if (node2.tag === HostRoot) {
-          var root2 = node2.stateNode;
+        if (node.tag === HostRoot) {
+          var root2 = node.stateNode;
           return root2;
         } else {
           return null;
@@ -16549,37 +14164,37 @@ var require_react_dom_development = __commonJS2((exports) => {
         }
       }
       function findFirstSuspended(row) {
-        var node2 = row;
-        while (node2 !== null) {
-          if (node2.tag === SuspenseComponent) {
-            var state = node2.memoizedState;
+        var node = row;
+        while (node !== null) {
+          if (node.tag === SuspenseComponent) {
+            var state = node.memoizedState;
             if (state !== null) {
               var dehydrated = state.dehydrated;
               if (dehydrated === null || isSuspenseInstancePending(dehydrated) || isSuspenseInstanceFallback(dehydrated)) {
-                return node2;
+                return node;
               }
             }
-          } else if (node2.tag === SuspenseListComponent && node2.memoizedProps.revealOrder !== undefined) {
-            var didSuspend = (node2.flags & DidCapture) !== NoFlags;
+          } else if (node.tag === SuspenseListComponent && node.memoizedProps.revealOrder !== undefined) {
+            var didSuspend = (node.flags & DidCapture) !== NoFlags;
             if (didSuspend) {
-              return node2;
+              return node;
             }
-          } else if (node2.child !== null) {
-            node2.child.return = node2;
-            node2 = node2.child;
+          } else if (node.child !== null) {
+            node.child.return = node;
+            node = node.child;
             continue;
           }
-          if (node2 === row) {
+          if (node === row) {
             return null;
           }
-          while (node2.sibling === null) {
-            if (node2.return === null || node2.return === row) {
+          while (node.sibling === null) {
+            if (node.return === null || node.return === row) {
               return null;
             }
-            node2 = node2.return;
+            node = node.return;
           }
-          node2.sibling.return = node2.return;
-          node2 = node2.sibling;
+          node.sibling.return = node.return;
+          node = node.sibling;
         }
         return null;
       }
@@ -18694,13 +16309,13 @@ var require_react_dom_development = __commonJS2((exports) => {
         }
       }
       function getNearestSuspenseBoundaryToCapture(returnFiber) {
-        var node2 = returnFiber;
+        var node = returnFiber;
         do {
-          if (node2.tag === SuspenseComponent && shouldCaptureSuspense(node2)) {
-            return node2;
+          if (node.tag === SuspenseComponent && shouldCaptureSuspense(node)) {
+            return node;
           }
-          node2 = node2.return;
-        } while (node2 !== null);
+          node = node.return;
+        } while (node !== null);
         return null;
       }
       function markSuspenseBoundaryShouldCapture(suspenseBoundary, returnFiber, sourceFiber, root2, rootRenderLanes) {
@@ -19268,10 +16883,10 @@ var require_react_dom_development = __commonJS2((exports) => {
             enterHydrationState(workInProgress2);
             var child = mountChildFibers(workInProgress2, null, nextChildren, renderLanes2);
             workInProgress2.child = child;
-            var node2 = child;
-            while (node2) {
-              node2.flags = node2.flags & ~Placement | Hydrating;
-              node2 = node2.sibling;
+            var node = child;
+            while (node) {
+              node.flags = node.flags & ~Placement | Hydrating;
+              node = node.sibling;
             }
           }
         } else {
@@ -19846,31 +17461,31 @@ var require_react_dom_development = __commonJS2((exports) => {
         scheduleContextWorkOnParentPath(fiber.return, renderLanes2, propagationRoot);
       }
       function propagateSuspenseContextChange(workInProgress2, firstChild, renderLanes2) {
-        var node2 = firstChild;
-        while (node2 !== null) {
-          if (node2.tag === SuspenseComponent) {
-            var state = node2.memoizedState;
+        var node = firstChild;
+        while (node !== null) {
+          if (node.tag === SuspenseComponent) {
+            var state = node.memoizedState;
             if (state !== null) {
-              scheduleSuspenseWorkOnFiber(node2, renderLanes2, workInProgress2);
+              scheduleSuspenseWorkOnFiber(node, renderLanes2, workInProgress2);
             }
-          } else if (node2.tag === SuspenseListComponent) {
-            scheduleSuspenseWorkOnFiber(node2, renderLanes2, workInProgress2);
-          } else if (node2.child !== null) {
-            node2.child.return = node2;
-            node2 = node2.child;
+          } else if (node.tag === SuspenseListComponent) {
+            scheduleSuspenseWorkOnFiber(node, renderLanes2, workInProgress2);
+          } else if (node.child !== null) {
+            node.child.return = node;
+            node = node.child;
             continue;
           }
-          if (node2 === workInProgress2) {
+          if (node === workInProgress2) {
             return;
           }
-          while (node2.sibling === null) {
-            if (node2.return === null || node2.return === workInProgress2) {
+          while (node.sibling === null) {
+            if (node.return === null || node.return === workInProgress2) {
               return;
             }
-            node2 = node2.return;
+            node = node.return;
           }
-          node2.sibling.return = node2.return;
-          node2 = node2.sibling;
+          node.sibling.return = node.return;
+          node = node.sibling;
         }
       }
       function findLastContentRow(firstChild) {
@@ -20439,28 +18054,28 @@ var require_react_dom_development = __commonJS2((exports) => {
       var updateHostText$1;
       {
         appendAllChildren = function(parent, workInProgress2, needsVisibilityToggle, isHidden) {
-          var node2 = workInProgress2.child;
-          while (node2 !== null) {
-            if (node2.tag === HostComponent || node2.tag === HostText) {
-              appendInitialChild(parent, node2.stateNode);
-            } else if (node2.tag === HostPortal)
+          var node = workInProgress2.child;
+          while (node !== null) {
+            if (node.tag === HostComponent || node.tag === HostText) {
+              appendInitialChild(parent, node.stateNode);
+            } else if (node.tag === HostPortal)
               ;
-            else if (node2.child !== null) {
-              node2.child.return = node2;
-              node2 = node2.child;
+            else if (node.child !== null) {
+              node.child.return = node;
+              node = node.child;
               continue;
             }
-            if (node2 === workInProgress2) {
+            if (node === workInProgress2) {
               return;
             }
-            while (node2.sibling === null) {
-              if (node2.return === null || node2.return === workInProgress2) {
+            while (node.sibling === null) {
+              if (node.return === null || node.return === workInProgress2) {
                 return;
               }
-              node2 = node2.return;
+              node = node.return;
             }
-            node2.sibling.return = node2.return;
-            node2 = node2.sibling;
+            node.sibling.return = node.return;
+            node = node.sibling;
           }
         };
         updateHostContainer = function(current2, workInProgress2) {
@@ -20903,11 +18518,11 @@ var require_react_dom_development = __commonJS2((exports) => {
               }
             }
             if (renderState.tail !== null) {
-              var next2 = renderState.tail;
-              renderState.rendering = next2;
-              renderState.tail = next2.sibling;
+              var next = renderState.tail;
+              renderState.rendering = next;
+              renderState.tail = next.sibling;
               renderState.renderingStartTime = now();
-              next2.sibling = null;
+              next.sibling = null;
               var suspenseContext = suspenseStackCursor.current;
               if (didSuspendAlready) {
                 suspenseContext = setShallowSuspenseContext(suspenseContext, ForceSuspenseFallback);
@@ -20915,7 +18530,7 @@ var require_react_dom_development = __commonJS2((exports) => {
                 suspenseContext = setDefaultShallowSuspenseContext(suspenseContext);
               }
               pushSuspenseContext(workInProgress2, suspenseContext);
-              return next2;
+              return next;
             }
             bubbleProperties(workInProgress2);
             return null;
@@ -21590,33 +19205,33 @@ var require_react_dom_development = __commonJS2((exports) => {
           }
         }
       }
-      function reappearLayoutEffectsOnFiber(node2) {
-        switch (node2.tag) {
+      function reappearLayoutEffectsOnFiber(node) {
+        switch (node.tag) {
           case FunctionComponent:
           case ForwardRef:
           case SimpleMemoComponent: {
-            if (node2.mode & ProfileMode) {
+            if (node.mode & ProfileMode) {
               try {
                 startLayoutEffectTimer();
-                safelyCallCommitHookLayoutEffectListMount(node2, node2.return);
+                safelyCallCommitHookLayoutEffectListMount(node, node.return);
               } finally {
-                recordLayoutEffectDuration(node2);
+                recordLayoutEffectDuration(node);
               }
             } else {
-              safelyCallCommitHookLayoutEffectListMount(node2, node2.return);
+              safelyCallCommitHookLayoutEffectListMount(node, node.return);
             }
             break;
           }
           case ClassComponent: {
-            var instance = node2.stateNode;
+            var instance = node.stateNode;
             if (typeof instance.componentDidMount === "function") {
-              safelyCallComponentDidMount(node2, node2.return, instance);
+              safelyCallComponentDidMount(node, node.return, instance);
             }
-            safelyAttachRef(node2, node2.return);
+            safelyAttachRef(node, node.return);
             break;
           }
           case HostComponent: {
-            safelyAttachRef(node2, node2.return);
+            safelyAttachRef(node, node.return);
             break;
           }
         }
@@ -21624,59 +19239,59 @@ var require_react_dom_development = __commonJS2((exports) => {
       function hideOrUnhideAllChildren(finishedWork, isHidden) {
         var hostSubtreeRoot = null;
         {
-          var node2 = finishedWork;
+          var node = finishedWork;
           while (true) {
-            if (node2.tag === HostComponent) {
+            if (node.tag === HostComponent) {
               if (hostSubtreeRoot === null) {
-                hostSubtreeRoot = node2;
+                hostSubtreeRoot = node;
                 try {
-                  var instance = node2.stateNode;
+                  var instance = node.stateNode;
                   if (isHidden) {
                     hideInstance(instance);
                   } else {
-                    unhideInstance(node2.stateNode, node2.memoizedProps);
+                    unhideInstance(node.stateNode, node.memoizedProps);
                   }
                 } catch (error2) {
                   captureCommitPhaseError(finishedWork, finishedWork.return, error2);
                 }
               }
-            } else if (node2.tag === HostText) {
+            } else if (node.tag === HostText) {
               if (hostSubtreeRoot === null) {
                 try {
-                  var _instance3 = node2.stateNode;
+                  var _instance3 = node.stateNode;
                   if (isHidden) {
                     hideTextInstance(_instance3);
                   } else {
-                    unhideTextInstance(_instance3, node2.memoizedProps);
+                    unhideTextInstance(_instance3, node.memoizedProps);
                   }
                 } catch (error2) {
                   captureCommitPhaseError(finishedWork, finishedWork.return, error2);
                 }
               }
-            } else if ((node2.tag === OffscreenComponent || node2.tag === LegacyHiddenComponent) && node2.memoizedState !== null && node2 !== finishedWork)
+            } else if ((node.tag === OffscreenComponent || node.tag === LegacyHiddenComponent) && node.memoizedState !== null && node !== finishedWork)
               ;
-            else if (node2.child !== null) {
-              node2.child.return = node2;
-              node2 = node2.child;
+            else if (node.child !== null) {
+              node.child.return = node;
+              node = node.child;
               continue;
             }
-            if (node2 === finishedWork) {
+            if (node === finishedWork) {
               return;
             }
-            while (node2.sibling === null) {
-              if (node2.return === null || node2.return === finishedWork) {
+            while (node.sibling === null) {
+              if (node.return === null || node.return === finishedWork) {
                 return;
               }
-              if (hostSubtreeRoot === node2) {
+              if (hostSubtreeRoot === node) {
                 hostSubtreeRoot = null;
               }
-              node2 = node2.return;
+              node = node.return;
             }
-            if (hostSubtreeRoot === node2) {
+            if (hostSubtreeRoot === node) {
               hostSubtreeRoot = null;
             }
-            node2.sibling.return = node2.return;
-            node2 = node2.sibling;
+            node.sibling.return = node.return;
+            node = node.sibling;
           }
         }
       }
@@ -21771,30 +19386,30 @@ var require_react_dom_development = __commonJS2((exports) => {
         return fiber.tag === HostComponent || fiber.tag === HostRoot || fiber.tag === HostPortal;
       }
       function getHostSibling(fiber) {
-        var node2 = fiber;
+        var node = fiber;
         siblings:
           while (true) {
-            while (node2.sibling === null) {
-              if (node2.return === null || isHostParent(node2.return)) {
+            while (node.sibling === null) {
+              if (node.return === null || isHostParent(node.return)) {
                 return null;
               }
-              node2 = node2.return;
+              node = node.return;
             }
-            node2.sibling.return = node2.return;
-            node2 = node2.sibling;
-            while (node2.tag !== HostComponent && node2.tag !== HostText && node2.tag !== DehydratedFragment) {
-              if (node2.flags & Placement) {
+            node.sibling.return = node.return;
+            node = node.sibling;
+            while (node.tag !== HostComponent && node.tag !== HostText && node.tag !== DehydratedFragment) {
+              if (node.flags & Placement) {
                 continue siblings;
               }
-              if (node2.child === null || node2.tag === HostPortal) {
+              if (node.child === null || node.tag === HostPortal) {
                 continue siblings;
               } else {
-                node2.child.return = node2;
-                node2 = node2.child;
+                node.child.return = node;
+                node = node.child;
               }
             }
-            if (!(node2.flags & Placement)) {
-              return node2.stateNode;
+            if (!(node.flags & Placement)) {
+              return node.stateNode;
             }
           }
       }
@@ -21822,11 +19437,11 @@ var require_react_dom_development = __commonJS2((exports) => {
             throw new Error("Invalid host parent fiber. This error is likely caused by a bug in React. Please file an issue.");
         }
       }
-      function insertOrAppendPlacementNodeIntoContainer(node2, before, parent) {
-        var tag = node2.tag;
+      function insertOrAppendPlacementNodeIntoContainer(node, before, parent) {
+        var tag = node.tag;
         var isHost = tag === HostComponent || tag === HostText;
         if (isHost) {
-          var stateNode = node2.stateNode;
+          var stateNode = node.stateNode;
           if (before) {
             insertInContainerBefore(parent, stateNode, before);
           } else {
@@ -21835,7 +19450,7 @@ var require_react_dom_development = __commonJS2((exports) => {
         } else if (tag === HostPortal)
           ;
         else {
-          var child = node2.child;
+          var child = node.child;
           if (child !== null) {
             insertOrAppendPlacementNodeIntoContainer(child, before, parent);
             var sibling = child.sibling;
@@ -21846,11 +19461,11 @@ var require_react_dom_development = __commonJS2((exports) => {
           }
         }
       }
-      function insertOrAppendPlacementNode(node2, before, parent) {
-        var tag = node2.tag;
+      function insertOrAppendPlacementNode(node, before, parent) {
+        var tag = node.tag;
         var isHost = tag === HostComponent || tag === HostText;
         if (isHost) {
-          var stateNode = node2.stateNode;
+          var stateNode = node.stateNode;
           if (before) {
             insertBefore(parent, stateNode, before);
           } else {
@@ -21859,7 +19474,7 @@ var require_react_dom_development = __commonJS2((exports) => {
         } else if (tag === HostPortal)
           ;
         else {
-          var child = node2.child;
+          var child = node.child;
           if (child !== null) {
             insertOrAppendPlacementNode(child, before, parent);
             var sibling = child.sibling;
@@ -23198,10 +20813,10 @@ var require_react_dom_development = __commonJS2((exports) => {
         }
       }
       function isRenderConsistentWithExternalStores(finishedWork) {
-        var node2 = finishedWork;
+        var node = finishedWork;
         while (true) {
-          if (node2.flags & StoreConsistency) {
-            var updateQueue = node2.updateQueue;
+          if (node.flags & StoreConsistency) {
+            var updateQueue = node.updateQueue;
             if (updateQueue !== null) {
               var checks = updateQueue.stores;
               if (checks !== null) {
@@ -23220,23 +20835,23 @@ var require_react_dom_development = __commonJS2((exports) => {
               }
             }
           }
-          var child = node2.child;
-          if (node2.subtreeFlags & StoreConsistency && child !== null) {
-            child.return = node2;
-            node2 = child;
+          var child = node.child;
+          if (node.subtreeFlags & StoreConsistency && child !== null) {
+            child.return = node;
+            node = child;
             continue;
           }
-          if (node2 === finishedWork) {
+          if (node === finishedWork) {
             return true;
           }
-          while (node2.sibling === null) {
-            if (node2.return === null || node2.return === finishedWork) {
+          while (node.sibling === null) {
+            if (node.return === null || node.return === finishedWork) {
               return true;
             }
-            node2 = node2.return;
+            node = node.return;
           }
-          node2.sibling.return = node2.return;
-          node2 = node2.sibling;
+          node.sibling.return = node.return;
+          node = node.sibling;
         }
         return true;
       }
@@ -23578,20 +21193,20 @@ var require_react_dom_development = __commonJS2((exports) => {
       function performUnitOfWork(unitOfWork) {
         var current2 = unitOfWork.alternate;
         setCurrentFiber(unitOfWork);
-        var next2;
+        var next;
         if ((unitOfWork.mode & ProfileMode) !== NoMode) {
           startProfilerTimer(unitOfWork);
-          next2 = beginWork$1(current2, unitOfWork, subtreeRenderLanes);
+          next = beginWork$1(current2, unitOfWork, subtreeRenderLanes);
           stopProfilerTimerIfRunningAndRecordDelta(unitOfWork, true);
         } else {
-          next2 = beginWork$1(current2, unitOfWork, subtreeRenderLanes);
+          next = beginWork$1(current2, unitOfWork, subtreeRenderLanes);
         }
         resetCurrentFiber();
         unitOfWork.memoizedProps = unitOfWork.pendingProps;
-        if (next2 === null) {
+        if (next === null) {
           completeUnitOfWork(unitOfWork);
         } else {
-          workInProgress = next2;
+          workInProgress = next;
         }
         ReactCurrentOwner$2.current = null;
       }
@@ -23602,17 +21217,17 @@ var require_react_dom_development = __commonJS2((exports) => {
           var returnFiber = completedWork.return;
           if ((completedWork.flags & Incomplete) === NoFlags) {
             setCurrentFiber(completedWork);
-            var next2 = undefined;
+            var next = undefined;
             if ((completedWork.mode & ProfileMode) === NoMode) {
-              next2 = completeWork(current2, completedWork, subtreeRenderLanes);
+              next = completeWork(current2, completedWork, subtreeRenderLanes);
             } else {
               startProfilerTimer(completedWork);
-              next2 = completeWork(current2, completedWork, subtreeRenderLanes);
+              next = completeWork(current2, completedWork, subtreeRenderLanes);
               stopProfilerTimerIfRunningAndRecordDelta(completedWork, false);
             }
             resetCurrentFiber();
-            if (next2 !== null) {
-              workInProgress = next2;
+            if (next !== null) {
+              workInProgress = next;
               return;
             }
           } else {
@@ -24506,50 +22121,50 @@ var require_react_dom_development = __commonJS2((exports) => {
           if (foundHostInstances) {
             return;
           }
-          var node2 = fiber;
+          var node = fiber;
           while (true) {
-            switch (node2.tag) {
+            switch (node.tag) {
               case HostComponent:
-                hostInstances.add(node2.stateNode);
+                hostInstances.add(node.stateNode);
                 return;
               case HostPortal:
-                hostInstances.add(node2.stateNode.containerInfo);
+                hostInstances.add(node.stateNode.containerInfo);
                 return;
               case HostRoot:
-                hostInstances.add(node2.stateNode.containerInfo);
+                hostInstances.add(node.stateNode.containerInfo);
                 return;
             }
-            if (node2.return === null) {
+            if (node.return === null) {
               throw new Error("Expected to reach root first.");
             }
-            node2 = node2.return;
+            node = node.return;
           }
         }
       }
       function findChildHostInstancesForFiberShallowly(fiber, hostInstances) {
         {
-          var node2 = fiber;
+          var node = fiber;
           var foundHostInstances = false;
           while (true) {
-            if (node2.tag === HostComponent) {
+            if (node.tag === HostComponent) {
               foundHostInstances = true;
-              hostInstances.add(node2.stateNode);
-            } else if (node2.child !== null) {
-              node2.child.return = node2;
-              node2 = node2.child;
+              hostInstances.add(node.stateNode);
+            } else if (node.child !== null) {
+              node.child.return = node;
+              node = node.child;
               continue;
             }
-            if (node2 === fiber) {
+            if (node === fiber) {
               return foundHostInstances;
             }
-            while (node2.sibling === null) {
-              if (node2.return === null || node2.return === fiber) {
+            while (node.sibling === null) {
+              if (node.return === null || node.return === fiber) {
                 return foundHostInstances;
               }
-              node2 = node2.return;
+              node = node.return;
             }
-            node2.sibling.return = node2.return;
-            node2 = node2.sibling;
+            node.sibling.return = node.return;
+            node = node.sibling;
           }
         }
         return false;
@@ -25592,11 +23207,11 @@ var require_react_dom_development = __commonJS2((exports) => {
         }
         return new ReactDOMHydrationRoot(root2);
       }
-      function isValidContainer(node2) {
-        return !!(node2 && (node2.nodeType === ELEMENT_NODE || node2.nodeType === DOCUMENT_NODE || node2.nodeType === DOCUMENT_FRAGMENT_NODE || !disableCommentsAsDOMContainers));
+      function isValidContainer(node) {
+        return !!(node && (node.nodeType === ELEMENT_NODE || node.nodeType === DOCUMENT_NODE || node.nodeType === DOCUMENT_FRAGMENT_NODE || !disableCommentsAsDOMContainers));
       }
-      function isValidContainerLegacy(node2) {
-        return !!(node2 && (node2.nodeType === ELEMENT_NODE || node2.nodeType === DOCUMENT_NODE || node2.nodeType === DOCUMENT_FRAGMENT_NODE || node2.nodeType === COMMENT_NODE && node2.nodeValue === " react-mount-point-unstable "));
+      function isValidContainerLegacy(node) {
+        return !!(node && (node.nodeType === ELEMENT_NODE || node.nodeType === DOCUMENT_NODE || node.nodeType === DOCUMENT_FRAGMENT_NODE || node.nodeType === COMMENT_NODE && node.nodeValue === " react-mount-point-unstable "));
       }
       function warnIfReactDOMContainerInDEV(container) {
         {
@@ -26127,28 +23742,28 @@ var require_hangul = __commonJS2((exports, module) => {
       ["\u3161", "\u3163", "\u3162"]
     ], CONSONANTS_HASH, CHO_HASH, JUNG_HASH, JONG_HASH, COMPLEX_CONSONANTS_HASH, COMPLEX_VOWELS_HASH;
     function _makeHash(array) {
-      var length = array.length, hash2 = { 0: 0 };
+      var length = array.length, hash = { 0: 0 };
       for (var i2 = 0;i2 < length; i2++) {
         if (array[i2])
-          hash2[array[i2].charCodeAt(0)] = i2;
+          hash[array[i2].charCodeAt(0)] = i2;
       }
-      return hash2;
+      return hash;
     }
     CONSONANTS_HASH = _makeHash(CONSONANTS);
     CHO_HASH = _makeHash(COMPLETE_CHO);
     JUNG_HASH = _makeHash(COMPLETE_JUNG);
     JONG_HASH = _makeHash(COMPLETE_JONG);
     function _makeComplexHash(array) {
-      var length = array.length, hash2 = {}, code1, code2;
+      var length = array.length, hash = {}, code1, code2;
       for (var i2 = 0;i2 < length; i2++) {
         code1 = array[i2][0].charCodeAt(0);
         code2 = array[i2][1].charCodeAt(0);
-        if (typeof hash2[code1] === "undefined") {
-          hash2[code1] = {};
+        if (typeof hash[code1] === "undefined") {
+          hash[code1] = {};
         }
-        hash2[code1][code2] = array[i2][2].charCodeAt(0);
+        hash[code1][code2] = array[i2][2].charCodeAt(0);
       }
-      return hash2;
+      return hash;
     }
     COMPLEX_CONSONANTS_HASH = _makeComplexHash(COMPLEX_CONSONANTS);
     COMPLEX_VOWELS_HASH = _makeComplexHash(COMPLEX_VOWELS);
@@ -26607,6 +24222,56 @@ var x = function(j, q) {
   }
   return -1;
 };
+function useSelection({ items, maxRows = items.length.valueOf() }) {
+  const [selectedIndex, setSelectedIndex] = import_react3.useState(0);
+  const [scroll, setScroll] = import_react3.useState(0);
+  const numItems = import_react3.useMemo(() => items.length.valueOf(), [items]);
+  import_react3.useEffect(() => {
+    const defaultSelected = x(items, (item) => {
+      return typeof item === "object" && !!item?.selected;
+    });
+    if (defaultSelected >= 0) {
+      setSelectedIndex(defaultSelected);
+    }
+  }, [items, setSelectedIndex]);
+  const scrollDown = import_react3.useCallback((rows = 1) => {
+    setScroll((scroll2) => Math.min(numItems - maxRows, scroll2 + rows));
+  }, [setScroll, numItems, maxRows]);
+  const scrollUp = import_react3.useCallback((rows = 1) => {
+    setScroll((scroll2) => Math.max(0, scroll2 - rows));
+  }, [setScroll]);
+  const fixScroll = import_react3.useCallback((index) => {
+    if (maxRows && index - scroll >= maxRows) {
+      scrollDown(Math.max(1, scroll - maxRows + index + 1));
+    }
+    if (index - scroll < 0) {
+      scrollUp(Math.max(1, scroll - index));
+    }
+  }, [scroll, maxRows, scrollUp, scrollDown]);
+  const select = import_react3.useCallback((index) => {
+    const newIndex = Math.max(0, Math.min(index, numItems - 1));
+    setSelectedIndex(newIndex);
+  }, [setSelectedIndex, numItems]);
+  const moveSelection = import_react3.useCallback((dy) => {
+    if (dy) {
+      setSelectedIndex((index) => {
+        const newIndex = Math.max(0, Math.min(index + dy, numItems - 1));
+        fixScroll(newIndex);
+        return newIndex;
+      });
+    }
+  }, [setSelectedIndex, fixScroll, numItems]);
+  const selectedItem = import_react3.useMemo(() => items.at(selectedIndex), [items, selectedIndex]);
+  return {
+    select,
+    moveSelection,
+    selectedItem,
+    scroll,
+    scrollUp,
+    scrollDown,
+    selectedIndex
+  };
+}
 
 class p {
   r;
@@ -26708,10 +24373,16 @@ class PopupControl {
 var DEFAULT_CONTROL_CONTEXT = {
   popupControl: new PopupControl
 };
+function useInitControlContext({ popupControl }) {
+  const context = import_react6.useMemo(() => ({
+    popupControl
+  }), [popupControl]);
+  return context;
+}
 var Context = import_react5.default.createContext(DEFAULT_CONTROL_CONTEXT);
 var ControlContextProvider = ({ children, popupControl }) => {
   const context = useInitControlContext({ popupControl });
-  return jsx_dev_runtime.jsxDEV(Context.Provider, {
+  return import_jsx_dev_runtime.jsxDEV(Context.Provider, {
     value: context,
     children
   }, undefined, false, undefined, null);
@@ -26723,19 +24394,123 @@ var useControlContext = () => {
   }
   return context;
 };
+function useControls({ active, listener }) {
+  const { popupControl } = useControlContext();
+  import_react4.useEffect(() => {
+    if (active) {
+      popupControl.addListener(listener);
+      return () => popupControl.removeListener(listener);
+    }
+  }, [listener, popupControl, active]);
+  return { lockState: active ? LockStatus.UNLOCKED : LockStatus.LOCKED, popupControl };
+}
 var LockStatus;
 (function(LockStatus2) {
   LockStatus2[LockStatus2["UNLOCKED"] = 0] = "UNLOCKED";
   LockStatus2[LockStatus2["LOCKED"] = 1] = "LOCKED";
 })(LockStatus || (LockStatus = {}));
+function useMouseHover({ active }) {
+  const [mouseHoverEnabled, setMouseHoverEnabled] = import_react7.useState(false);
+  const enableMouseHover = import_react7.useCallback(!mouseHoverEnabled ? () => setMouseHoverEnabled(true) : () => {
+  }, [mouseHoverEnabled]);
+  const disableMouseHover = import_react7.useCallback(!mouseHoverEnabled ? () => {
+  } : () => setMouseHoverEnabled(false), [mouseHoverEnabled]);
+  const onUp = import_react7.useCallback(() => {
+    setMouseHoverEnabled(false);
+  }, [setMouseHoverEnabled]);
+  const onDown = import_react7.useCallback(() => {
+    setMouseHoverEnabled(false);
+  }, [setMouseHoverEnabled]);
+  useControls({
+    active,
+    listener: import_react7.useMemo(() => ({
+      onUp,
+      onDown
+    }), [setMouseHoverEnabled, onUp, onDown])
+  });
+  return { mouseHoverEnabled, enableMouseHover, disableMouseHover };
+}
+function useMenu({ items, maxRows, onSelect, onBack, active }) {
+  const { scroll, scrollUp, scrollDown, select, moveSelection, selectedItem } = useSelection({ items, maxRows });
+  const onItemAction = import_react2.useCallback((item) => {
+    if (!item) {
+      return;
+    }
+    if (typeof item === "object" && item.action) {
+      item.action().then(() => onSelect(item));
+    } else {
+      onSelect(item);
+    }
+  }, [onSelect]);
+  const onMenuAction = import_react2.useCallback((index) => {
+    onItemAction(items.at(index));
+  }, [items, onItemAction]);
+  const onAction = import_react2.useCallback(() => {
+    onItemAction(selectedItem);
+  }, [onItemAction, selectedItem]);
+  const onUp = import_react2.useCallback(() => {
+    moveSelection(-1);
+  }, [moveSelection]);
+  const onDown = import_react2.useCallback(() => {
+    moveSelection(1);
+  }, [moveSelection]);
+  const onRight = import_react2.useCallback(() => {
+    if (typeof selectedItem === "object" && selectedItem.submenu) {
+      onItemAction(selectedItem);
+    }
+  }, [onItemAction, selectedItem]);
+  const { lockState } = useControls({
+    active,
+    listener: import_react2.useMemo(() => ({
+      onAction,
+      onStart: onAction,
+      onUp,
+      onDown,
+      onBack,
+      onRight
+    }), [moveSelection, onAction, onBack, onUp, onDown])
+  });
+  const { enableMouseHover, mouseHoverEnabled } = useMouseHover({ active });
+  return {
+    selectedItem,
+    select,
+    scroll,
+    scrollUp,
+    scrollDown,
+    disabled: lockState === LockStatus.LOCKED,
+    enableMouseHover,
+    mouseHoverEnabled,
+    onMenuAction,
+    onUp,
+    onDown
+  };
+}
 var DEFAULT_GAME_CONTEXT = {
   getLayout: (layout) => typeof layout === "object" ? layout : undefined,
   uniqueLayout: new x2
 };
+function useInitLayoutContext() {
+  const layoutModels = import_react12.useMemo(() => ({}), []);
+  const getLayout = import_react12.useCallback((layout) => {
+    if (typeof layout === "string") {
+      return layoutModels[layout] ?? undefined;
+    }
+    if (layout.name) {
+      layoutModels[layout.name] = layout;
+    }
+    return layout;
+  }, [layoutModels]);
+  const uniqueLayout = import_react12.useMemo(() => new x2, []);
+  const context = import_react12.useMemo(() => ({
+    getLayout,
+    uniqueLayout
+  }), [getLayout, uniqueLayout]);
+  return context;
+}
 var Context2 = import_react11.default.createContext(DEFAULT_GAME_CONTEXT);
 var LayoutContextProvider = ({ children }) => {
   const context = useInitLayoutContext();
-  return jsx_dev_runtime2.jsxDEV(Context2.Provider, {
+  return import_jsx_dev_runtime2.jsxDEV(Context2.Provider, {
     value: context,
     children
   }, undefined, false, undefined, null);
@@ -26747,8 +24522,111 @@ var useLayoutContext = () => {
   }
   return context;
 };
+function usePopupLayout({ layout, setVisible }) {
+  const { getLayout, uniqueLayout } = useLayoutContext();
+  const layoutModel = getLayout(layout);
+  const x3 = layoutModel?.position?.[0] ?? DEFAULT_HORIZONTAL_PADDING;
+  const y = layoutModel?.position?.[1] ?? DEFAULT_VERTICAL_PADDING;
+  const left = layoutModel?.positionFromRight ? `calc(100% - ${x3}px)` : x3;
+  const top = layoutModel?.positionFromBottom ? `calc(100% - ${y}px)` : y;
+  const right = DEFAULT_HORIZONTAL_PADDING;
+  const bottom = DEFAULT_VERTICAL_PADDING;
+  const width = layoutModel?.size?.[0] || undefined;
+  const height = layoutModel?.size?.[1] || undefined;
+  import_react10.useEffect(() => {
+    const uid = typeof layout === "string" ? layout : layout.name;
+    if (uid) {
+      return uniqueLayout.registerLayout(uid, setVisible);
+    }
+  }, [setVisible, uniqueLayout]);
+  return { left, top, right, bottom, width, height, valid: !!layoutModel };
+}
 var DEFAULT_HORIZONTAL_PADDING = 100;
 var DEFAULT_VERTICAL_PADDING = 50;
+function Popup2({
+  children,
+  layout,
+  style,
+  disabled,
+  removed,
+  onBack,
+  fit,
+  zIndex,
+  clickThrough,
+  leaveBorderUnchanged,
+  setVisible,
+  visible
+}) {
+  const [h, setH] = import_react9.useState(0);
+  import_react9.useEffect(() => {
+    requestAnimationFrame(() => setH(100));
+  }, [setH]);
+  const [localVisible, setLocalVisible] = import_react9.useState(true);
+  const { top, left, right, bottom, width, height, valid } = usePopupLayout({
+    layout,
+    setVisible: setVisible ?? setLocalVisible
+  });
+  return import_jsx_dev_runtime3.jsxDEV("div", {
+    style: {
+      position: "fixed",
+      left: 0,
+      top: 0,
+      width: "100vw",
+      height: "100vh",
+      zIndex,
+      pointerEvents: clickThrough ? "none" : undefined
+    },
+    children: [
+      onBack ? import_jsx_dev_runtime3.jsxDEV("div", {
+        style: {
+          position: "absolute",
+          left: 0,
+          top: 0,
+          width: "100%",
+          height: "100%",
+          cursor: "pointer"
+        },
+        onClick: onBack
+      }, undefined, false, undefined, this) : undefined,
+      import_jsx_dev_runtime3.jsxDEV("div", {
+        style: {
+          ...OVERLAP,
+          left,
+          top,
+          right,
+          bottom,
+          width,
+          height: fit ? 0 : height,
+          fontSize: style?.fontSize ?? DEFAULT_FONT_SIZE,
+          display: valid && (visible ?? localVisible) ? "" : "none"
+        },
+        children: import_jsx_dev_runtime3.jsxDEV("div", {
+          className: "pop-up",
+          style: {
+            ...POPUP_CSS,
+            marginTop: `${removed ? height ? `${height}px` : "80%" : "0px"}`,
+            width: "100%",
+            height: removed ? 0 : fit ? undefined : `${h}%`,
+            overflow: "hidden",
+            opacity: removed ? 0 : 1,
+            transition: "height .2s, margin-top .2s, opacity .2s",
+            outlineColor: !leaveBorderUnchanged && disabled ? "whitesmoke" : "white"
+          },
+          children: import_jsx_dev_runtime3.jsxDEV("div", {
+            className: "double-border",
+            style: {
+              ...DOUBLE_BORDER_CSS,
+              height: fit ? undefined : `calc(100% - ${DOUBLE_BORDER_HEIGHT_OFFSET}px)`,
+              borderColor: !leaveBorderUnchanged && disabled ? "silver" : "white",
+              overflow: "hidden"
+            },
+            children: removed ? undefined : children
+          }, undefined, false, undefined, this)
+        }, undefined, false, undefined, this)
+      }, undefined, false, undefined, this)
+    ]
+  }, undefined, true, undefined, this);
+}
 var OVERLAP = {
   position: "absolute"
 };
@@ -26771,19 +24649,143 @@ var DOUBLE_BORDER_CSS = {
 };
 var DOUBLE_BORDER_HEIGHT_OFFSET = 5;
 var DEFAULT_FONT_SIZE = 24;
+function useRemove() {
+  const [removed, setRemoved] = import_react13.useState(false);
+  const remove = import_react13.useCallback((onClose) => {
+    setRemoved(true);
+    const timeout = setTimeout(() => {
+      setRemoved(false);
+      onClose();
+    }, 150);
+    return () => clearTimeout(timeout);
+  }, [setRemoved]);
+  return { removed, remove };
+}
+function Images({ images }) {
+  const imgs = import_react15.useMemo(() => Array.isArray(images) ? images : [images], [images]);
+  return import_jsx_dev_runtime4.jsxDEV(import_jsx_dev_runtime4.Fragment, {
+    children: imgs.map((image, index) => {
+      const imgModel = typeof image === "string" ? { src: image } : image;
+      return import_jsx_dev_runtime4.jsxDEV("div", {
+        style: {
+          backgroundImage: `url("${imgModel.src}")`,
+          backgroundSize: imgModel.size ?? "contain",
+          width: "100%",
+          height: "100%",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          marginTop: `-${index * 100}%`,
+          transform: imgModel.transform
+        }
+      }, index, false, undefined, this);
+    })
+  }, undefined, false, undefined, this);
+}
+function Picture({ picture, removed }) {
+  return import_jsx_dev_runtime5.jsxDEV(import_jsx_dev_runtime5.Fragment, {
+    children: [
+      import_jsx_dev_runtime5.jsxDEV(Popup2, {
+        layout: picture.layout ?? {},
+        style: picture.style,
+        removed,
+        clickThrough: true,
+        children: import_jsx_dev_runtime5.jsxDEV("div", {
+          style: {
+            width: "100%",
+            height: "100%",
+            pointerEvents: "none",
+            overflow: "hidden"
+          },
+          children: import_jsx_dev_runtime5.jsxDEV(Images, {
+            images: picture.images
+          }, undefined, false, undefined, this)
+        }, undefined, false, undefined, this)
+      }, undefined, false, undefined, this),
+      picture.dialog && import_jsx_dev_runtime5.jsxDEV(Container2, {
+        dialog: picture.dialog,
+        focusLess: true,
+        removed
+      }, undefined, false, undefined, this)
+    ]
+  }, undefined, true, undefined, this);
+}
+function Label({ label }) {
+  return label && import_jsx_dev_runtime6.jsxDEV("div", {
+    style: { margin: 5, textAlign: "center" },
+    children: label
+  }, undefined, false, undefined, this);
+}
+function Button({ stretch, selected, hideOutline, emoji, text, padding, margin, disabled, onMouseOver, onMouseDown, onClick }) {
+  return import_jsx_dev_runtime7.jsxDEV("div", {
+    style: {
+      padding,
+      margin,
+      outline: !hideOutline ? "1px solid #333333" : undefined,
+      backgroundColor: selected ? "white" : "black",
+      opacity: disabled ? 0.3 : 1,
+      transition: "opacity .3s",
+      textAlign: "center",
+      flexGrow: stretch ? 1 : undefined
+    },
+    onMouseOver,
+    onMouseDown,
+    onClick,
+    children: [
+      import_jsx_dev_runtime7.jsxDEV("span", {
+        style: {
+          color: selected ? "transparent" : "white",
+          textShadow: selected ? "0 0 0 black" : undefined
+        },
+        children: emoji
+      }, undefined, false, undefined, this),
+      import_jsx_dev_runtime7.jsxDEV("span", {
+        style: {
+          color: selected ? "black" : "white"
+        },
+        children: text
+      }, undefined, false, undefined, this)
+    ]
+  }, undefined, true, undefined, this);
+}
 var client = __toESM2(require_client(), 1);
 var DEFAULT_EDIT_CONTEXT = {
   editing: false,
   toggleEditing() {
   }
 };
+function useEditControlContext() {
+  const [editing, setEditing] = import_react19.useState(false);
+  const context = import_react19.useMemo(() => ({
+    editing,
+    toggleEditing: () => {
+      setEditing((editing2) => !editing2);
+    }
+  }), [editing, setEditing]);
+  return context;
+}
+function EditToggle() {
+  const { editing, toggleEditing } = useEditContext();
+  return import_jsx_dev_runtime8.jsxDEV("button", {
+    style: {
+      position: "absolute",
+      top: 0,
+      right: 0,
+      cursor: "pointer",
+      zIndex: 1000,
+      padding: "5px 15px",
+      backgroundColor: editing ? "#cceeff" : undefined
+    },
+    onClick: () => toggleEditing(),
+    children: editing ? "EDIT ON" : "EDIT OFF"
+  }, undefined, false, undefined, this);
+}
 var Context3 = import_react18.default.createContext(DEFAULT_EDIT_CONTEXT);
 var EditContextProvider2 = ({ children, editor }) => {
   const context = useEditControlContext();
-  return jsx_dev_runtime9.jsxDEV(Context3.Provider, {
+  return import_jsx_dev_runtime9.jsxDEV(Context3.Provider, {
     value: context,
     children: [
-      editor && jsx_dev_runtime9.jsxDEV(EditToggle, {}, undefined, false, undefined, null),
+      editor && import_jsx_dev_runtime9.jsxDEV(EditToggle, {}, undefined, false, undefined, null),
       children
     ]
   }, undefined, true, undefined, null);
@@ -26795,6 +24797,98 @@ var useEditContext = () => {
   }
   return context;
 };
+function BasicPopup(props) {
+  return import_jsx_dev_runtime10.jsxDEV(LayoutContextProvider, {
+    children: import_jsx_dev_runtime10.jsxDEV(ControlContextProvider, {
+      popupControl: props.popupControl,
+      children: import_jsx_dev_runtime10.jsxDEV(EditContextProvider2, {
+        editor: props.editor,
+        children: import_jsx_dev_runtime10.jsxDEV(Container2, {
+          ...props
+        }, undefined, false, undefined, this)
+      }, undefined, false, undefined, this)
+    }, undefined, false, undefined, this)
+  }, undefined, false, undefined, this);
+}
+function openMenu({
+  layouts,
+  pictures,
+  menu,
+  dialog,
+  prompt: prompt2,
+  onSelect = (item) => console.log("SELECT", item),
+  onPrompt = (text) => console.log("PROMPT", text),
+  onClose = () => console.log("CLOSE"),
+  root = document.body,
+  popupControl = new PopupControl,
+  editor
+}) {
+  const rootElem = document.createElement("div");
+  rootElem.style.position = "absolute";
+  rootElem.style.left = "0px";
+  rootElem.style.top = "0px";
+  rootElem.style.width = "100%";
+  rootElem.style.height = "100%";
+  rootElem.style.overflow = "hidden";
+  const reactRoot = client.default.createRoot(rootElem);
+  const detach = async () => reactRoot.unmount();
+  const html = import_jsx_dev_runtime11.jsxDEV(BasicPopup, {
+    layouts,
+    pictures,
+    dialog,
+    menu,
+    prompt: prompt2,
+    onSelect,
+    onPrompt,
+    detach,
+    popupControl,
+    onClose: async () => setTimeout(() => {
+      detach();
+      onClose();
+    }, 10),
+    editor
+  }, undefined, false, undefined, this);
+  reactRoot.render(html);
+  root.appendChild(rootElem);
+  return { popupControl, detach };
+}
+function useLanguageModel({ languages }) {
+  const [lang, setLang] = import_react17.useState(0);
+  const currentLanguageModel = import_react17.useMemo(() => {
+    const language = languages?.[lang ?? 0] ?? DEFAULT_LANGUAGE;
+    return typeof language === "string" ? DEFAULT_LANGUAGES[language] : language;
+  }, [prompt, languages, lang]);
+  const getLanguageModel = import_react17.useCallback((language) => {
+    return typeof language === "string" ? DEFAULT_LANGUAGES[language] : language;
+  }, []);
+  const { popupControl } = useControlContext();
+  const chooseLanguage = import_react17.useCallback(() => {
+    openMenu({
+      menu: {
+        builtIn: true,
+        layout: {
+          position: [150, 50],
+          size: [200, 200]
+        },
+        items: languages?.map((language, index) => {
+          const languageModel = getLanguageModel(language);
+          return {
+            emoji: languageModel.emoji,
+            label: languageModel.name,
+            index,
+            back: true,
+            selected: lang === index
+          };
+        }) ?? []
+      },
+      popupControl,
+      onSelect(item) {
+        setLang(item.index);
+      }
+    });
+  }, [languages, getLanguageModel, setLang, lang, popupControl]);
+  return { currentLanguageModel, getLanguageModel, chooseLanguage: languages ? chooseLanguage : undefined };
+}
 var DEFAULT_LANGUAGES = {
   english: {
     emoji: "\uD83C\uDDEC\uD83C\uDDE7",
@@ -26811,7 +24905,269 @@ var DEFAULT_LANGUAGES = {
 };
 var DEFAULT_LANGUAGE = DEFAULT_LANGUAGES["english"];
 var import_hangul_js = __toESM2(require_hangul(), 1);
+function useAlphabet({ languageModel }) {
+  const [capitalize, setCapitalize] = import_react20.useState(false);
+  import_react20.useEffect(() => {
+    if (!languageModel.capitalize) {
+      setCapitalize(false);
+    }
+  }, [languageModel, setCapitalize]);
+  const alphabet = import_react20.useMemo(() => {
+    const letters = import_hangul_js.default.disassemble(languageModel.alphabet);
+    return capitalize ? letters.map((l2) => l2.toUpperCase()) : letters;
+  }, [capitalize, import_hangul_js.default, languageModel]);
+  return { alphabet, setCapitalize };
+}
 var import_hangul_js2 = __toESM2(require_hangul(), 1);
+function useTextInput({ defaultText, randomList }) {
+  const [text, setText] = import_react21.useState(defaultText);
+  const addLetter = import_react21.useCallback((letter) => {
+    setText((text2) => {
+      const letters = import_hangul_js2.default.disassemble(text2 ?? "");
+      letters.push(letter);
+      return import_hangul_js2.default.assemble(letters);
+    });
+  }, [import_hangul_js2.default, setText]);
+  const deleteLetter = import_react21.useCallback(() => {
+    setText((text2) => {
+      const letters = import_hangul_js2.default.disassemble(text2 ?? "");
+      letters.pop();
+      return import_hangul_js2.default.assemble(letters);
+    });
+  }, [import_hangul_js2.default, setText]);
+  const randomizeText = import_react21.useCallback(() => {
+    if (randomList) {
+      const len = randomList.length.valueOf();
+      setText((text2) => {
+        const list = [];
+        for (let i2 = 0;i2 < len; i2++) {
+          const str = randomList.at(i2);
+          if (randomList.at(i2) !== text2) {
+            list.push(str);
+          }
+        }
+        return list.at(Math.floor(Math.random() * list.length));
+      });
+    }
+  }, [randomList, setText]);
+  return { text, setText, addLetter, deleteLetter, randomizeText };
+}
+function useInputFocus({ text }) {
+  const { popupControl } = useControlContext();
+  const [inputFocus, setInputFocus] = import_react22.useState(false);
+  import_react22.useEffect(() => {
+    if (inputFocus) {
+      popupControl.deactivate();
+      return () => popupControl.activate();
+    }
+  }, [popupControl, inputFocus]);
+  const inputRef = import_react22.useRef(null);
+  import_react22.useEffect(() => {
+    const input = inputRef.current;
+    if (input) {
+      const onFocus = () => {
+        setInputFocus(true);
+        window.getSelection()?.selectAllChildren(input);
+      };
+      const onBlur = () => {
+        setInputFocus(false);
+        window.getSelection()?.empty();
+      };
+      input.addEventListener("focus", onFocus);
+      input.addEventListener("blur", onBlur);
+    }
+  }, [inputRef.current, setInputFocus]);
+  import_react22.useEffect(() => {
+    const input = inputRef.current;
+    if (input && input.textContent !== text) {
+      input.textContent = text ?? null;
+    }
+  }, [text, inputRef.current]);
+  const setEndOfContenteditable = import_react22.useCallback((elem) => {
+    window.getSelection()?.selectAllChildren(elem);
+    window.getSelection()?.collapseToEnd();
+  }, []);
+  const focus = import_react22.useCallback((end) => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+      if (end) {
+        setEndOfContenteditable(inputRef.current);
+      }
+    }
+  }, [inputRef.current, setEndOfContenteditable]);
+  return { inputRef, inputFocus, focus };
+}
+function useActiveFocus({ disabled } = {}) {
+  const [active, setActive] = import_react23.useState(!disabled);
+  const { popupControl } = useControlContext();
+  import_react23.useEffect(() => {
+    if (!disabled) {
+      return popupControl.registerActive(setActive);
+    }
+  }, [popupControl, setActive, disabled]);
+  return { active };
+}
+function useKeyDown({ enabled, key, callback }) {
+  import_react24.useEffect(() => {
+    if (enabled) {
+      const listener = (e) => {
+        if (key.indexOf(e.code) >= 0) {
+          callback();
+        }
+      };
+      document.addEventListener("keydown", listener);
+      return () => document.removeEventListener("keydown", listener);
+    }
+  }, [enabled, key, callback]);
+}
+function usePromptControl({
+  alphabet,
+  onClose,
+  addLetter,
+  deleteLetter,
+  randomizeText,
+  chooseLanguage,
+  toggleCapitalize,
+  onConfirm,
+  text,
+  randomList,
+  inputFocus,
+  canCapitalize,
+  focus
+}) {
+  const { active } = useActiveFocus();
+  const { removed, remove } = useRemove();
+  const [position, setPosition] = import_react25.useState([0, 0]);
+  const actionBar = import_react25.useMemo(() => {
+    const leftSide = [];
+    if (chooseLanguage) {
+      leftSide.push(ActionButton.LANG);
+    }
+    if (canCapitalize) {
+      leftSide.push(ActionButton.CAP);
+    }
+    const rightSize = [ActionButton.DEL, ActionButton.OK];
+    const mid = new Array(COLUMNS - leftSide.length - rightSize.length).fill(ActionButton.SPACE);
+    return leftSide.concat(mid).concat(rightSize);
+  }, [canCapitalize, chooseLanguage]);
+  const closePrompt = import_react25.useCallback(() => {
+    remove(onClose);
+  }, [remove, onClose]);
+  const onSpace = import_react25.useCallback((pos) => {
+    return actionBar[pos[0]] === ActionButton.SPACE && pos[1] === 4;
+  }, [actionBar]);
+  const onLetter = import_react25.useCallback((pos) => {
+    return pos[1] >= 0 && pos[1] <= 3;
+  }, []);
+  const confirmText = import_react25.useCallback(() => {
+    if (text) {
+      onConfirm(text);
+      closePrompt();
+    }
+  }, [text, onConfirm, closePrompt]);
+  const onAction = import_react25.useCallback(() => {
+    if (onLetter(position)) {
+      addLetter(alphabet[position[1] * COLUMNS + position[0]]);
+      return;
+    }
+    if (onSpace(position)) {
+      addLetter(" ");
+      return;
+    }
+    if (position[1] === -1) {
+      randomizeText();
+      return;
+    }
+    if (position[1] === 4) {
+      switch (actionBar[position[0]]) {
+        case ActionButton.LANG:
+          chooseLanguage?.();
+          break;
+        case ActionButton.CAP:
+          toggleCapitalize();
+          break;
+        case ActionButton.DEL:
+          deleteLetter();
+          break;
+        case ActionButton.OK:
+          confirmText();
+          break;
+      }
+    }
+  }, [chooseLanguage, position, toggleCapitalize, onLetter, alphabet, randomizeText, confirmText, addLetter, deleteLetter, actionBar]);
+  const onLeft = import_react25.useCallback(() => {
+    setPosition((pos) => {
+      if (onSpace(pos)) {
+        let i2;
+        for (i2 = 0;i2 < actionBar.length; i2++) {
+          if (actionBar[i2] === ActionButton.SPACE) {
+            break;
+          }
+        }
+        return [Math.max(0, i2 - 1), pos[1]];
+      }
+      return [Math.max(pos[0] - 1, 0), pos[1]];
+    });
+  }, [setPosition, onSpace, actionBar]);
+  const onRight = import_react25.useCallback(() => {
+    setPosition((pos) => {
+      if (onSpace(pos)) {
+        let i2;
+        for (i2 = actionBar.length - 1;i2 >= 0; i2--) {
+          if (actionBar[i2] === ActionButton.SPACE) {
+            break;
+          }
+        }
+        return [Math.min(actionBar.length - 1, i2 + 1), pos[1]];
+      }
+      return [Math.min(pos[0] + 1, COLUMNS - 1), pos[1]];
+    });
+  }, [setPosition, onSpace, actionBar]);
+  const onUp = import_react25.useCallback(() => {
+    setPosition((pos) => [pos[0], Math.max(randomList ? -1 : 0, pos[1] - 1)]);
+  }, [setPosition, randomList]);
+  const onDown = import_react25.useCallback(() => {
+    setPosition((pos) => [pos[0], Math.min(4, pos[1] + 1)]);
+  }, [setPosition]);
+  const { lockState, popupControl } = useControls({
+    active,
+    listener: import_react25.useMemo(() => ({
+      onLeft,
+      onRight,
+      onUp,
+      onDown,
+      onBack: closePrompt,
+      onAction,
+      onStart: confirmText
+    }), [onLeft, onRight, onUp, onDown, closePrompt, onAction])
+  });
+  useKeyDown({
+    enabled: import_react25.useMemo(() => canCapitalize && !inputFocus, [canCapitalize, inputFocus]),
+    key: ["ShiftLeft", "ShiftRight"],
+    callback: toggleCapitalize
+  });
+  useKeyDown({
+    enabled: !inputFocus,
+    key: ["Enter"],
+    callback: import_react25.useCallback(() => popupControl.onAction(), [popupControl])
+  });
+  useKeyDown({
+    enabled: !inputFocus,
+    key: ["Backspace", "Tab"],
+    callback: () => focus(true)
+  });
+  const { enableMouseHover, mouseHoverEnabled } = useMouseHover({ active });
+  return {
+    disabled: lockState === LockStatus.LOCKED,
+    removed,
+    enableMouseHover,
+    mouseHoverEnabled,
+    position,
+    setPosition,
+    actionButtonSelected: position[1] < 0 ? ActionButton.RANDOM : position[1] !== 4 ? undefined : actionBar[position[0]],
+    onAction
+  };
+}
 var COLUMNS = 10;
 var ActionButton;
 (function(ActionButton2) {
@@ -26822,6 +25178,17 @@ var ActionButton;
   ActionButton2[ActionButton2["OK"] = 4] = "OK";
   ActionButton2[ActionButton2["RANDOM"] = 5] = "RANDOM";
 })(ActionButton || (ActionButton = {}));
+function __spreadArray(to, from, pack) {
+  if (pack || arguments.length === 2)
+    for (var i2 = 0, l2 = from.length, ar;i2 < l2; i2++) {
+      if (ar || !(i2 in from)) {
+        if (!ar)
+          ar = Array.prototype.slice.call(from, 0, i2);
+        ar[i2] = from[i2];
+      }
+    }
+  return to.concat(ar || Array.prototype.slice.call(from));
+}
 var __assign = function() {
   __assign = Object.assign || function __assign(t) {
     for (var s2, i2 = 1, n = arguments.length;i2 < n; i2++) {
@@ -26856,15 +25223,528 @@ var DECLARATION = "decl";
 var IMPORT = "@import";
 var KEYFRAMES = "@keyframes";
 var LAYER = "@layer";
+function hash(value, length) {
+  return charat(value, 0) ^ 45 ? (((length << 2 ^ charat(value, 0)) << 2 ^ charat(value, 1)) << 2 ^ charat(value, 2)) << 2 ^ charat(value, 3) : 0;
+}
+function trim(value) {
+  return value.trim();
+}
+function match(value, pattern) {
+  return (value = pattern.exec(value)) ? value[0] : value;
+}
+function replace(value, pattern, replacement) {
+  return value.replace(pattern, replacement);
+}
+function indexof(value, search, position) {
+  return value.indexOf(search, position);
+}
+function charat(value, index) {
+  return value.charCodeAt(index) | 0;
+}
+function substr(value, begin, end) {
+  return value.slice(begin, end);
+}
+function strlen(value) {
+  return value.length;
+}
+function sizeof(value) {
+  return value.length;
+}
+function append(value, array) {
+  return array.push(value), value;
+}
+function combine(array, callback) {
+  return array.map(callback).join("");
+}
+function filter(array, pattern) {
+  return array.filter(function(value) {
+    return !match(value, pattern);
+  });
+}
 var abs = Math.abs;
 var from = String.fromCharCode;
 var assign = Object.assign;
+function node(value, root, parent, type, props, children, length, siblings) {
+  return { value, root, parent, type, props, children, line, column, length, return: "", siblings };
+}
+function copy(root, props) {
+  return assign(node("", null, null, "", null, null, 0, root.siblings), root, { length: -root.length }, props);
+}
+function lift(root) {
+  while (root.root)
+    root = copy(root.root, { children: [root] });
+  append(root, root.siblings);
+}
+function char() {
+  return character;
+}
+function prev() {
+  character = position > 0 ? charat(characters, --position) : 0;
+  if (column--, character === 10)
+    column = 1, line--;
+  return character;
+}
+function next() {
+  character = position < length ? charat(characters, position++) : 0;
+  if (column++, character === 10)
+    column = 1, line++;
+  return character;
+}
+function peek() {
+  return charat(characters, position);
+}
+function caret() {
+  return position;
+}
+function slice(begin, end) {
+  return substr(characters, begin, end);
+}
+function token(type) {
+  switch (type) {
+    case 0:
+    case 9:
+    case 10:
+    case 13:
+    case 32:
+      return 5;
+    case 33:
+    case 43:
+    case 44:
+    case 47:
+    case 62:
+    case 64:
+    case 126:
+    case 59:
+    case 123:
+    case 125:
+      return 4;
+    case 58:
+      return 3;
+    case 34:
+    case 39:
+    case 40:
+    case 91:
+      return 2;
+    case 41:
+    case 93:
+      return 1;
+  }
+  return 0;
+}
+function alloc(value) {
+  return line = column = 1, length = strlen(characters = value), position = 0, [];
+}
+function dealloc(value) {
+  return characters = "", value;
+}
+function delimit(type) {
+  return trim(slice(position - 1, delimiter(type === 91 ? type + 2 : type === 40 ? type + 1 : type)));
+}
+function whitespace(type) {
+  while (character = peek())
+    if (character < 33)
+      next();
+    else
+      break;
+  return token(type) > 2 || token(character) > 3 ? "" : " ";
+}
+function escaping(index, count) {
+  while (--count && next())
+    if (character < 48 || character > 102 || character > 57 && character < 65 || character > 70 && character < 97)
+      break;
+  return slice(index, caret() + (count < 6 && peek() == 32 && next() == 32));
+}
+function delimiter(type) {
+  while (next())
+    switch (character) {
+      case type:
+        return position;
+      case 34:
+      case 39:
+        if (type !== 34 && type !== 39)
+          delimiter(character);
+        break;
+      case 40:
+        if (type === 41)
+          delimiter(type);
+        break;
+      case 92:
+        next();
+        break;
+    }
+  return position;
+}
+function commenter(type, index) {
+  while (next())
+    if (type + character === 47 + 10)
+      break;
+    else if (type + character === 42 + 42 && peek() === 47)
+      break;
+  return "/*" + slice(index, position - 1) + "*" + from(type === 47 ? type : next());
+}
+function identifier(index) {
+  while (!token(peek()))
+    next();
+  return slice(index, position);
+}
 var line = 1;
 var column = 1;
 var length = 0;
 var position = 0;
 var character = 0;
 var characters = "";
+function compile(value) {
+  return dealloc(parse("", null, null, null, [""], value = alloc(value), 0, [0], value));
+}
+function parse(value, root, parent, rule, rules, rulesets, pseudo, points, declarations) {
+  var index = 0;
+  var offset = 0;
+  var length2 = pseudo;
+  var atrule = 0;
+  var property = 0;
+  var previous = 0;
+  var variable = 1;
+  var scanning = 1;
+  var ampersand = 1;
+  var character2 = 0;
+  var type = "";
+  var props = rules;
+  var children = rulesets;
+  var reference = rule;
+  var characters2 = type;
+  while (scanning)
+    switch (previous = character2, character2 = next()) {
+      case 40:
+        if (previous != 108 && charat(characters2, length2 - 1) == 58) {
+          if (indexof(characters2 += replace(delimit(character2), "&", "&\f"), "&\f", abs(index ? points[index - 1] : 0)) != -1)
+            ampersand = -1;
+          break;
+        }
+      case 34:
+      case 39:
+      case 91:
+        characters2 += delimit(character2);
+        break;
+      case 9:
+      case 10:
+      case 13:
+      case 32:
+        characters2 += whitespace(previous);
+        break;
+      case 92:
+        characters2 += escaping(caret() - 1, 7);
+        continue;
+      case 47:
+        switch (peek()) {
+          case 42:
+          case 47:
+            append(comment(commenter(next(), caret()), root, parent, declarations), declarations);
+            break;
+          default:
+            characters2 += "/";
+        }
+        break;
+      case 123 * variable:
+        points[index++] = strlen(characters2) * ampersand;
+      case 125 * variable:
+      case 59:
+      case 0:
+        switch (character2) {
+          case 0:
+          case 125:
+            scanning = 0;
+          case 59 + offset:
+            if (ampersand == -1)
+              characters2 = replace(characters2, /\f/g, "");
+            if (property > 0 && strlen(characters2) - length2)
+              append(property > 32 ? declaration(characters2 + ";", rule, parent, length2 - 1, declarations) : declaration(replace(characters2, " ", "") + ";", rule, parent, length2 - 2, declarations), declarations);
+            break;
+          case 59:
+            characters2 += ";";
+          default:
+            append(reference = ruleset(characters2, root, parent, index, offset, rules, points, type, props = [], children = [], length2, rulesets), rulesets);
+            if (character2 === 123)
+              if (offset === 0)
+                parse(characters2, root, reference, reference, props, rulesets, length2, points, children);
+              else
+                switch (atrule === 99 && charat(characters2, 3) === 110 ? 100 : atrule) {
+                  case 100:
+                  case 108:
+                  case 109:
+                  case 115:
+                    parse(value, reference, reference, rule && append(ruleset(value, reference, reference, 0, 0, rules, points, type, rules, props = [], length2, children), children), rules, children, length2, points, rule ? props : children);
+                    break;
+                  default:
+                    parse(characters2, reference, reference, reference, [""], children, 0, points, children);
+                }
+        }
+        index = offset = property = 0, variable = ampersand = 1, type = characters2 = "", length2 = pseudo;
+        break;
+      case 58:
+        length2 = 1 + strlen(characters2), property = previous;
+      default:
+        if (variable < 1) {
+          if (character2 == 123)
+            --variable;
+          else if (character2 == 125 && variable++ == 0 && prev() == 125)
+            continue;
+        }
+        switch (characters2 += from(character2), character2 * variable) {
+          case 38:
+            ampersand = offset > 0 ? 1 : (characters2 += "\f", -1);
+            break;
+          case 44:
+            points[index++] = (strlen(characters2) - 1) * ampersand, ampersand = 1;
+            break;
+          case 64:
+            if (peek() === 45)
+              characters2 += delimit(next());
+            atrule = peek(), offset = length2 = strlen(type = characters2 += identifier(caret())), character2++;
+            break;
+          case 45:
+            if (previous === 45 && strlen(characters2) == 2)
+              variable = 0;
+        }
+    }
+  return rulesets;
+}
+function ruleset(value, root, parent, index, offset, rules, points, type, props, children, length2, siblings) {
+  var post = offset - 1;
+  var rule = offset === 0 ? rules : [""];
+  var size = sizeof(rule);
+  for (var i2 = 0, j = 0, k = 0;i2 < index; ++i2)
+    for (var x3 = 0, y = substr(value, post + 1, post = abs(j = points[i2])), z = value;x3 < size; ++x3)
+      if (z = trim(j > 0 ? rule[x3] + " " + y : replace(y, /&\f/g, rule[x3])))
+        props[k++] = z;
+  return node(value, root, parent, offset === 0 ? RULESET : type, props, children, length2, siblings);
+}
+function comment(value, root, parent, siblings) {
+  return node(value, root, parent, COMMENT, from(char()), substr(value, 2, -2), 0, siblings);
+}
+function declaration(value, root, parent, length2, siblings) {
+  return node(value, root, parent, DECLARATION, substr(value, 0, length2), substr(value, length2 + 1, -1), length2, siblings);
+}
+function prefix(value, length2, children) {
+  switch (hash(value, length2)) {
+    case 5103:
+      return WEBKIT + "print-" + value + value;
+    case 5737:
+    case 4201:
+    case 3177:
+    case 3433:
+    case 1641:
+    case 4457:
+    case 2921:
+    case 5572:
+    case 6356:
+    case 5844:
+    case 3191:
+    case 6645:
+    case 3005:
+    case 6391:
+    case 5879:
+    case 5623:
+    case 6135:
+    case 4599:
+    case 4855:
+    case 4215:
+    case 6389:
+    case 5109:
+    case 5365:
+    case 5621:
+    case 3829:
+      return WEBKIT + value + value;
+    case 4789:
+      return MOZ + value + value;
+    case 5349:
+    case 4246:
+    case 4810:
+    case 6968:
+    case 2756:
+      return WEBKIT + value + MOZ + value + MS + value + value;
+    case 5936:
+      switch (charat(value, length2 + 11)) {
+        case 114:
+          return WEBKIT + value + MS + replace(value, /[svh]\w+-[tblr]{2}/, "tb") + value;
+        case 108:
+          return WEBKIT + value + MS + replace(value, /[svh]\w+-[tblr]{2}/, "tb-rl") + value;
+        case 45:
+          return WEBKIT + value + MS + replace(value, /[svh]\w+-[tblr]{2}/, "lr") + value;
+      }
+    case 6828:
+    case 4268:
+    case 2903:
+      return WEBKIT + value + MS + value + value;
+    case 6165:
+      return WEBKIT + value + MS + "flex-" + value + value;
+    case 5187:
+      return WEBKIT + value + replace(value, /(\w+).+(:[^]+)/, WEBKIT + "box-$1$2" + MS + "flex-$1$2") + value;
+    case 5443:
+      return WEBKIT + value + MS + "flex-item-" + replace(value, /flex-|-self/g, "") + (!match(value, /flex-|baseline/) ? MS + "grid-row-" + replace(value, /flex-|-self/g, "") : "") + value;
+    case 4675:
+      return WEBKIT + value + MS + "flex-line-pack" + replace(value, /align-content|flex-|-self/g, "") + value;
+    case 5548:
+      return WEBKIT + value + MS + replace(value, "shrink", "negative") + value;
+    case 5292:
+      return WEBKIT + value + MS + replace(value, "basis", "preferred-size") + value;
+    case 6060:
+      return WEBKIT + "box-" + replace(value, "-grow", "") + WEBKIT + value + MS + replace(value, "grow", "positive") + value;
+    case 4554:
+      return WEBKIT + replace(value, /([^-])(transform)/g, "$1" + WEBKIT + "$2") + value;
+    case 6187:
+      return replace(replace(replace(value, /(zoom-|grab)/, WEBKIT + "$1"), /(image-set)/, WEBKIT + "$1"), value, "") + value;
+    case 5495:
+    case 3959:
+      return replace(value, /(image-set\([^]*)/, WEBKIT + "$1$`$1");
+    case 4968:
+      return replace(replace(value, /(.+:)(flex-)?(.*)/, WEBKIT + "box-pack:$3" + MS + "flex-pack:$3"), /s.+-b[^;]+/, "justify") + WEBKIT + value + value;
+    case 4200:
+      if (!match(value, /flex-|baseline/))
+        return MS + "grid-column-align" + substr(value, length2) + value;
+      break;
+    case 2592:
+    case 3360:
+      return MS + replace(value, "template-", "") + value;
+    case 4384:
+    case 3616:
+      if (children && children.some(function(element, index) {
+        return length2 = index, match(element.props, /grid-\w+-end/);
+      })) {
+        return ~indexof(value + (children = children[length2].value), "span", 0) ? value : MS + replace(value, "-start", "") + value + MS + "grid-row-span:" + (~indexof(children, "span", 0) ? match(children, /\d+/) : +match(children, /\d+/) - +match(value, /\d+/)) + ";";
+      }
+      return MS + replace(value, "-start", "") + value;
+    case 4896:
+    case 4128:
+      return children && children.some(function(element) {
+        return match(element.props, /grid-\w+-start/);
+      }) ? value : MS + replace(replace(value, "-end", "-span"), "span ", "") + value;
+    case 4095:
+    case 3583:
+    case 4068:
+    case 2532:
+      return replace(value, /(.+)-inline(.+)/, WEBKIT + "$1$2") + value;
+    case 8116:
+    case 7059:
+    case 5753:
+    case 5535:
+    case 5445:
+    case 5701:
+    case 4933:
+    case 4677:
+    case 5533:
+    case 5789:
+    case 5021:
+    case 4765:
+      if (strlen(value) - 1 - length2 > 6)
+        switch (charat(value, length2 + 1)) {
+          case 109:
+            if (charat(value, length2 + 4) !== 45)
+              break;
+          case 102:
+            return replace(value, /(.+:)(.+)-([^]+)/, "$1" + WEBKIT + "$2-$3$1" + MOZ + (charat(value, length2 + 3) == 108 ? "$3" : "$2-$3")) + value;
+          case 115:
+            return ~indexof(value, "stretch", 0) ? prefix(replace(value, "stretch", "fill-available"), length2, children) + value : value;
+        }
+      break;
+    case 5152:
+    case 5920:
+      return replace(value, /(.+?):(\d+)(\s*\/\s*(span)?\s*(\d+))?(.*)/, function(_, a2, b, c2, d, e, f) {
+        return MS + a2 + ":" + b + f + (c2 ? MS + a2 + "-span:" + (d ? e : +e - +b) + f : "") + value;
+      });
+    case 4949:
+      if (charat(value, length2 + 6) === 121)
+        return replace(value, ":", ":" + WEBKIT) + value;
+      break;
+    case 6444:
+      switch (charat(value, charat(value, 14) === 45 ? 18 : 11)) {
+        case 120:
+          return replace(value, /(.+:)([^;\s!]+)(;|(\s+)?!.+)?/, "$1" + WEBKIT + (charat(value, 14) === 45 ? "inline-" : "") + "box$3$1" + WEBKIT + "$2$3$1" + MS + "$2box$3") + value;
+        case 100:
+          return replace(value, ":", ":" + MS) + value;
+      }
+      break;
+    case 5719:
+    case 2647:
+    case 2135:
+    case 3927:
+    case 2391:
+      return replace(value, "scroll-", "scroll-snap-") + value;
+  }
+  return value;
+}
+function serialize(children, callback) {
+  var output = "";
+  for (var i2 = 0;i2 < children.length; i2++)
+    output += callback(children[i2], i2, children, callback) || "";
+  return output;
+}
+function stringify(element, index, children, callback) {
+  switch (element.type) {
+    case LAYER:
+      if (element.children.length)
+        break;
+    case IMPORT:
+    case DECLARATION:
+      return element.return = element.return || element.value;
+    case COMMENT:
+      return "";
+    case KEYFRAMES:
+      return element.return = element.value + "{" + serialize(element.children, callback) + "}";
+    case RULESET:
+      if (!strlen(element.value = element.props.join(",")))
+        return "";
+  }
+  return strlen(children = serialize(element.children, callback)) ? element.return = element.value + "{" + children + "}" : "";
+}
+function middleware(collection) {
+  var length2 = sizeof(collection);
+  return function(element, index, children, callback) {
+    var output = "";
+    for (var i2 = 0;i2 < length2; i2++)
+      output += collection[i2](element, index, children, callback) || "";
+    return output;
+  };
+}
+function rulesheet(callback) {
+  return function(element) {
+    if (!element.root) {
+      if (element = element.return)
+        callback(element);
+    }
+  };
+}
+function prefixer(element, index, children, callback) {
+  if (element.length > -1) {
+    if (!element.return)
+      switch (element.type) {
+        case DECLARATION:
+          element.return = prefix(element.value, element.length, children);
+          return;
+        case KEYFRAMES:
+          return serialize([copy(element, { value: replace(element.value, "@", "@" + WEBKIT) })], callback);
+        case RULESET:
+          if (element.length)
+            return combine(children = element.props, function(value) {
+              switch (match(value, callback = /(::plac\w+|:read-\w+)/)) {
+                case ":read-only":
+                case ":read-write":
+                  lift(copy(element, { props: [replace(value, /:(read-\w+)/, ":" + MOZ + "$1")] }));
+                  lift(copy(element, { props: [value] }));
+                  assign(element, { props: filter(children, callback) });
+                  break;
+                case "::placeholder":
+                  lift(copy(element, { props: [replace(value, /:(plac\w+)/, ":" + WEBKIT + "input-$1")] }));
+                  lift(copy(element, { props: [replace(value, /:(plac\w+)/, ":" + MOZ + "$1")] }));
+                  lift(copy(element, { props: [replace(value, /:(plac\w+)/, MS + "input-$1")] }));
+                  lift(copy(element, { props: [value] }));
+                  assign(element, { props: filter(children, callback) });
+                  break;
+              }
+              return "";
+            });
+      }
+  }
+}
 var unitlessKeys = {
   animationIterationCount: 1,
   borderImageOutset: 1,
@@ -27589,8 +26469,718 @@ var Blink = ut.span`
   animation: ${animation};
   text-decoration: underline;
 `;
+function Prompt({ prompt: prompt2, onConfirm, onClose }) {
+  const { currentLanguageModel, chooseLanguage } = useLanguageModel({ languages: prompt2.languages });
+  const { alphabet, setCapitalize } = useAlphabet({ languageModel: currentLanguageModel });
+  const { addLetter, deleteLetter, randomizeText, text, setText } = useTextInput({ defaultText: prompt2.defaultText, randomList: prompt2.randomText });
+  const { inputFocus, inputRef, focus } = useInputFocus({ text });
+  const { disabled, removed, enableMouseHover, mouseHoverEnabled, position: position2, setPosition, actionButtonSelected, onAction } = usePromptControl({
+    alphabet,
+    text,
+    onClose,
+    addLetter,
+    deleteLetter,
+    randomizeText,
+    toggleCapitalize: import_react16.useCallback(() => setCapitalize((cap) => !cap), [setCapitalize]),
+    chooseLanguage,
+    onConfirm: prompt2.input ?? onConfirm,
+    randomList: prompt2.randomText,
+    inputFocus,
+    canCapitalize: currentLanguageModel.capitalize,
+    focus
+  });
+  const clickable = import_react16.useMemo(() => !disabled && mouseHoverEnabled, [disabled, mouseHoverEnabled]);
+  return import_jsx_dev_runtime12.jsxDEV(import_jsx_dev_runtime12.Fragment, {
+    children: import_jsx_dev_runtime12.jsxDEV(Popup2, {
+      layout: prompt2.layout ?? {},
+      style: prompt2.style,
+      removed,
+      disabled,
+      onBack: onClose,
+      fit: true,
+      children: import_jsx_dev_runtime12.jsxDEV("div", {
+        style: { padding: 5 },
+        children: [
+          import_jsx_dev_runtime12.jsxDEV(Label, {
+            label: prompt2.label
+          }, undefined, false, undefined, this),
+          import_jsx_dev_runtime12.jsxDEV("div", {
+            style: { padding: 5, display: "flex" },
+            children: [
+              import_jsx_dev_runtime12.jsxDEV("div", {
+                autoCorrect: "off",
+                autoCapitalize: "off",
+                spellCheck: "false",
+                style: {
+                  flex: 1,
+                  color: "white",
+                  backgroundColor: "black",
+                  fontSize: 20,
+                  border: "2px solid white",
+                  borderRadius: "5px",
+                  padding: 10,
+                  cursor: "text",
+                  minHeight: 25
+                },
+                onClick: () => focus(),
+                children: [
+                  import_jsx_dev_runtime12.jsxDEV("div", {
+                    ref: inputRef,
+                    contentEditable: true,
+                    style: { width: "100%", display: "inline" },
+                    onKeyDown: (e) => {
+                      if (e.code === "Enter") {
+                        e.preventDefault();
+                      }
+                    },
+                    onKeyUp: ({ code, currentTarget }) => {
+                      if (code === "Escape") {
+                        currentTarget.blur();
+                      } else if (code === "Enter") {
+                        currentTarget.blur();
+                        setPosition([COLUMNS2 - 1, 4]);
+                      }
+                    },
+                    onInput: ({ currentTarget }) => setText(currentTarget.textContent ?? undefined)
+                  }, undefined, false, undefined, this),
+                  !inputFocus && import_jsx_dev_runtime12.jsxDEV(Blink, {
+                    children: "\xA0\xA0"
+                  }, undefined, false, undefined, this)
+                ]
+              }, undefined, true, undefined, this),
+              prompt2.randomText ? import_jsx_dev_runtime12.jsxDEV(Button, {
+                hideOutline: true,
+                selected: !inputFocus && actionButtonSelected === ActionButton.RANDOM,
+                padding: 5,
+                margin: 5,
+                emoji: "\uD83C\uDFB2",
+                disabled: inputFocus,
+                onMouseOver: () => {
+                  setPosition([COLUMNS2 - 1, -1]);
+                },
+                onMouseDown: () => {
+                  setPosition([COLUMNS2 - 1, -1]);
+                },
+                onClick: onAction
+              }, undefined, false, undefined, this) : undefined
+            ]
+          }, undefined, true, undefined, this),
+          import_jsx_dev_runtime12.jsxDEV("div", {
+            style: {
+              pointerEvents: inputFocus ? "none" : undefined,
+              opacity: inputFocus ? 0.3 : 1,
+              transition: "opacity .3s",
+              cursor: clickable ? "inherit" : "auto"
+            },
+            onMouseMove: () => {
+              if (!disabled) {
+                enableMouseHover();
+              }
+            },
+            children: import_jsx_dev_runtime12.jsxDEV("div", {
+              children: [
+                import_jsx_dev_runtime12.jsxDEV("div", {
+                  style: {
+                    margin: 5,
+                    display: "grid",
+                    gridTemplateColumns: GRID_TEMPLATE_COLUMN
+                  },
+                  children: alphabet.map((letter, index) => {
+                    return import_jsx_dev_runtime12.jsxDEV(Button, {
+                      selected: !inputFocus && Math.floor(index / COLUMNS2) === position2[1] && index % COLUMNS2 === position2[0],
+                      padding: 3,
+                      text: letter,
+                      onMouseOver: () => {
+                        if (mouseHoverEnabled) {
+                          setPosition([index % COLUMNS2, Math.floor(index / COLUMNS2)]);
+                        }
+                      },
+                      onMouseDown: () => {
+                        if (mouseHoverEnabled) {
+                          setPosition([index % COLUMNS2, Math.floor(index / COLUMNS2)]);
+                        }
+                      },
+                      onClick: onAction
+                    }, index, false, undefined, this);
+                  })
+                }, undefined, false, undefined, this),
+                import_jsx_dev_runtime12.jsxDEV("div", {
+                  style: { margin: 5, display: "flex", gap: 10 },
+                  children: [
+                    prompt2.languages && import_jsx_dev_runtime12.jsxDEV(Button, {
+                      selected: !inputFocus && actionButtonSelected === ActionButton.LANG,
+                      padding: "0px 5px",
+                      emoji: "\uD83C\uDF10",
+                      onMouseOver: () => {
+                        if (mouseHoverEnabled) {
+                          setPosition([0, 4]);
+                        }
+                      },
+                      onMouseDown: () => {
+                        if (mouseHoverEnabled) {
+                          setPosition([0, 4]);
+                        }
+                      },
+                      onClick: onAction
+                    }, undefined, false, undefined, this),
+                    currentLanguageModel.capitalize && import_jsx_dev_runtime12.jsxDEV(Button, {
+                      selected: !inputFocus && actionButtonSelected === ActionButton.CAP,
+                      padding: "0px 5px",
+                      text: "Aa",
+                      onMouseOver: () => {
+                        if (mouseHoverEnabled) {
+                          setPosition([1, 4]);
+                        }
+                      },
+                      onMouseDown: () => {
+                        if (mouseHoverEnabled) {
+                          setPosition([1, 4]);
+                        }
+                      },
+                      onClick: onAction
+                    }, undefined, false, undefined, this),
+                    import_jsx_dev_runtime12.jsxDEV(Button, {
+                      selected: !inputFocus && actionButtonSelected === ActionButton.SPACE,
+                      padding: "0px 10px",
+                      stretch: true,
+                      text: "space",
+                      onMouseOver: () => {
+                        if (mouseHoverEnabled) {
+                          setPosition([5, 4]);
+                        }
+                      },
+                      onMouseDown: () => {
+                        if (mouseHoverEnabled) {
+                          setPosition([5, 4]);
+                        }
+                      },
+                      onClick: onAction
+                    }, undefined, false, undefined, this),
+                    import_jsx_dev_runtime12.jsxDEV(Button, {
+                      selected: !inputFocus && actionButtonSelected === ActionButton.DEL,
+                      padding: "0px 10px",
+                      text: "del",
+                      disabled: !text?.length,
+                      onMouseOver: () => {
+                        if (mouseHoverEnabled && text?.length) {
+                          setPosition([COLUMNS2 - 2, 4]);
+                        }
+                      },
+                      onMouseDown: () => {
+                        if (mouseHoverEnabled && text?.length) {
+                          setPosition([COLUMNS2 - 2, 4]);
+                        }
+                      },
+                      onClick: onAction
+                    }, undefined, false, undefined, this),
+                    import_jsx_dev_runtime12.jsxDEV(Button, {
+                      selected: !inputFocus && actionButtonSelected === ActionButton.OK,
+                      padding: "0px 20px",
+                      text: "ok",
+                      disabled: !text?.length,
+                      onMouseOver: () => {
+                        if (mouseHoverEnabled && text?.length) {
+                          setPosition([COLUMNS2 - 1, 4]);
+                        }
+                      },
+                      onMouseDown: () => {
+                        if (mouseHoverEnabled && text?.length) {
+                          setPosition([COLUMNS2 - 1, 4]);
+                        }
+                      },
+                      onClick: onAction
+                    }, undefined, false, undefined, this)
+                  ]
+                }, undefined, true, undefined, this)
+              ]
+            }, undefined, true, undefined, this)
+          }, undefined, false, undefined, this)
+        ]
+      }, undefined, true, undefined, this)
+    }, undefined, false, undefined, this)
+  }, undefined, false, undefined, this);
+}
 var COLUMNS2 = 10;
 var GRID_TEMPLATE_COLUMN = new Array(COLUMNS2).fill("auto").join(" ");
+function useLayoutRegistry({ layouts }) {
+  const { getLayout } = useLayoutContext();
+  import_react27.useEffect(() => {
+    A(layouts, (layout) => {
+      if (layout) {
+        getLayout(layout);
+      }
+    });
+  }, [layouts, useLayoutContext]);
+}
+function Container2({
+  layouts,
+  pictures,
+  dialog,
+  menu,
+  prompt: prompt2,
+  onSelect = async () => {
+  },
+  onClose = async () => {
+  },
+  onPrompt = async () => {
+  },
+  removed,
+  focusLess
+}) {
+  const [index, setIndex] = import_react14.useState(0);
+  const onNext = import_react14.useCallback(async () => {
+    setIndex((index2) => index2 + 1);
+  }, [setIndex]);
+  useLayoutRegistry({ layouts });
+  const elems = import_react14.useMemo(() => {
+    return [
+      dialog ? import_jsx_dev_runtime13.jsxDEV(Dialog, {
+        dialog,
+        onSelect,
+        onPrompt,
+        onClose: onNext,
+        focusLess
+      }, undefined, false, undefined, this) : undefined,
+      menu ? import_jsx_dev_runtime13.jsxDEV(Menu2, {
+        menu,
+        onSelect,
+        onPrompt,
+        onClose: onNext
+      }, undefined, false, undefined, this) : undefined,
+      prompt2 ? import_jsx_dev_runtime13.jsxDEV(Prompt, {
+        prompt: prompt2,
+        onConfirm: onPrompt,
+        onClose: onNext
+      }, undefined, false, undefined, this) : undefined
+    ].filter((e) => !!e);
+  }, [menu, dialog, prompt2, onSelect, onNext]);
+  import_react14.useEffect(() => {
+    if (elems.length && index >= elems.length) {
+      onClose();
+    }
+  }, [index, elems, onClose]);
+  return import_jsx_dev_runtime13.jsxDEV(import_jsx_dev_runtime13.Fragment, {
+    children: [
+      elems[index],
+      pictures?.map((picture, index2) => import_jsx_dev_runtime13.jsxDEV(Picture, {
+        removed,
+        picture
+      }, index2, false, undefined, this))
+    ]
+  }, undefined, true, undefined, this);
+}
+function useEditMenu({ menu, active }) {
+  const { editing } = useEditContext();
+  const [editCount, setEditCount] = import_react28.useState(0);
+  const addItem = import_react28.useCallback(async () => {
+    const items2 = [];
+    let i2;
+    for (i2 = 1;x(menu.items, (item) => {
+      const label = typeof item === "string" ? item : item.label;
+      return label === "untitled " + i2;
+    }) >= 0; i2++) {
+    }
+    A(menu.items, (item) => {
+      items2.push(item);
+    });
+    items2.push({
+      label: `untitled ${i2}`
+    });
+    menu.items = items2;
+    setEditCount((count) => count + 1);
+  }, [menu, setEditCount, editCount]);
+  const onAddSubmenu = import_react28.useCallback((index) => {
+    const items2 = [];
+    A(menu.items, (item2) => items2.push(item2));
+    const item = items2[index];
+    const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
+    itemModel.submenu = itemModel.submenu ?? { items: [] };
+    items2[index] = itemModel;
+    menu.items = items2;
+    setEditCount((count) => count + 1);
+  }, [menu, setEditCount, editCount]);
+  const onRemoveSubmenu = import_react28.useCallback((index) => {
+    const items2 = [];
+    A(menu.items, (item2) => items2.push(item2));
+    const item = items2[index];
+    const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
+    delete itemModel.submenu;
+    items2[index] = itemModel;
+    menu.items = items2;
+    setEditCount((count) => count + 1);
+  }, [menu, setEditCount, editCount]);
+  const onAddDialog = import_react28.useCallback((index) => {
+    const items2 = [];
+    A(menu.items, (item2) => items2.push(item2));
+    const item = items2[index];
+    const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
+    itemModel.dialog = itemModel.dialog ?? {
+      messages: [
+        { text: "" }
+      ]
+    };
+    items2[index] = itemModel;
+    menu.items = items2;
+    setEditCount((count) => count + 1);
+  }, [menu, setEditCount, editCount]);
+  const onRemoveDialog = import_react28.useCallback((index) => {
+    const items2 = [];
+    A(menu.items, (item2) => items2.push(item2));
+    const item = items2[index];
+    const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
+    delete itemModel.dialog;
+    items2[index] = itemModel;
+    menu.items = items2;
+    setEditCount((count) => count + 1);
+  }, [menu, setEditCount, editCount]);
+  const onToggleBack = import_react28.useCallback((index) => {
+    const items2 = [];
+    A(menu.items, (item2) => items2.push(item2));
+    const item = items2[index];
+    const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
+    if (itemModel.back) {
+      delete itemModel.back;
+    } else {
+      itemModel.back = true;
+    }
+    items2[index] = itemModel;
+    menu.items = items2;
+    setEditCount((count) => count + 1);
+  }, [menu, setEditCount, editCount]);
+  const onToggleHideOnSelect = import_react28.useCallback((index) => {
+    const items2 = [];
+    A(menu.items, (item2) => items2.push(item2));
+    const item = items2[index];
+    const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
+    if (itemModel.hideOnSelect) {
+      delete itemModel.hideOnSelect;
+    } else {
+      itemModel.hideOnSelect = true;
+    }
+    items2[index] = itemModel;
+    menu.items = items2;
+    setEditCount((count) => count + 1);
+  }, [menu, setEditCount, editCount]);
+  const onEditLabel = import_react28.useCallback((index, text) => {
+    const items2 = [];
+    A(menu.items, (item2) => items2.push(item2));
+    const item = items2[index];
+    const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
+    itemModel.label = text;
+    items2[index] = itemModel;
+    menu.items = items2;
+    setEditCount((count) => count + 1);
+  }, []);
+  const deleteMenuItem = import_react28.useCallback((index) => {
+    const items2 = [];
+    A(menu.items, (item, idx) => {
+      if (index !== idx) {
+        items2.push(item);
+      }
+    });
+    menu.items = items2;
+    setEditCount((count) => count + 1);
+  }, []);
+  const items = import_react28.useMemo(() => {
+    if (!editing || !active) {
+      return menu.items;
+    }
+    const items2 = B(menu.items ?? [], (item) => item);
+    const editMenu = menu.builtIn ? [] : [
+      { label: "edit menu", builtIn: true, submenu: {
+        layout: {
+          position: [300, 300],
+          size: [300, 300]
+        },
+        builtIn: true,
+        items: [
+          {
+            label: "new item",
+            builtIn: true,
+            action: addItem
+          },
+          { label: "edit pictures", builtIn: true },
+          { label: "exit", builtIn: true, back: true }
+        ]
+      } }
+    ];
+    return items2.concat(editMenu);
+  }, [menu, editing, active, editCount, addItem]);
+  const visibleItems = import_react28.useMemo(() => {
+    const visibleItems2 = [];
+    A(items, (item) => {
+      const itemModel = !item ? { label: "untitled" } : typeof item === "string" ? { label: item } : item;
+      if (item && !itemModel.hidden) {
+        visibleItems2.push(item);
+      }
+    });
+    return visibleItems2;
+  }, [items]);
+  return {
+    ...menu,
+    items: visibleItems,
+    editable: editing,
+    onAddSubmenu,
+    onRemoveSubmenu,
+    onAddDialog,
+    onRemoveDialog,
+    onToggleBack,
+    onToggleHideOnSelect,
+    onEditLabel,
+    deleteMenuItem
+  };
+}
+async function promptText({
+  label,
+  defaultText,
+  languages = ["english", "korean"],
+  popupControl = new PopupControl
+}) {
+  return new Promise((resolve) => {
+    openMenu({
+      prompt: {
+        label,
+        defaultText,
+        languages
+      },
+      onPrompt(text) {
+        resolve(text);
+      },
+      onClose() {
+        resolve(undefined);
+      },
+      popupControl
+    });
+  });
+}
+function MenuRow({ item, index, selectedItem, onMouseMove, onMouseOver, onClick, disabled, editable, active, onAddSubmenu, onRemoveSubmenu, onToggleBack, onToggleHideOnSelect, onEditLabel, builtIn, deleteMenuItem, onAddDialog, onRemoveDialog }) {
+  const itemModel = typeof item === "string" ? { label: item } : item;
+  const rowSelected = selectedItem === item;
+  const [editMenuOn, setEditMenuOn] = import_react29.useState(false);
+  const { popupControl } = useControlContext();
+  const builtInItem = import_react29.useMemo(() => builtIn ?? itemModel?.builtIn, [itemModel, builtIn]);
+  const promptDeleteItem = import_react29.useCallback(async () => {
+    const label = itemModel?.label;
+    openMenu({
+      dialog: {
+        layout: {
+          position: [150, 50],
+          size: [400, 200]
+        },
+        messages: [
+          {
+            text: `Do you really want ot delete "${label}"?`,
+            menu: {
+              builtIn: true,
+              layout: {
+                position: [150, 270],
+                size: [200, 200]
+              },
+              items: [
+                { label: `Yes`, back: true },
+                { label: "Cancel", back: true, selected: true }
+              ]
+            }
+          }
+        ]
+      },
+      popupControl,
+      onSelect(item2) {
+        if (item2.label === "Yes") {
+          deleteMenuItem?.(index);
+        }
+      }
+    });
+  }, [itemModel, popupControl, deleteMenuItem]);
+  const editMenu = import_react29.useMemo(() => ({
+    builtIn: true,
+    layout: {
+      position: [450, 200],
+      size: [400, 300],
+      positionFromRight: true
+    },
+    items: [
+      {
+        label: "edit label",
+        action: async () => {
+          const newLabel = await promptText({
+            label: "Enter a new label",
+            defaultText: itemModel?.label,
+            popupControl
+          });
+          if (newLabel) {
+            onEditLabel?.(index, newLabel);
+          }
+        }
+      },
+      {
+        label: "create submenu",
+        action: async () => onAddSubmenu?.(index),
+        back: true,
+        hidden: !!itemModel?.submenu
+      },
+      {
+        label: "remove submenu",
+        action: async () => onRemoveSubmenu?.(index),
+        back: true,
+        hidden: !itemModel?.submenu
+      },
+      {
+        label: "create dialog",
+        action: async () => onAddDialog?.(index),
+        back: true,
+        hidden: !!itemModel?.dialog
+      },
+      {
+        label: "remove dialog",
+        action: async () => onRemoveDialog?.(index),
+        back: true,
+        hidden: !itemModel?.dialog
+      },
+      {
+        label: "back (" + (itemModel?.back ? "ON" : "OFF") + ")",
+        action: async () => onToggleBack?.(index)
+      },
+      {
+        label: "hide on select (" + (itemModel?.hideOnSelect ? "ON" : "OFF") + ")",
+        action: async () => onToggleHideOnSelect?.(index)
+      },
+      {
+        label: "delete menu item",
+        back: true,
+        action: promptDeleteItem
+      },
+      {
+        label: "exit",
+        back: true
+      }
+    ]
+  }), [itemModel, onAddSubmenu, onRemoveSubmenu, onToggleBack, onToggleHideOnSelect, onEditLabel, promptDeleteItem, index, popupControl]);
+  useKeyDown({
+    enabled: import_react29.useMemo(() => editable && active && rowSelected && !builtInItem, [editable, active, rowSelected, itemModel, builtInItem]),
+    key: "KeyE",
+    callback: import_react29.useCallback(() => {
+      openMenu({
+        menu: editMenu,
+        popupControl
+      });
+    }, [editMenu, popupControl])
+  });
+  useKeyDown({
+    enabled: import_react29.useMemo(() => editable && active && rowSelected && !builtInItem, [editable, active, rowSelected, itemModel, builtInItem]),
+    key: "Backspace",
+    callback: promptDeleteItem
+  });
+  return import_jsx_dev_runtime14.jsxDEV(import_jsx_dev_runtime14.Fragment, {
+    children: import_jsx_dev_runtime14.jsxDEV("div", {
+      style: {
+        color: rowSelected ? builtInItem ? "#0000ee" : "black" : disabled ? "silver" : "white",
+        backgroundColor: !rowSelected ? builtInItem ? "#0000ee" : "black" : disabled ? "silver" : "white",
+        transition: "color .05s, background-color .05s",
+        display: "flex"
+      },
+      onMouseMove,
+      onMouseOver,
+      onClick: editable && !builtInItem ? () => setEditMenuOn(true) : onClick,
+      children: [
+        import_jsx_dev_runtime14.jsxDEV("div", {
+          style: { flex: 1, display: "flex", padding: "0 10px" },
+          children: [
+            itemModel?.icon && import_jsx_dev_runtime14.jsxDEV("div", {
+              style: { width: 30 },
+              children: import_jsx_dev_runtime14.jsxDEV(Images, {
+                images: itemModel.icon
+              }, undefined, false, undefined, this)
+            }, undefined, false, undefined, this),
+            itemModel?.emoji && import_jsx_dev_runtime14.jsxDEV("span", {
+              style: { height: 30 },
+              children: [
+                itemModel?.emoji,
+                "\xA0"
+              ]
+            }, undefined, true, undefined, this),
+            import_jsx_dev_runtime14.jsxDEV("span", {
+              children: itemModel?.label
+            }, undefined, false, undefined, this),
+            (itemModel?.showTriangle || itemModel?.showTriangle === undefined && itemModel?.submenu) && import_jsx_dev_runtime14.jsxDEV("span", {
+              style: { height: 30 },
+              children: "\xA0\u23F5"
+            }, undefined, false, undefined, this)
+          ]
+        }, undefined, true, undefined, this),
+        editable && active && rowSelected && !builtInItem && import_jsx_dev_runtime14.jsxDEV("div", {
+          style: {
+            ...ICON_STYLE,
+            backgroundColor: "blue"
+          },
+          children: "E"
+        }, undefined, false, undefined, this),
+        editable && !builtInItem && itemModel?.submenu && import_jsx_dev_runtime14.jsxDEV("div", {
+          style: {
+            ...ICON_STYLE,
+            backgroundColor: "green"
+          },
+          children: import_jsx_dev_runtime14.jsxDEV("svg", {
+            xmlns: "http://www.w3.org/2000/svg",
+            style: {
+              height: 30,
+              width: 30
+            },
+            children: [
+              import_jsx_dev_runtime14.jsxDEV("line", {
+                x1: "10",
+                y1: "10",
+                x2: "20",
+                y2: "10",
+                stroke: "white",
+                strokeWidth: "2"
+              }, undefined, false, undefined, this),
+              import_jsx_dev_runtime14.jsxDEV("line", {
+                x1: "10",
+                y1: "14",
+                x2: "20",
+                y2: "14",
+                stroke: "white",
+                strokeWidth: "2"
+              }, undefined, false, undefined, this),
+              import_jsx_dev_runtime14.jsxDEV("line", {
+                x1: "10",
+                y1: "18",
+                x2: "20",
+                y2: "18",
+                stroke: "white",
+                strokeWidth: "2"
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this)
+        }, undefined, false, undefined, this),
+        editable && !builtInItem && itemModel?.dialog && import_jsx_dev_runtime14.jsxDEV("div", {
+          style: {
+            ...ICON_STYLE,
+            backgroundColor: "orange"
+          },
+          children: "D"
+        }, undefined, false, undefined, this),
+        editable && !builtInItem && itemModel?.back && import_jsx_dev_runtime14.jsxDEV("div", {
+          style: {
+            ...ICON_STYLE,
+            backgroundColor: "red"
+          },
+          children: "B"
+        }, undefined, false, undefined, this),
+        editMenuOn && import_jsx_dev_runtime14.jsxDEV(Container2, {
+          menu: editMenu,
+          onClose: () => setEditMenuOn(false)
+        }, undefined, false, undefined, this),
+        rowSelected && itemModel?.onHover && import_jsx_dev_runtime14.jsxDEV(Container2, {
+          dialog: itemModel.onHover.dialog,
+          pictures: itemModel.onHover.pictures,
+          focusLess: true
+        }, undefined, false, undefined, this)
+      ]
+    }, undefined, true, undefined, this)
+  }, undefined, false, undefined, this);
+}
 var ICON_STYLE = {
   textAlign: "center",
   borderRadius: "50%",
@@ -27601,6 +27191,166 @@ var ICON_STYLE = {
   alignItems: "center",
   display: "grid"
 };
+function useMaxRows({ size }) {
+  const [maxRows, setMaxRows] = import_react30.useState(size);
+  const menuRef = import_react30.useRef(null);
+  import_react30.useEffect(() => {
+    if (!menuRef.current)
+      return;
+    const resizeObserver = new ResizeObserver((entries) => {
+      const height = entries[0].contentRect.height;
+      const rows = Math.floor(height / 30);
+      if (rows) {
+        setMaxRows(rows);
+      }
+    });
+    resizeObserver.observe(menuRef.current);
+    return () => resizeObserver.disconnect();
+  }, [setMaxRows, menuRef.current]);
+  return { maxRows, menuRef };
+}
+function Menu2({
+  menu,
+  onSelect,
+  onPrompt,
+  onClose
+}) {
+  const { removed, remove } = useRemove();
+  const [sub, setSub] = import_react8.useState();
+  const [postClose, setPostClose] = import_react8.useState();
+  const [hidden, setHidden] = import_react8.useState(false);
+  const onBack = import_react8.useCallback((force) => {
+    if (menu.backEnabled || force) {
+      remove(onClose);
+    }
+  }, [remove, onClose, menu]);
+  const { active } = useActiveFocus();
+  const { items = [], style, layout, editable, onAddSubmenu, onRemoveSubmenu, onAddDialog, onRemoveDialog, onToggleBack, onToggleHideOnSelect, onEditLabel, deleteMenuItem } = useEditMenu({ menu, active });
+  const { maxRows, menuRef } = useMaxRows({ size: items.length.valueOf() });
+  const executeMenuItem = import_react8.useCallback((item) => {
+    if (typeof item === "object") {
+      if (item.hideOnSelect) {
+        setHidden(true);
+      }
+      if (item.dialog || item.submenu || item.prompt) {
+        const { dialog, submenu, prompt: prompt2, ...rest } = item;
+        setSub({ dialog, menu: submenu, prompt: prompt2 });
+        setPostClose(rest);
+      } else {
+        setPostClose(undefined);
+        setSub(undefined);
+        onSelect(item);
+        if (item.back) {
+          onBack(true);
+        }
+      }
+    } else {
+      onSelect(item);
+    }
+  }, [onSelect, setSub, onBack, setPostClose, setHidden]);
+  const { scroll, scrollUp, scrollDown, selectedItem, select, disabled, mouseHoverEnabled, enableMouseHover, onMenuAction } = useMenu({ items, maxRows, onSelect: executeMenuItem, onBack, active });
+  const onCloseSub = import_react8.useCallback(async () => {
+    setSub(undefined);
+    if (postClose) {
+      executeMenuItem(postClose);
+    }
+    setHidden(false);
+  }, [setSub, executeMenuItem, setHidden, postClose]);
+  const clickable = import_react.useMemo(() => !disabled && mouseHoverEnabled, [disabled, mouseHoverEnabled]);
+  return import_jsx_dev_runtime15.jsxDEV(import_jsx_dev_runtime15.Fragment, {
+    children: [
+      import_jsx_dev_runtime15.jsxDEV(Popup2, {
+        layout: layout ?? {},
+        style,
+        disabled,
+        removed: removed || hidden,
+        onBack: menu.backEnabled ? onBack : undefined,
+        children: [
+          import_jsx_dev_runtime15.jsxDEV("svg", {
+            xmlns: "http://www.w3.org/2000/svg",
+            style: {
+              position: "absolute",
+              height: 20,
+              marginTop: -8,
+              width: 200,
+              display: scroll > 0 ? "" : "none",
+              left: `calc(50% - 100px)`
+            },
+            onClick: () => scrollUp(),
+            children: import_jsx_dev_runtime15.jsxDEV("polygon", {
+              points: "100,10 110,20 90,20",
+              style: { fill: "white" }
+            }, undefined, false, undefined, this)
+          }, undefined, false, undefined, this),
+          import_jsx_dev_runtime15.jsxDEV("div", {
+            style: {
+              paddingTop: 10,
+              cursor: clickable ? "inherit" : "auto"
+            },
+            children: import_jsx_dev_runtime15.jsxDEV("div", {
+              ref: menuRef,
+              style: { height: `calc(100% - 27px)`, overflow: "hidden" },
+              children: import_jsx_dev_runtime15.jsxDEV("div", {
+                style: { marginTop: scroll * -31, transition: "margin-top .2s" },
+                children: B(items, (item, index) => import_jsx_dev_runtime15.jsxDEV(MenuRow, {
+                  index,
+                  item,
+                  selectedItem,
+                  onAddSubmenu,
+                  onRemoveSubmenu,
+                  onAddDialog,
+                  onRemoveDialog,
+                  onToggleBack,
+                  onToggleHideOnSelect,
+                  onEditLabel,
+                  deleteMenuItem,
+                  disabled,
+                  onMouseMove: () => {
+                    if (!disabled) {
+                      enableMouseHover();
+                      select(index);
+                    }
+                  },
+                  active,
+                  editable,
+                  onMouseOver: clickable ? () => select(index) : undefined,
+                  onClick: clickable ? () => onMenuAction(index) : undefined,
+                  builtIn: menu.builtIn
+                }, index, false, undefined, this))
+              }, undefined, false, undefined, this)
+            }, undefined, false, undefined, this)
+          }, undefined, false, undefined, this),
+          import_jsx_dev_runtime15.jsxDEV("svg", {
+            xmlns: "http://www.w3.org/2000/svg",
+            style: {
+              position: "absolute",
+              height: 20,
+              width: 200,
+              marginTop: -5,
+              display: scroll + (maxRows ?? items.length.valueOf()) < items.length.valueOf() ? "" : "none",
+              left: `calc(50% - 100px)`
+            },
+            onClick: () => scrollDown(),
+            children: import_jsx_dev_runtime15.jsxDEV("polygon", {
+              points: "100,20 110,10 90,10",
+              style: { fill: "white" }
+            }, undefined, false, undefined, this)
+          }, undefined, false, undefined, this)
+        ]
+      }, undefined, true, undefined, this),
+      sub && import_jsx_dev_runtime15.jsxDEV(Container2, {
+        menu: sub.menu,
+        dialog: sub.dialog,
+        prompt: sub.prompt,
+        pictures: menu.pictures,
+        onSelect,
+        onClose: onCloseSub,
+        onPrompt,
+        removed
+      }, undefined, false, undefined, this)
+    ]
+  }, undefined, true, undefined, this);
+}
 
 class KeyboardControl {
   onKeyUp;
@@ -27703,9 +27453,267 @@ class ProgressiveText extends HTMLElement {
   }
 }
 customElements.define("progressive-text", ProgressiveText);
+function useDialogState() {
+  const [index, setIndex] = import_react32.useState(0);
+  return {
+    index,
+    setIndex,
+    next: import_react32.useCallback(() => setIndex((index2) => index2 + 1), [setIndex])
+  };
+}
+function useEditDialog({ dialog, active }) {
+  const { editing } = useEditContext();
+  const [editCount, setEditCount] = import_react33.useState(0);
+  const insertMessage = import_react33.useCallback((index, text) => {
+    const messages2 = B(dialog.messages, (m2) => m2).filter((m2) => !!m2);
+    messages2.splice(index, 0, {
+      text
+    });
+    dialog.messages = messages2;
+    setEditCount((count) => count + 1);
+  }, [dialog]);
+  const deleteMessage = import_react33.useCallback((index) => {
+    const messages2 = B(dialog.messages, (m2) => m2).filter((m2) => !!m2);
+    messages2.splice(index, 1);
+    dialog.messages = messages2;
+    setEditCount((count) => count + 1);
+  }, [dialog]);
+  const editMessage = import_react33.useCallback((index, text) => {
+    const messages2 = B(dialog.messages, (m2) => m2).filter((m2) => !!m2);
+    const message = messages2[index];
+    const messageModel = !message ? {} : typeof message === "string" ? { text: message } : message;
+    messageModel.text = text;
+    messages2[index] = messageModel;
+    dialog.messages = messages2;
+    setEditCount((count) => count + 1);
+  }, [dialog]);
+  const messages = import_react33.useMemo(() => !active ? dialog.messages : B(dialog.messages, (m2) => m2), [dialog, editCount, active]);
+  return {
+    ...dialog,
+    messages,
+    editable: editing,
+    editMessage,
+    insertMessage,
+    deleteMessage
+  };
+}
+function useHideMessage({ message }) {
+  const [visible, setVisible] = import_react34.useState(true);
+  const [messageHidden, setMessageHidden] = import_react34.useState(false);
+  import_react34.useEffect(() => {
+    if (!visible) {
+      setMessageHidden(true);
+    }
+  }, [visible, setMessageHidden]);
+  import_react34.useEffect(() => {
+    setMessageHidden(false);
+  }, [message, setMessageHidden]);
+  return { visible: visible && !messageHidden, setVisible };
+}
+function Dialog({ dialog, onSelect, onClose, onPrompt, focusLess }) {
+  const { next: next2, index } = useDialogState();
+  const [menu, setMenu] = import_react31.useState();
+  const [prompt2, setPrompt] = import_react31.useState();
+  const { active } = useActiveFocus({ disabled: focusLess });
+  const { editing } = useEditContext();
+  const [textProgressing, setTextProgressing] = import_react31.useState(true);
+  const [subdialog, setSubDialog] = import_react31.useState();
+  const [actionPromise, setActionPromise] = import_react31.useState();
+  const [waitingForAction, setWaitingForAction] = import_react31.useState(false);
+  const nextMessage = import_react31.useCallback(() => {
+    if (waitingForAction) {
+      return;
+    }
+    if (actionPromise) {
+      setWaitingForAction(true);
+      actionPromise.then(next2);
+    } else {
+      next2();
+    }
+  }, [next2, actionPromise, setWaitingForAction, waitingForAction]);
+  const { lockState, popupControl } = useControls({
+    active,
+    listener: import_react31.useMemo(() => ({
+      onAction: textProgressing ? undefined : nextMessage,
+      onBack: !dialog.backEnabled || textProgressing ? undefined : nextMessage
+    }), [nextMessage, dialog, textProgressing])
+  });
+  const { editable, editMessage, insertMessage, deleteMessage, messages } = useEditDialog({ dialog, active });
+  const message = import_react31.useMemo(() => {
+    const message2 = messages.at(index);
+    return typeof message2 == "string" ? { text: message2 } : message2;
+  }, [index, messages]);
+  import_react31.useEffect(() => {
+    setWaitingForAction(false);
+  }, [message, setWaitingForAction]);
+  import_react31.useEffect(() => {
+    setActionPromise(message?.action?.());
+  }, [message, setActionPromise]);
+  import_react31.useEffect(() => {
+    actionPromise?.then(() => setActionPromise(undefined));
+  }, [actionPromise, setActionPromise]);
+  import_react31.useEffect(() => {
+    if (message) {
+      if (message.autoNext !== undefined && !waitingForAction) {
+        const timeout = setTimeout(nextMessage, message.autoNext);
+        return () => {
+          clearTimeout(timeout);
+        };
+      }
+    }
+  }, [message, nextMessage, waitingForAction]);
+  import_react31.useEffect(() => {
+    setTextProgressing(true);
+    const timeout = setTimeout(() => {
+      setTextProgressing(false);
+    }, (message?.text?.length ?? 0) * PERIOD);
+    return () => clearTimeout(timeout);
+  }, [setTextProgressing, PERIOD, message]);
+  import_react31.useEffect(() => {
+    setSubDialog(message?.subdialog);
+    setMenu(message?.menu);
+    setPrompt(message?.prompt);
+  }, [message, setMenu, setPrompt, setSubDialog]);
+  const { removed, remove } = useRemove();
+  const { visible, setVisible } = useHideMessage({ message });
+  import_react31.useEffect(() => {
+    if (index >= messages.length.valueOf() && visible) {
+      remove(onClose);
+    }
+  }, [messages, index, remove, onClose, visible]);
+  const onCloseMenu = import_react31.useCallback(async () => {
+    setMenu(undefined);
+    nextMessage();
+  }, [setMenu, nextMessage]);
+  const [editDialogOn, setEditDialogOn] = import_react31.useState(false);
+  useKeyDown({
+    enabled: import_react31.useMemo(() => editable && active && !dialog.builtIn, [active, dialog]),
+    key: "KeyE",
+    callback: import_react31.useCallback(() => {
+      setEditDialogOn((value) => !value);
+    }, [setEditDialogOn])
+  });
+  const editMenu = import_react31.useMemo(() => ({
+    builtIn: true,
+    layout: {
+      position: [50, 200],
+      size: [400, 300]
+    },
+    items: [
+      {
+        label: "insert new message",
+        back: true,
+        action: async () => {
+          const newText = await promptText({
+            label: "Enter a text for the new message",
+            popupControl
+          });
+          if (newText) {
+            insertMessage?.(index, newText);
+          }
+        }
+      },
+      {
+        label: "delete message",
+        back: true,
+        action: async () => {
+          deleteMessage(index);
+        }
+      },
+      {
+        label: "edit text",
+        back: true,
+        action: async () => {
+          const newText = await promptText({
+            label: "Enter a new text",
+            defaultText: message?.text,
+            popupControl
+          });
+          if (newText) {
+            editMessage(index, newText);
+          }
+        }
+      },
+      { label: "exit", builtIn: true, back: true }
+    ]
+  }), [message, index, popupControl, editMessage, insertMessage, deleteMessage]);
+  const pictures = import_react31.useMemo(() => [...B(dialog.pictures ?? [], (p3) => p3), ...B(message?.pictures ?? [], (p3) => p3)].filter((p3) => !!p3), [dialog, message]);
+  return import_jsx_dev_runtime16.jsxDEV(import_jsx_dev_runtime16.Fragment, {
+    children: message?.text && import_jsx_dev_runtime16.jsxDEV(import_jsx_dev_runtime16.Fragment, {
+      children: [
+        import_jsx_dev_runtime16.jsxDEV(Popup2, {
+          layout: dialog.layout ?? {},
+          style: dialog.style,
+          disabled: lockState === LockStatus.LOCKED,
+          removed,
+          onBack: dialog.backEnabled ? next2 : undefined,
+          clickThrough: focusLess,
+          leaveBorderUnchanged: true,
+          visible,
+          setVisible,
+          children: import_jsx_dev_runtime16.jsxDEV("div", {
+            style: {
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              padding: 10
+            },
+            onClick: () => popupControl.onAction(),
+            children: [
+              !waitingForAction && import_jsx_dev_runtime16.jsxDEV("div", {
+                style: { flex: 1 },
+                children: import_jsx_dev_runtime16.jsxDEV("progressive-text", {
+                  period: `${PERIOD}`,
+                  children: message?.text
+                }, undefined, false, undefined, this)
+              }, undefined, false, undefined, this),
+              editing && active && import_jsx_dev_runtime16.jsxDEV("div", {
+                style: {
+                  textAlign: "center",
+                  backgroundColor: "blue",
+                  borderRadius: "50%",
+                  width: "30px",
+                  height: "30px",
+                  color: "white"
+                },
+                children: "E"
+              }, undefined, false, undefined, this)
+            ]
+          }, undefined, true, undefined, this)
+        }, undefined, false, undefined, this),
+        subdialog && import_jsx_dev_runtime16.jsxDEV(Container2, {
+          dialog: subdialog,
+          focusLess: true,
+          removed
+        }, undefined, false, undefined, this),
+        import_jsx_dev_runtime16.jsxDEV(Container2, {
+          pictures,
+          menu: !textProgressing ? menu : undefined,
+          prompt: !textProgressing ? prompt2 : undefined,
+          onSelect,
+          onClose: onCloseMenu,
+          onPrompt,
+          removed
+        }, undefined, false, undefined, this),
+        editDialogOn && import_jsx_dev_runtime16.jsxDEV(Container2, {
+          menu: editMenu,
+          onClose: () => setEditDialogOn(false)
+        }, undefined, false, undefined, this)
+      ]
+    }, undefined, true, undefined, this)
+  }, undefined, false, undefined, this);
+}
 var PERIOD = 30;
 
 // src/index.tsx
+var angelSrc = "angel.png";
+var gremlinsSrc = "gremlins.png";
+var robotSrc = "robot.png";
+var engSrc = "eng.jpg";
+var alienSrc = "alien.jpg";
+var popupControl = new PopupControl;
+var keyboard = new KeyboardControl(popupControl);
+var mute = false;
 async function showMenu(model, image, interactions) {
   return new Promise((resolve) => {
     const emojis = [];
@@ -27979,6 +27987,7 @@ async function promptCreature() {
     });
   });
 }
+var choices = [];
 async function startConversation() {
   const { creature, image } = await promptCreature() ?? {};
   let interactions = 0;
@@ -28001,15 +28010,6 @@ function start() {
     startConversation();
   }, { once: true });
 }
-var angelSrc = "angel.png";
-var gremlinsSrc = "gremlins.png";
-var robotSrc = "robot.png";
-var engSrc = "eng.jpg";
-var alienSrc = "alien.jpg";
-var popupControl = new PopupControl;
-var keyboard = new KeyboardControl(popupControl);
-var mute = false;
-var choices = [];
 export {
   start
 };
