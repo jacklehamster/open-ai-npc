@@ -7,6 +7,7 @@ import http from 'http';
 import { addRoutes } from "dok-db-manager";
 import express from "express";
 import { addWordRoutes } from "./word/definition";
+import { addCustomRoute } from "./custom/custom";
 
 const app = express();
 
@@ -215,6 +216,7 @@ addRoutes(app, {
 });
 
 addWordRoutes(app);
+addCustomRoute(app);
 
 const options = {
   host: '0.0.0.0', // Listen on all network interfaces

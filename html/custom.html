@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom prompt</title>
+    <style>
+      .result-div {
+        border: 1px solid black;
+        padding: 10px;
+        white-space: pre;
+        font-size: 10pt;
+        font-family: "Courier New", Courier, monospace;
+      }
+      .user-div {
+        width: 100%;
+        height: 100px;
+      }
+      .error-div {
+        color: red;
+      }
+      .input-div {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      textarea {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Update prompt</h1>
+    <div style="margin: 20px">
+      <div>
+        <label for="system-prompt">system prompt</label>
+      </div>
+      <textarea id="system-prompt" class="prompt-div" rows="10"></textarea>
+      <div>
+        <label for="prompt">prompt</label>
+      </div>
+      <textarea id="prompt" class="prompt-div" rows="10"></textarea>
+      <div id="error-log" class="error-div"></div>
+      <button type="button" id="submit" style="width: 200px; height: 50px">
+        Update data
+      </button>
+      <label for="auto-query">Auto query:</label>
+      <input id="auto-query" type="checkbox" />
+      <div>
+        <label for="result">Result</label>
+        <br />
+        <textarea id="result" rows="10"></textarea>
+      </div>
+    </div>
+    <script>
+      function updateUrlQuery() {
+        const sytemPrompt = document.querySelector("#system-prompt").value;
+        const prompt = document.querySelector("#prompt").value;
+        const url = new URL(window.location.href);
+        url.searchParams.set("system-prompt", sytemPrompt);
+        url.searchParams.set("prompt", prompt);
+        if (document.querySelector("#auto-query").checked) {
+          url.searchParams.set("auto-query", true);
+        } else {
+          url.searchParams.delete("auto-query");
+        }
+        window.history.replaceState({}, "", url);
+      }
+
+      function performQuery() {
+        //http://localhost:3001/custom/?prompt=test&systemPrompt=123
+        const sytemPrompt = document.querySelector("#system-prompt").value;
+        const prompt = document.querySelector("#prompt").value;
+        const url = `/custom?systemPrompt=${sytemPrompt}&prompt=${prompt}`;
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            document.querySelector("#result").value = data.content;
+          })
+          .catch((error) => {
+            document.querySelector("#error-log").textContent = error;
+          });
+      }
+      document.querySelector("#system-prompt").addEventListener("keyup", () => {
+        updateUrlQuery();
+      });
+      document.querySelector("#prompt").addEventListener("keyup", () => {
+        updateUrlQuery();
+      });
+      document.querySelector("#auto-query").addEventListener("change", () => {
+        updateUrlQuery();
+      });
+      document.querySelector("#submit").addEventListener("click", () => {
+        performQuery();
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        const url = new URL(window.location.href);
+        const systemPrompt = url.searchParams.get("system-prompt");
+        const prompt = url.searchParams.get("prompt");
+        document.querySelector("#system-prompt").value = systemPrompt || "";
+        document.querySelector("#prompt").value = prompt || "";
+        document.querySelector("#auto-query").checked =
+          url.searchParams.get("auto-query");
+        if (document.querySelector("#auto-query").checked) {
+          performQuery();
+        }
+      });
+    </script>
+  </body>
+</html>
