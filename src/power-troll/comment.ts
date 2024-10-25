@@ -6,9 +6,9 @@ import { systemPrompt } from "./systemprompt";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-  organization: 'org-uktBsveUaXeMNXTgnjk5JlBA',
-  project: 'proj_14nsI578VavWlr7T8forl9jv',
+  apiKey: process.env.OPENAI_TROLL_KEY,
+  organization: process.env.OPENAI_ORGANIZATION ?? 'org-uktBsveUaXeMNXTgnjk5JlBA',
+  project: process.env.OPENAI_TROLL_PROJECT ?? 'proj_14nsI578VavWlr7T8forl9jv',
 });
 
 const AUTHORIZED_DICO = new Set<string>([
