@@ -47,6 +47,7 @@
   ],
   "devDependencies": {
     "@dobuki/dev-dependencies": "latest",
+    "@types/bun": "^1.1.12",
     "@types/express": "^4.17.21",
     "@types/ioredis": "^5.0.0",
     "@types/mime-types": "^2.1.4",
@@ -58,8 +59,11 @@
   },
   "dependencies": {
     "@dobuki/code-lock": "latest",
+    "@dobuki/react-popup": "^1.0.8",
+    "bun": "^1.1.33",
     "dok-auth": "latest",
     "dok-db-manager": "latest",
+    "dokui-menu": "^1.0.46",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
     "ioredis": "^5.4.1",

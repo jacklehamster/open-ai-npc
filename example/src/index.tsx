@@ -2,7 +2,8 @@
 /// <reference lib="dom" />
 /// <reference lib="dom.iterable" />
 
-import { KeyboardControl, PopupControl } from "dokui-menu";
+import { PopupControl } from "@dobuki/react-popup";
+import { KeyboardControl } from "dokui-menu";
 import { openMenu } from "dokui-menu"
 import { MenuItemModel } from "dokui-menu/dist/menu/model/MenuItemModel";
 import { NpcModel } from "open-ai-npc";
