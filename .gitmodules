@@ -1,0 +1,3 @@
+[submodule "src/word-definition"]
+	path = src/word-definition
+	url = https://github.com/Big-Nuts-Games/word-definition.git

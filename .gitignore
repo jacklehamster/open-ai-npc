@@ -176,3 +176,4 @@ dist/
 
 # Not needed since we use bun
 package-lock.json
+.node-persist
