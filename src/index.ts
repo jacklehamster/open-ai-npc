@@ -6,8 +6,8 @@ import { makeComment } from "./power-troll/comment";
 import http from 'http';
 import { addRoutes } from "dok-db-manager";
 import express from "express";
-import { addWordRoutes } from "./word/definition";
 import { addCustomRoute } from "./custom/custom";
+import { DefinitionManager } from "./word/definition";
 
 const app = express();
 
@@ -215,7 +215,8 @@ addRoutes(app, {
   nolock: true,
 });
 
-addWordRoutes(app);
+const definitionManager = new DefinitionManager();
+definitionManager.addWordRoutes(app);
 addCustomRoute(app);
 
 const options = {
