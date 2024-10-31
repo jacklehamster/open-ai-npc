@@ -7,7 +7,7 @@ import http from 'http';
 import { addRoutes } from "dok-db-manager";
 import express from "express";
 import { addCustomRoute } from "./custom/custom";
-import { DefinitionManager } from "./word-definition/src/index";
+import { DefinitionManager } from "./word/definition";
 
 const app = express();
 
