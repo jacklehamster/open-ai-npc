@@ -3,13 +3,7 @@ import storage from "node-persist";
 import { ChatCompletionCreateParamsBase } from "openai/resources/chat/completions.mjs";
 import { ChatCompletionMessageParam } from "openai/src/resources/index.js";
 import { systemPrompt } from "./systemprompt";
-import OpenAI from "openai";
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_TROLL_KEY,
-  organization: process.env.OPENAI_ORGANIZATION ?? 'org-uktBsveUaXeMNXTgnjk5JlBA',
-  project: process.env.OPENAI_TROLL_PROJECT ?? 'proj_14nsI578VavWlr7T8forl9jv',
-});
+import { openai } from "./openai/openai";
 
 const AUTHORIZED_DICO = new Set<string>([
 ]);

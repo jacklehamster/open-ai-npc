@@ -8,6 +8,7 @@ import { addRoutes } from "dok-db-manager";
 import express from "express";
 import { addCustomRoute } from "./custom/custom";
 import { DefinitionManager } from "./word/definition";
+import { moderator } from "./power-troll/moderator";
 
 const app = express();
 
@@ -213,6 +214,7 @@ addRoutes(app, {
   },
   nocache: true,
   nolock: true,
+  moderator,
 });
 
 const definitionManager = new DefinitionManager();
