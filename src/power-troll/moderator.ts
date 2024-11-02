@@ -18,5 +18,5 @@ export async function moderator(imageUrl: string) {
   console.log(JSON.stringify(moderation, null, 2));
 
 
-  return true;
+  return !moderation?.results[0]?.flagged;
 }
