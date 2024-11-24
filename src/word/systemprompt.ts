@@ -15,4 +15,6 @@ Example1: [sentence1]
 Example2: [sentence2]
 ---
 Example3: [sentence3]
+
+Make sure to follow the format exactly as shown above, including the colons and dashes.
 `;
