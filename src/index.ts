@@ -9,6 +9,7 @@ import express from "express";
 import { addCustomRoute } from "./custom/custom";
 import { DefinitionManager } from "./word/definition";
 import { moderator } from "./power-troll/moderator";
+import { TranslateManager } from "./lang/translate";
 
 const app = express();
 
@@ -219,6 +220,9 @@ addRoutes(app, {
 
 const definitionManager = new DefinitionManager();
 definitionManager.addWordRoutes(app);
+const translateManager = new TranslateManager();
+translateManager.addTranslateRoutes(app);
+
 addCustomRoute(app);
 
 const options = {
