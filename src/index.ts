@@ -10,6 +10,7 @@ import { addCustomRoute } from "./custom/custom";
 import { DefinitionManager } from "./word/definition";
 import { moderator } from "./power-troll/moderator";
 import { TranslateManager } from "./lang/translate";
+import { DetectiveManager } from "./detective/whodunit";
 
 const app = express();
 
@@ -30,8 +31,9 @@ interface Query {
   jsonp?: string;
 }
 
-app.use('/example', express.static(path.join(import.meta.dir, '../example')))
-app.use('/html', express.static(path.join(import.meta.dir, '../html')))
+app.use('/example', express.static(path.join(import.meta.dir, '../example')));
+app.use('/html', express.static(path.join(import.meta.dir, '../html')));
+app.use("/detective-game", express.static(path.join(import.meta.dir, '../detective')));
 
 app.get("/api", async (req, res) => {
   const query = req.query as Query;
@@ -222,6 +224,8 @@ const definitionManager = new DefinitionManager();
 definitionManager.addWordRoutes(app);
 const translateManager = new TranslateManager();
 translateManager.addTranslateRoutes(app);
+const detectiveManager = new DetectiveManager();
+detectiveManager.addDetective(app);
 
 addCustomRoute(app);
 

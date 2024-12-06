@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Blind Detective</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      #discussion-div {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        white-space: pre-wrap;
+      }
+      textarea {
+        resize: none;
+      }
+      button {
+        cursor: pointer;
+        height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="discussion-div"></div>
+    <hr />
+    <div id="suspect-selection" style="display: none">
+      <label for="suspect">Suspects:</label>
+      <select id="suspect" onchange="chooseSuspect(this.value)">
+        <option value="NONE" selected>[None]</option>
+        <option value="Britney">Britney</option>
+        <option value="John">John</option>
+        <option value="Key">Key</option>
+        <option value="Sophie">Sophie</option>
+        <option value="Vincent">Vincent</option>
+      </select>
+      <!-- <label for="private-checkbox">In Private</label>
+      <input type="checkbox" id="private-checkbox" /> -->
+    </div>
+    <div style="display: flex; flex-direction: column">
+      <label for="game-master-textarea">Your question:</label>
+      <textarea id="game-master-textarea" rows="10" cols="50"></textarea>
+      <button title="Ask" id="game-master-submit">Ask</button>
+      <div>
+        <label for="model">GPT Model</label>
+        <select id="model">
+          <option value="gpt-3.5-turbo">GPT-3.5</option>
+          <option value="gpt-4-turbo" selected>GPT-4</option>
+        </select>
+      </div>
+
+      <div id="pre-baked" style="display: none">
+        <h3>Some prebaked questions to help:</h3>
+        <!-- PREBAKED QUESTIONS -->
+        <button onclick="ask(this)">Who are the suspects?</button>
+        <button onclick="ask(this)">
+          I am blind, can one of you describe the body?
+        </button>
+        <button onclick="ask(this)">
+          Can you describe the scene of the crime?
+        </button>
+      </div>
+    </div>
+    <script>
+      function chooseSuspect(option) {
+        const textarea = document.getElementById("game-master-textarea");
+        textarea.value = option === "NONE" ? "" : `Ask ${option}: `;
+      }
+
+      var discussionDiv = document.getElementById("discussion-div");
+      var gameMasterTextarea = document.getElementById("game-master-textarea");
+      var gameMasterSubmit = document.getElementById("game-master-submit");
+      let previous = undefined;
+      const func = async function (gameStarted) {
+        gameMasterSubmit.disabled = true;
+        const question = gameMasterTextarea.value || "Hello";
+        if (gameStarted) {
+          const userDiv = document
+            .getElementById("discussion-div")
+            .appendChild(document.createElement("div"));
+          userDiv.innerHTML = `<b>User:</b> ${question}`;
+          document.getElementById("game-master-textarea").value = "";
+        }
+
+        const urlVars = new URLSearchParams();
+        urlVars.append("model", document.getElementById("model").value);
+        if (previous) {
+          urlVars.append("previous", previous);
+        }
+
+        const response = await fetch(
+          `/detective/${question}?${urlVars.toString()}`
+        ).then((response) => response.json());
+        const content = response.content;
+        previous = content;
+        const gameMasterDiv = document
+          .getElementById("discussion-div")
+          .appendChild(document.createElement("div"));
+        gameMasterDiv.innerHTML = `<b>Game Master:</b> ${content}`;
+        gameMasterSubmit.disabled = false;
+        document.querySelector("#game-master-textarea").scrollIntoView(false);
+        if (gameStarted) {
+          document.querySelector("#pre-baked").style.display = "";
+          document.querySelector("#suspect-selection").style.display = "";
+        }
+      };
+
+      gameMasterSubmit.onclick = () => {
+        func(true);
+      };
+      document.addEventListener("DOMContentLoaded", async function () {
+        await func(false);
+        document.querySelector("#game-master-textarea").value = "Let's play!";
+        document.querySelector("#game-master-textarea").focus();
+      });
+
+      function ask(button) {
+        gameMasterTextarea.value = button.textContent;
+        gameMasterSubmit.click();
+      }
+    </script>
+  </body>
+</html>
