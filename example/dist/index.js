@@ -25,7 +25,23 @@ var require_dist = __commonJS((exports, module) => {
     var e = { 366: (e2, t2, r2) => {
       r2.d(t2, { A: () => s });
       var n2 = r2(601), o = r2.n(n2), i = r2(314), u = r2.n(i)()(o());
-      u.push([e2.id, ".pop-up {\n  position: absolute;\n  outline: 3px solid #fff;\n  background-color: black;\n  border-radius: 12px;\n  padding: 3px;\n  box-shadow: 10px 10px 0px #000000cc;\n}\n\n.double-border {\n  border: 3px solid white;\n  border-radius: 10;\n  outline: 3px solid black;\n  color: white;\n  padding: 10px;\n}\n", ""]);
+      u.push([e2.id, `.pop-up {
+  position: absolute;
+  outline: 3px solid #fff;
+  background-color: black;
+  border-radius: 12px;
+  padding: 3px;
+  box-shadow: 10px 10px 0px #000000cc;
+}
+
+.double-border {
+  border: 3px solid white;
+  border-radius: 10;
+  outline: 3px solid black;
+  color: white;
+  padding: 10px;
+}
+`, ""]);
       const s = u;
     }, 314: (e2) => {
       e2.exports = function(e3) {
@@ -357,7 +373,8 @@ var require_dist = __commonJS((exports, module) => {
             var o = r3.layer !== undefined;
             o && (n2 += "@layer".concat(r3.layer.length > 0 ? " ".concat(r3.layer) : "", " {")), n2 += r3.css, o && (n2 += "}"), r3.media && (n2 += "}"), r3.supports && (n2 += "}");
             var i = r3.sourceMap;
-            i && typeof btoa != "undefined" && (n2 += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(i)))), " */")), t3.styleTagTransform(n2, e4, t3.options);
+            i && typeof btoa != "undefined" && (n2 += `
+/*# sourceMappingURL=data:application/json;base64,`.concat(btoa(unescape(encodeURIComponent(JSON.stringify(i)))), " */")), t3.styleTagTransform(n2, e4, t3.options);
           })(t2, e3, r2);
         }, remove: function() {
           (function(e4) {
@@ -1361,12 +1378,20 @@ var require_react_development = __commonJS((exports, module) => {
           var moduleObject = payload._result;
           {
             if (moduleObject === undefined) {
-              error("lazy: Expected the result of a dynamic imp" + "ort() call. " + "Instead received: %s\n\nYour code should look like: \n  " + "const MyComponent = lazy(() => imp" + "ort('./MyComponent'))\n\n" + "Did you accidentally put curly braces around the import?", moduleObject);
+              error("lazy: Expected the result of a dynamic imp" + "ort() call. " + `Instead received: %s
+
+Your code should look like: 
+  ` + "const MyComponent = lazy(() => imp" + `ort('./MyComponent'))
+
+` + "Did you accidentally put curly braces around the import?", moduleObject);
             }
           }
           {
             if (!("default" in moduleObject)) {
-              error("lazy: Expected the result of a dynamic imp" + "ort() call. " + "Instead received: %s\n\nYour code should look like: \n  " + "const MyComponent = lazy(() => imp" + "ort('./MyComponent'))", moduleObject);
+              error("lazy: Expected the result of a dynamic imp" + "ort() call. " + `Instead received: %s
+
+Your code should look like: 
+  ` + "const MyComponent = lazy(() => imp" + "ort('./MyComponent'))", moduleObject);
             }
           }
           return moduleObject.default;
@@ -1508,7 +1533,11 @@ var require_react_development = __commonJS((exports, module) => {
         var dispatcher = ReactCurrentDispatcher.current;
         {
           if (dispatcher === null) {
-            error("Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for" + " one of the following reasons:\n" + "1. You might have mismatching versions of React and the renderer (such as React DOM)\n" + "2. You might be breaking the Rules of Hooks\n" + "3. You might have more than one copy of React in the same app\n" + "See https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.");
+            error("Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for" + ` one of the following reasons:
+` + `1. You might have mismatching versions of React and the renderer (such as React DOM)
+` + `2. You might be breaking the Rules of Hooks
+` + `3. You might have more than one copy of React in the same app
+` + "See https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.");
           }
         }
         return dispatcher;
@@ -1675,7 +1704,8 @@ var require_react_development = __commonJS((exports, module) => {
               prefix = match && match[1] || "";
             }
           }
-          return "\n" + prefix + name;
+          return `
+` + prefix + name;
         }
       }
       var reentry = false;
@@ -1739,8 +1769,10 @@ var require_react_development = __commonJS((exports, module) => {
           }
         } catch (sample) {
           if (sample && control && typeof sample.stack === "string") {
-            var sampleLines = sample.stack.split("\n");
-            var controlLines = control.stack.split("\n");
+            var sampleLines = sample.stack.split(`
+`);
+            var controlLines = control.stack.split(`
+`);
             var s = sampleLines.length - 1;
             var c = controlLines.length - 1;
             while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
@@ -1753,7 +1785,8 @@ var require_react_development = __commonJS((exports, module) => {
                     s--;
                     c--;
                     if (c < 0 || sampleLines[s] !== controlLines[c]) {
-                      var _frame = "\n" + sampleLines[s].replace(" at new ", " at ");
+                      var _frame = `
+` + sampleLines[s].replace(" at new ", " at ");
                       if (fn.displayName && _frame.includes("<anonymous>")) {
                         _frame = _frame.replace("<anonymous>", fn.displayName);
                       }
@@ -1896,7 +1929,9 @@ var require_react_development = __commonJS((exports, module) => {
         if (ReactCurrentOwner.current) {
           var name = getComponentNameFromType(ReactCurrentOwner.current.type);
           if (name) {
-            return "\n\nCheck the render method of `" + name + "`.";
+            return `
+
+Check the render method of \`` + name + "`.";
           }
         }
         return "";
@@ -1905,7 +1940,9 @@ var require_react_development = __commonJS((exports, module) => {
         if (source !== undefined) {
           var fileName = source.fileName.replace(/^.*[\\\/]/, "");
           var lineNumber = source.lineNumber;
-          return "\n\nCheck your code at " + fileName + ":" + lineNumber + ".";
+          return `
+
+Check your code at ` + fileName + ":" + lineNumber + ".";
         }
         return "";
       }
@@ -1921,7 +1958,9 @@ var require_react_development = __commonJS((exports, module) => {
         if (!info) {
           var parentName = typeof parentType === "string" ? parentType : parentType.displayName || parentType.name;
           if (parentName) {
-            info = "\n\nCheck the top-level render call using <" + parentName + ">.";
+            info = `
+
+Check the top-level render call using <` + parentName + ">.";
           }
         }
         return info;
@@ -2588,7 +2627,8 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
               prefix = match && match[1] || "";
             }
           }
-          return "\n" + prefix + name;
+          return `
+` + prefix + name;
         }
       }
       var reentry = false;
@@ -2652,8 +2692,10 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
           }
         } catch (sample) {
           if (sample && control && typeof sample.stack === "string") {
-            var sampleLines = sample.stack.split("\n");
-            var controlLines = control.stack.split("\n");
+            var sampleLines = sample.stack.split(`
+`);
+            var controlLines = control.stack.split(`
+`);
             var s = sampleLines.length - 1;
             var c = controlLines.length - 1;
             while (s >= 1 && c >= 0 && sampleLines[s] !== controlLines[c]) {
@@ -2666,7 +2708,8 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
                     s--;
                     c--;
                     if (c < 0 || sampleLines[s] !== controlLines[c]) {
-                      var _frame = "\n" + sampleLines[s].replace(" at new ", " at ");
+                      var _frame = `
+` + sampleLines[s].replace(" at new ", " at ");
                       if (fn.displayName && _frame.includes("<anonymous>")) {
                         _frame = _frame.replace("<anonymous>", fn.displayName);
                       }
@@ -3009,7 +3052,9 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
           if (ReactCurrentOwner$1.current) {
             var name = getComponentNameFromType(ReactCurrentOwner$1.current.type);
             if (name) {
-              return "\n\nCheck the render method of `" + name + "`.";
+              return `
+
+Check the render method of \`` + name + "`.";
             }
           }
           return "";
@@ -3020,7 +3065,9 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
           if (source !== undefined) {
             var fileName = source.fileName.replace(/^.*[\\\/]/, "");
             var lineNumber = source.lineNumber;
-            return "\n\nCheck your code at " + fileName + ":" + lineNumber + ".";
+            return `
+
+Check your code at ` + fileName + ":" + lineNumber + ".";
           }
           return "";
         }
@@ -3032,7 +3079,9 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
           if (!info) {
             var parentName = typeof parentType === "string" ? parentType : parentType.displayName || parentType.name;
             if (parentName) {
-              info = "\n\nCheck the top-level render call using <" + parentName + ">.";
+              info = `
+
+Check the top-level render call using <` + parentName + ">.";
             }
           }
           return info;
@@ -3196,7 +3245,12 @@ var require_react_jsx_dev_runtime_development = __commonJS((exports) => {
               var beforeExample = keys.length > 0 ? "{key: someKey, " + keys.join(": ..., ") + ": ...}" : "{key: someKey}";
               if (!didWarnAboutKeySpread[componentName + beforeExample]) {
                 var afterExample = keys.length > 0 ? "{" + keys.join(": ..., ") + ": ...}" : "{}";
-                error('A props object containing a "key" prop is being spread into JSX:\n' + "  let props = %s;\n" + "  <%s {...props} />\n" + "React keys must be passed directly to JSX without using spread:\n" + "  let props = %s;\n" + "  <%s key={someKey} {...props} />", beforeExample, componentName, afterExample, componentName);
+                error(`A props object containing a "key" prop is being spread into JSX:
+` + `  let props = %s;
+` + `  <%s {...props} />
+` + `React keys must be passed directly to JSX without using spread:
+` + `  let props = %s;
+` + "  <%s key={someKey} {...props} />", beforeExample, componentName, afterExample, componentName);
                 didWarnAboutKeySpread[componentName + beforeExample] = true;
               }
             }
@@ -3294,7 +3348,23 @@ var require_dist2 = __commonJS2((exports, module) => {
     var e = { 366: (t2, e2, o22) => {
       o22.d(e2, { A: () => a2 });
       var n2 = o22(601), r22 = o22.n(n2), i2 = o22(314), s2 = o22.n(i2)()(r22());
-      s2.push([t2.id, ".pop-up {\n  position: absolute;\n  outline: 3px solid #fff;\n  background-color: black;\n  border-radius: 12px;\n  padding: 3px;\n  box-shadow: 10px 10px 0px #000000cc;\n}\n\n.double-border {\n  border: 3px solid white;\n  border-radius: 10;\n  outline: 3px solid black;\n  color: white;\n  padding: 10px;\n}\n", ""]);
+      s2.push([t2.id, `.pop-up {
+  position: absolute;
+  outline: 3px solid #fff;
+  background-color: black;
+  border-radius: 12px;
+  padding: 3px;
+  box-shadow: 10px 10px 0px #000000cc;
+}
+
+.double-border {
+  border: 3px solid white;
+  border-radius: 10;
+  outline: 3px solid black;
+  color: white;
+  padding: 10px;
+}
+`, ""]);
       const a2 = s2;
     }, 314: (t2) => {
       t2.exports = function(t3) {
@@ -3417,7 +3487,8 @@ var require_dist2 = __commonJS2((exports, module) => {
             var r22 = o3.layer !== undefined;
             r22 && (n2 += "@layer".concat(o3.layer.length > 0 ? " ".concat(o3.layer) : "", " {")), n2 += o3.css, r22 && (n2 += "}"), o3.media && (n2 += "}"), o3.supports && (n2 += "}");
             var i2 = o3.sourceMap;
-            i2 && typeof btoa != "undefined" && (n2 += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(i2)))), " */")), e3.styleTagTransform(n2, t4, e3.options);
+            i2 && typeof btoa != "undefined" && (n2 += `
+/*# sourceMappingURL=data:application/json;base64,`.concat(btoa(unescape(encodeURIComponent(JSON.stringify(i2)))), " */")), e3.styleTagTransform(n2, t4, e3.options);
           })(e2, t3, o22);
         }, remove: function() {
           (function(t4) {
@@ -5029,7 +5100,8 @@ var require_react_dom_development = __commonJS2((exports) => {
               prefix = match && match[1] || "";
             }
           }
-          return "\n" + prefix + name;
+          return `
+` + prefix + name;
         }
       }
       var reentry = false;
@@ -5093,8 +5165,10 @@ var require_react_dom_development = __commonJS2((exports) => {
           }
         } catch (sample) {
           if (sample && control && typeof sample.stack === "string") {
-            var sampleLines = sample.stack.split("\n");
-            var controlLines = control.stack.split("\n");
+            var sampleLines = sample.stack.split(`
+`);
+            var controlLines = control.stack.split(`
+`);
             var s2 = sampleLines.length - 1;
             var c2 = controlLines.length - 1;
             while (s2 >= 1 && c2 >= 0 && sampleLines[s2] !== controlLines[c2]) {
@@ -5107,7 +5181,8 @@ var require_react_dom_development = __commonJS2((exports) => {
                     s2--;
                     c2--;
                     if (c2 < 0 || sampleLines[s2] !== controlLines[c2]) {
-                      var _frame = "\n" + sampleLines[s2].replace(" at new ", " at ");
+                      var _frame = `
+` + sampleLines[s2].replace(" at new ", " at ");
                       if (fn.displayName && _frame.includes("<anonymous>")) {
                         _frame = _frame.replace("<anonymous>", fn.displayName);
                       }
@@ -5226,7 +5301,9 @@ var require_react_dom_development = __commonJS2((exports) => {
           } while (node);
           return info;
         } catch (x2) {
-          return "\nError generating stack: " + x2.message + "\n" + x2.stack;
+          return `
+Error generating stack: ` + x2.message + `
+` + x2.stack;
         }
       }
       function getWrappedName(outerType, innerType, wrapperName) {
@@ -5757,7 +5834,9 @@ var require_react_dom_development = __commonJS2((exports) => {
       function getDeclarationErrorAddendum() {
         var ownerName = getCurrentFiberOwnerNameInDevOrNull();
         if (ownerName) {
-          return "\n\nCheck the render method of `" + ownerName + "`.";
+          return `
+
+Check the render method of \`` + ownerName + "`.";
         }
         return "";
       }
@@ -10757,7 +10836,8 @@ var require_react_dom_development = __commonJS2((exports) => {
           checkHtmlStringCoercion(markup);
         }
         var markupString = typeof markup === "string" ? markup : "" + markup;
-        return markupString.replace(NORMALIZE_NEWLINES_REGEX, "\n").replace(NORMALIZE_NULL_AND_REPLACEMENT_REGEX, "");
+        return markupString.replace(NORMALIZE_NEWLINES_REGEX, `
+`).replace(NORMALIZE_NULL_AND_REPLACEMENT_REGEX, "");
       }
       function checkForUnmatchedText(serverText, clientText, isConcurrentMode, shouldWarnDev) {
         var normalizedClientText = normalizeMarkupForTextOrAttribute(clientText);
@@ -12390,7 +12470,7 @@ var require_react_dom_development = __commonJS2((exports) => {
           var childContext = instance.getChildContext();
           for (var contextKey in childContext) {
             if (!(contextKey in childContextTypes)) {
-              throw new Error((getComponentNameFromFiber(fiber) || "Unknown") + ".getChildContext(): key \"" + contextKey + "\" is not defined in childContextTypes.");
+              throw new Error((getComponentNameFromFiber(fiber) || "Unknown") + '.getChildContext(): key "' + contextKey + '" is not defined in childContextTypes.');
             }
           }
           {
@@ -13093,27 +13173,56 @@ var require_react_dom_development = __commonJS2((exports) => {
           }
           if (UNSAFE_componentWillMountUniqueNames.size > 0) {
             var sortedNames = setToSortedString(UNSAFE_componentWillMountUniqueNames);
-            error("Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move code with side effects to componentDidMount, and set initial state in the constructor.\n\nPlease update the following components: %s", sortedNames);
+            error(`Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+
+* Move code with side effects to componentDidMount, and set initial state in the constructor.
+
+Please update the following components: %s`, sortedNames);
           }
           if (UNSAFE_componentWillReceivePropsUniqueNames.size > 0) {
             var _sortedNames = setToSortedString(UNSAFE_componentWillReceivePropsUniqueNames);
-            error("Using UNSAFE_componentWillReceiveProps in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://reactjs.org/link/derived-state\n\nPlease update the following components: %s", _sortedNames);
+            error(`Using UNSAFE_componentWillReceiveProps in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+
+* Move data fetching code or side effects to componentDidUpdate.
+* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://reactjs.org/link/derived-state
+
+Please update the following components: %s`, _sortedNames);
           }
           if (UNSAFE_componentWillUpdateUniqueNames.size > 0) {
             var _sortedNames2 = setToSortedString(UNSAFE_componentWillUpdateUniqueNames);
-            error("Using UNSAFE_componentWillUpdate in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n\nPlease update the following components: %s", _sortedNames2);
+            error(`Using UNSAFE_componentWillUpdate in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+
+* Move data fetching code or side effects to componentDidUpdate.
+
+Please update the following components: %s`, _sortedNames2);
           }
           if (componentWillMountUniqueNames.size > 0) {
             var _sortedNames3 = setToSortedString(componentWillMountUniqueNames);
-            warn("componentWillMount has been renamed, and is not recommended for use. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move code with side effects to componentDidMount, and set initial state in the constructor.\n* Rename componentWillMount to UNSAFE_componentWillMount to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n\nPlease update the following components: %s", _sortedNames3);
+            warn(`componentWillMount has been renamed, and is not recommended for use. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+
+* Move code with side effects to componentDidMount, and set initial state in the constructor.
+* Rename componentWillMount to UNSAFE_componentWillMount to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run \`npx react-codemod rename-unsafe-lifecycles\` in your project source folder.
+
+Please update the following components: %s`, _sortedNames3);
           }
           if (componentWillReceivePropsUniqueNames.size > 0) {
             var _sortedNames4 = setToSortedString(componentWillReceivePropsUniqueNames);
-            warn("componentWillReceiveProps has been renamed, and is not recommended for use. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://reactjs.org/link/derived-state\n* Rename componentWillReceiveProps to UNSAFE_componentWillReceiveProps to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n\nPlease update the following components: %s", _sortedNames4);
+            warn(`componentWillReceiveProps has been renamed, and is not recommended for use. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+
+* Move data fetching code or side effects to componentDidUpdate.
+* If you're updating state whenever props change, refactor your code to use memoization techniques or move it to static getDerivedStateFromProps. Learn more at: https://reactjs.org/link/derived-state
+* Rename componentWillReceiveProps to UNSAFE_componentWillReceiveProps to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run \`npx react-codemod rename-unsafe-lifecycles\` in your project source folder.
+
+Please update the following components: %s`, _sortedNames4);
           }
           if (componentWillUpdateUniqueNames.size > 0) {
             var _sortedNames5 = setToSortedString(componentWillUpdateUniqueNames);
-            warn("componentWillUpdate has been renamed, and is not recommended for use. See https://reactjs.org/link/unsafe-component-lifecycles for details.\n\n* Move data fetching code or side effects to componentDidUpdate.\n* Rename componentWillUpdate to UNSAFE_componentWillUpdate to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run `npx react-codemod rename-unsafe-lifecycles` in your project source folder.\n\nPlease update the following components: %s", _sortedNames5);
+            warn(`componentWillUpdate has been renamed, and is not recommended for use. See https://reactjs.org/link/unsafe-component-lifecycles for details.
+
+* Move data fetching code or side effects to componentDidUpdate.
+* Rename componentWillUpdate to UNSAFE_componentWillUpdate to suppress this warning in non-strict mode. In React 18.x, only the UNSAFE_ name will work. To rename all deprecated lifecycles to their new names, you can run \`npx react-codemod rename-unsafe-lifecycles\` in your project source folder.
+
+Please update the following components: %s`, _sortedNames5);
           }
         };
         var pendingLegacyContextWarning = new Map;
@@ -13150,7 +13259,13 @@ var require_react_dom_development = __commonJS2((exports) => {
             var sortedNames = setToSortedString(uniqueNames);
             try {
               setCurrentFiber(firstFiber);
-              error("Legacy context API has been detected within a strict-mode tree.\n\nThe old API will be supported in all 16.x releases, but applications using it should migrate to the new version.\n\nPlease update the following components: %s\n\nLearn more about this warning here: https://reactjs.org/link/legacy-context", sortedNames);
+              error(`Legacy context API has been detected within a strict-mode tree.
+
+The old API will be supported in all 16.x releases, but applications using it should migrate to the new version.
+
+Please update the following components: %s
+
+Learn more about this warning here: https://reactjs.org/link/legacy-context`, sortedNames);
             } finally {
               resetCurrentFiber();
             }
@@ -13251,7 +13366,11 @@ var require_react_dom_development = __commonJS2((exports) => {
               throw new Error("Expected ref to be a function, a string, an object returned by React.createRef(), or null.");
             }
             if (!element._owner) {
-              throw new Error("Element ref was specified as a string (" + mixedRef + ") but no owner was set. This could happen for one of the following reasons:\n1. You may be adding a ref to a function component\n2. You may be adding a ref to a component that was not created inside a component's render method\n3. You have multiple copies of React loaded\nSee https://reactjs.org/link/refs-must-have-owner for more information.");
+              throw new Error("Element ref was specified as a string (" + mixedRef + `) but no owner was set. This could happen for one of the following reasons:
+1. You may be adding a ref to a function component
+2. You may be adding a ref to a component that was not created inside a component's render method
+3. You have multiple copies of React loaded
+See https://reactjs.org/link/refs-must-have-owner for more information.`);
             }
           }
         }
@@ -13539,7 +13658,7 @@ var require_react_dom_development = __commonJS2((exports) => {
                   knownKeys.add(key);
                   break;
                 }
-                error("Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be " + "duplicated and/or omitted \u2014 the behavior is unsupported and " + "could change in a future version.", key);
+                error("Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be " + "duplicated and/or omitted — the behavior is unsupported and " + "could change in a future version.", key);
                 break;
               case REACT_LAZY_TYPE:
                 var payload = child._payload;
@@ -14786,16 +14905,26 @@ var require_react_dom_development = __commonJS2((exports) => {
                 while (row.length < secondColumnStart) {
                   row += " ";
                 }
-                row += newHookName + "\n";
+                row += newHookName + `
+`;
                 table += row;
               }
-              error("React has detected a change in the order of Hooks called by %s. This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://reactjs.org/link/rules-of-hooks\n\n   Previous render            Next render\n   ------------------------------------------------------\n%s   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n", componentName, table);
+              error(`React has detected a change in the order of Hooks called by %s. This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://reactjs.org/link/rules-of-hooks
+
+   Previous render            Next render
+   ------------------------------------------------------
+%s   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`, componentName, table);
             }
           }
         }
       }
       function throwInvalidHookError() {
-        throw new Error("Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.");
+        throw new Error(`Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.`);
       }
       function areHookInputsEqual(nextDeps, prevDeps) {
         {
@@ -14811,7 +14940,10 @@ var require_react_dom_development = __commonJS2((exports) => {
         }
         {
           if (nextDeps.length !== prevDeps.length) {
-            error("The final argument passed to %s changed size between renders. The order and size of this array must remain constant.\n\nPrevious: %s\nIncoming: %s", currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + nextDeps.join(", ") + "]");
+            error(`The final argument passed to %s changed size between renders. The order and size of this array must remain constant.
+
+Previous: %s
+Incoming: %s`, currentHookNameInDev, "[" + prevDeps.join(", ") + "]", "[" + nextDeps.join(", ") + "]");
           }
         }
         for (var i2 = 0;i2 < prevDeps.length && i2 < nextDeps.length; i2++) {
@@ -16852,11 +16984,15 @@ var require_react_dom_development = __commonJS2((exports) => {
           {
             if (ctor.childContextTypes && !didWarnAboutLegacyContext$1.has(ctor) && (workInProgress2.mode & StrictLegacyMode) === NoMode) {
               didWarnAboutLegacyContext$1.add(ctor);
-              error("%s uses the legacy childContextTypes API which is no longer supported and will be removed in the next major release. Use React.createContext() instead\n\n.Learn more about this warning here: https://reactjs.org/link/legacy-context", name);
+              error(`%s uses the legacy childContextTypes API which is no longer supported and will be removed in the next major release. Use React.createContext() instead
+
+.Learn more about this warning here: https://reactjs.org/link/legacy-context`, name);
             }
             if (ctor.contextTypes && !didWarnAboutLegacyContext$1.has(ctor) && (workInProgress2.mode & StrictLegacyMode) === NoMode) {
               didWarnAboutLegacyContext$1.add(ctor);
-              error("%s uses the legacy contextTypes API which is no longer supported and will be removed in the next major release. Use React.createContext() with static contextType instead.\n\nLearn more about this warning here: https://reactjs.org/link/legacy-context", name);
+              error(`%s uses the legacy contextTypes API which is no longer supported and will be removed in the next major release. Use React.createContext() with static contextType instead.
+
+Learn more about this warning here: https://reactjs.org/link/legacy-context`, name);
             }
             if (instance.contextTypes) {
               error("contextTypes was defined as an instance property on %s. Use a static property to define contextTypes instead.", name);
@@ -17000,7 +17136,15 @@ var require_react_dom_development = __commonJS2((exports) => {
               var newApiName = typeof ctor.getDerivedStateFromProps === "function" ? "getDerivedStateFromProps()" : "getSnapshotBeforeUpdate()";
               if (!didWarnAboutLegacyLifecyclesAndDerivedState.has(_componentName)) {
                 didWarnAboutLegacyLifecyclesAndDerivedState.add(_componentName);
-                error("Unsafe legacy lifecycles will not be called for components using new component APIs.\n\n%s uses %s but also contains the following legacy lifecycles:%s%s%s\n\nThe above lifecycles should be removed. Learn more about this warning here:\nhttps://reactjs.org/link/unsafe-component-lifecycles", _componentName, newApiName, foundWillMountName !== null ? "\n  " + foundWillMountName : "", foundWillReceivePropsName !== null ? "\n  " + foundWillReceivePropsName : "", foundWillUpdateName !== null ? "\n  " + foundWillUpdateName : "");
+                error(`Unsafe legacy lifecycles will not be called for components using new component APIs.
+
+%s uses %s but also contains the following legacy lifecycles:%s%s%s
+
+The above lifecycles should be removed. Learn more about this warning here:
+https://reactjs.org/link/unsafe-component-lifecycles`, _componentName, newApiName, foundWillMountName !== null ? `
+  ` + foundWillMountName : "", foundWillReceivePropsName !== null ? `
+  ` + foundWillReceivePropsName : "", foundWillUpdateName !== null ? `
+  ` + foundWillUpdateName : "");
               }
             }
           }
@@ -17298,12 +17442,16 @@ var require_react_dom_development = __commonJS2((exports) => {
             var componentNameMessage = componentName ? "The above error occurred in the <" + componentName + "> component:" : "The above error occurred in one of your React components:";
             var errorBoundaryMessage;
             if (boundary.tag === HostRoot) {
-              errorBoundaryMessage = "Consider adding an error boundary to your tree to customize error handling behavior.\nVisit https://reactjs.org/link/error-boundaries to learn more about error boundaries.";
+              errorBoundaryMessage = `Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.`;
             } else {
               var errorBoundaryName = getComponentNameFromFiber(boundary) || "Anonymous";
               errorBoundaryMessage = "React will try to recreate this component tree from scratch " + ("using the error boundary you provided, " + errorBoundaryName + ".");
             }
-            var combinedMessage = componentNameMessage + "\n" + componentStack + "\n\n" + ("" + errorBoundaryMessage);
+            var combinedMessage = componentNameMessage + `
+` + componentStack + `
+
+` + ("" + errorBoundaryMessage);
             console["error"](combinedMessage);
           } else {
           }
@@ -18220,7 +18368,9 @@ var require_react_dom_development = __commonJS2((exports) => {
             var info = "";
             var ownerName = getCurrentFiberOwnerNameInDevOrNull();
             if (ownerName) {
-              info += "\n\nCheck the render method of `" + ownerName + "`.";
+              info += `
+
+Check the render method of \`` + ownerName + "`.";
             }
             var warningKey = ownerName || "";
             var debugSource = workInProgress2._debugSource;
@@ -20099,7 +20249,20 @@ var require_react_dom_development = __commonJS2((exports) => {
                   if (destroy === null) {
                     addendum = " You returned null. If your effect does not require clean up, return undefined (or nothing).";
                   } else if (typeof destroy.then === "function") {
-                    addendum = "\n\nIt looks like you wrote " + hookName + "(async () => ...) or returned a Promise. Instead, write the async function inside your effect and call it immediately:\n\n" + hookName + "(() => {\n  async function fetchData() {\n    // You can await here\n    const response = await MyAPI.getData(someId);\n    // ...\n  }\n  fetchData();\n}, [someId]); // Or [] if effect doesn't need props or state\n\nLearn more about data fetching with Hooks: https://reactjs.org/link/hooks-data-fetching";
+                    addendum = `
+
+It looks like you wrote ` + hookName + `(async () => ...) or returned a Promise. Instead, write the async function inside your effect and call it immediately:
+
+` + hookName + `(() => {
+  async function fetchData() {
+    // You can await here
+    const response = await MyAPI.getData(someId);
+    // ...
+  }
+  fetchData();
+}, [someId]); // Or [] if effect doesn't need props or state
+
+Learn more about data fetching with Hooks: https://reactjs.org/link/hooks-data-fetching`;
                   } else {
                     addendum = " You returned: " + destroy;
                   }
@@ -22715,7 +22878,11 @@ var require_react_dom_development = __commonJS2((exports) => {
           fiber = fiber.return;
         }
         {
-          error("Internal React error: Attempted to capture a commit phase error inside a detached tree. This indicates a bug in React. Likely causes include deleting the same fiber more than once, committing an already-finished tree, or an inconsistent return pointer.\n\nError message:\n\n%s", error$1);
+          error(`Internal React error: Attempted to capture a commit phase error inside a detached tree. This indicates a bug in React. Likely causes include deleting the same fiber more than once, committing an already-finished tree, or an inconsistent return pointer.
+
+Error message:
+
+%s`, error$1);
         }
       }
       function pingSuspendedRoot(root2, wakeable, pingedLanes) {
@@ -22984,7 +23151,16 @@ var require_react_dom_development = __commonJS2((exports) => {
             var previousFiber = current;
             try {
               setCurrentFiber(fiber);
-              error("An update to %s inside a test was not wrapped in act(...).\n\nWhen testing, code that causes React state updates should be wrapped into act(...):\n\nact(() => {\n  /* fire events that update state */\n});\n/* assert on the output */\n\nThis ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act", getComponentNameFromFiber(fiber));
+              error(`An update to %s inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act`, getComponentNameFromFiber(fiber));
             } finally {
               if (previousFiber) {
                 setCurrentFiber(fiber);
@@ -22998,7 +23174,16 @@ var require_react_dom_development = __commonJS2((exports) => {
       function warnIfSuspenseResolutionNotWrappedWithActDEV(root2) {
         {
           if (root2.tag !== LegacyRoot && isConcurrentActEnvironment() && ReactCurrentActQueue$1.current === null) {
-            error("A suspended resource finished loading inside a test, but the event was not wrapped in act(...).\n\nWhen testing, code that resolves suspended data should be wrapped into act(...):\n\nact(() => {\n  /* finish loading suspended data */\n});\n/* assert on the output */\n\nThis ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act");
+            error(`A suspended resource finished loading inside a test, but the event was not wrapped in act(...).
+
+When testing, code that resolves suspended data should be wrapped into act(...):
+
+act(() => {
+  /* finish loading suspended data */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act`);
           }
         }
       }
@@ -23564,7 +23749,9 @@ var require_react_dom_development = __commonJS2((exports) => {
                   }
                   var ownerName = owner ? getComponentNameFromFiber(owner) : null;
                   if (ownerName) {
-                    info += "\n\nCheck the render method of `" + ownerName + "`.";
+                    info += `
+
+Check the render method of \`` + ownerName + "`.";
                   }
                 }
                 throw new Error("Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) " + ("but got: " + (type == null ? type : typeof type) + "." + info));
@@ -23880,7 +24067,9 @@ var require_react_dom_development = __commonJS2((exports) => {
         {
           if (isRendering && current !== null && !didWarnAboutNestedUpdates) {
             didWarnAboutNestedUpdates = true;
-            error("Render methods should be a pure function of props and state; triggering nested component updates from render is not allowed. If necessary, trigger nested updates in componentDidUpdate.\n\nCheck the render method of %s.", getComponentNameFromFiber(current) || "Unknown");
+            error(`Render methods should be a pure function of props and state; triggering nested component updates from render is not allowed. If necessary, trigger nested updates in componentDidUpdate.
+
+Check the render method of %s.`, getComponentNameFromFiber(current) || "Unknown");
           }
         }
         var update = createUpdate(eventTime, lane);
@@ -24263,7 +24452,10 @@ var require_react_dom_development = __commonJS2((exports) => {
               warn("hydrate through createRoot is deprecated. Use ReactDOMClient.hydrateRoot(container, <App />) instead.");
             } else {
               if (typeof options2 === "object" && options2 !== null && options2.$$typeof === REACT_ELEMENT_TYPE) {
-                error("You passed a JSX element to createRoot. You probably meant to call root.render instead. Example usage:\n\n  let root = createRoot(domContainer);\n  root.render(<App />);");
+                error(`You passed a JSX element to createRoot. You probably meant to call root.render instead. Example usage:
+
+  let root = createRoot(domContainer);
+  root.render(<App />);`);
               }
             }
           }
@@ -24629,7 +24821,8 @@ var require_react_dom_development = __commonJS2((exports) => {
           if (navigator.userAgent.indexOf("Chrome") > -1 && navigator.userAgent.indexOf("Edge") === -1 || navigator.userAgent.indexOf("Firefox") > -1) {
             var protocol = window.location.protocol;
             if (/^(https?|file):$/.test(protocol)) {
-              console.info("%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools" + (protocol === "file:" ? "\nYou might need to use a local HTTP server (instead of file://): https://reactjs.org/link/react-devtools-faq" : ""), "font-weight:bold");
+              console.info("%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools" + (protocol === "file:" ? `
+You might need to use a local HTTP server (instead of file://): https://reactjs.org/link/react-devtools-faq` : ""), "font-weight:bold");
             }
           }
         }
@@ -24686,198 +24879,198 @@ var require_client = __commonJS2((exports) => {
 var require_hangul = __commonJS2((exports, module) => {
   (function() {
     var CHO = [
-      "\u3131",
-      "\u3132",
-      "\u3134",
-      "\u3137",
-      "\u3138",
-      "\u3139",
-      "\u3141",
-      "\u3142",
-      "\u3143",
-      "\u3145",
-      "\u3146",
-      "\u3147",
-      "\u3148",
-      "\u3149",
-      "\u314A",
-      "\u314B",
-      "\u314C",
-      "\u314D",
-      "\u314E"
+      "ㄱ",
+      "ㄲ",
+      "ㄴ",
+      "ㄷ",
+      "ㄸ",
+      "ㄹ",
+      "ㅁ",
+      "ㅂ",
+      "ㅃ",
+      "ㅅ",
+      "ㅆ",
+      "ㅇ",
+      "ㅈ",
+      "ㅉ",
+      "ㅊ",
+      "ㅋ",
+      "ㅌ",
+      "ㅍ",
+      "ㅎ"
     ], JUNG = [
-      "\u314F",
-      "\u3150",
-      "\u3151",
-      "\u3152",
-      "\u3153",
-      "\u3154",
-      "\u3155",
-      "\u3156",
-      "\u3157",
-      ["\u3157", "\u314F"],
-      ["\u3157", "\u3150"],
-      ["\u3157", "\u3163"],
-      "\u315B",
-      "\u315C",
-      ["\u315C", "\u3153"],
-      ["\u315C", "\u3154"],
-      ["\u315C", "\u3163"],
-      "\u3160",
-      "\u3161",
-      ["\u3161", "\u3163"],
-      "\u3163"
+      "ㅏ",
+      "ㅐ",
+      "ㅑ",
+      "ㅒ",
+      "ㅓ",
+      "ㅔ",
+      "ㅕ",
+      "ㅖ",
+      "ㅗ",
+      ["ㅗ", "ㅏ"],
+      ["ㅗ", "ㅐ"],
+      ["ㅗ", "ㅣ"],
+      "ㅛ",
+      "ㅜ",
+      ["ㅜ", "ㅓ"],
+      ["ㅜ", "ㅔ"],
+      ["ㅜ", "ㅣ"],
+      "ㅠ",
+      "ㅡ",
+      ["ㅡ", "ㅣ"],
+      "ㅣ"
     ], JONG = [
       "",
-      "\u3131",
-      "\u3132",
-      ["\u3131", "\u3145"],
-      "\u3134",
-      ["\u3134", "\u3148"],
-      ["\u3134", "\u314E"],
-      "\u3137",
-      "\u3139",
-      ["\u3139", "\u3131"],
-      ["\u3139", "\u3141"],
-      ["\u3139", "\u3142"],
-      ["\u3139", "\u3145"],
-      ["\u3139", "\u314C"],
-      ["\u3139", "\u314D"],
-      ["\u3139", "\u314E"],
-      "\u3141",
-      "\u3142",
-      ["\u3142", "\u3145"],
-      "\u3145",
-      "\u3146",
-      "\u3147",
-      "\u3148",
-      "\u314A",
-      "\u314B",
-      "\u314C",
-      "\u314D",
-      "\u314E"
+      "ㄱ",
+      "ㄲ",
+      ["ㄱ", "ㅅ"],
+      "ㄴ",
+      ["ㄴ", "ㅈ"],
+      ["ㄴ", "ㅎ"],
+      "ㄷ",
+      "ㄹ",
+      ["ㄹ", "ㄱ"],
+      ["ㄹ", "ㅁ"],
+      ["ㄹ", "ㅂ"],
+      ["ㄹ", "ㅅ"],
+      ["ㄹ", "ㅌ"],
+      ["ㄹ", "ㅍ"],
+      ["ㄹ", "ㅎ"],
+      "ㅁ",
+      "ㅂ",
+      ["ㅂ", "ㅅ"],
+      "ㅅ",
+      "ㅆ",
+      "ㅇ",
+      "ㅈ",
+      "ㅊ",
+      "ㅋ",
+      "ㅌ",
+      "ㅍ",
+      "ㅎ"
     ], HANGUL_OFFSET = 44032, CONSONANTS = [
-      "\u3131",
-      "\u3132",
-      "\u3133",
-      "\u3134",
-      "\u3135",
-      "\u3136",
-      "\u3137",
-      "\u3138",
-      "\u3139",
-      "\u313A",
-      "\u313B",
-      "\u313C",
-      "\u313D",
-      "\u313E",
-      "\u313F",
-      "\u3140",
-      "\u3141",
-      "\u3142",
-      "\u3143",
-      "\u3144",
-      "\u3145",
-      "\u3146",
-      "\u3147",
-      "\u3148",
-      "\u3149",
-      "\u314A",
-      "\u314B",
-      "\u314C",
-      "\u314D",
-      "\u314E"
+      "ㄱ",
+      "ㄲ",
+      "ㄳ",
+      "ㄴ",
+      "ㄵ",
+      "ㄶ",
+      "ㄷ",
+      "ㄸ",
+      "ㄹ",
+      "ㄺ",
+      "ㄻ",
+      "ㄼ",
+      "ㄽ",
+      "ㄾ",
+      "ㄿ",
+      "ㅀ",
+      "ㅁ",
+      "ㅂ",
+      "ㅃ",
+      "ㅄ",
+      "ㅅ",
+      "ㅆ",
+      "ㅇ",
+      "ㅈ",
+      "ㅉ",
+      "ㅊ",
+      "ㅋ",
+      "ㅌ",
+      "ㅍ",
+      "ㅎ"
     ], COMPLETE_CHO = [
-      "\u3131",
-      "\u3132",
-      "\u3134",
-      "\u3137",
-      "\u3138",
-      "\u3139",
-      "\u3141",
-      "\u3142",
-      "\u3143",
-      "\u3145",
-      "\u3146",
-      "\u3147",
-      "\u3148",
-      "\u3149",
-      "\u314A",
-      "\u314B",
-      "\u314C",
-      "\u314D",
-      "\u314E"
+      "ㄱ",
+      "ㄲ",
+      "ㄴ",
+      "ㄷ",
+      "ㄸ",
+      "ㄹ",
+      "ㅁ",
+      "ㅂ",
+      "ㅃ",
+      "ㅅ",
+      "ㅆ",
+      "ㅇ",
+      "ㅈ",
+      "ㅉ",
+      "ㅊ",
+      "ㅋ",
+      "ㅌ",
+      "ㅍ",
+      "ㅎ"
     ], COMPLETE_JUNG = [
-      "\u314F",
-      "\u3150",
-      "\u3151",
-      "\u3152",
-      "\u3153",
-      "\u3154",
-      "\u3155",
-      "\u3156",
-      "\u3157",
-      "\u3158",
-      "\u3159",
-      "\u315A",
-      "\u315B",
-      "\u315C",
-      "\u315D",
-      "\u315E",
-      "\u315F",
-      "\u3160",
-      "\u3161",
-      "\u3162",
-      "\u3163"
+      "ㅏ",
+      "ㅐ",
+      "ㅑ",
+      "ㅒ",
+      "ㅓ",
+      "ㅔ",
+      "ㅕ",
+      "ㅖ",
+      "ㅗ",
+      "ㅘ",
+      "ㅙ",
+      "ㅚ",
+      "ㅛ",
+      "ㅜ",
+      "ㅝ",
+      "ㅞ",
+      "ㅟ",
+      "ㅠ",
+      "ㅡ",
+      "ㅢ",
+      "ㅣ"
     ], COMPLETE_JONG = [
       "",
-      "\u3131",
-      "\u3132",
-      "\u3133",
-      "\u3134",
-      "\u3135",
-      "\u3136",
-      "\u3137",
-      "\u3139",
-      "\u313A",
-      "\u313B",
-      "\u313C",
-      "\u313D",
-      "\u313E",
-      "\u313F",
-      "\u3140",
-      "\u3141",
-      "\u3142",
-      "\u3144",
-      "\u3145",
-      "\u3146",
-      "\u3147",
-      "\u3148",
-      "\u314A",
-      "\u314B",
-      "\u314C",
-      "\u314D",
-      "\u314E"
+      "ㄱ",
+      "ㄲ",
+      "ㄳ",
+      "ㄴ",
+      "ㄵ",
+      "ㄶ",
+      "ㄷ",
+      "ㄹ",
+      "ㄺ",
+      "ㄻ",
+      "ㄼ",
+      "ㄽ",
+      "ㄾ",
+      "ㄿ",
+      "ㅀ",
+      "ㅁ",
+      "ㅂ",
+      "ㅄ",
+      "ㅅ",
+      "ㅆ",
+      "ㅇ",
+      "ㅈ",
+      "ㅊ",
+      "ㅋ",
+      "ㅌ",
+      "ㅍ",
+      "ㅎ"
     ], COMPLEX_CONSONANTS = [
-      ["\u3131", "\u3145", "\u3133"],
-      ["\u3134", "\u3148", "\u3135"],
-      ["\u3134", "\u314E", "\u3136"],
-      ["\u3139", "\u3131", "\u313A"],
-      ["\u3139", "\u3141", "\u313B"],
-      ["\u3139", "\u3142", "\u313C"],
-      ["\u3139", "\u3145", "\u313D"],
-      ["\u3139", "\u314C", "\u313E"],
-      ["\u3139", "\u314D", "\u313F"],
-      ["\u3139", "\u314E", "\u3140"],
-      ["\u3142", "\u3145", "\u3144"]
+      ["ㄱ", "ㅅ", "ㄳ"],
+      ["ㄴ", "ㅈ", "ㄵ"],
+      ["ㄴ", "ㅎ", "ㄶ"],
+      ["ㄹ", "ㄱ", "ㄺ"],
+      ["ㄹ", "ㅁ", "ㄻ"],
+      ["ㄹ", "ㅂ", "ㄼ"],
+      ["ㄹ", "ㅅ", "ㄽ"],
+      ["ㄹ", "ㅌ", "ㄾ"],
+      ["ㄹ", "ㅍ", "ㄿ"],
+      ["ㄹ", "ㅎ", "ㅀ"],
+      ["ㅂ", "ㅅ", "ㅄ"]
     ], COMPLEX_VOWELS = [
-      ["\u3157", "\u314F", "\u3158"],
-      ["\u3157", "\u3150", "\u3159"],
-      ["\u3157", "\u3163", "\u315A"],
-      ["\u315C", "\u3153", "\u315D"],
-      ["\u315C", "\u3154", "\u315E"],
-      ["\u315C", "\u3163", "\u315F"],
-      ["\u3161", "\u3163", "\u3162"]
+      ["ㅗ", "ㅏ", "ㅘ"],
+      ["ㅗ", "ㅐ", "ㅙ"],
+      ["ㅗ", "ㅣ", "ㅚ"],
+      ["ㅜ", "ㅓ", "ㅝ"],
+      ["ㅜ", "ㅔ", "ㅞ"],
+      ["ㅜ", "ㅣ", "ㅟ"],
+      ["ㅡ", "ㅣ", "ㅢ"]
     ], CONSONANTS_HASH, CHO_HASH, JUNG_HASH, JONG_HASH, COMPLEX_CONSONANTS_HASH, COMPLEX_VOWELS_HASH;
     function _makeHash(array) {
       var length = array.length, hash = { 0: 0 };
@@ -25738,8 +25931,8 @@ var DEFAULT_LANGUAGES = {
   },
   korean: {
     emoji: "\uD83C\uDDF0\uD83C\uDDF7",
-    name: "\uD55C\uAD6D\uC778",
-    alphabet: "\u3142\u3148\u3137\u3131\uC1FC\u3155\u3151\u3150\u3154\u3141\u3134\u3147\u3139\uD638\u3153\u314F\u3163\u314B\u314C\u314A\uD4E8\u315C\u3161.-!?0123456789",
+    name: "한국인",
+    alphabet: "ㅂㅈㄷㄱ쇼ㅕㅑㅐㅔㅁㄴㅇㄹ호ㅓㅏㅣㅋㅌㅊ퓨ㅜㅡ.-!?0123456789",
     capitalize: false
   }
 };
@@ -26860,7 +27053,16 @@ var st = function(e, r2, s2) {
     return function(r3) {
       if (!o2 && (n[r3] = true, Object.keys(n).length >= 200)) {
         var s3 = t ? ' with the id of "'.concat(t, '"') : "";
-        console.warn("Over ".concat(200, " classes were generated for component ").concat(e2).concat(s3, ".\n") + "Consider using the attrs method, together with a style object for frequently changed styles.\nExample:\n  const Component = styled.div.attrs(props => ({\n    style: {\n      background: props.background,\n    },\n  }))`width: 100%;`\n\n  <Component />"), o2 = true, n = {};
+        console.warn("Over ".concat(200, " classes were generated for component ").concat(e2).concat(s3, `.
+`) + `Consider using the attrs method, together with a style object for frequently changed styles.
+Example:
+  const Component = styled.div.attrs(props => ({
+    style: {
+      background: props.background,
+    },
+  }))\`width: 100%;\`
+
+  <Component />`), o2 = true, n = {};
       }
     };
   }(y, g), ue(D, function() {
@@ -26905,14 +27107,17 @@ var f = typeof process != "undefined" && process.env !== undefined && (process.e
 var m = "active";
 var y = "data-styled-version";
 var v = "6.1.11";
-var g = "/*!sc*/\n";
+var g = `/*!sc*/
+`;
 var S = typeof window != "undefined" && "HTMLElement" in window;
 var w = Boolean(typeof SC_DISABLE_SPEEDY == "boolean" ? SC_DISABLE_SPEEDY : typeof process != "undefined" && process.env !== undefined && process.env.REACT_APP_SC_DISABLE_SPEEDY !== undefined && process.env.REACT_APP_SC_DISABLE_SPEEDY !== "" ? process.env.REACT_APP_SC_DISABLE_SPEEDY !== "false" && process.env.REACT_APP_SC_DISABLE_SPEEDY : typeof process != "undefined" && process.env !== undefined && process.env.SC_DISABLE_SPEEDY !== undefined && process.env.SC_DISABLE_SPEEDY !== "" ? process.env.SC_DISABLE_SPEEDY !== "false" && process.env.SC_DISABLE_SPEEDY : true);
 var E = /invalid hook call/i;
 var N = new Set;
 var P = function(t, n) {
   if (true) {
-    var o2 = n ? ' with the id of "'.concat(n, '"') : "", s2 = "The component ".concat(t).concat(o2, " has been created dynamically.\n") + "You may see this warning because you've called styled inside another component.\nTo resolve this only create new StyledComponents outside of any render method and function component.", i2 = console.error;
+    var o2 = n ? ' with the id of "'.concat(n, '"') : "", s2 = "The component ".concat(t).concat(o2, ` has been created dynamically.
+`) + `You may see this warning because you've called styled inside another component.
+To resolve this only create new StyledComponents outside of any render method and function component.`, i2 = console.error;
     try {
       var a2 = true;
       console.error = function(t2) {
@@ -26960,7 +27165,50 @@ var Q = Object.getOwnPropertySymbols;
 var ee = Object.getOwnPropertyDescriptor;
 var te = Object.getPrototypeOf;
 var ne = Object.prototype;
-var pe = { 1: "Cannot create styled-component for component: %s.\n\n", 2: "Can't collect styles once you've consumed a `ServerStyleSheet`'s styles! `ServerStyleSheet` is a one off instance for each server-side render cycle.\n\n- Are you trying to reuse it across renders?\n- Are you accidentally calling collectStyles twice?\n\n", 3: "Streaming SSR is only supported in a Node.js environment; Please do not try to call this method in the browser.\n\n", 4: "The `StyleSheetManager` expects a valid target or sheet prop!\n\n- Does this error occur on the client and is your target falsy?\n- Does this error occur on the server and is the sheet falsy?\n\n", 5: "The clone method cannot be used on the client!\n\n- Are you running in a client-like environment on the server?\n- Are you trying to run SSR on the client?\n\n", 6: "Trying to insert a new style tag, but the given Node is unmounted!\n\n- Are you using a custom target that isn't mounted?\n- Does your document not have a valid head element?\n- Have you accidentally removed a style tag manually?\n\n", 7: 'ThemeProvider: Please return an object from your "theme" prop function, e.g.\n\n```js\ntheme={() => ({})}\n```\n\n', 8: 'ThemeProvider: Please make your "theme" prop an object.\n\n', 9: "Missing document `<head>`\n\n", 10: "Cannot find a StyleSheet instance. Usually this happens if there are multiple copies of styled-components loaded at once. Check out this issue for how to troubleshoot and fix the common cases where this situation can happen: https://github.com/styled-components/styled-components/issues/1941#issuecomment-417862021\n\n", 11: "_This error was replaced with a dev-time warning, it will be deleted for v4 final._ [createGlobalStyle] received children which will not be rendered. Please use the component without passing children elements.\n\n", 12: "It seems you are interpolating a keyframe declaration (%s) into an untagged string. This was supported in styled-components v3, but is not longer supported in v4 as keyframes are now injected on-demand. Please wrap your string in the css\\`\\` helper which ensures the styles are injected correctly. See https://www.styled-components.com/docs/api#css\n\n", 13: "%s is not a styled component and cannot be referred to via component selector. See https://www.styled-components.com/docs/advanced#referring-to-other-components for more details.\n\n", 14: 'ThemeProvider: "theme" prop is required.\n\n', 15: "A stylis plugin has been supplied that is not named. We need a name for each plugin to be able to prevent styling collisions between different stylis configurations within the same app. Before you pass your plugin to `<StyleSheetManager stylisPlugins={[]}>`, please make sure each plugin is uniquely-named, e.g.\n\n```js\nObject.defineProperty(importedPlugin, 'name', { value: 'some-unique-name' });\n```\n\n", 16: "Reached the limit of how many styled components may be created at group %s.\nYou may only create up to 1,073,741,824 components. If you're creating components dynamically,\nas for instance in your render method then you may be running into this limitation.\n\n", 17: "CSSStyleSheet could not be found on HTMLStyleElement.\nHas styled-components' style tag been unmounted or altered by another script?\n", 18: "ThemeProvider: Please make sure your useTheme hook is within a `<ThemeProvider>`" };
+var pe = { 1: `Cannot create styled-component for component: %s.
+
+`, 2: `Can't collect styles once you've consumed a \`ServerStyleSheet\`'s styles! \`ServerStyleSheet\` is a one off instance for each server-side render cycle.
+
+- Are you trying to reuse it across renders?
+- Are you accidentally calling collectStyles twice?
+
+`, 3: `Streaming SSR is only supported in a Node.js environment; Please do not try to call this method in the browser.
+
+`, 4: `The \`StyleSheetManager\` expects a valid target or sheet prop!
+
+- Does this error occur on the client and is your target falsy?
+- Does this error occur on the server and is the sheet falsy?
+
+`, 5: `The clone method cannot be used on the client!
+
+- Are you running in a client-like environment on the server?
+- Are you trying to run SSR on the client?
+
+`, 6: `Trying to insert a new style tag, but the given Node is unmounted!
+
+- Are you using a custom target that isn't mounted?
+- Does your document not have a valid head element?
+- Have you accidentally removed a style tag manually?
+
+`, 7: 'ThemeProvider: Please return an object from your "theme" prop function, e.g.\n\n```js\ntheme={() => ({})}\n```\n\n', 8: `ThemeProvider: Please make your "theme" prop an object.
+
+`, 9: "Missing document `<head>`\n\n", 10: `Cannot find a StyleSheet instance. Usually this happens if there are multiple copies of styled-components loaded at once. Check out this issue for how to troubleshoot and fix the common cases where this situation can happen: https://github.com/styled-components/styled-components/issues/1941#issuecomment-417862021
+
+`, 11: `_This error was replaced with a dev-time warning, it will be deleted for v4 final._ [createGlobalStyle] received children which will not be rendered. Please use the component without passing children elements.
+
+`, 12: `It seems you are interpolating a keyframe declaration (%s) into an untagged string. This was supported in styled-components v3, but is not longer supported in v4 as keyframes are now injected on-demand. Please wrap your string in the css\\\`\\\` helper which ensures the styles are injected correctly. See https://www.styled-components.com/docs/api#css
+
+`, 13: `%s is not a styled component and cannot be referred to via component selector. See https://www.styled-components.com/docs/advanced#referring-to-other-components for more details.
+
+`, 14: `ThemeProvider: "theme" prop is required.
+
+`, 15: "A stylis plugin has been supplied that is not named. We need a name for each plugin to be able to prevent styling collisions between different stylis configurations within the same app. Before you pass your plugin to `<StyleSheetManager stylisPlugins={[]}>`, please make sure each plugin is uniquely-named, e.g.\n\n```js\nObject.defineProperty(importedPlugin, 'name', { value: 'some-unique-name' });\n```\n\n", 16: `Reached the limit of how many styled components may be created at group %s.
+You may only create up to 1,073,741,824 components. If you're creating components dynamically,
+as for instance in your render method then you may be running into this limitation.
+
+`, 17: `CSSStyleSheet could not be found on HTMLStyleElement.
+Has styled-components' style tag been unmounted or altered by another script?
+`, 18: "ThemeProvider: Please make sure your useTheme hook is within a `<ThemeProvider>`" };
 var fe = function() {
   function e(e2) {
     this.groupSizes = new Uint32Array(512), this.length = 512, this.tag = e2;
@@ -27285,9 +27533,13 @@ var yt = function() {
     throw he(3);
   }, e;
 }();
-typeof navigator != "undefined" && navigator.product === "ReactNative" && console.warn("It looks like you've imported 'styled-components' on React Native.\nPerhaps you're looking to import 'styled-components/native'?\nRead more about this at https://www.styled-components.com/docs/basics#react-native");
+typeof navigator != "undefined" && navigator.product === "ReactNative" && console.warn(`It looks like you've imported 'styled-components' on React Native.
+Perhaps you're looking to import 'styled-components/native'?
+Read more about this at https://www.styled-components.com/docs/basics#react-native`);
 var gt = "__sc-".concat(f, "__");
-typeof window != "undefined" && (window[gt] || (window[gt] = 0), window[gt] === 1 && console.warn("It looks like there are several instances of 'styled-components' initialized in this application. This may cause dynamic styles to not render properly, errors during the rehydration process, a missing theme prop, and makes your application bigger without good reason.\n\nSee https://s-c.sh/2BAXzed for more info."), window[gt] += 1);
+typeof window != "undefined" && (window[gt] || (window[gt] = 0), window[gt] === 1 && console.warn(`It looks like there are several instances of 'styled-components' initialized in this application. This may cause dynamic styles to not render properly, errors during the rehydration process, a missing theme prop, and makes your application bigger without good reason.
+
+See https://s-c.sh/2BAXzed for more info.`), window[gt] += 1);
 var pulse = ft`
   0% {
     opacity: 0;
@@ -27305,7 +27557,7 @@ var Blink = pt.span`
 `;
 function BlinkUnderline() {
   return import_jsx_dev_runtime8.jsxDEV(Blink, {
-    children: "\xA0\xA0"
+    children: "  "
   }, undefined, false, undefined, this);
 }
 function Prompt({ prompt: prompt2, onConfirm, onClose }) {
@@ -27928,7 +28180,7 @@ function MenuRow({ item, index, selectedItem, onMouseMove, onMouseOver, onClick,
               style: { height: 30 },
               children: [
                 itemModel?.emoji,
-                "\xA0"
+                " "
               ]
             }, undefined, true, undefined, this),
             import_jsx_dev_runtime11.jsxDEV("span", {
@@ -27936,7 +28188,7 @@ function MenuRow({ item, index, selectedItem, onMouseMove, onMouseOver, onClick,
             }, undefined, false, undefined, this),
             (itemModel?.showTriangle || itemModel?.showTriangle === undefined && itemModel?.submenu) && import_jsx_dev_runtime11.jsxDEV("span", {
               style: { height: 30 },
-              children: "\xA0\u23F5"
+              children: " ⏵"
             }, undefined, false, undefined, this)
           ]
         }, undefined, true, undefined, this),
@@ -28564,7 +28816,7 @@ async function showMenu(model, image, interactions) {
       emojis.push("\uD83E\uDD1D");
     }
     if (model.actions.fight) {
-      emojis.push("\u2694\uFE0F");
+      emojis.push("⚔️");
     }
     if (model.actions.trade) {
       emojis.push("\uD83D\uDCB0");
