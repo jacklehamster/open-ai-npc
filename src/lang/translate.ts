@@ -5,6 +5,7 @@ import OpenAI from "openai";
 import type { Express } from "express";
 import storage from "node-persist";
 import { MD5 } from "bun";
+import { CHAT_MODEL } from "@/config";
 
 
 export class TranslateManager {
@@ -27,9 +28,10 @@ export class TranslateManager {
       await storage.init();
       this.initialized = true;
     }
+    const chatModel = params?.model ?? CHAT_MODEL;
     const md5 = new MD5();
     md5.update("translate");
-    md5.update(params?.model ?? "gpt-3.5-turbo");
+    md5.update(chatModel);
     md5.update(params?.seed?.toString() ?? "0");
     md5.update(systemPrompt);
     md5.update(sentence);
@@ -64,7 +66,7 @@ export class TranslateManager {
 
     const response = await this.openai.chat.completions.create({
       messages: allMessages,
-      model: params.model ?? "gpt-3.5-turbo",
+      model: chatModel,
       seed: params?.seed,
       temperature: params?.temperature ?? 1,
       max_tokens: params?.max_tokens ?? 256,
@@ -76,7 +78,7 @@ export class TranslateManager {
 
     const translation = response.choices[0].message.content;
     await storage.setItem(tag, translation);
-    return { translation };
+    return { translation, model: response.model };
   }
 
   addTranslateRoutes(app: Express) {
@@ -85,8 +87,8 @@ export class TranslateManager {
       const version = req.query.version?.toString();
       const lang = req.query.lang?.toString() ?? "en-US";
       try {
-        const { translation, cached } = await this.getTranslation(sentence, lang, {}, version);
-        res.json({ sentence, translation, cached });
+        const { translation, model, cached } = await this.getTranslation(sentence, lang, {}, version);
+        res.json({ sentence, translation, model, cached });
       } catch (error) {
         console.error('Error fetching definition:', error);
         res.status(500).json({ error: 'Failed to fetch definition' });

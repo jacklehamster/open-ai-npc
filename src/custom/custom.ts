@@ -4,6 +4,7 @@ import OpenAI from "openai";
 import { Express } from "express";
 import storage from "node-persist";
 import { MD5 } from "bun";
+import { CHAT_MODEL } from "@/config";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_WORD_KEY,
@@ -23,7 +24,7 @@ export async function getMessage(
     initialized = true;
   }
   const md5 = new MD5();
-  md5.update(params?.model || "gpt-3.5-turbo");
+  md5.update(params?.model ?? CHAT_MODEL);
   md5.update(params?.seed?.toString() ?? "0");
   md5.update(systemText);
   md5.update(prompt);
@@ -51,7 +52,7 @@ export async function getMessage(
 
   const response = await openai.chat.completions.create({
     messages: allMessages,
-    model: params.model || "gpt-3.5-turbo",
+    model: params?.model ?? CHAT_MODEL,
     seed: params?.seed,
     temperature: params?.temperature ?? 1,
     max_tokens: params?.max_tokens ?? 256,
@@ -63,7 +64,7 @@ export async function getMessage(
 
   const content = response.choices[0].message.content;
   await storage.setItem(tag, content);
-  return { content };
+  return { content, model: response.model };
 }
 
 export function addCustomRoute(app: Express) {
@@ -72,10 +73,10 @@ export function addCustomRoute(app: Express) {
     const prompt = decodeURIComponent(`${req.query.prompt}`);
     const version = req.query.version?.toString();
     try {
-      const { content, cached } = await getMessage(systemPrompt, prompt, {
+      const { content, cached, model } = await getMessage(systemPrompt, prompt, {
         ...req.query,
       }, version);
-      res.json({ content, cached });
+      res.json({ content, cached, model });
     } catch (error) {
       console.error('Error fetching definition:', error);
       res.status(500).json({ error: 'Failed to fetch definition' });

@@ -5,6 +5,7 @@ import OpenAI from "openai";
 import type { Express } from "express";
 import storage from "node-persist";
 import { MD5 } from "bun";
+import { CHAT_MODEL } from "@/config";
 
 
 export class DefinitionManager {
@@ -27,7 +28,7 @@ export class DefinitionManager {
       this.initialized = true;
     }
     const md5 = new MD5();
-    md5.update(params?.model ?? "gpt-3.5-turbo");
+    md5.update(params?.model ?? CHAT_MODEL);
     md5.update(params?.seed?.toString() ?? "0");
     md5.update(word);
     md5.update(version ?? "1");
@@ -65,7 +66,7 @@ export class DefinitionManager {
 
     const response = await this.openai.chat.completions.create({
       messages: allMessages,
-      model: params.model ?? "gpt-3.5-turbo",
+      model: params.model ?? CHAT_MODEL,
       seed: params?.seed,
       temperature: params?.temperature ?? 1,
       max_tokens: params?.max_tokens ?? 256,

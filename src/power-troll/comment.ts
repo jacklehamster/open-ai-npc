@@ -1,7 +1,7 @@
 import { MD5 } from "bun";
 import storage from "node-persist";
 import { ChatCompletionCreateParamsBase } from "openai/resources/chat/completions.mjs";
-import { ChatCompletionMessageParam } from "openai/src/resources/index.js";
+import { ChatCompletionMessageParam, ChatModel } from "openai/src/resources/index.js";
 import { systemPrompt } from "./systemprompt";
 import { openai } from "./openai/openai";
 
@@ -10,7 +10,7 @@ const AUTHORIZED_DICO = new Set<string>([
 
 let initialized = false;
 export async function makeComment(situations: string[],
-  model: string = "gpt-3.5-turbo-1106",
+  model: ChatModel = "gpt-4o-mini",
   seed?: string,
   dictionary?: Record<string, string>,
   authorizationCode?: string,
@@ -83,6 +83,7 @@ export async function makeComment(situations: string[],
   const response = res.choices[0].message.content;
   await storage.setItem(tag, response);
   return {
+    model: res.model,
     response,
     dictionaryTag,
     authorized,

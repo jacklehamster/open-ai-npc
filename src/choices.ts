@@ -1,10 +1,11 @@
 import storage from "node-persist";
 import { npc } from "./openai";
+import { CHAT_MODEL } from "./config";
 
 let initialized: boolean;
 
 export async function fetchChoice(choice: string,
-  model: string = "gpt-3.5-turbo-1106",
+  model: string = CHAT_MODEL,
   creature: string = "an angel with wings",
 ) {
   const tag = `${model}-${creature}-path-`;

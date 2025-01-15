@@ -13,6 +13,7 @@ import { moderator } from "./power-troll/moderator";
 import { TranslateManager } from "./lang/translate";
 import { DetectiveManager } from "./detective/whodunit";
 import { attachSyncSocket } from "napl";
+import { ChatModel } from "openai/resources/chat/index.mjs";
 
 const app = express();
 
@@ -118,7 +119,7 @@ app.get("/", (req, res) => {
   - choice [optional]: Choices separated by "|". Ex: choice=A|B|A|C
     (note that you must include previous choices to continue a conversation).
     You can also insert custom choices like choice=pizza|A
-  - model [optional]: The chatgpt model to use. Default is "gpt-3.5-turbo-1106".
+  - model [optional]: The chatgpt model to use.
     List at: https://platform.openai.com/docs/models
   - creature [optional]: A description of the creature. Default is "an angel with wings".
   </div>
@@ -200,7 +201,7 @@ app.get("/comment", async (req, res) => {
     };
   });
   const response = await makeComment(
-    situations, model, seed, dictionary ? JSON.parse(dictionary) : undefined,
+    situations, model as ChatModel, seed, dictionary ? JSON.parse(dictionary) : undefined,
     query.authorizationCode, cf
   );
   const formattedResponse = typeof (response) === "object" ? response : {
