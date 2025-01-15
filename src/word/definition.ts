@@ -78,7 +78,7 @@ export class DefinitionManager {
 
     const definition = response.choices[0].message.content;
     await storage.setItem(tag, definition);
-    return { definition };
+    return { definition, model: response.model };
   }
 
   addWordRoutes(app: Express) {
@@ -86,8 +86,8 @@ export class DefinitionManager {
       const word = req.params.word;
       const version = req.query.version?.toString();
       try {
-        const { definition, cached } = await this.getDefinition(word, {}, version);
-        res.json({ word, definition, cached });
+        const { definition, cached, model } = await this.getDefinition(word, {}, version);
+        res.json({ word, definition, cached, model });
       } catch (error) {
         console.error('Error fetching definition:', error);
         res.status(500).json({ error: 'Failed to fetch definition' });
