@@ -4,13 +4,14 @@ import { ChatCompletionCreateParamsBase } from "openai/resources/chat/completion
 import { ChatCompletionMessageParam, ChatModel } from "openai/src/resources/index.js";
 import { systemPrompt } from "./systemprompt";
 import { openai } from "./openai/openai";
+import { CHAT_MODEL } from "@/config";
 
 const AUTHORIZED_DICO = new Set<string>([
 ]);
 
 let initialized = false;
 export async function makeComment(situations: string[],
-  model: ChatModel = "gpt-4o-mini",
+  model: ChatModel = CHAT_MODEL,
   seed?: string,
   dictionary?: Record<string, string>,
   authorizationCode?: string,
@@ -69,7 +70,7 @@ export async function makeComment(situations: string[],
 
 
   const res = await comment({
-    model,
+    model: openai.baseURL === "https://api.deepseek.com" ? "deepseek-chat" : model,
     messages: sit.map((situation) => {
       return {
         role: 'user',
