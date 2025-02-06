@@ -4,7 +4,6 @@ import path from "path";
 import { NpcModel } from "./model/NpcModel";
 import { makeComment } from "./power-troll/comment";
 import http from 'http';
-import ws from 'ws';
 import { addRoutes } from "dok-db-manager";
 import express from "express";
 import { addCustomRoute } from "./custom/custom";
@@ -14,6 +13,7 @@ import { TranslateManager } from "./lang/translate";
 import { DetectiveManager } from "./detective/whodunit";
 import { attachSyncSocket } from "napl";
 import { ChatModel } from "openai/resources/chat/index.mjs";
+import { WebSocketServer } from "ws";
 
 const app = express();
 
@@ -240,7 +240,7 @@ const options = {
 const server = http.createServer(app);
 
 //  Web socket
-const wss = new ws.Server<typeof ws.WebSocket>({ server });
+const wss = new WebSocketServer({ server });
 
 attachSyncSocket(wss);
 

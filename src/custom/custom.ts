@@ -3,7 +3,6 @@ import { ChatCompletionMessageParam } from "openai/src/resources/index.js";
 import OpenAI from "openai";
 import { Express } from "express";
 import storage from "node-persist";
-import { MD5 } from "bun";
 import { CHAT_MODEL } from "@/config";
 
 const openai = new OpenAI({
@@ -23,7 +22,7 @@ export async function getMessage(
     await storage.init();
     initialized = true;
   }
-  const md5 = new MD5();
+  const md5 = new Bun.CryptoHasher("md5");
   md5.update(params?.model ?? CHAT_MODEL);
   md5.update(params?.seed?.toString() ?? "0");
   md5.update(systemText);

@@ -4,7 +4,6 @@ import { systemPrompt } from "./systemprompt"
 import OpenAI from "openai";
 import type { Express } from "express";
 import storage from "node-persist";
-import { MD5 } from "bun";
 import { CHAT_MODEL } from "@/config";
 
 
@@ -27,7 +26,7 @@ export class DefinitionManager {
       await storage.init();
       this.initialized = true;
     }
-    const md5 = new MD5();
+    const md5 = new Bun.CryptoHasher("md5");
     md5.update(params?.model ?? CHAT_MODEL);
     md5.update(params?.seed?.toString() ?? "0");
     md5.update(word);

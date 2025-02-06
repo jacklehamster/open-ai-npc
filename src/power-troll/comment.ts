@@ -1,4 +1,3 @@
-import { MD5 } from "bun";
 import storage from "node-persist";
 import { ChatCompletionCreateParamsBase } from "openai/resources/chat/completions.mjs";
 import { ChatCompletionMessageParam, ChatModel } from "openai/src/resources/index.js";
@@ -31,7 +30,7 @@ export async function makeComment(situations: string[],
       });
       return s;
     });
-  const md5 = new MD5();
+  const md5 = new Bun.CryptoHasher("md5");
   md5.update(model);
   md5.update(seed ?? "0");
   sit.forEach(s => md5.update(s));
@@ -51,7 +50,7 @@ export async function makeComment(situations: string[],
   let dictionaryTag;
   let authorized = false;
   if (dictionary) {
-    const md5 = new MD5();
+    const md5 = new Bun.CryptoHasher("md5");
     const entries = Object.entries(dictionary);
     entries.sort((a, b) => a.join("-").localeCompare(b.join("-")));
     entries.forEach(e => {
@@ -62,7 +61,8 @@ export async function makeComment(situations: string[],
     //  check against list of authorized tags before calling OpenAI
     authorized = AUTHORIZED_DICO.has(dictionaryTag);
     if (!authorized && authorizationCode) {
-      const md5auth = MD5.hash(dictionaryTag + "🌶️ pepper", "base64");
+      const md5 = new Bun.CryptoHasher("md5");
+      const md5auth = md5.update(dictionaryTag + "🌶️ pepper").digest("base64");
       authorized = authorizationCode === md5auth;
       console.log("authorizationCode", md5auth);
     }

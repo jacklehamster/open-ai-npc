@@ -4,7 +4,6 @@ import { systemPrompt } from "./systemprompt"
 import OpenAI from "openai";
 import type { Express } from "express";
 import storage from "node-persist";
-import { MD5 } from "bun";
 import { CHAT_MODEL } from "@/config";
 
 
@@ -29,7 +28,7 @@ export class TranslateManager {
       this.initialized = true;
     }
     const chatModel = params?.model ?? CHAT_MODEL;
-    const md5 = new MD5();
+    const md5 = new Bun.CryptoHasher("md5");
     md5.update("translate");
     md5.update(chatModel);
     md5.update(params?.seed?.toString() ?? "0");
