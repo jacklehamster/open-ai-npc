@@ -11,7 +11,7 @@ import { DefinitionManager } from "./word/definition";
 import { moderator } from "./power-troll/moderator";
 import { TranslateManager } from "./lang/translate";
 import { DetectiveManager } from "./detective/whodunit";
-import { attachSyncSocket } from "napl";
+import { attachSyncSocket } from "@dobuki/syncopath";
 import { ChatModel } from "openai/resources/chat/index.mjs";
 import { WebSocketServer } from "ws";
 
