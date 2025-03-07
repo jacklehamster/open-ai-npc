@@ -60,18 +60,18 @@
   "dependencies": {
     "@dobuki/code-lock": "latest",
     "@dobuki/react-popup": "^1.0.8",
-    "@dobuki/syncopath": "^1.0.5",
+    "@dobuki/syncopath": "^1.0.6",
     "bun": "^1.2.4",
     "dok-auth": "latest",
     "dok-db-manager": "^1.0.58",
     "dokui-menu": "^1.0.46",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
-    "ioredis": "^5.5.0",
+    "ioredis": "^5.6.0",
     "mime-types": "^2.1.35",
     "multer": "^1.4.5-lts.1",
     "node-persist": "^4.0.3",
-    "openai": "^4.86.1",
+    "openai": "^4.86.2",
     "path": "^0.12.7",
     "ws": "^8.18.1"
   }
