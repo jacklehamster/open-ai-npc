@@ -1,6 +1,6 @@
 import storage from "node-persist";
 import { ChatCompletionCreateParamsBase } from "openai/resources/chat/completions.mjs";
-import { ChatCompletionMessageParam, ChatModel } from "openai/src/resources/index.js";
+import { ChatCompletionMessageParam, ChatModel } from "openai/resources/index.mjs";
 import { systemPrompt } from "./systemprompt";
 import { openai } from "./openai/openai";
 import { CHAT_MODEL } from "@/config";

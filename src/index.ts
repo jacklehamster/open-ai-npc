@@ -12,8 +12,8 @@ import { moderator } from "./power-troll/moderator";
 import { TranslateManager } from "./lang/translate";
 import { DetectiveManager } from "./detective/whodunit";
 import { attachSyncSocket } from "@dobuki/syncopath";
-import { ChatModel } from "openai/resources/chat/index.mjs";
 import { WebSocketServer } from "ws";
+import { ChatModel } from "openai/resources/index.mjs";
 
 const app = express();
 
