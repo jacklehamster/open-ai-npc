@@ -63,7 +63,7 @@
     "@dobuki/syncopath": "^1.0.11",
     "bun": "^1.2.5",
     "dok-auth": "latest",
-    "dok-db-manager": "^1.0.58",
+    "dok-db-manager": "^1.0.59",
     "dokui-menu": "^1.0.46",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
