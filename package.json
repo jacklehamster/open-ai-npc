@@ -60,7 +60,7 @@
   "dependencies": {
     "@dobuki/code-lock": "latest",
     "@dobuki/react-popup": "^1.0.8",
-    "@dobuki/syncopath": "^1.0.17",
+    "@dobuki/syncopath": "^1.0.20",
     "bun": "^1.2.5",
     "dok-auth": "latest",
     "dok-db-manager": "^1.0.59",
