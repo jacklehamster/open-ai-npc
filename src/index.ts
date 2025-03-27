@@ -245,10 +245,11 @@ const wss = new WebSocketServer({ server });
 
 attachSyncSocket(wss);
 
-//  Promo codes
-attachPromoCodes(app, "/promo", {
-  useRedis: false,
-});
+// //  Promo codes
+// attachPromoCodes(app, "/promo", {
+//   useRedis: false,
+// });
+//  Eats too much memory
 
 server.listen(options.port, options.host, () => {
   console.log(`Server running at http://${options.host}:${options.port}/`);
