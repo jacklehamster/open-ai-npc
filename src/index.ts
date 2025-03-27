@@ -26,7 +26,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-const port = parseInt(process.env.PORT ?? "3001");
+const port = parseInt(process.env.PORT ?? "4000");
 
 interface Query {
   choice?: string;
