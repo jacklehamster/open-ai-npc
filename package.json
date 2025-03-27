@@ -47,7 +47,7 @@
   ],
   "devDependencies": {
     "@dobuki/dev-dependencies": "^1.0.20",
-    "@types/bun": "^1.2.5",
+    "@types/bun": "^1.2.6",
     "@types/express": "^4.17.21",
     "@types/ioredis": "^5.0.0",
     "@types/mime-types": "^2.1.4",
@@ -55,13 +55,14 @@
     "@types/node-persist": "^3.1.8",
     "@types/redis": "^4.0.11",
     "node-gyp": "^11.1.0",
-    "short-unique-id": "^5.2.0"
+    "short-unique-id": "^5.2.2"
   },
   "dependencies": {
     "@dobuki/code-lock": "latest",
+    "@dobuki/promo-codes": "^1.0.1",
     "@dobuki/react-popup": "^1.0.8",
-    "@dobuki/syncopath": "^1.0.26",
-    "bun": "^1.2.5",
+    "@dobuki/syncopath": "^1.0.28",
+    "bun": "^1.2.6",
     "dok-auth": "latest",
     "dok-db-manager": "^1.0.59",
     "dokui-menu": "^1.0.46",
@@ -71,7 +72,7 @@
     "mime-types": "^2.1.35",
     "multer": "^1.4.5-lts.2",
     "node-persist": "^4.0.3",
-    "openai": "^4.89.0",
+    "openai": "^4.89.1",
     "path": "^0.12.7",
     "ws": "^8.18.1"
   }
