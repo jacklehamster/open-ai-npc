@@ -14,7 +14,7 @@ import { DetectiveManager } from "./detective/whodunit";
 import { attachSyncSocket } from "@dobuki/syncopath";
 import { WebSocketServer } from "ws";
 import { ChatModel } from "openai/resources/index.mjs";
-import { attachPromoCodes } from "@dobuki/promo-codes";
+// import { attachPromoCodes } from "@dobuki/promo-codes";
 
 const app = express();
 
