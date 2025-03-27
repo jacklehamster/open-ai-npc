@@ -245,6 +245,9 @@ const wss = new WebSocketServer({ server });
 
 attachSyncSocket(wss);
 
+//  Promo codes
+attachPromoCodes(app, "/promo");
+
 server.listen(options.port, options.host, () => {
   console.log(`Server running at http://${options.host}:${options.port}/`);
   const address = server.address();
