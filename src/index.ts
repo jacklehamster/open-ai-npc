@@ -185,12 +185,11 @@ interface CommentQuery {
   model?: string;
   seed?: string;
   jsonp?: string;
-  authorizationCode?: string;
 }
 
 app.get("/comment", async (req, res) => {
   const query = req.query as CommentQuery;
-  const { situation, model, seed, dictionary, authorizationCode, jsonp, ...customFields } = query;
+  const { situation, model, seed, dictionary, jsonp, ...customFields } = query;
   let situations = ((situation ?? "") as string).split(".");
   const cf: Record<string, { type: string; value: any }> = {};
   Object.entries(customFields).forEach(([kString, value]) => {
@@ -202,7 +201,7 @@ app.get("/comment", async (req, res) => {
   });
   const response = await makeComment(
     situations, model as ChatModel, seed, dictionary ? JSON.parse(dictionary) : undefined,
-    query.authorizationCode, cf
+    cf
   );
   const formattedResponse = typeof (response) === "object" ? response : {
     response,
